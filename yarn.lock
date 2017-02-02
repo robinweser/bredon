@@ -1176,6 +1176,10 @@ diff@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.2.0.tgz#c9ce393a4b7cbd0b058a725c93df299027868ff9"
 
+disect@~1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/disect/-/disect-1.1.1.tgz#b2b520fab720abed83ec1a41f61979f4f318aca7"
+
 doctrine@1.5.0, doctrine@^1.2.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
@@ -3233,6 +3237,12 @@ tmpl@1.0.x:
 to-fast-properties@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
+
+tokenizer@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/tokenizer/-/tokenizer-1.1.2.tgz#0058bdc229affaed05b29333675ccf53eae34f5d"
+  dependencies:
+    disect "~1.1.0"
 
 tough-cookie@^2.3.1, tough-cookie@~2.3.0:
   version "2.3.2"

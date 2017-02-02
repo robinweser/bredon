@@ -1,8 +1,26 @@
 {
-  "name": "css-value-parser",
+  "name": "bredon",
   "version": "0.0.1",
   "description": "A modern CSS value parser in JavaScript",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "keywords": [
+    "css",
+    "parser",
+    "css-parser",
+    "css-value-parser",
+    "ast",
+    "lexer",
+    "tokenizer",
+    "cssinjs"
+  ],
+  "repository": "https://github.com/rofrischmann/bredon.git",
+  "author": "Robin Frischmann <robin@rofrischmann.de>",
+  "license": "MIT",
   "scripts": {
     "check": "npm run format && npm run lint && npm test && npm run flow",
     "format": "prettier-eslint modules",
@@ -10,9 +28,6 @@
     "lint": "eslint modules",
     "test": "jest"
   },
-  "repository": "https://github.com/rofrischmann/css-value-parser.git",
-  "author": "Robin Frischmann <robin@rofrischmann.de>",
-  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
@@ -28,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "jest": "^18.1.0",
-    "prettier-eslint-cli": "^1.1.0"
+    "prettier-eslint-cli": "^1.1.0",
+    "tokenizer": "^1.1.2"
   }
 }
