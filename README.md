@@ -228,11 +228,10 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 
 ##### Specific Properties
 
-| Property |  Description |
-| ------ | ------ |
+| Property | Description |
+| ------ | ------ |
 | dimension | The type of dimension |
 | unit | The concrete dimension unit |
-
 
 ```javascript
 // e.g. 12px
@@ -249,8 +248,8 @@ Floats are floating-point numbers with a fractional part and an integer part. *(
 
 ##### Specific Properties
 
-| Property |  Description |
-| ------ | ------ |
+| Property | Description |
+| ------ | ------ |
 | integer | The integer part |
 | fractional | The fractional part |
 
@@ -268,12 +267,12 @@ Functions represent CSS functions wrapped in parentheses.
 
 ##### Specific Properties
 
-| Property |  Description |
-| ------ | ------ |
+| Property | Description |
+| ------ | ------ |
 | callee | The function name |
 | params | An array of function parameter of any AST node type |
 
-```javascrip
+```javascript
 
 // e.g. rgba(10, 20, 30, 0.55)
 {
