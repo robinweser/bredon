@@ -1,172 +1,235 @@
 /* @flow */
-import type Token from '../flowtypes/Token'
-import type AST from '../flowtypes/AST'
+import type { Token } from '../flowtypes/Token'
+import type { AST, Node, SimpleNode, DimensionNode, FloatNode, FunctionNode } from '../flowtypes/AST'
+import type { RuleMap } from '../flowtypes/RuleMap'
 
-export default function parse(tokens: Array<Token>): AST {
-  let currentPosition: number = 0
+import CSSValueRules from './utils/CSSValueRules'
+import createTokenizer from './tokenizer'
 
-  function walk() {
-    let token: Token = tokens[currentPosition]
+const emptyToken: Token = {
+  type: '__empty_token',
+  value: ''
+}
 
-    if (token.type === 'number') {
-      ++currentPosition
+const dimensions = {
+  percentage_unit: 'percentage',
+  font_length_unit: 'font-length',
+  viewport_length_unit: 'viewport-length',
+  absolute_length_unit: 'absolute-length',
+  angle_unit: 'angle',
+  duration_unit: 'duration',
+  frequency_unit: 'frequency',
+  resolution_unit: 'resolution'
+}
 
-      return {
-        type: 'NumberLiteral',
-        value: token.value
-      }
+/**
+Color:
+hash hexcolor
+(Function) rgb(a), hsl(a)
+String:
+quote(same-value) identifier quote(same-value)
+*/
+export default class Parser {
+  tokenizer: Function;
+  options: Object;
+  currentPosition: number;
+  currentToken: Token;
+  parenBalance: number;
+  tokens: Array<Token>;
+
+  constructor(options?: Object = {}) {
+    this.tokenizer = createTokenizer(CSSValueRules, ['whitespace'])
+    this.options = options
+  }
+
+  getNextToken(position: number): Token {
+    const nextPosition = this.currentPosition + position
+    if (nextPosition < this.tokens.length) {
+      return this.tokens[nextPosition]
     }
 
-    if (token.type === 'identifier') {
-      ++currentPosition
+    return emptyToken
+  }
+
+  isRunning() {
+    return this.currentPosition < this.tokens.length
+  }
+
+  parseNumber(): SimpleNode | DimensionNode | FloatNode {
+    if (this.currentToken.type === 'number') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken.type.indexOf('unit') > -1) {
+        ++this.currentPosition
+
+        return {
+          type: 'Dimension',
+          value: parseInt(this.currentToken.value),
+          dimension: dimensions[nextToken.type],
+          unit: nextToken.value
+        }
+      }
+
+      if (nextToken.type === 'floating_point') {
+        const integerPart = this.currentToken.value
+        this.updateCurrentToken(1)
+        return this.parseFloat(integerPart)
+      }
+
+      return {
+        type: 'Integer',
+        value: parseInt(this.currentToken.value)
+      }
+    }
+  }
+
+  parseKeyword(): SimpleNode {
+    if (this.currentToken.type === 'keyword') {
+      return {
+        type: 'Keyword',
+        value: this.currentToken.value
+      }
+    }
+  }
+
+  parseIdentifier(): SimpleNode | FunctionNode {
+    if (this.currentToken.type === 'identifier') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken.type === 'paren' && nextToken.value === '(') {
+        return this.parseFunction()
+      }
 
       return {
         type: 'Identifier',
-        value: token.value
+        value: this.currentToken.value
       }
     }
+  }
 
-    if (token.type === 'single-start') {
-      token = tokens[++currentPosition]
-
-      const node = {
-        type: 'SingleValue',
-        nodes: []
-      }
-
-      while (token.type !== 'single-end') {
-        node.nodes.push(walk())
-        token = tokens[currentPosition]
-      }
-
-      ++currentPosition
-      return node
+  parseFunction(): FunctionNode {
+    const node = {
+      type: 'Function',
+      callee: this.currentToken.value,
+      params: []
     }
 
-    if (token.type === 'value-start') {
-      token = tokens[++currentPosition]
+    this.updateCurrentToken(2)
+    ++this.parenBalance
 
-      const node = {
-        type: 'MultiValue',
-        nodes: []
+    const startParenBalance = this.parenBalance
+
+    while (
+      this.isRunning() &&
+        (this.currentToken.type !== 'paren' ||
+          this.currentToken.type === 'paren' && this.currentToken.value !== ')' ||
+          this.parenBalance !== startParenBalance)
+    ) {
+      // skip all commas directly
+      while (this.isRunning() && this.currentToken.type === 'comma') {
+        this.updateCurrentToken(1)
       }
 
-      while (token.type !== 'value-end') {
-        const innerNode = walk()
+      node.params.push(this.walkTokens())
+      this.updateCurrentToken()
+    }
 
-        if (innerNode.nodes.length > 0) {
-          node.nodes.push(innerNode)
+    --this.parenBalance
+    return node
+  }
+
+  parseParen(): SimpleNode {
+    if (this.currentToken.type === 'paren') {
+      // update paren balance
+      if (this.currentToken.value === '(') {
+        ++this.parenBalance
+      } else {
+        --this.parenBalance
+      }
+      return {
+        type: 'Parenthese',
+        value: this.currentToken.value
+      }
+    }
+  }
+
+  parseComma(): SimpleNode {
+    if (this.currentToken.type === 'comma') {
+      return {
+        type: 'Separator',
+        value: this.currentToken.value
+      }
+    }
+  }
+
+  parseOperator(): SimpleNode {
+    if (this.currentToken.type === 'operator') {
+      return {
+        type: 'Operator',
+        value: this.currentToken.value
+      }
+    }
+  }
+
+  parseFloat(integerPart?: number): FloatNode {
+    if (this.currentToken.type === 'floating_point') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken.type === 'number') {
+        this.updateCurrentToken(1)
+
+        return {
+          type: 'Float',
+          integer: parseInt(integerPart) || 0,
+          fractional: parseInt(nextToken.value)
         }
-        token = tokens[currentPosition]
       }
 
-      ++currentPosition
-      return node
+      throw new SyntaxError('A floating point must be followed by a number.')
     }
-
-    throw new TypeError(token.type)
   }
 
-  const ast = {
-    type: 'CSSValue',
-    body: []
+  updateCurrentToken(increment?: number): void {
+    if (increment) {
+      this.currentPosition += increment
+    }
+
+    this.currentToken = this.tokens[this.currentPosition]
   }
 
-  while (currentPosition < tokens.length) {
-    ast.body.push(walk())
+  walkTokens(): Node {
+    this.updateCurrentToken()
+
+    const node = this.parseComma() ||
+      this.parseNumber() ||
+      this.parseFloat() ||
+      this.parseKeyword() ||
+      this.parseIdentifier() ||
+      this.parseOperator() ||
+      this.parseParen()
+
+    if (!node) {
+      throw new SyntaxError('Error')
+    }
+
+    ++this.currentPosition
+    return node
   }
 
-  return ast
-}
+  parse(input: string): AST {
+    this.tokens = this.tokenizer(input)
+    this.currentPosition = 0
+    this.parenBalance = 0
 
-
-
-function isNumber(char) {
-  return /[0-9]/.test(char)
-}
-
-function isWhiteSpace(char) {
-  return char === ' '
-}
-
-function isLetter(char) {
-  return char !== undefined && /[a-z]/i.test(char)
-}
-
-function isComma(char) {
-  return char === ','
-}
-
-export default function tokenize(input: string): Array<Token> {
-  let currentPosition: number = 0
-  const tokens: Array<Token> = []
-
-  tokens.push({ type: 'value-start' })
-  tokens.push({ type: 'single-start' })
-
-  while (currentPosition < input.length) {
-    let char: string = input[currentPosition]
-
-    if (isComma(char)) {
-      tokens.push({ type: 'single-end' })
-      tokens.push({ type: 'value-end' })
-      tokens.push({ type: 'value-start' })
-      tokens.push({ type: 'single-start' })
-
-      ++currentPosition
-      continue
+    const ast = {
+      type: 'CSSValue',
+      body: []
     }
 
-    // check for whitespace
-    if (isWhiteSpace(char)) {
-      while (isWhiteSpace(char)) {
-        char = input[++currentPosition]
-      }
-
-      tokens.push({ type: 'single-end' })
-      tokens.push({ type: 'single-start' })
-
-      continue
+    while (this.isRunning()) {
+      ast.body.push(this.walkTokens())
     }
 
-    // check for numbers
-    if (isNumber(char)) {
-      let value: string = ''
-
-      while (isNumber(char)) {
-        value += char
-        char = input[++currentPosition]
-      }
-
-      tokens.push({
-        type: 'number',
-        value
-      })
-
-      continue
-    }
-
-    // check for strings
-    if (isLetter(char)) {
-      let value: string = ''
-
-      while (isLetter(char)) {
-        value += char
-        char = input[++currentPosition]
-      }
-
-      tokens.push({
-        type: 'identifier',
-        value
-      })
-
-      continue
-    }
-
-    throw new Error(`Unknown character: ${char} at position: ${currentPosition}`)
+    return ast
   }
-
-  tokens.push({ type: 'single-end' })
-  tokens.push({ type: 'value-end' })
-  return tokens
 }

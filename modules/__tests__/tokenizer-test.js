@@ -11,7 +11,7 @@ describe('Tokenizing CSS values', () => {
         value: '1'
       },
       {
-        type: 'length_unit',
+        type: 'absolute_length_unit',
         value: 'px'
       },
       {
@@ -42,7 +42,7 @@ describe('Tokenizing CSS values', () => {
         value: '1'
       },
       {
-        type: 'length_unit',
+        type: 'absolute_length_unit',
         value: 'px'
       },
       {
@@ -74,7 +74,7 @@ describe('Tokenizing CSS values', () => {
         value: '300'
       },
       {
-        type: 'time_unit',
+        type: 'duration_unit',
         value: 'ms'
       },
       {
