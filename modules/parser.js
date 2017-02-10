@@ -1,7 +1,6 @@
 /* @flow */
 import type { Token } from '../flowtypes/Token'
 import type { AST, Node, SimpleNode, DimensionNode, FloatNode, FunctionNode } from '../flowtypes/AST'
-import type { RuleMap } from '../flowtypes/RuleMap'
 
 import CSSValueRules from './utils/CSSValueRules'
 import createTokenizer from './tokenizer'
@@ -64,7 +63,7 @@ export default class Parser {
 
         return {
           type: 'Dimension',
-          value: parseInt(this.currentToken.value),
+          value: parseInt(this.currentToken.value, 10),
           dimension: dimensions[nextToken.type],
           unit: nextToken.value
         }
@@ -78,7 +77,7 @@ export default class Parser {
 
       return {
         type: 'Integer',
-        value: parseInt(this.currentToken.value)
+        value: parseInt(this.currentToken.value, 10)
       }
     }
   }
@@ -180,8 +179,8 @@ export default class Parser {
 
         return {
           type: 'Float',
-          integer: parseInt(integerPart) || 0,
-          fractional: parseInt(nextToken.value)
+          integer: parseInt(integerPart, 10) || 0,
+          fractional: parseInt(nextToken.value, 10)
         }
       }
 

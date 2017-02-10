@@ -8,10 +8,10 @@ describe('Parsing CSS values', () => {
     expect(parser.parse('1px inherit rgba(255, 94, 0.34), 300ms all linear')).toEqual({
       body: [
         {
-          type: 'UnitValue',
-          value: '1',
+          type: 'Dimension',
+          value: 1,
           unit: 'px',
-          unitType: 'absolute-length'
+          dimension: 'absolute-length'
         },
         {
           type: 'Keyword',
@@ -23,16 +23,16 @@ describe('Parsing CSS values', () => {
           params: [
             {
               type: 'Integer',
-              value: '255'
+              value: 255
             },
             {
               type: 'Integer',
-              value: '94'
+              value: 94
             },
             {
               type: 'Float',
-              integer: '0',
-              fractional: '34'
+              integer: 0,
+              fractional: 34
             }
           ]
         },
@@ -41,10 +41,10 @@ describe('Parsing CSS values', () => {
           value: ','
         },
         {
-          type: 'UnitValue',
+          type: 'Dimension',
           unit: 'ms',
-          unitType: 'duration',
-          value: '300'
+          dimension: 'duration',
+          value: 300
         },
         {
           type: 'Identifier',

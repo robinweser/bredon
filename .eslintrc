@@ -10,11 +10,19 @@
   ],
   "rules": {
     "semi": [ 2, "never" ],
-    "object-curly-newline": ["error" ],
-    "object-property-newline": ["error", {
+    "object-curly-newline": [ 2 ],
+    "object-property-newline": [2, {
       "allowMultiplePropertiesPerLine": false
     }],
-    "max-len": [ 2, 100 ],
-    "comma-dangle": [ 2, "never" ]
+    "max-len": [ 2, 120 ],
+    "comma-dangle": [ 2, "never" ],
+    "no-confusing-arrow": [ 0 ],
+    "no-param-reassign": [ 1 ],
+    "no-nested-ternary": [ 1 ],
+    "no-mixed-operators": [ 0 ],
+    "no-underscore-dangle": [ 0 ],
+    "no-plusplus": [ 0 ],
+    "no-restricted-syntax": [ 0 ],
+    "consistent-return": [ 0 ]
   }
 }

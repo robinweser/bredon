@@ -32,6 +32,9 @@ export default class Generator {
       case 'Keyword':
       case 'Integer':
         return node.value
+
+      default:
+        throw new TypeError('Unknown Type')
     }
   }
 }
