@@ -34,9 +34,7 @@ describe('Tokenizing CSS values', () => {
   })
 
   it('should tokenize complex values', () => {
-    expect(
-      tokenizeCSSValue('1px solid black, 300ms  all cubic-bezier(1,0.23, 55.98, .05)')
-    ).toEqual([
+    expect(tokenizeCSSValue('1px solid black, 300ms  all cubic-bezier(1,0.23, 55.98, .05)')).toEqual([
       {
         type: 'number',
         value: '1'
@@ -158,5 +156,15 @@ describe('Tokenizing CSS values', () => {
         value: ')'
       }
     ])
+  })
+
+  it('should return an array of tokens', () => {
+    expect(tokenizeCSSValue('#FF66f6')).toEqual([{
+      type: 'hash',
+      value: '#'
+    }, {
+      type: 'hexadecimal',
+      value: 'FF66f6'
+    }])
   })
 })

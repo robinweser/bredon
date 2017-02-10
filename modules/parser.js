@@ -188,6 +188,22 @@ export default class Parser {
     }
   }
 
+  parseColor() {
+    if (this.currentToken.type === 'hash') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken.type === 'hexadecimal') {
+        this.updateCurrentToken(1)
+
+        return {
+          type: 'Color',
+          value: `#${nextToken.value}`,
+          color: 'hexadecimal'
+        }
+      }
+    }
+  }
+
   updateCurrentToken(increment?: number): void {
     if (increment) {
       this.currentPosition += increment
@@ -205,10 +221,11 @@ export default class Parser {
       this.parseKeyword() ||
       this.parseIdentifier() ||
       this.parseOperator() ||
+      this.parseColor() ||
       this.parseParen()
 
     if (!node) {
-      throw new SyntaxError('Error')
+      throw new SyntaxError(('Cannot parse': node))
     }
 
     ++this.currentPosition
