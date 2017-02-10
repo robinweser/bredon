@@ -22,7 +22,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "scripts": {
-    "check": "npm run format && npm run lint && npm test && npm run flow",
+    "check": "npm run format && npm run lint && npm run test:coverage && npm run flow",
     "format": "prettier-eslint modules",
     "flow": "flow",
     "lint": "eslint modules",
