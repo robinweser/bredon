@@ -227,10 +227,12 @@ Operators are basic arithmetic expression symbols for addition `+`, subtraction 
 Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
 
 ##### Specific Properties
+
 | Property |  Description |
 | ------ | ------ |
 | dimension | The type of dimension |
 | unit | The concrete dimension unit |
+
 
 ```javascript
 // e.g. 12px
@@ -246,10 +248,12 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 Floats are floating-point numbers with a fractional part and an integer part. *(If the integer part is omitted, it is represented by `0`)*
 
 ##### Specific Properties
+
 | Property |  Description |
 | ------ | ------ |
 | integer | The integer part |
 | fractional | The fractional part |
+
 ```javascript
 // e.g. 587.923
 {
@@ -263,11 +267,14 @@ Floats are floating-point numbers with a fractional part and an integer part. *(
 Functions represent CSS functions wrapped in parentheses.
 
 ##### Specific Properties
+
 | Property |  Description |
 | ------ | ------ |
 | callee | The function name |
 | params | An array of function parameter of any AST node type |
-```javascript
+
+```javascrip
+
 // e.g. rgba(10, 20, 30, 0.55)
 {
   type: 'Function',
