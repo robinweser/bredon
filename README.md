@@ -18,9 +18,15 @@ yarn add bredon
 I am heavily involved in the whole CSS-in-JS movement with [Fela](https://github.com/rofrischmann/fela), [Lorren](https://github.com/rofrischmann/lorren) and [Elodin](https://github.com/rofrischmann/react-look) as well as [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer). While writing Elodin, a plugin-based style object linter, I struggled to do complex value validation and related operations. That's why I built Lorren, a plugin-based style object analyzer, to get as much information as possible, for each property-value pair. While stuff like *"Is the property/value prefixed?"* or even *"Is it compatible with browser ...?"* has been pretty straightforward, I really couldn't come up with a simple solution to correctly validate CSS values with all their complexity.<br>
 Here, I made the decision to write a modern CSS value parser that provides the required degree of accuracy and detail - Bredon.
 
+> Bredon also is a project to understand how compilers work. It's quite fascinating after you understand how simple they actually are.
 
 ## How?
-Coming soon.
+I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler) to build Bredon. It follows the exact same steps as any other compiler does:
+
+1. First of all we read the input, one by one, and generate tokens
+2. Then we parse these tokens into syntactic nodes, also know as AST ([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree))
+3. *(optional)* We may now traverse the AST and transform nodes
+4. Finally we generate a new CSS value using the transformed AST
 
 ## The Gist
 ```javascript
