@@ -73,6 +73,7 @@ ast === {
   * [Integer](docs/ASTNodes.md#integer)
   * [Keyword](docs/ASTNodes.md#keyword)
   * [Operator](docs/ASTNodes.md#operator)
+  * [Color](docs/ASTNodes.md#color)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
   * [Function](docs/ASTNodes.md#function)
