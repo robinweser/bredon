@@ -1,16 +1,32 @@
-import createTokenizer from './tokenizer'
+/* @flow */
+import type { AST } from '../flowtypes/AST'
+import type { ParsedCSSValue } from '../flowtypes/ParsedCSSValue'
 
-const tokenize = createTokenizer({
-  length_unit: /^(px|em)$/,
-  time_unit: /^((m)?s)$/,
-  identifier: /^([a-z]|-)+$/i,
-  number: /^\d+$/,
-  floating_point: /^[.]$/,
-  whitespace: /^\s+$/,
-  paren: /^(\(|\))$/,
-  comma: /^,+$/
-})
+import Parser from './parser'
+import Traverser from './traverser'
+import Generator from './generator'
 
-console.log('Tokenizing: 34px solid grey, 300ms all cubic-bezier(12, 3.2, .5, 675.23)')
-console.log('----------')
-console.log(tokenize('34px solid grey, 300ms all cubic-bezier(12, 3.2, .5, 675.23)'))
+export default function parse(input: string): ParsedCSSValue {
+  const parser = new Parser()
+  const ast: AST = parser.parse(input)
+
+  return {
+    toString(): string {
+      const generator = new Generator()
+      return generator.generate(ast) || ''
+    },
+    toAST(): AST {
+      return ast
+    },
+    traverse(visitors: Object): void {
+      const traverser = new Traverser(visitors)
+      traverser.traverse(ast)
+    }
+  }
+}
+
+const input = '1px solid calc(300, (200), 100)'
+
+const parsed = parse(input)
+
+console.log(parsed.toString())
