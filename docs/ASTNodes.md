@@ -70,7 +70,7 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 #### Specific Properties
 
 | Property | Value | Description |
-| ------ | ------ |
+| ------ | --- | ------ |
 | color | `hexadecimal` | The type of the color |
 
 > More color types soon
@@ -90,7 +90,7 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 #### Specific Properties
 
 | Property | Value | Description |
-| ------ | ------ |
+| ------ | --- |  ------ |
 | dimension | `absolute-length`, `percentage`, `font-length`, `viewport-length`, `angle`, `duration`, `frequency`, `resolution` |  The type of dimension |
 | unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
 
