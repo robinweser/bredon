@@ -20,4 +20,5 @@ Thumbs.db
 *.vi
 
 node_modules
+coverage
 lib

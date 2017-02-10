@@ -26,7 +26,8 @@
     "format": "prettier-eslint modules",
     "flow": "flow",
     "lint": "eslint modules",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

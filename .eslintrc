@@ -14,6 +14,7 @@
     "object-property-newline": ["error", {
       "allowMultiplePropertiesPerLine": false
     }],
+    "max-len": [ 2, 100 ],
     "comma-dangle": [ 2, "never" ]
   }
 }
