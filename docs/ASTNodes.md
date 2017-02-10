@@ -67,8 +67,6 @@ value: '+'
 ## Color
 Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
 
-#### Specific Properties
-
 | Property | Value | Description |
 | ------ | --- | ------ |
 | color | `hexadecimal` | The type of the color |
@@ -87,7 +85,6 @@ color: 'hexadecimal'
 ## Dimension
 Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
 
-#### Specific Properties
 
 | Property | Value | Description |
 | ------ | --- |  ------ |
@@ -108,7 +105,6 @@ dimension: 'absolute-length'
 ## Float
 Floats are floating-point numbers with a fractional part and an integer part. *(If the integer part is omitted, it is represented by `0`)*
 
-#### Specific Properties
 
 | Property | Description |
 | ------ | ------ |
@@ -126,8 +122,6 @@ fractional: 923
 
 ## Function
 Functions represent CSS functions wrapped in parentheses.
-
-#### Specific Properties
 
 | Property | Description |
 | ------ | ------ |
