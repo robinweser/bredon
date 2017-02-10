@@ -1,10 +1,20 @@
 export default {
-  length_unit: /^(px|em)$/,
-  time_unit: /^((m)?s)$/,
+  keyword: /^(initial|inherit|unset)$/,
+  percentage_unit: /^%$/,
+  font_length_unit: /^(em|ex|ch|rem)$/,
+  viewport_length_unit: /^(vw|vh|vmin|vmax)$/,
+  absolute_length_unit: /^(cm|mm|q|in|pt|pc|px)$/,
+  angle_unit: /^(deg|grad|rad|turn)$/,
+  duration_unit: /^((m)?s)$/,
+  frequency_unit: /^((k)?Hz)$/,
+  resolution_unit: /^(dpi|dpcm|dppx)$/,
+  operator: /^(\+|-|\*|\/)$/,
   identifier: /^([a-z]|-)+$/i,
   number: /^\d+$/,
   floating_point: /^[.]$/,
   whitespace: /^\s+$/,
   paren: /^(\(|\))$/,
-  comma: /^,+$/
+  comma: /^,+$/,
+  quote: /^('|")$/,
+  hash: /^#$/
 }

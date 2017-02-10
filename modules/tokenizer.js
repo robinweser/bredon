@@ -1,5 +1,6 @@
-import type Token from '../flowtypes/Token'
-import type RuleMap from '../flowtypes/Rule'
+/* @flow */
+import type { Token } from '../flowtypes/Token'
+import type { RuleMap } from '../flowtypes/RuleMap'
 
 import loopUntilConditionIsFulfilled from './utils/loopUntilConditionIsFulfilled'
 import getFirstMatchingRule from './utils/getFirstMatchingRule'
@@ -8,7 +9,10 @@ function isEmpty(str: string): boolean {
   return str.length === 0
 }
 
-export default function createTokenizer(ruleTokenMap: RuleMap): Function {
+export default function createTokenizer(
+  ruleTokenMap: RuleMap,
+  skip?: Array<string> = []
+): Function {
   return function tokenize(input: string, tokens: Array<Token> = []): Array<Token> {
     // stop at empty strings
     if (isEmpty(input) || input === 'undefined') {
@@ -39,7 +43,9 @@ export default function createTokenizer(ruleTokenMap: RuleMap): Function {
       value: matchedValue
     }
 
-    tokens.push(token)
+    if (skip.indexOf(matchedTokenType) === -1) {
+      tokens.push(token)
+    }
 
     return tokenize(input.substring(ruleEndIndex), tokens)
   }

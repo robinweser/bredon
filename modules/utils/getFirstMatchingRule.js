@@ -1,4 +1,4 @@
-import type RuleMap from '../../flowtypes/Rule'
+import type { RuleMap } from '../../flowtypes/Rule'
 
 /* @flow */
 export default function getFirstMatchingRule(str: string, ruleTokenMap: RuleMap): string | false {
