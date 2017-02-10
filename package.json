@@ -44,6 +44,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "flow-bin": "^0.38.0",
     "jest": "^18.1.0",
     "prettier-eslint-cli": "^1.1.0",
     "tokenizer": "^1.1.2"
