@@ -36,6 +36,7 @@ export default class Traverser {
       case 'Operator':
       case 'Seperator':
       case 'HexColor':
+      case 'URL':
         break
 
       default:

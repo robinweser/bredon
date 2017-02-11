@@ -96,6 +96,10 @@ export default class Parser {
       const nextToken = this.getNextToken(1)
 
       if (nextToken.type === 'paren' && nextToken.value === '(') {
+        if (this.currentToken.value === 'url') {
+          return this.parseURL()
+        }
+
         return this.parseFunction()
       }
 
@@ -132,6 +136,39 @@ export default class Parser {
       node.params.push(this.walkTokens())
       this.updateCurrentToken()
     }
+
+    --this.parenBalance
+    return node
+  }
+
+  parseURL(): FunctionNode {
+    const node = {
+      type: 'Function',
+      callee: this.currentToken.value,
+      params: []
+    }
+
+    let urlValue = ''
+
+    this.updateCurrentToken(2)
+    ++this.parenBalance
+
+    const startParenBalance = this.parenBalance
+
+    while (
+      this.isRunning() &&
+        (this.currentToken.type !== 'paren' ||
+          this.currentToken.type === 'paren' && this.currentToken.value !== ')' ||
+          this.parenBalance !== startParenBalance)
+    ) {
+      urlValue += this.currentToken.value
+      this.updateCurrentToken(1)
+    }
+
+    node.params.push({
+      type: 'URL',
+      value: urlValue
+    })
 
     --this.parenBalance
     return node
@@ -197,8 +234,7 @@ export default class Parser {
 
         return {
           type: 'HexColor',
-          value: `#${nextToken.value}`,
-          color: 'hexadecimal'
+          value: `#${nextToken.value}`
         }
       }
     }

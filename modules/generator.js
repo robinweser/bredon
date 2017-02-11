@@ -33,6 +33,7 @@ export default class Generator {
       case 'Integer':
       case 'Parenthese':
       case 'HexColor':
+      case 'URL':
         return node.value
 
       default:
