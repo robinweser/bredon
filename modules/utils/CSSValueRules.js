@@ -8,6 +8,8 @@ export default {
   duration_unit: /^((m)?s)$/,
   frequency_unit: /^((k)?Hz)$/,
   resolution_unit: /^(dpi|dpcm|dppx)$/,
+  singe_quote: /^('|\\')$/,
+  double_quote: /^("|\\")$/,
   operator: /^(\+|-|\*|\/)$/,
   identifier: /^[a-z-]+$/i,
   number: /^\d+$/,
@@ -17,7 +19,5 @@ export default {
   whitespace: /^\s+$/,
   paren: /^[()]+$/,
   comma: /^,+$/,
-  singe_quote: /^(')$/,
-  double_quote: /^(")$/,
   hash: /^#$/
 }

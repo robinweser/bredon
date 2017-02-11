@@ -23,6 +23,9 @@ export default class Generator {
         // correct syntax inside calc expressions
         return ` ${node.value} `
 
+      case 'String':
+        return node.quote + node.value + node.quote
+
       // refactor to nested multi value
       case 'Separator':
         return node.value

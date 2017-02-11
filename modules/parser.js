@@ -174,6 +174,27 @@ export default class Parser {
     return node
   }
 
+  parseString(): SimpleNode {
+    if (this.currentToken.type === 'double_quote' || this.currentToken.type === 'single_quote') {
+      const quoteType = this.currentToken.type
+
+      const node = {
+        type: 'String',
+        quote: quoteType === 'double_quote' ? '"' : "'",
+        value: ''
+      }
+
+      this.updateCurrentToken(1)
+
+      while (this.isRunning() && this.currentToken.type !== quoteType) {
+        node.value += this.currentToken.value
+        this.updateCurrentToken(1)
+      }
+
+      return node
+    }
+  }
+
   parseParen(): SimpleNode {
     if (this.currentToken.type === 'paren') {
       // update paren balance
@@ -258,7 +279,8 @@ export default class Parser {
       this.parseIdentifier() ||
       this.parseOperator() ||
       this.parseHexColor() ||
-      this.parseParen()
+      this.parseParen() ||
+      this.parseString()
 
     if (!node) {
       throw new SyntaxError(('Cannot parse': node))
@@ -270,6 +292,7 @@ export default class Parser {
 
   parse(input: string): AST {
     this.tokens = this.tokenizer(input)
+
     this.currentPosition = 0
     this.parenBalance = 0
 

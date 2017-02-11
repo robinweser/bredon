@@ -9,10 +9,7 @@ function isEmpty(str: string): boolean {
   return str.length === 0
 }
 
-export default function createTokenizer(
-  ruleTokenMap: RuleMap,
-  skip?: Array<string> = []
-): Function {
+export default function createTokenizer(ruleTokenMap: RuleMap, skip?: Array<string> = []): Function {
   return function tokenize(input: string, tokens: Array<Token> = []): Array<Token> {
     // stop at empty strings
     if (isEmpty(input) || input === 'undefined') {

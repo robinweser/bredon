@@ -17,6 +17,7 @@ body: [ /* child nodes */ ]
 * [Operator](#operator)
 * [HexColor](#hexcolor)
 * [URL](#url)
+* [String](#string)
 * [Dimension](#dimension)
 * [Float](#float)
 * [Function](#function)
@@ -83,6 +84,21 @@ type: 'URL',
 value: 'https://github.com/'
 }
 ```
+
+## String
+Strings are all values that are wrapped in quotes, either single `'` or double `"`.
+
+```javascript
+// e.g. "I'm a string!!11!1"
+{
+type: 'String',
+value: 'I\'m a string!!11!1'
+}
+```
+
+| Property | Value | Description |
+| ------ | --- | ------ |
+| quote | `'`, `"` | The used quote type |
 
 ## Dimension
 Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
