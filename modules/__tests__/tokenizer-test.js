@@ -160,11 +160,8 @@ describe('Tokenizing CSS values', () => {
 
   it('should return an array of tokens', () => {
     expect(tokenizeCSSValue('#FF66f6')).toEqual([{
-      type: 'hash',
-      value: '#'
-    }, {
       type: 'hexadecimal',
-      value: 'FF66f6'
+      value: '#FF66f6'
     }])
   })
 })
