@@ -15,9 +15,8 @@ export default {
   number: /^\d+$/,
   url_chars: /^[&:=?]$/,
   floating_point: /^[.]$/,
-  hexadecimal: /^([0-9a-f]+)$/i,
+  hexadecimal: /^#([0-9a-f]*)$/i,
   whitespace: /^\s+$/,
-  paren: /^[()]+$/,
-  comma: /^,+$/,
-  hash: /^#$/
+  paren: /^[()]$/,
+  comma: /^,+$/
 }

@@ -21,14 +21,15 @@ body: [ /* child nodes */ ]
 * [Dimension](#dimension)
 * [Float](#float)
 * [Function](#function)
+* [Expression](#expression)
 
 ## Identifier
 Identifiers are all kind of words such as `solid`.
 ```javascript
 // e.g. solid
 {
-type: 'Identifier',
-value: 'solid'
+  type: 'Identifier',
+  value: 'solid'
 }
 ```
 
@@ -37,8 +38,8 @@ Integers are simple numbers without a unit or fractional part.
 ```javascript
 // e.g. 34
 {
-type: 'Integer',
-value: 34
+  type: 'Integer',
+  value: 34
 }
 ```
 
@@ -47,8 +48,8 @@ Keywords are special identifier that are globally valid for CSS. These are `inhe
 ```javascript
 // e.g. inherit
 {
-type: 'Keyword',
-value: 'inherit'
+  type: 'Keyword',
+  value: 'inherit'
 }
 ```
 
@@ -58,8 +59,8 @@ Operators are basic arithmetic expression symbols for addition `+`, subtraction 
 ```javascript
 // e.g. +
 {
-type: 'Operator',
-value: '+'
+  type: 'Operator',
+  value: '+'
 }
 ```
 
@@ -69,8 +70,8 @@ HexColor represents color values given in hexadecimal notation.
 ```javascript
 // e.g. #FF66FF
 {
-type: 'HexColor',
-value: '#FF66FF'
+  type: 'HexColor',
+  value: '#FF66FF'
 }
 ```
 
@@ -80,8 +81,8 @@ URL is used for any URI-type string. *It is not validated by the parser!*
 ```javascript
 // e.g. https://github.com/
 {
-type: 'URL',
-value: 'https://github.com/'
+  type: 'URL',
+  value: 'https://github.com/'
 }
 ```
 
@@ -91,8 +92,8 @@ Strings are all values that are wrapped in quotes, either single `'` or double `
 ```javascript
 // e.g. "I'm a string!!11!1"
 {
-type: 'String',
-value: 'I\'m a string!!11!1'
+  type: 'String',
+  value: 'I\'m a string!!11!1'
 }
 ```
 
@@ -113,10 +114,10 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 ```javascript
 // e.g. 12px
 {
-type: 'Dimension',
-value: 12,
-unit: 'px',
-dimension: 'absolute-length'
+  type: 'Dimension',
+  value: 12,
+  unit: 'px',
+  dimension: 'absolute-length'
 }
 ```
 
@@ -132,9 +133,9 @@ Floats are floating-point numbers with a fractional part and an integer part. *(
 ```javascript
 // e.g. 587.923
 {
-type: 'Float',
-integer: 587,
-fractional: 923
+  type: 'Float',
+  integer: 587,
+  fractional: 923
 }
 ```
 
@@ -150,8 +151,56 @@ Functions represent CSS functions wrapped in parentheses.
 
 // e.g. rgba(10, 20, 30, 0.55)
 {
-type: 'Function',
-callee: 'rgba'
-params: [ /* param nodes */ ]
+  type: 'Function',
+  callee: 'rgba'
+  params: [{
+    type: 'Integer',
+    value: 10
+  }, {
+    type: 'Integer',
+    value: 20
+  }, {
+    type: 'Integer',
+    value: 30
+  }, {
+    type: 'Float',
+    integer: 0,
+    fractional: 55
+  }]
+}
+```
+
+## Expression
+Expressions are mathematical calculations. They may only be used inside the CSS `calc`-function.
+
+| Property | Description |
+| ------ | ------ |
+| body | An array of any AST nodes |
+
+```javascript
+
+// e.g. 100% - 30px*3
+{
+  type: 'Expression',
+  body: [{
+    type: 'Dimension',
+    value: 100,
+    unit: '%',
+    dimension: 'percentage'
+  }, {
+    type: 'Operator',
+    value: '-'
+  }, {
+    type: 'Dimension',
+    value: 30,
+    unit: 'px',
+    dimension: 'absolute-length'
+  }, {
+    type: 'Operator',
+    value: '*'
+  }, {
+    type: 'Integer',
+    value: 3
+  }]
 }
 ```

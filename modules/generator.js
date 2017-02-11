@@ -9,6 +9,9 @@ export default class Generator {
       case 'CSSValue':
         return node.body.map(generateCSSValue).join(' ')
 
+      case 'Expression':
+        return node.body.map(generateCSSValue).join('')
+
       case 'Function':
         return `${node.callee}(${node.params.map(generateCSSValue).join(',')})`
 
@@ -19,9 +22,9 @@ export default class Generator {
         return `${node.integer ? node.integer : ''}.${node.fractional}`
 
       case 'Operator':
-        // we use spacings left and right to ensure
-        // correct syntax inside calc expressions
-        return ` ${node.value} `
+        // for addition and substraction we use spacings left and right
+        // to ensure correct syntax inside calc expressions
+        return node.value === '+' || node.value === '-' ? ` ${node.value} ` : node.value
 
       case 'String':
         return node.quote + node.value + node.quote

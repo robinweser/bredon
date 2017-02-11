@@ -21,6 +21,7 @@ export default class Traverser {
 
     switch (node.type) {
       case 'CSSValue':
+      case 'Expression':
         this.traverseNodeList(node.body, node)
         break
 

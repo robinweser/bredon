@@ -100,6 +100,18 @@ export default class Parser {
           return this.parseURL()
         }
 
+        if (this.currentToken.value.indexOf('calc') > -1) {
+          const node = this.parseFunction()
+
+          const functionParams = node.params
+          node.params = [{
+            type: 'Expression',
+            body: functionParams
+          }]
+
+          return node
+        }
+
         return this.parseFunction()
       }
 
@@ -247,16 +259,10 @@ export default class Parser {
   }
 
   parseHexColor() {
-    if (this.currentToken.type === 'hash') {
-      const nextToken = this.getNextToken(1)
-
-      if (nextToken.type === 'hexadecimal') {
-        this.updateCurrentToken(1)
-
-        return {
-          type: 'HexColor',
-          value: `#${nextToken.value}`
-        }
+    if (this.currentToken.type === 'hexadecimal') {
+      return {
+        type: 'HexColor',
+        value: this.currentToken.value
       }
     }
   }
@@ -283,6 +289,7 @@ export default class Parser {
       this.parseString()
 
     if (!node) {
+      console.log(this.currentToken)
       throw new SyntaxError(('Cannot parse': node))
     }
 

@@ -86,6 +86,7 @@ ast === {
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
   * [Function](docs/ASTNodes.md#function)
+  * [Expression](docs/ASTNodes.md#expression)
 
 
 ## Support
