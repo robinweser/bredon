@@ -19,10 +19,9 @@ export default class Generator {
         return `${node.integer ? node.integer : ''}.${node.fractional}`
 
       case 'Operator':
+        // we use spacings left and right to ensure
+        // correct syntax inside calc expressions
         return ` ${node.value} `
-
-      case 'Parenthese':
-        return node.value
 
       // refactor to nested multi value
       case 'Separator':
@@ -33,6 +32,7 @@ export default class Generator {
       case 'Integer':
       case 'Parenthese':
       case 'HexColor':
+      case 'URL':
         return node.value
 
       default:

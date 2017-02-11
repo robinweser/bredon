@@ -1,10 +1,7 @@
 
 # AST Nodes
-Every AST node is an object with certain properties.<br>
-They all share the `type` field which explicitly describes the node's type.<br>
-Many also have the `value` field which simply yields the node's value.
+Every AST node is an object with certain properties. They all share the `type` field which explicitly describes the node's type. Many also have the `value` field which simply yields the node's value. All other properties will be described below.<br>
 
-All other properties will be described below.<br>
 Every AST is wrapped in the same CSSValue root node.
 ```javascript
 {
@@ -18,7 +15,8 @@ body: [ /* child nodes */ ]
 * [Integer](#integer)
 * [Keyword](#keyword)
 * [Operator](#operator)
-* [Color](#color)
+* [HexColor](#hexcolor)
+* [URL](#url)
 * [Dimension](#dimension)
 * [Float](#float)
 * [Function](#function)
@@ -64,21 +62,25 @@ value: '+'
 }
 ```
 
-## Color
-Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
-
-| Property | Value | Description |
-| ------ | --- | ------ |
-| color | `hexadecimal` | The type of the color |
-
-> More color types soon
+## HexColor
+HexColor represents color values given in hexadecimal notation.
 
 ```javascript
 // e.g. #FF66FF
 {
-type: 'Color',
-value: '#FF66FF',
-color: 'hexadecimal'
+type: 'HexColor',
+value: '#FF66FF'
+}
+```
+
+## URL
+URL is used for any URI-type string. *It is not validated by the parser!*
+
+```javascript
+// e.g. https://github.com/
+{
+type: 'URL',
+value: 'https://github.com/'
 }
 ```
 

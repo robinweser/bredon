@@ -17,6 +17,7 @@ export default {
   whitespace: /^\s+$/,
   paren: /^[()]+$/,
   comma: /^,+$/,
-  quote: /^('|")$/,
+  singe_quote: /^(')$/,
+  double_quote: /^(")$/,
   hash: /^#$/
 }
