@@ -35,6 +35,7 @@ export default class Traverser {
       case 'Identifier':
       case 'Operator':
       case 'Seperator':
+      case 'HexColor':
         break
 
       default:

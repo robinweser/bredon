@@ -188,7 +188,7 @@ export default class Parser {
     }
   }
 
-  parseColor() {
+  parseHexColor() {
     if (this.currentToken.type === 'hash') {
       const nextToken = this.getNextToken(1)
 
@@ -196,7 +196,7 @@ export default class Parser {
         this.updateCurrentToken(1)
 
         return {
-          type: 'Color',
+          type: 'HexColor',
           value: `#${nextToken.value}`,
           color: 'hexadecimal'
         }
@@ -221,7 +221,7 @@ export default class Parser {
       this.parseKeyword() ||
       this.parseIdentifier() ||
       this.parseOperator() ||
-      this.parseColor() ||
+      this.parseHexColor() ||
       this.parseParen()
 
     if (!node) {

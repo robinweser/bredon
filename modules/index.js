@@ -24,9 +24,3 @@ export default function parse(input: string): ParsedCSSValue {
     }
   }
 }
-
-const input = '1px solid calc(300, (200), 100)'
-
-const parsed = parse(input)
-
-console.log(parsed.toString())

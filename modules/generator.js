@@ -31,6 +31,8 @@ export default class Generator {
       case 'Identifier':
       case 'Keyword':
       case 'Integer':
+      case 'Parenthese':
+      case 'HexColor':
         return node.value
 
       default:
