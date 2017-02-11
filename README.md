@@ -82,6 +82,7 @@ ast === {
   * [Operator](docs/ASTNodes.md#operator)
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [URL](docs/ASTNodes.md#url)
+  * [String](docs/ASTNodes.md#string)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
   * [Function](docs/ASTNodes.md#function)

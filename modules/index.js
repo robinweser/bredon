@@ -25,7 +25,7 @@ export default function parse(input: string): ParsedCSSValue {
   }
 }
 
-const input = '1px solid url(https://www.youtube.com/watch?v=CSvFpBOe8eY'
+const input = '1px solid "helloMyName\'is\'foo" url(https://www.youtube.com/watch?v=CSvFpBOe8eY'
 
 const parsed = parse(input)
 
