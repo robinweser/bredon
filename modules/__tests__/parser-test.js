@@ -30,7 +30,7 @@ describe('Parsing CSS values', () => {
 
     expect(parser.parse('(')).toEqual({
       body: [{
-        type: 'Parenthese',
+        type: 'Parenthesis',
         value: '('
       }],
       type: 'CSSValue'

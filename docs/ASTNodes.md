@@ -16,6 +16,7 @@ body: [ /* child nodes */ ]
 * [Keyword](#keyword)
 * [Operator](#operator)
 * [HexColor](#hexcolor)
+* [Parenthesis](#parenthesis)
 * [URL](#url)
 * [String](#string)
 * [Dimension](#dimension)
@@ -72,6 +73,17 @@ HexColor represents color values given in hexadecimal notation.
 {
   type: 'HexColor',
   value: '#FF66FF'
+}
+```
+
+## Parenthesis  
+Parenthesis are used to wrap expressions. They may used to enforce e.g. additions to be executed before multiplications. Parenthesis surrounding [Functions](#function) will **not** be parsed into AST nodes.
+
+```javascript
+// e.g. (
+{
+  type: 'Parenthesis',
+  value: '('
 }
 ```
 

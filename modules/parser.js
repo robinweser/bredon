@@ -37,7 +37,7 @@ export default class Parser {
   tokens: Array<Token>;
 
   constructor(options?: Object = {}) {
-    this.tokenizer = createTokenizer(CSSValueRules, ['whitespace'])
+    this.tokenizer = createTokenizer(CSSValueRules)
     this.options = options
   }
 
@@ -216,7 +216,7 @@ export default class Parser {
         --this.parenBalance
       }
       return {
-        type: 'Parenthese',
+        type: 'Parenthesis',
         value: this.currentToken.value
       }
     }
