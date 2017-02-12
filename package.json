@@ -1,6 +1,6 @@
 {
   "name": "bredon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A modern CSS value parser in JavaScript",
   "main": "lib/index.js",
   "files": [
@@ -22,12 +22,17 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "scripts": {
+    "babel": "babel -d lib modules",
     "check": "npm run format && npm run lint && npm run test:coverage && npm run flow",
     "format": "prettier-eslint modules",
     "flow": "flow",
     "lint": "eslint modules",
+    "release": "npm run check && npm run babel && npm publish",
     "test": "jest",
     "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "rootDir": "modules"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
@@ -46,7 +51,6 @@
     "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.38.0",
     "jest": "^18.1.0",
-    "prettier-eslint-cli": "^1.1.0",
-    "tokenizer": "^1.1.2"
+    "prettier-eslint-cli": "^1.1.0"
   }
 }

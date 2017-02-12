@@ -14,6 +14,7 @@
     "object-property-newline": [2, {
       "allowMultiplePropertiesPerLine": false
     }],
+    "import/prefer-default-export": [ 0 ],
     "max-len": [ 2, 120 ],
     "comma-dangle": [ 2, "never" ],
     "no-confusing-arrow": [ 0 ],

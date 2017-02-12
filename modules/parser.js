@@ -267,6 +267,16 @@ export default class Parser {
     }
   }
 
+  parseWhitespace() {
+    if (this.currentToken.type === 'whitespace') {
+      this.updateCurrentToken(1)
+
+      while (this.isRunning() && this.currentToken.type === 'whitespace') {
+        this.updateCurrentToken(1)
+      }
+    }
+  }
+
   updateCurrentToken(increment?: number): void {
     if (increment) {
       this.currentPosition += increment
@@ -278,7 +288,8 @@ export default class Parser {
   walkTokens(): Node {
     this.updateCurrentToken()
 
-    const node = this.parseComma() ||
+    const node = this.parseWhitespace() ||
+      this.parseComma() ||
       this.parseNumber() ||
       this.parseFloat() ||
       this.parseKeyword() ||
@@ -289,8 +300,9 @@ export default class Parser {
       this.parseString()
 
     if (!node) {
-      console.log(this.currentToken)
-      throw new SyntaxError(('Cannot parse': node))
+      throw new SyntaxError(
+        `Could not parse the token "${this.currentToken.type}" with the value "${this.currentToken.value}"`
+      )
     }
 
     ++this.currentPosition

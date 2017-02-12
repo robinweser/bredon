@@ -6,7 +6,7 @@ import Parser from './parser'
 import Traverser from './traverser'
 import Generator from './generator'
 
-export default function parse(input: string): ParsedCSSValue {
+export function parse(input: string): ParsedCSSValue {
   const parser = new Parser()
   const ast: AST = parser.parse(input)
 
