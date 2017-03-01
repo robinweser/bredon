@@ -3,7 +3,7 @@
 
 ## `parse(cssValue)`
 
-Renders all cached styles into a DOM node. It also adds a change listener to automatically add newly rendered styles.
+Parses a CSS value into an AST and returns a ParsedCSSValue to work with.
 
 ### Arguments
 1. `cssValue` (*string*): The CSS value that gets parsed
