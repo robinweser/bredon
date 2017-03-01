@@ -65,7 +65,7 @@ parsedCSSValue.traverse(visitors)
 ------
 
 ### `toString()`
-Renders all cached styles into a DOM node. It also adds a change listener to automatically add newly rendered styles.
+Renders the AST into a single, formatted string. It uses opinionated formatting rules and generates specification-conform CSS values.
 
 ##### Returns
 (*string*) formatted and minified string version of the CSS value
@@ -84,7 +84,7 @@ console.log(parsedCSSValue.toString())
 ------
 
 ### `toAST()`
-Renders all cached styles into a DOM node. It also adds a change listener to automatically add newly rendered styles.
+Returns the generated AST as a single nested object.
 
 #### Returns
 (*Object*) Returns the full AST as an object
