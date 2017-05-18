@@ -2,10 +2,24 @@
 import type { AST, Node } from '../flowtypes/AST'
 
 export default class Generator {
+  formatters: Object
+
+  constructor(formatters: Object = {}) {
+    this.formatters = formatters
+  }
+
   generate(node: AST | Node): ?string {
     const generateCSSValue = this.generate.bind(this)
+    const customFormatter = this.formatters[node.type]
+
+    if (customFormatter) {
+      return customFormatter(node, generateCSSValue)
+    }
 
     switch (node.type) {
+      case 'MultiValue':
+        return node.body.map(generateCSSValue).join(',')
+
       case 'CSSValue':
         return node.body.map(generateCSSValue).join(' ')
 
@@ -24,16 +38,15 @@ export default class Generator {
       case 'Operator':
         // for addition and substraction we use spacings left and right
         // to ensure correct syntax inside calc expressions
-        return node.value === '+' || node.value === '-' ? ` ${node.value} ` : node.value
+        return node.value === '+' || node.value === '-'
+          ? ` ${node.value} `
+          : node.value
 
       case 'String':
         return node.quote + node.value + node.quote
 
-      // refactor to nested multi value
-      case 'Separator':
-        return node.value
-
       case 'Identifier':
+      case 'Important':
       case 'Keyword':
       case 'Integer':
       case 'Parenthese':

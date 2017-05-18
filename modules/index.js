@@ -11,14 +11,14 @@ export function parse(input: string): ParsedCSSValue {
   const ast: AST = parser.parse(input)
 
   return {
-    toString(): string {
-      const generator = new Generator()
+    toString(formatters: Object = {}): string {
+      const generator = new Generator(formatters)
       return generator.generate(ast) || ''
     },
     toAST(): AST {
       return ast
     },
-    traverse(visitors: Object): void {
+    traverse(visitors: Object = {}): void {
       const traverser = new Traverser(visitors)
       traverser.traverse(ast)
     }
