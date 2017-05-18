@@ -10,6 +10,7 @@ import type {
 } from '../flowtypes/AST'
 
 import CSSValueRules from './utils/CSSValueRules'
+import parseMultiValue from './utils/parseMultiValue'
 import createTokenizer from './tokenizer'
 
 const basicNodes = {
@@ -302,15 +303,15 @@ export default class Parser {
     this.currentPosition = 0
     this.parenBalance = 0
 
-    const ast = {
-      type: 'CSSValue',
-      body: []
-    }
+    const nodes = []
 
     while (this.isRunning()) {
-      ast.body.push(this.walkTokens())
+      nodes.push(this.walkTokens())
     }
 
-    return ast
+    return {
+      type: 'MultiValue',
+      values: parseMultiValue(nodes)
+    }
   }
 }

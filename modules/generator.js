@@ -1,5 +1,5 @@
 /* @flow */
-import type { AST, Node } from '../flowtypes/AST'
+import type { ASTNode } from '../flowtypes/AST'
 
 export default class Generator {
   formatters: Object
@@ -8,7 +8,7 @@ export default class Generator {
     this.formatters = formatters
   }
 
-  generate(node: AST | Node): ?string {
+  generate(node: ASTNode): ?string {
     const generateCSSValue = this.generate.bind(this)
     const customFormatter = this.formatters[node.type]
 

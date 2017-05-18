@@ -12,7 +12,7 @@ export default class Traverser {
     nodeList.forEach(childNode => this.traverseNode(childNode, parentNode))
   }
 
-  traverseNode(node: AST | ASTNode, parentNode: ASTNode) {
+  traverseNode(node: ASTNode, parentNode: ASTNode) {
     const methods = this.visitors[node.type]
 
     if (methods && methods.enter) {
@@ -21,6 +21,7 @@ export default class Traverser {
 
     switch (node.type) {
       case 'CSSValue':
+      case 'MutliValue':
       case 'Expression':
         this.traverseNodeList(node.body, node)
         break
@@ -42,7 +43,7 @@ export default class Traverser {
         break
 
       default:
-        throw new TypeError('ERROR')
+        throw new TypeError(`Unkown Type ${node.type}`)
     }
 
     if (methods && methods.exit) {

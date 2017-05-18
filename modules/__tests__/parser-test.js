@@ -5,13 +5,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('flex-start')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Identifier',
-          value: 'flex-start'
+          body: [
+            {
+              type: 'Identifier',
+              value: 'flex-start'
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -19,13 +24,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('400')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Integer',
-          value: 400
+          body: [
+            {
+              type: 'Integer',
+              value: 400
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -33,13 +43,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('(')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Parenthesis',
-          value: '('
+          body: [
+            {
+              type: 'Parenthesis',
+              value: '('
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -47,13 +62,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('initial')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Keyword',
-          value: 'initial'
+          body: [
+            {
+              type: 'Keyword',
+              value: 'initial'
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -61,13 +81,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('+')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Operator',
-          value: '+'
+          body: [
+            {
+              type: 'Operator',
+              value: '+'
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -75,13 +100,18 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('#66FF66')).toEqual({
-      body: [
+      values: [
         {
-          type: 'HexColor',
-          value: '#66FF66'
+          body: [
+            {
+              type: 'HexColor',
+              value: '#66FF66'
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -89,14 +119,19 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('"hello, it\'s me."')).toEqual({
-      body: [
+      values: [
         {
-          type: 'String',
-          quote: '"',
-          value: "hello, it's me."
+          body: [
+            {
+              type: 'String',
+              quote: '"',
+              value: "hello, it's me."
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -104,15 +139,20 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('300px')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Dimension',
-          dimension: 'absolute-length',
-          unit: 'px',
-          value: 300
+          body: [
+            {
+              type: 'Dimension',
+              dimension: 'absolute-length',
+              unit: 'px',
+              value: 300
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -120,14 +160,19 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('200.55')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Float',
-          integer: 200,
-          fractional: 55
+          body: [
+            {
+              type: 'Float',
+              integer: 200,
+              fractional: 55
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -135,23 +180,28 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('rgba(200, 300)')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Function',
-          callee: 'rgba',
-          params: [
+          body: [
             {
-              type: 'Integer',
-              value: 200
-            },
-            {
-              type: 'Integer',
-              value: 300
+              type: 'Function',
+              callee: 'rgba',
+              params: [
+                {
+                  type: 'Integer',
+                  value: 200
+                },
+                {
+                  type: 'Integer',
+                  value: 300
+                }
+              ]
             }
-          ]
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -163,19 +213,24 @@ describe('Parsing CSS values', () => {
         'url(https://www.google.de/request#something?param=true&foo=bar%20)'
       )
     ).toEqual({
-      body: [
+      values: [
         {
-          type: 'Function',
-          callee: 'url',
-          params: [
+          body: [
             {
-              type: 'URL',
-              value: 'https://www.google.de/request#something?param=true&foo=bar%20'
+              type: 'Function',
+              callee: 'url',
+              params: [
+                {
+                  type: 'URL',
+                  value: 'https://www.google.de/request#something?param=true&foo=bar%20'
+                }
+              ]
             }
-          ]
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -183,42 +238,47 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('calc(100%+5/2)')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Function',
-          callee: 'calc',
-          params: [
+          body: [
             {
-              type: 'Expression',
-              body: [
+              type: 'Function',
+              callee: 'calc',
+              params: [
                 {
-                  type: 'Dimension',
-                  unit: '%',
-                  dimension: 'percentage',
-                  value: 100
-                },
-                {
-                  type: 'Operator',
-                  value: '+'
-                },
-                {
-                  type: 'Integer',
-                  value: 5
-                },
-                {
-                  type: 'Operator',
-                  value: '/'
-                },
-                {
-                  type: 'Integer',
-                  value: 2
+                  type: 'Expression',
+                  body: [
+                    {
+                      type: 'Dimension',
+                      unit: '%',
+                      dimension: 'percentage',
+                      value: 100
+                    },
+                    {
+                      type: 'Operator',
+                      value: '+'
+                    },
+                    {
+                      type: 'Integer',
+                      value: 5
+                    },
+                    {
+                      type: 'Operator',
+                      value: '/'
+                    },
+                    {
+                      type: 'Integer',
+                      value: 2
+                    }
+                  ]
                 }
               ]
             }
-          ]
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -226,21 +286,26 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('300 400   700')).toEqual({
-      body: [
+      values: [
         {
-          type: 'Integer',
-          value: 300
-        },
-        {
-          type: 'Integer',
-          value: 400
-        },
-        {
-          type: 'Integer',
-          value: 700
+          body: [
+            {
+              type: 'Integer',
+              value: 300
+            },
+            {
+              type: 'Integer',
+              value: 400
+            },
+            {
+              type: 'Integer',
+              value: 700
+            }
+          ],
+          type: 'CSSValue'
         }
       ],
-      type: 'CSSValue'
+      type: 'MultiValue'
     })
   })
 
@@ -251,56 +316,62 @@ describe('Parsing CSS values', () => {
     expect(
       parser.parse('1px inherit rgba(255, 94, 0.34), 300ms all linear')
     ).toEqual({
-      body: [
+      type: 'MultiValue',
+      values: [
         {
-          type: 'Dimension',
-          value: 1,
-          unit: 'px',
-          dimension: 'absolute-length'
-        },
-        {
-          type: 'Keyword',
-          value: 'inherit'
-        },
-        {
-          type: 'Function',
-          callee: 'rgba',
-          params: [
+          type: 'CSSValue',
+          body: [
             {
-              type: 'Integer',
-              value: 255
+              type: 'Dimension',
+              value: 1,
+              unit: 'px',
+              dimension: 'absolute-length'
             },
             {
-              type: 'Integer',
-              value: 94
+              type: 'Keyword',
+              value: 'inherit'
             },
             {
-              type: 'Float',
-              integer: 0,
-              fractional: 34
+              type: 'Function',
+              callee: 'rgba',
+              params: [
+                {
+                  type: 'Integer',
+                  value: 255
+                },
+                {
+                  type: 'Integer',
+                  value: 94
+                },
+                {
+                  type: 'Float',
+                  integer: 0,
+                  fractional: 34
+                }
+              ]
             }
           ]
         },
         {
-          type: 'Separator',
-          value: ','
-        },
-        {
-          type: 'Dimension',
-          unit: 'ms',
-          dimension: 'duration',
-          value: 300
-        },
-        {
-          type: 'Identifier',
-          value: 'all'
-        },
-        {
-          type: 'Identifier',
-          value: 'linear'
+          type: 'CSSValue',
+          body: [
+            {
+              type: 'Dimension',
+              unit: 'ms',
+              dimension: 'duration',
+              value: 300
+            },
+            {
+              type: 'Identifier',
+              value: 'all'
+            },
+            {
+              type: 'Identifier',
+              value: 'linear'
+            }
+          ]
         }
-      ],
-      type: 'CSSValue'
+      ]
     })
   })
 })

@@ -2,13 +2,22 @@
 # AST Nodes
 Every AST node is an object with certain properties. They all share the `type` field which explicitly describes the node's type. Many also have the `value` field which simply yields the node's value. All other properties will be described below.<br>
 
-Every AST is wrapped in the same CSSValue root node.
+Every AST is wrapped in the same root node `MultiValue`.<br>
+It contains **at least** one `CSSValue`.
+
 ```javascript
 {
-  type: 'CSSValue',
-  body: [ /* child nodes */ ]
+  type: 'MultiValue',
+  body: [{
+    type: 'CSSValue',
+    body: [
+      /* child nodes */
+    ]
+  }]
 }
 ```
+
+
 
 ### Node Types
 * [Identifier](#identifier)

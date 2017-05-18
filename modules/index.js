@@ -8,7 +8,7 @@ import Generator from './generator'
 
 export function parse(input: string): ParsedCSSValue {
   const parser = new Parser()
-  const ast: AST = parser.parse(input)
+  const ast = parser.parse(input)
 
   return {
     toString(formatters: Object = {}): string {
