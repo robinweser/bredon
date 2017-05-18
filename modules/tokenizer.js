@@ -2,7 +2,8 @@
 import type { Token } from '../flowtypes/Token'
 import type { RuleMap } from '../flowtypes/RuleMap'
 
-import loopUntilConditionIsFulfilled from './utils/loopUntilConditionIsFulfilled'
+import loopUntilConditionIsFulfilled
+  from './utils/loopUntilConditionIsFulfilled'
 import getFirstMatchingRule from './utils/getFirstMatchingRule'
 
 function isEmpty(str: string): boolean {
@@ -10,17 +11,26 @@ function isEmpty(str: string): boolean {
 }
 
 export default function createTokenizer(ruleTokenMap: RuleMap): Function {
-  return function tokenize(input: string, tokens: Array<Token> = []): Array<Token> {
+  return function tokenize(
+    input: string,
+    tokens: Array<Token> = []
+  ): Array<Token> {
     // stop at empty strings
     if (isEmpty(input) || input === 'undefined') {
       return tokens
     }
 
     function isNotMatchingAnyRule(currentIndex: number): boolean {
-      return !getFirstMatchingRule(input.substring(0, currentIndex + 1), ruleTokenMap)
+      return !getFirstMatchingRule(
+        input.substring(0, currentIndex + 1),
+        ruleTokenMap
+      )
     }
 
-    const ruleEndIndex: number = loopUntilConditionIsFulfilled(input.length, isNotMatchingAnyRule)
+    const ruleEndIndex: number = loopUntilConditionIsFulfilled(
+      input.length,
+      isNotMatchingAnyRule
+    )
 
     // if no rule matched the first char
     // we have encountered invalid syntax
@@ -32,10 +42,10 @@ export default function createTokenizer(ruleTokenMap: RuleMap): Function {
       )
     }
 
-    const matchedValue: string = input.substring(0, ruleEndIndex)
-    const matchedTokenType: string = getFirstMatchingRule(matchedValue, ruleTokenMap)
+    const matchedValue = input.substring(0, ruleEndIndex)
+    const matchedTokenType = getFirstMatchingRule(matchedValue, ruleTokenMap)
 
-    const token: Token = {
+    const token = {
       type: matchedTokenType,
       value: matchedValue
     }

@@ -2,7 +2,7 @@
 import type { AST, ASTNode } from '../flowtypes/AST'
 
 export default class Traverser {
-  visitors: Object;
+  visitors: Object
 
   constructor(visitors: Object) {
     this.visitors = visitors
@@ -31,6 +31,7 @@ export default class Traverser {
 
       case 'Integer':
       case 'Keyword':
+      case 'Important':
       case 'Dimension':
       case 'Float':
       case 'Identifier':

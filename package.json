@@ -23,8 +23,7 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel -d lib modules",
-    "check": "npm run format && npm run lint && npm run test:coverage && npm run flow",
-    "format": "prettier-eslint modules",
+    "check": "npm run lint && npm run test:coverage && npm run flow",
     "flow": "flow",
     "lint": "eslint modules",
     "release": "npm run check && npm run babel && npm publish",
@@ -50,7 +49,6 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.38.0",
-    "jest": "^18.1.0",
-    "prettier-eslint-cli": "^1.1.0"
+    "jest": "^18.1.0"
   }
 }

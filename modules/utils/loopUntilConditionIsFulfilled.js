@@ -1,5 +1,8 @@
 /* @flow */
-export default function loopUntilConditionIsFulfilled(end: number, condition: Function) {
+export default function loopUntilConditionIsFulfilled(
+  end: number,
+  condition: Function
+) {
   let currentIndex: number = 0
 
   while (end > currentIndex) {

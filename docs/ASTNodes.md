@@ -5,8 +5,8 @@ Every AST node is an object with certain properties. They all share the `type` f
 Every AST is wrapped in the same CSSValue root node.
 ```javascript
 {
-type: 'CSSValue',
-body: [ /* child nodes */ ]
+  type: 'CSSValue',
+  body: [ /* child nodes */ ]
 }
 ```
 
@@ -14,6 +14,7 @@ body: [ /* child nodes */ ]
 * [Identifier](#identifier)
 * [Integer](#integer)
 * [Keyword](#keyword)
+* [Important](#important)
 * [Operator](#operator)
 * [HexColor](#hexcolor)
 * [Parenthesis](#parenthesis)
@@ -51,6 +52,17 @@ Keywords are special identifier that are globally valid for CSS. These are `inhe
 {
   type: 'Keyword',
   value: 'inherit'
+}
+```
+
+## Important
+Important is a special identifier for the `!important` rule.
+
+```javascript
+// e.g. !important
+{
+  type: 'Important',
+  value: '!important'
 }
 ```
 

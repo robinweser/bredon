@@ -5,10 +5,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('flex-start')).toEqual({
-      body: [{
-        type: 'Identifier',
-        value: 'flex-start'
-      }],
+      body: [
+        {
+          type: 'Identifier',
+          value: 'flex-start'
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -17,10 +19,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('400')).toEqual({
-      body: [{
-        type: 'Integer',
-        value: 400
-      }],
+      body: [
+        {
+          type: 'Integer',
+          value: 400
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -29,10 +33,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('(')).toEqual({
-      body: [{
-        type: 'Parenthesis',
-        value: '('
-      }],
+      body: [
+        {
+          type: 'Parenthesis',
+          value: '('
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -41,10 +47,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('initial')).toEqual({
-      body: [{
-        type: 'Keyword',
-        value: 'initial'
-      }],
+      body: [
+        {
+          type: 'Keyword',
+          value: 'initial'
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -53,10 +61,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('+')).toEqual({
-      body: [{
-        type: 'Operator',
-        value: '+'
-      }],
+      body: [
+        {
+          type: 'Operator',
+          value: '+'
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -65,10 +75,12 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('#66FF66')).toEqual({
-      body: [{
-        type: 'HexColor',
-        value: '#66FF66'
-      }],
+      body: [
+        {
+          type: 'HexColor',
+          value: '#66FF66'
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -77,11 +89,13 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('"hello, it\'s me."')).toEqual({
-      body: [{
-        type: 'String',
-        quote: '"',
-        value: "hello, it's me."
-      }],
+      body: [
+        {
+          type: 'String',
+          quote: '"',
+          value: "hello, it's me."
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -90,12 +104,14 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('300px')).toEqual({
-      body: [{
-        type: 'Dimension',
-        dimension: 'absolute-length',
-        unit: 'px',
-        value: 300
-      }],
+      body: [
+        {
+          type: 'Dimension',
+          dimension: 'absolute-length',
+          unit: 'px',
+          value: 300
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -104,11 +120,13 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('200.55')).toEqual({
-      body: [{
-        type: 'Float',
-        integer: 200,
-        fractional: 55
-      }],
+      body: [
+        {
+          type: 'Float',
+          integer: 200,
+          fractional: 55
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -121,13 +139,16 @@ describe('Parsing CSS values', () => {
         {
           type: 'Function',
           callee: 'rgba',
-          params: [{
-            type: 'Integer',
-            value: 200
-          }, {
-            type: 'Integer',
-            value: 300
-          }]
+          params: [
+            {
+              type: 'Integer',
+              value: 200
+            },
+            {
+              type: 'Integer',
+              value: 300
+            }
+          ]
         }
       ],
       type: 'CSSValue'
@@ -137,15 +158,21 @@ describe('Parsing CSS values', () => {
   it('should correctly parse URLs', () => {
     const parser = new Parser()
 
-    expect(parser.parse('url(https://www.google.de/request#something?param=true&foo=bar%20)')).toEqual({
+    expect(
+      parser.parse(
+        'url(https://www.google.de/request#something?param=true&foo=bar%20)'
+      )
+    ).toEqual({
       body: [
         {
           type: 'Function',
           callee: 'url',
-          params: [{
-            type: 'URL',
-            value: 'https://www.google.de/request#something?param=true&foo=bar%20'
-          }]
+          params: [
+            {
+              type: 'URL',
+              value: 'https://www.google.de/request#something?param=true&foo=bar%20'
+            }
+          ]
         }
       ],
       type: 'CSSValue'
@@ -199,16 +226,20 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('300 400   700')).toEqual({
-      body: [{
-        type: 'Integer',
-        value: 300
-      }, {
-        type: 'Integer',
-        value: 400
-      }, {
-        type: 'Integer',
-        value: 700
-      }],
+      body: [
+        {
+          type: 'Integer',
+          value: 300
+        },
+        {
+          type: 'Integer',
+          value: 400
+        },
+        {
+          type: 'Integer',
+          value: 700
+        }
+      ],
       type: 'CSSValue'
     })
   })
@@ -217,7 +248,9 @@ describe('Parsing CSS values', () => {
   it('should return a correct AST', () => {
     const parser = new Parser()
 
-    expect(parser.parse('1px inherit rgba(255, 94, 0.34), 300ms all linear')).toEqual({
+    expect(
+      parser.parse('1px inherit rgba(255, 94, 0.34), 300ms all linear')
+    ).toEqual({
       body: [
         {
           type: 'Dimension',

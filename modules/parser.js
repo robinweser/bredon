@@ -1,13 +1,23 @@
 /* @flow */
 import type { Token } from '../flowtypes/Token'
-import type { AST, Node, SimpleNode, DimensionNode, FloatNode, FunctionNode } from '../flowtypes/AST'
+import type {
+  AST,
+  Node,
+  SimpleNode,
+  DimensionNode,
+  FloatNode,
+  FunctionNode
+} from '../flowtypes/AST'
 
 import CSSValueRules from './utils/CSSValueRules'
 import createTokenizer from './tokenizer'
 
-const emptyToken: Token = {
-  type: '__empty_token',
-  value: ''
+const basicNodes = {
+  keyword: 'Keyword',
+  important: 'Important',
+  comma: 'Separator',
+  operator: 'Operator',
+  hexadecimal: 'HexColor'
 }
 
 const dimensions = {
@@ -21,20 +31,13 @@ const dimensions = {
   resolution_unit: 'resolution'
 }
 
-/**
-Color:
-hash hexcolor
-(Function) rgb(a), hsl(a)
-String:
-quote(same-value) identifier quote(same-value)
-*/
 export default class Parser {
-  tokenizer: Function;
-  options: Object;
-  currentPosition: number;
-  currentToken: Token;
-  parenBalance: number;
-  tokens: Array<Token>;
+  tokenizer: Function
+  options: Object
+  currentPosition: number
+  currentToken: Token
+  parenBalance: number
+  tokens: Array<Token>
 
   constructor(options?: Object = {}) {
     this.tokenizer = createTokenizer(CSSValueRules)
@@ -43,11 +46,15 @@ export default class Parser {
 
   getNextToken(position: number): Token {
     const nextPosition = this.currentPosition + position
+
     if (nextPosition < this.tokens.length) {
       return this.tokens[nextPosition]
     }
 
-    return emptyToken
+    return {
+      type: 'empty_token',
+      value: ''
+    }
   }
 
   isRunning() {
@@ -82,15 +89,6 @@ export default class Parser {
     }
   }
 
-  parseKeyword(): SimpleNode {
-    if (this.currentToken.type === 'keyword') {
-      return {
-        type: 'Keyword',
-        value: this.currentToken.value
-      }
-    }
-  }
-
   parseIdentifier(): SimpleNode | FunctionNode {
     if (this.currentToken.type === 'identifier') {
       const nextToken = this.getNextToken(1)
@@ -104,10 +102,12 @@ export default class Parser {
           const node = this.parseFunction()
 
           const functionParams = node.params
-          node.params = [{
-            type: 'Expression',
-            body: functionParams
-          }]
+          node.params = [
+            {
+              type: 'Expression',
+              body: functionParams
+            }
+          ]
 
           return node
         }
@@ -136,9 +136,10 @@ export default class Parser {
 
     while (
       this.isRunning() &&
-        (this.currentToken.type !== 'paren' ||
-          this.currentToken.type === 'paren' && this.currentToken.value !== ')' ||
-          this.parenBalance !== startParenBalance)
+      (this.currentToken.type !== 'paren' ||
+        (this.currentToken.type === 'paren' &&
+          this.currentToken.value !== ')') ||
+        this.parenBalance !== startParenBalance)
     ) {
       // skip all commas directly
       while (this.isRunning() && this.currentToken.type === 'comma') {
@@ -169,9 +170,10 @@ export default class Parser {
 
     while (
       this.isRunning() &&
-        (this.currentToken.type !== 'paren' ||
-          this.currentToken.type === 'paren' && this.currentToken.value !== ')' ||
-          this.parenBalance !== startParenBalance)
+      (this.currentToken.type !== 'paren' ||
+        (this.currentToken.type === 'paren' &&
+          this.currentToken.value !== ')') ||
+        this.parenBalance !== startParenBalance)
     ) {
       urlValue += this.currentToken.value
       this.updateCurrentToken(1)
@@ -187,7 +189,10 @@ export default class Parser {
   }
 
   parseString(): SimpleNode {
-    if (this.currentToken.type === 'double_quote' || this.currentToken.type === 'single_quote') {
+    if (
+      this.currentToken.type === 'double_quote' ||
+      this.currentToken.type === 'single_quote'
+    ) {
       const quoteType = this.currentToken.type
 
       const node = {
@@ -222,24 +227,6 @@ export default class Parser {
     }
   }
 
-  parseComma(): SimpleNode {
-    if (this.currentToken.type === 'comma') {
-      return {
-        type: 'Separator',
-        value: this.currentToken.value
-      }
-    }
-  }
-
-  parseOperator(): SimpleNode {
-    if (this.currentToken.type === 'operator') {
-      return {
-        type: 'Operator',
-        value: this.currentToken.value
-      }
-    }
-  }
-
   parseFloat(integerPart?: number): FloatNode {
     if (this.currentToken.type === 'floating_point') {
       const nextToken = this.getNextToken(1)
@@ -258,10 +245,12 @@ export default class Parser {
     }
   }
 
-  parseHexColor() {
-    if (this.currentToken.type === 'hexadecimal') {
+  parseBasicNodes(): SimpleNode {
+    const nodeType = basicNodes[this.currentToken.type]
+
+    if (nodeType) {
       return {
-        type: 'HexColor',
+        type: nodeType,
         value: this.currentToken.value
       }
     }
@@ -288,14 +277,12 @@ export default class Parser {
   walkTokens(): Node {
     this.updateCurrentToken()
 
-    const node = this.parseWhitespace() ||
-      this.parseComma() ||
+    const node =
+      this.parseWhitespace() ||
+      this.parseBasicNodes() ||
       this.parseNumber() ||
       this.parseFloat() ||
-      this.parseKeyword() ||
       this.parseIdentifier() ||
-      this.parseOperator() ||
-      this.parseHexColor() ||
       this.parseParen() ||
       this.parseString()
 

@@ -1,5 +1,6 @@
 export default {
   keyword: /^(initial|inherit|unset)$/,
+  important: /^(!important)$/,
   percentage_unit: /^%$/,
   font_length_unit: /^(em|ex|ch|rem)$/,
   viewport_length_unit: /^(vw|vh|vmin|vmax)$/,

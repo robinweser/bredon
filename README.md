@@ -79,6 +79,7 @@ ast === {
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Integer](docs/ASTNodes.md#integer)
   * [Keyword](docs/ASTNodes.md#keyword)
+  * [Important](docs/ASTNodes.md#important)
   * [Operator](docs/ASTNodes.md#operator)
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
@@ -91,7 +92,8 @@ ast === {
 
 
 ## Support
-Join us on [Gitter](https://gitter.im/rofrischmann/bredon). We highly appreciate any contribution.<br>
+Join us on [Gitter](https://gitter.im/rofrischmann/bredon). <br>
+We highly appreciate any contribution.<br>
 We also love to get feedback.
 
 ## License
