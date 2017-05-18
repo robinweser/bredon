@@ -4,11 +4,7 @@ Bredon is a modern CSS value parser in JavaScript.<br>
 It uses very detailed nodes and provides as much information as possible for each value.<br>
 You may also use it to transform the AST and generate new CSS values.
 
-<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/bredon.svg?branch=master">
-<a href="https://codeclimate.com/github/rofrischmann/bredon/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/bredon/badges/coverage.svg"></a>
-<img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon.svg">
-<img alt="npm version" src="https://badge.fury.io/js/bredon.svg">
-<a href="https://gitter.im/rofrischmann/bredon"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/bredon.svg"></a>
+<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/bredon.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/bredon/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/bredon/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon.svg"> <img alt="npm version" src="https://badge.fury.io/js/bredon.svg"> <a href="https://gitter.im/rofrischmann/bredon"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/bredon.svg"></a>
 
 ## Installation
 ```sh
