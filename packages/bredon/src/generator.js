@@ -1,5 +1,5 @@
 /* @flow */
-import type { ASTNode } from '../flowtypes/AST'
+import type { ASTNode } from '../../../flowtypes/AST'
 
 export default class Generator {
   formatters: Object

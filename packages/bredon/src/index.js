@@ -1,6 +1,6 @@
 /* @flow */
-import type { AST } from '../flowtypes/AST'
-import type { ParsedCSSValue } from '../flowtypes/ParsedCSSValue'
+import type { AST } from '../../../flowtypes/AST'
+import type { ParsedCSSValue } from '../../../flowtypes/ParsedCSSValue'
 
 import Parser from './parser'
 import Traverser from './traverser'

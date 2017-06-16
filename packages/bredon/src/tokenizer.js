@@ -1,6 +1,6 @@
 /* @flow */
-import type { Token } from '../flowtypes/Token'
-import type { RuleMap } from '../flowtypes/RuleMap'
+import type { Token } from '../../../flowtypes/Token'
+import type { RuleMap } from '../../../flowtypes/RuleMap'
 
 import loopUntilConditionIsFulfilled
   from './utils/loopUntilConditionIsFulfilled'
