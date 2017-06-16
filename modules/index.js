@@ -6,6 +6,8 @@ import Parser from './parser'
 import Traverser from './traverser'
 import Generator from './generator'
 
+import * as types from './types'
+
 export function parse(input: string): ParsedCSSValue {
   const parser = new Parser()
   const ast = parser.parse(input)
@@ -24,3 +26,5 @@ export function parse(input: string): ParsedCSSValue {
     }
   }
 }
+
+export { types }

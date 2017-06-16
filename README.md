@@ -72,7 +72,7 @@ ast === {
   * [parse(cssValue)](docs/API.md#parsecssvalue)
   * [ParsedCSSValue](docs/API.md#parsedcssvalue)
     * [traverse(visitors)](docs/API.md#traversevisitors)
-    * [toString()](docs/API.md#tostring)
+    * [toString([visitors])](docs/API.md#tostring-visitors)
     * [toAST()](docs/API.md#toast)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
