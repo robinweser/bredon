@@ -1,37 +1,27 @@
 {
-  "name": "bredon",
-  "version": "1.0.1",
+  "private": true,
   "description": "A modern CSS value parser in JavaScript",
-  "main": "lib/index.js",
-  "files": [
-    "LICENSE",
-    "README.md",
-    "lib/"
-  ],
-  "keywords": [
-    "css",
-    "parser",
-    "css-parser",
-    "css-value-parser",
-    "ast",
-    "lexer",
-    "tokenizer",
-    "cssinjs"
-  ],
   "repository": "https://github.com/rofrischmann/bredon.git",
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "scripts": {
-    "babel": "babel -d lib modules",
+    "bootstrap": "lerna bootstrap",
+    "build": "./scripts/build.sh",
+    "clean": "lerna clean --yes && rimraf packages/*/es && rimraf packages/*/lib",
     "check": "npm run lint && npm run test:coverage && npm run flow",
+    "format": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
-    "lint": "eslint modules",
-    "release": "npm run check && npm run babel && npm publish",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "lint": "eslint packages/*/src/**/*.js",
+    "publish": "git pull --rebase && npm run build && lerna publish && npm run docs",
+    "test": "cross-env BABEL_ENV=commonjs jest",
+    "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage"
   },
   "jest": {
-    "rootDir": "modules"
+    "rootDir": "packages",
+    "testPathIgnorePatterns": [
+      "/mocks/",
+      "/lib/"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
