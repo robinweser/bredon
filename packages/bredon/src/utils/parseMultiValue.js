@@ -8,10 +8,16 @@ export default function parseMultiValue(nodes: Array<Node>): Array<CSSValue> {
     nodes,
     (values, node) => {
       if (node.type === 'Separator') {
-        values.push({
+        const newNode: Object = {
           type: 'CSSValue',
           body: []
-        })
+        }
+
+        if (node.leadingWhitespace) {
+          newNode.followingWhitespace = node.leadingWhitespace
+        }
+
+        values.push(newNode)
       } else {
         values[values.length - 1].body.push(node)
       }

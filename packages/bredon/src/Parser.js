@@ -103,14 +103,20 @@ export default class Parser {
       const nextToken = this.getNextToken(1)
 
       if (nextToken.type === 'paren' && nextToken.value === '(') {
+        const callee = {
+          type: 'Identifier',
+          value: this.currentToken.value
+        }
+
         if (this.currentToken.value === 'url') {
-          return this.parseURL()
+          return this.parseURL(callee)
         }
 
         if (this.currentToken.value.indexOf('calc') > -1) {
-          const node = this.parseFunction()
+          const node = this.parseFunction(callee)
 
           const functionParams = node.params
+
           node.params = [
             {
               type: 'Expression',
@@ -121,7 +127,7 @@ export default class Parser {
           return node
         }
 
-        return this.parseFunction()
+        return this.parseFunction(callee)
       }
 
       return {
@@ -131,10 +137,10 @@ export default class Parser {
     }
   }
 
-  parseFunction(): FunctionNode {
+  parseFunction(callee: SimpleNode): FunctionNode {
     const node = {
       type: 'Function',
-      callee: this.currentToken.value,
+      callee: callee,
       params: []
     }
 
@@ -157,16 +163,17 @@ export default class Parser {
 
       node.params.push(this.walkTokens())
       this.updateCurrentToken()
+      this.parseWhitespace()
     }
 
     --this.parenBalance
     return node
   }
 
-  parseURL(): FunctionNode {
+  parseURL(callee: SimpleNode): FunctionNode {
     const node = {
       type: 'Function',
-      callee: this.currentToken.value,
+      callee: callee,
       params: []
     }
 
@@ -229,6 +236,7 @@ export default class Parser {
       } else {
         --this.parenBalance
       }
+
       return {
         type: 'Parenthesis',
         value: this.currentToken.value
@@ -269,8 +277,10 @@ export default class Parser {
     if (this.currentToken.type === 'whitespace') {
       this.updateCurrentToken(1)
 
-      while (this.isRunning() && this.currentToken.type === 'whitespace') {
-        this.updateCurrentToken(1)
+      if (!this.currentToken) {
+        return {
+          type: '_following_whitespace'
+        }
       }
     }
   }
@@ -318,9 +328,23 @@ export default class Parser {
       nodes.push(this.walkTokens())
     }
 
+    const lastNode = nodes.pop()
+
+    // remove following white space
+    if (lastNode.type !== '_following_whitespace') {
+      nodes.push(lastNode)
+    }
+
+    // split values into multi value if separator is present
+    if (nodes.find(node => node.type === 'Separator')) {
+      return {
+        type: 'MultiValue',
+        values: parseMultiValue(nodes)
+      }
+    }
     return {
-      type: 'MultiValue',
-      values: parseMultiValue(nodes)
+      type: 'CSSValue',
+      body: nodes
     }
   }
 }
