@@ -1,6 +1,6 @@
 /* @flow */
-import type { Token } from '../flowtypes/Token'
-import type { RuleMap } from '../flowtypes/RuleMap'
+import type { Token } from '../../../flowtypes/Token'
+import type { RuleMap } from '../../../flowtypes/RuleMap'
 
 import loopUntilConditionIsFulfilled
   from './utils/loopUntilConditionIsFulfilled'
@@ -27,7 +27,7 @@ export default function createTokenizer(ruleTokenMap: RuleMap): Function {
       )
     }
 
-    const ruleEndIndex: number = loopUntilConditionIsFulfilled(
+    const ruleEndIndex = loopUntilConditionIsFulfilled(
       input.length,
       isNotMatchingAnyRule
     )

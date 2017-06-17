@@ -1,5 +1,5 @@
 /* @flow */
-import type { Node, CSSValue } from '../../flowtypes/AST'
+import type { Node, CSSValue } from '../../../../flowtypes/AST'
 
 import arrayReduce from './arrayReduce'
 

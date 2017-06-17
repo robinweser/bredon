@@ -1,5 +1,5 @@
 /* @flow */
-import type { Token } from '../flowtypes/Token'
+import type { Token } from '../../../flowtypes/Token'
 import type {
   AST,
   Node,
@@ -7,7 +7,7 @@ import type {
   DimensionNode,
   FloatNode,
   FunctionNode
-} from '../flowtypes/AST'
+} from '../../../flowtypes/AST'
 
 import CSSValueRules from './utils/CSSValueRules'
 import parseMultiValue from './utils/parseMultiValue'

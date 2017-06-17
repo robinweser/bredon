@@ -30,7 +30,7 @@ Every `ParsedCSSValue` is an object containing 3 methods to modify and convert t
 
 ------
 
-### `travsere(visitors)`
+### `traverse(visitors)`
 Traverses every AST node recursively and calls the visitor methods for each AST node respectively. It can also be used to actually transform the AST.
 
 #### Arguments

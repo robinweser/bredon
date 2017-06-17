@@ -1,12 +1,18 @@
 /* @flow */
-import type { AST } from '../flowtypes/AST'
-import type { ParsedCSSValue } from '../flowtypes/ParsedCSSValue'
+import type { AST } from '../../../flowtypes/AST'
+import type { ParsedCSSValue } from '../../../flowtypes/ParsedCSSValue'
 
 import Parser from './parser'
 import Traverser from './traverser'
 import Generator from './generator'
 
-export function parse(input: string): ParsedCSSValue {
+type TransformOptions = {
+  visitors?: Object,
+  generators?: Object
+}
+
+function transform(input: string, options: TransformOptions = {}) {
+  visitors: Object = {}, parse(input: string): ParsedCSSValue {
   const parser = new Parser()
   const ast = parser.parse(input)
 
@@ -23,4 +29,12 @@ export function parse(input: string): ParsedCSSValue {
       traverser.traverse(ast)
     }
   }
+}
+
+
+export {
+  parse,
+  generate,
+  traverse,
+  transform
 }

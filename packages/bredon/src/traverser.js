@@ -1,5 +1,5 @@
 /* @flow */
-import type { AST, ASTNode } from '../flowtypes/AST'
+import type { AST, ASTNode } from '../../../flowtypes/AST'
 
 export default class Traverser {
   visitors: Object
