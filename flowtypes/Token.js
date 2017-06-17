@@ -1,1 +1,6 @@
-export type Token = {type: 'number' | 'identifier' | 'separator', value: string};
+export type Token = {
+  type: string,
+  value: string,
+  start: number,
+  end: number
+}
