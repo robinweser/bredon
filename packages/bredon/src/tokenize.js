@@ -27,7 +27,7 @@ export default function createTokenizer(ruleTokenMap: RuleMap): Function {
       )
     }
 
-    const ruleEndIndex: number = loopUntilConditionIsFulfilled(
+    const ruleEndIndex = loopUntilConditionIsFulfilled(
       input.length,
       isNotMatchingAnyRule
     )

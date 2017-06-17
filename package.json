@@ -1,9 +1,5 @@
 {
   "private": true,
-  "description": "A modern CSS value parser in JavaScript",
-  "repository": "https://github.com/rofrischmann/bredon.git",
-  "author": "Robin Frischmann <robin@rofrischmann.de>",
-  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "./scripts/build.sh",
@@ -41,6 +37,7 @@
     "flow-bin": "^0.38.0",
     "jest": "^18.1.0",
     "lerna": "^2.0.0-rc.4",
-    "prettier": "^1.3.1"
+    "prettier": "^1.3.1",
+    "rimraf": "^2.6.1"
   }
 }
