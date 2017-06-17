@@ -2,18 +2,18 @@
 import type { ASTNode } from '../../../flowtypes/AST'
 
 export default class Generator {
-  formatters: Object
+  generators: Object
 
-  constructor(formatters: Object = {}) {
-    this.formatters = formatters
+  constructor(generators: Object = {}) {
+    this.generators = generators
   }
 
-  generate(node: ASTNode): ?string {
+  generate(node: ASTNode): string {
     const generateCSSValue = this.generate.bind(this)
-    const customFormatter = this.formatters[node.type]
+    const customGenerator = this.generators[node.type]
 
-    if (customFormatter) {
-      return customFormatter(node, generateCSSValue)
+    if (customGenerator) {
+      return customGenerator(node, generateCSSValue)
     }
 
     switch (node.type) {
@@ -55,7 +55,7 @@ export default class Generator {
         return node.value
 
       default:
-        throw new TypeError('Unknown Type')
+        return ''
     }
   }
 }

@@ -1,8 +1,7 @@
 /* @flow */
 import type { AST } from '../../../flowtypes/AST'
-import type { ParsedCSSValue } from '../../../flowtypes/ParsedCSSValue'
 
-import Parser from './parser'
+import Parser from './Parser'
 import Traverser from './traverser'
 import Generator from './generator'
 
@@ -11,30 +10,23 @@ type TransformOptions = {
   generators?: Object
 }
 
-function transform(input: string, options: TransformOptions = {}) {
-  visitors: Object = {}, parse(input: string): ParsedCSSValue {
+function parse(input: string): AST {
   const parser = new Parser()
-  const ast = parser.parse(input)
-
-  return {
-    toString(formatters: Object = {}): string {
-      const generator = new Generator(formatters)
-      return generator.generate(ast) || ''
-    },
-    toAST(): AST {
-      return ast
-    },
-    traverse(visitors: Object = {}): void {
-      const traverser = new Traverser(visitors)
-      traverser.traverse(ast)
-    }
-  }
+  return parser.parse(input)
 }
 
-
-export {
-  parse,
-  generate,
-  traverse,
-  transform
+function generate(ast: AST, generators: Object = {}): string {
+  const generator = new Generator(generators)
+  return generator.generate(ast)
 }
+
+function traverse(ast: AST, visitors: Object = {}): void {
+  const traverser = new Traverser(visitors)
+  return traverser.traverse(ast)
+}
+
+function transform(input: string): string {
+  return generate(traverse(parse(input)))
+}
+
+export { parse, generate, traverse, transform }

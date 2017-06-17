@@ -1,4 +1,6 @@
 /* @flow */
+import tokenize from 'tokenize-sync'
+
 import type { Token } from '../../../flowtypes/Token'
 import type {
   AST,
@@ -9,9 +11,7 @@ import type {
   FunctionNode
 } from '../../../flowtypes/AST'
 
-import CSSValueRules from './utils/CSSValueRules'
 import parseMultiValue from './utils/parseMultiValue'
-import createTokenizer from './tokenizer'
 
 const basicNodes = {
   keyword: 'Keyword',
@@ -32,18 +32,42 @@ const dimensions = {
   resolution_unit: 'resolution'
 }
 
+const ruleMap = {
+  keyword: /^(initial|inherit|unset)$/,
+  important: /^(!important)$/,
+  percentage_unit: /^%$/,
+  font_length_unit: /^(em|ex|ch|rem)$/,
+  viewport_length_unit: /^(vw|vh|vmin|vmax)$/,
+  absolute_length_unit: /^(cm|mm|q|in|pt|pc|px)$/,
+  angle_unit: /^(deg|grad|rad|turn)$/,
+  duration_unit: /^((m)?s)$/,
+  frequency_unit: /^((k)?Hz)$/,
+  resolution_unit: /^(dpi|dpcm|dppx)$/,
+  singe_quote: /^('|\\')$/,
+  double_quote: /^("|\\")$/,
+  operator: /^(\+|-|\*|\/)$/,
+  identifier: /^[a-z-]+$/i,
+  number: /^\d+$/,
+  url_chars: /^[&:=?]$/,
+  floating_point: /^[.]$/,
+  hexadecimal: /^#([0-9a-f]*)$/i,
+  whitespace: /^\s+$/,
+  paren: /^[()]$/,
+  comma: /^,+$/
+}
+
+type Token = {
+  type: string,
+  value: string,
+  start: number,
+  end: number
+}
+
 export default class Parser {
-  tokenizer: Function
-  options: Object
   currentPosition: number
   currentToken: Token
   parenBalance: number
   tokens: Array<Token>
-
-  constructor(options?: Object = {}) {
-    this.tokenizer = createTokenizer(CSSValueRules)
-    this.options = options
-  }
 
   getNextToken(position: number): Token {
     const nextPosition = this.currentPosition + position
@@ -54,7 +78,9 @@ export default class Parser {
 
     return {
       type: 'empty_token',
-      value: ''
+      value: '',
+      start: 0,
+      end: 0
     }
   }
 
@@ -289,7 +315,8 @@ export default class Parser {
 
     if (!node) {
       throw new SyntaxError(
-        `Could not parse the token "${this.currentToken.type}" with the value "${this.currentToken.value}"`
+        `Could not parse the token "${this.currentToken
+          .type}" with the value "${this.currentToken.value}"`
       )
     }
 
@@ -298,7 +325,7 @@ export default class Parser {
   }
 
   parse(input: string): AST {
-    this.tokens = this.tokenizer(input)
+    this.tokens = tokenize(input, ruleMap)
 
     this.currentPosition = 0
     this.parenBalance = 0
