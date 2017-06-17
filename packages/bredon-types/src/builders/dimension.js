@@ -44,7 +44,7 @@ const dimensionMap = {
 const dimensions = Object.keys(dimensionMap)
 
 export default function dimension(value: number, unit: Unit): DimensionNode {
-  const dimension = dimensions.find(
+  const matchingDimension = dimensions.find(
     dim => dimensionMap[dim].indexOf(unit) !== -1
   )
 
@@ -52,6 +52,6 @@ export default function dimension(value: number, unit: Unit): DimensionNode {
     type: 'Dimension',
     value,
     unit,
-    dimension
+    dimension: matchingDimension
   }
 }
