@@ -2,8 +2,8 @@
 import type { AST } from '../../../flowtypes/AST'
 
 import Parser from './Parser'
-import Traverser from './traverser'
-import Generator from './generator'
+import Traverser from './Traverser'
+import Generator from './Generator'
 
 type TransformOptions = {
   visitors?: Object,

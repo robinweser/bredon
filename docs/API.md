@@ -25,7 +25,7 @@ Every `ParsedCSSValue` is an object containing 3 methods to modify and convert t
 
 #### Methods
 * [`traverse(visitors)`](#traversevisitors)
-* [`toString()`](#tostring)
+* [`toString([formatters])`](#tostring-formatters)
 * [`toAST()`](#toast)
 
 ------
@@ -64,8 +64,12 @@ parsedCSSValue.traverse(visitors)
 
 ------
 
-### `toString()`
+### `toString([formatters])`
 Renders the AST into a single, formatted string. It uses opinionated formatting rules and generates specification-conform CSS values.
+
+#### Arguments
+1. `formatters` (*Object?*): Similar to the `visitors` option passed to `traverse`, we can pass an object with AST node type formatters. If an AST node type is not explicitly passed, it will use the default formatter. The formatter signature is `(node, generate) => string` where `node` is the current AST node and `generate` is a function to recursively format inner child nodes.
+
 
 ##### Returns
 (*string*) formatted and minified string version of the CSS value
@@ -74,11 +78,16 @@ Renders the AST into a single, formatted string. It uses opinionated formatting 
 ```javascript
 import { parse } from 'bredon'
 
-const cssValue = ' 1px solid  rgba(100 , 200, 50, 0.55 )'
+const cssValue = ' 1px solid   rgba(100 , 200, 50, 0.55 )'
 const parsedCSSValue = parse(cssValue)
 
-console.log(parsedCSSValue.toString())
-// => '1px solid rgba(100,200,50,.55)'
+const output = parsedCSSValue.toString({
+  Function: (node, generate) =>
+    `${node.callee}(${node.params.map(generate).join(', ')})`
+})
+
+console.log(output)
+// => '1px solid rgba(100, 200, 50, .55)'
 ```
 
 ------
