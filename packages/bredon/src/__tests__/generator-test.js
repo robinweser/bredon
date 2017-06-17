@@ -1,4 +1,4 @@
-import Generator from '../generator'
+import Generator from '../Generator'
 
 describe('Generating a string from an AST', () => {
   it('should return a pretty strings', () => {

@@ -3,5 +3,7 @@
 # Disable module with broken flow types.
 # .*/node_modules/babylon/*.*
 
+.*/node_modules/conventional-changelog-core/**
+
 [version]
 ^0.38.0

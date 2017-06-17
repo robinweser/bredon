@@ -1,4 +1,4 @@
-import Parser from '../parser'
+import Parser from '../Parser'
 
 describe('Parsing CSS values', () => {
   it('should correctly parse Identifiers', () => {
@@ -222,7 +222,8 @@ describe('Parsing CSS values', () => {
               params: [
                 {
                   type: 'URL',
-                  value: 'https://www.google.de/request#something?param=true&foo=bar%20'
+                  value:
+                    'https://www.google.de/request#something?param=true&foo=bar%20'
                 }
               ]
             }

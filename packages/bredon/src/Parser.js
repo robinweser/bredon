@@ -1,6 +1,8 @@
 /* @flow */
 import tokenize from 'tokenize-sync'
 
+import parseMultiValue from './utils/parseMultiValue'
+
 import type { Token } from '../../../flowtypes/Token'
 import type {
   AST,
@@ -10,27 +12,6 @@ import type {
   FloatNode,
   FunctionNode
 } from '../../../flowtypes/AST'
-
-import parseMultiValue from './utils/parseMultiValue'
-
-const basicNodes = {
-  keyword: 'Keyword',
-  important: 'Important',
-  comma: 'Separator',
-  operator: 'Operator',
-  hexadecimal: 'HexColor'
-}
-
-const dimensions = {
-  percentage_unit: 'percentage',
-  font_length_unit: 'font-length',
-  viewport_length_unit: 'viewport-length',
-  absolute_length_unit: 'absolute-length',
-  angle_unit: 'angle',
-  duration_unit: 'duration',
-  frequency_unit: 'frequency',
-  resolution_unit: 'resolution'
-}
 
 const ruleMap = {
   keyword: /^(initial|inherit|unset)$/,
@@ -56,11 +37,12 @@ const ruleMap = {
   comma: /^,+$/
 }
 
-type Token = {
-  type: string,
-  value: string,
-  start: number,
-  end: number
+const basicNodes = {
+  keyword: 'Keyword',
+  important: 'Important',
+  comma: 'Separator',
+  operator: 'Operator',
+  hexadecimal: 'HexColor'
 }
 
 export default class Parser {
@@ -98,7 +80,7 @@ export default class Parser {
         return {
           type: 'Dimension',
           value: parseInt(this.currentToken.value, 10),
-          dimension: dimensions[nextToken.type],
+          dimension: nextToken.type.replace('_unit', '').replace('_', '-'),
           unit: nextToken.value
         }
       }
