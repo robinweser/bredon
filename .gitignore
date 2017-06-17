@@ -20,6 +20,7 @@ Thumbs.db
 *.vi
 
 node_modules
+packages/**/es/**
 coverage
 lib
 packages/bredon/README.md
