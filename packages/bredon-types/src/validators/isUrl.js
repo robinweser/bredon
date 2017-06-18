@@ -2,5 +2,5 @@
 import type { Node } from '../../../../flowtypes/AST'
 
 export default function isUrl(node: Node): boolean {
-  return node.type === 'URL'
+  return node.type === 'Expression'
 }
