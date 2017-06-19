@@ -17,9 +17,8 @@ export type IntegerNode = {
 }
 export type FloatNode = {
   type: 'Float',
-  integer: number,
-  fractional: number,
-  negative?: boolean
+  integer?: number,
+  fractional: number
 }
 export type StringNode = {
   type: 'StringLiteral',
@@ -31,14 +30,7 @@ export type ExpressionNode = {
   body: Array<Node>
 }
 
-export type Node =
-  | SimpleNode
-  | FunctionNode
-  | DimensionNode
-  | FloatNode
-  | IntegerNode
-  | StringNode
-  | ExpressionNode
+export type Node = SimpleNode | FunctionNode | DimensionNode | FloatNode | IntegerNode | StringNode | ExpressionNode
 
 export type CSSValue = { type: 'CSSValue', body: Array<Node> }
 export type MultiValue = { type: 'MultiValue', values: Array<CSSValue> }

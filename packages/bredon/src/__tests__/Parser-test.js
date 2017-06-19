@@ -112,8 +112,32 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Float',
-          integer: 200,
-          fractional: 55
+          fractional: {
+            type: 'Integer',
+            value: 55
+          },
+          integer: {
+            type: 'Integer',
+            value: 200
+          }
+        }
+      ],
+      type: 'CSSValue'
+    })
+
+    expect(parser.parse('-.55')).toEqual({
+      body: [
+        {
+          type: 'Float',
+          integer: {
+            type: 'Integer',
+            value: 0,
+            negative: true
+          },
+          fractional: {
+            type: 'Integer',
+            value: 55
+          }
         }
       ],
       type: 'CSSValue'
@@ -250,7 +274,7 @@ describe('Parsing CSS values', () => {
       )
     ).toEqual({
       type: 'MultiValue',
-      values: [
+      body: [
         {
           type: 'CSSValue',
           body: [
@@ -283,8 +307,10 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Float',
-                  integer: 0,
-                  fractional: 34
+                  fractional: {
+                    type: 'Integer',
+                    value: 34
+                  }
                 }
               ]
             }
@@ -323,7 +349,7 @@ describe('Parsing CSS values', () => {
       parser.parse('1px inherit rgba(255, 94, 0.34), 300ms all linear')
     ).toEqual({
       type: 'MultiValue',
-      values: [
+      body: [
         {
           type: 'CSSValue',
           body: [
@@ -356,8 +382,10 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Float',
-                  integer: 0,
-                  fractional: 34
+                  fractional: {
+                    type: 'Integer',
+                    value: 34
+                  }
                 }
               ]
             }

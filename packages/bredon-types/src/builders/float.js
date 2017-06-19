@@ -1,19 +1,17 @@
 /* @flow */
-import type { FloatNode } from '../../../../flowtypes/AST'
+import type { IntegerNode, FloatNode } from '../../../../flowtypes/AST'
 
 export default function float(
-  integer: number,
-  fractional: number,
-  isNegative?: boolean = false
+  integer: IntegerNode,
+  fractional: IntegerNode
 ): FloatNode {
   const node: FloatNode = {
     type: 'Float',
-    integer,
     fractional
   }
 
-  if (isNegative) {
-    node.negative = true
+  if (integer.negative || integer.value !== 0) {
+    node.integer = integer
   }
 
   return node

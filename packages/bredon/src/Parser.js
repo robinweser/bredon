@@ -14,18 +14,22 @@ import {
   parenthesis,
   hexColor,
   keyword,
-  separator
+  separator,
+  cssValue,
+  multiValue,
+  isSeparator
 } from 'bredon-types'
 
-import parseMultiValue from './utils/parseMultiValue'
 import isValidUnit from './utils/isValidUnit'
 import isValidHexadezimal from './utils/isValidHexadezimal'
 import isKeyword from './utils/isKeyword'
 import getQuote from './utils/getQuote'
+import parseMultiValue from './utils/parseMultiValue'
 
 import type { Token } from '../../../flowtypes/Token'
 import type {
-  AST,
+  MultiValue,
+  CSSValue,
   Node,
   SimpleNode,
   DimensionNode,
@@ -108,7 +112,7 @@ export default class Parser {
     return node
   }
 
-  parse(input: string): AST {
+  parse(input: string): MultiValue | CSSValue {
     this.tokens = tokenize(input, ruleMap)
 
     this.currentPosition = 0
@@ -126,16 +130,11 @@ export default class Parser {
     }
 
     // split values into multi value if separator is present
-    if (nodes.find(node => node.type === 'Separator' && node.value === ',')) {
-      return {
-        type: 'MultiValue',
-        values: parseMultiValue(nodes)
-      }
+    if (nodes.find(node => isSeparator(node) && node.value === ',')) {
+      return multiValue(parseMultiValue(nodes))
     }
-    return {
-      type: 'CSSValue',
-      body: nodes
-    }
+
+    return cssValue(nodes)
   }
 
   parseOperator(): SimpleNode {
@@ -165,7 +164,7 @@ export default class Parser {
             const isNegative = this.currentToken.value === '-'
 
             this.updateCurrentToken(1)
-            return this.parseFloat(0, isNegative)
+            return this.parseFloat(integer(0, isNegative))
           }
 
           throw new SyntaxError(
@@ -213,12 +212,12 @@ export default class Parser {
         // TODO: throw invalid hex value
       }
 
-      return hexColor('#' + hexValue)
+      return hexColor(`#${hexValue}`)
     }
   }
 
   parseNumber(
-    isNegative: boolean = false
+    isNegative?: boolean = false
   ): SimpleNode | DimensionNode | FloatNode {
     if (this.currentToken.type === 'number') {
       const nextToken = this.getNextToken(1)
@@ -244,19 +243,23 @@ export default class Parser {
         )
       }
 
+      const integerPart = integer(
+        parseInt(this.currentToken.value, 10),
+        isNegative
+      )
+
       // Parsing floating point numbers if a number is directly followed
       // by a floating point which is followed by a number
       if (nextToken && nextToken.type === 'floating_point') {
-        const integerPart = this.currentToken.value
         this.updateCurrentToken(1)
-        return this.parseFloat(integerPart)
+        return this.parseFloat(integerPart, isNegative)
       }
 
-      return integer(parseInt(this.currentToken.value, 10), isNegative)
+      return integerPart
     }
   }
 
-  parseFloat(integerPart?: number, isNegative: boolean = false): FloatNode {
+  parseFloat(integerPart?: number): FloatNode {
     // floats can also start with a floating point
     // if the integer part is 0
     if (this.currentToken.type === 'floating_point') {
@@ -266,11 +269,7 @@ export default class Parser {
         if (nextToken.type === 'number') {
           this.updateCurrentToken(1)
 
-          return float(
-            parseInt(integerPart, 10) || 0,
-            parseInt(nextToken.value, 10),
-            isNegative
-          )
+          return float(integerPart, integer(parseInt(nextToken.value, 10)))
         }
 
         throw new SyntaxError(

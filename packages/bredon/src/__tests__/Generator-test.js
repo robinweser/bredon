@@ -11,7 +11,10 @@ describe('Generating a string from an AST', () => {
             body: [
               {
                 type: 'Dimension',
-                value: 1,
+                value: {
+                  type: 'Integer',
+                  value: 1
+                },
                 unit: 'px'
               },
               {
@@ -20,7 +23,10 @@ describe('Generating a string from an AST', () => {
               },
               {
                 type: 'FunctionExpression',
-                callee: 'rgba',
+                callee: {
+                  type: 'Identifier',
+                  value: 'rgba'
+                },
                 params: [
                   {
                     type: 'Integer',
@@ -32,8 +38,10 @@ describe('Generating a string from an AST', () => {
                   },
                   {
                     type: 'Float',
-                    integer: 0,
-                    fractional: 34
+                    fractional: {
+                      type: 'Integer',
+                      value: 34
+                    }
                   }
                 ]
               }
@@ -45,8 +53,10 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 unit: 'ms',
-
-                value: 300
+                value: {
+                  type: 'Integer',
+                  value: 300
+                }
               },
               {
                 type: 'Identifier',
@@ -93,13 +103,20 @@ describe('Generating a string from an AST', () => {
               },
               {
                 type: 'Float',
-                integer: 0,
-                fractional: 55
+                integer: {
+                  type: 'Integer',
+                  value: 0,
+                  negative: true
+                },
+                fractional: {
+                  type: 'Integer',
+                  value: 55
+                }
               }
             ]
           }
         ]
       })
-    ).toBe('rgba(255 , 0 , 255 , .55)')
+    ).toBe('rgba(255 , 0 , 255 , -.55)')
   })
 })

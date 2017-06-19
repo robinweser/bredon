@@ -27,13 +27,19 @@ export default class Generator {
         return node.body.map(generateCSSValue).join('')
 
       case 'FunctionExpression':
-        return `${node.callee}(${node.params.map(generateCSSValue).join(',')})`
+        return `${generateCSSValue(node.callee)}(${node.params
+          .map(generateCSSValue)
+          .join(',')})`
 
       case 'Dimension':
-        return node.value + node.unit
+        return generateCSSValue(node.value) + node.unit
 
       case 'Float':
-        return `${node.integer ? node.integer : ''}.${node.fractional}`
+        return `${node.integer
+          ? `${node.integer.negative ? '-' : ''}${node.integer.value !== 0
+              ? node.integer.value
+              : ''}`
+          : ''}.${generateCSSValue(node.fractional)}`
 
       case 'Operator':
         // for addition and substraction we use spacings left and right
@@ -45,11 +51,13 @@ export default class Generator {
       case 'StringLiteral':
         return node.quote + node.value + node.quote
 
+      case 'Integer':
+        return `${node.negative ? '-' : ''}${node.value}`
+
       case 'Identifier':
       case 'Important':
       case 'Keyword':
-      case 'Integer':
-      case 'Parenthese':
+      case 'Parenthesis':
       case 'HexColor':
       case 'Separator':
       case 'URL':

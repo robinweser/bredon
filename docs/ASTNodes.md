@@ -1,9 +1,32 @@
 
 # AST Nodes
-Every AST node is an object with certain properties. They all share the `type` field which explicitly describes the node's type. Many also have the `value` field which simply yields the node's value. All other properties will be described below.<br>
+Every AST node is an object with certain properties. They all share the `type` field which explicitly describes the node's type.<br>
+All primitive nodes also share the `value` property which simply yields the node's value.<br>
+Container nodes on the other hand have a property that contains an array of child nodes.
 
-Every AST is wrapped in the same root node `MultiValue`.<br>
-It contains **at least** one `CSSValue`.
+### Root Node
+There are two different root node types.
+
+#### CSSValue
+The CSSValue root is used if the parsed CSS value only contains a single value definition.<br>
+Basically all values are single values as long as they're not comma-separated.
+
+For example, both `1px` and `1px solid black` are single values.
+
+```javascript
+{
+  type: 'CSSValue',
+  body: [
+    /* child nodes */
+  ]
+}
+```
+
+#### MultiValue
+The MultiValue root is used if the parsed value string contains multiple comma-separated values.<br>
+It contains at least 2 CSSValue child nodes.
+
+For example, `opacity 100ms linear, transform 1s ease-in` is a multi value.
 
 ```javascript
 {
@@ -11,12 +34,16 @@ It contains **at least** one `CSSValue`.
   body: [{
     type: 'CSSValue',
     body: [
-      /* child nodes */
+      /* first value child nodes */
+    ]
+  }, {
+    type: 'CSSValue',
+    body: [
+      /* second value child nodes */
     ]
   }]
 }
 ```
-
 
 
 ### Node Types
@@ -28,10 +55,10 @@ It contains **at least** one `CSSValue`.
 * [HexColor](#hexcolor)
 * [Parenthesis](#parenthesis)
 * [URL](#url)
-* [String](#string)
+* [StringLiteral](#stringliteral)
 * [Dimension](#dimension)
 * [Float](#float)
-* [Function](#function)
+* [FunctionExpression](#functionexpression)
 * [Expression](#expression)
 
 ## Identifier
@@ -46,6 +73,11 @@ Identifiers are all kind of words such as `solid`.
 
 ## Integer
 Integers are simple numbers without a unit or fractional part.
+
+| Property | Value | Description |
+| ------ | --- | ------ |
+| negative? | `true` | (Optional) flag that indicates that the value is negative |
+
 ```javascript
 // e.g. 34
 {
@@ -119,28 +151,28 @@ URL is used for any URI-type string. *It is not validated by the parser!*
 }
 ```
 
-## String
+## StringLiteral
 Strings are all values that are wrapped in quotes, either single `'` or double `"`.
-
-```javascript
-// e.g. "I'm a string!!11!1"
-{
-  type: 'String',
-  value: 'I\'m a string!!11!1'
-}
-```
 
 | Property | Value | Description |
 | ------ | --- | ------ |
 | quote | `'`, `"` | The used quote type |
 
+```javascript
+// e.g. "I'm a string!!11!1"
+{
+  type: 'StringLiteral',
+  value: 'I\'m a string!!11!1',
+  quote: '"'
+}
+```
+
 ## Dimension
 Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
 
-
 | Property | Value | Description |
 | ------ | --- |  ------ |
-| dimension | `absolute-length`, `percentage`, `font-length`, `viewport-length`, `angle`, `duration`, `frequency`, `resolution` |  The type of dimension |
+| value | (*[Integer](#integer)*) | The pure value without a unit |
 | unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
 
 
@@ -148,9 +180,11 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 // e.g. 12px
 {
   type: 'Dimension',
-  value: 12,
   unit: 'px',
-  dimension: 'absolute-length'
+  value: {
+    type: 'Integer',
+    value: 12
+  }
 }
 ```
 
@@ -158,34 +192,43 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 Floats are floating-point numbers with a fractional part and an integer part. *(If the integer part is omitted, it is represented by `0`)*
 
 
-| Property | Description |
-| ------ | ------ |
-| integer | The integer part |
-| fractional | The fractional part |
+| Property | Value | Description |
+| ------ | --- | ------ |
+| integer | (*[Integer](#integer)*) |The integer part |
+| fractional | (*[Integer](#integer)*) | The fractional part |
 
 ```javascript
 // e.g. 587.923
 {
   type: 'Float',
-  integer: 587,
-  fractional: 923
+  integer: {
+    type: 'Integer',
+    value: 587
+  },
+  fractional: {
+    type: 'Integer',
+    value: 923
+  }
 }
 ```
 
-## Function
+## FunctionExpression
 Functions represent CSS functions wrapped in parentheses.
 
-| Property | Description |
-| ------ | ------ |
-| callee | The function name |
-| params | An array of function parameter of any AST node type |
+| Property | Value | Description |
+| ------ | --- | ------ |
+| callee | (*[Identifier](#identifier)*) | The function name |
+| params | *(Array)* | An array of function parameter of any AST node type |
 
 ```javascript
 
 // e.g. rgba(10, 20, 30, 0.55)
 {
-  type: 'Function',
-  callee: 'rgba'
+  type: 'FunctionExpression',
+  callee: {
+    type: 'Identifier',
+    value: 'rgba'
+  },
   params: [{
     type: 'Integer',
     value: 10
@@ -197,18 +240,25 @@ Functions represent CSS functions wrapped in parentheses.
     value: 30
   }, {
     type: 'Float',
-    integer: 0,
-    fractional: 55
+    integer: {
+      type: 'Integer',
+      value: 0
+    },
+    fractional: {
+      type: 'Integer',
+      value: 55
+    }
   }]
 }
 ```
 
 ## Expression
-Expressions are mathematical calculations. They may only be used inside the CSS `calc`-function.
+Expressions are mathematical calculations.<br>
+They can only appear inside the CSS `calc`-function.
 
-| Property | Description |
-| ------ | ------ |
-| body | An array of any AST nodes |
+| Property | Value | Description |
+| ------ | --- | ------ |
+| body | (*Array*) | An array of any AST nodes |
 
 ```javascript
 
