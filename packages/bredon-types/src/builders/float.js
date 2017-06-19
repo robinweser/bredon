@@ -6,10 +6,15 @@ export default function float(
   fractional: number,
   isNegative?: boolean = false
 ): FloatNode {
-  return {
+  const node: FloatNode = {
     type: 'Float',
     integer,
-    fractional,
-    negative: isNegative
+    fractional
   }
+
+  if (isNegative) {
+    node.negative = true
+  }
+
+  return node
 }

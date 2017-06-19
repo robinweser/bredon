@@ -19,7 +19,7 @@ import isCSSValue from './validators/isCSSValue'
 import isDimension from './validators/isDimension'
 import isExpression from './validators/isExpression'
 import isFloat from './validators/isFloat'
-import isFunction from './validators/isFunction'
+import isFunctionExpression from './validators/isFunctionExpression'
 import isHexColor from './validators/isHexColor'
 import isIdentifier from './validators/isIdentifier'
 import isImportant from './validators/isImportant'
@@ -53,7 +53,7 @@ export {
   isDimension,
   isExpression,
   isFloat,
-  isFunction,
+  isFunctionExpression,
   isHexColor,
   isIdentifier,
   isImportant,

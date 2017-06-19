@@ -15,12 +15,12 @@ export function parse(input: string): AST {
   return parser.parse(input)
 }
 
-export function generate(ast: AST, generators: Object = {}): string {
+export function generate(ast: AST, generators?: Object = {}): string {
   const generator = new Generator(generators)
   return generator.generate(ast)
 }
 
-export function traverse(ast: AST, visitors: Object = {}): void {
+export function traverse(ast: AST, visitors: Object): void {
   const traverser = new Traverser(visitors)
   return traverser.traverse(ast)
 }
@@ -29,5 +29,8 @@ export function transform(
   input: string,
   options: TransformOptions = {}
 ): string {
-  return generate(traverse(parse(input), options.visitors), options.generators)
+  return generate(
+    traverse(parse(input), options.visitors || {}),
+    options.generators
+  )
 }

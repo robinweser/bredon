@@ -26,7 +26,7 @@ export default class Traverser {
         this.traverseNodeList(node.body, node)
         break
 
-      case 'Function':
+      case 'FunctionExpression':
         this.traverseNodeList(node.params, node)
         break
 
@@ -37,8 +37,9 @@ export default class Traverser {
       case 'Float':
       case 'Identifier':
       case 'Operator':
-      case 'Seperator':
+      case 'Separator':
       case 'HexColor':
+      case 'StringLiteral':
       case 'URL':
         break
 

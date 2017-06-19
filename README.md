@@ -69,11 +69,10 @@ ast === {
 ```
 ## Documentation
 * [**API Reference**](docs/API.md)
-  * [parse(cssValue)](docs/API.md#parsecssvalue)
-  * [ParsedCSSValue](docs/API.md#parsedcssvalue)
-    * [traverse(visitors)](docs/API.md#traversevisitors)
-    * [toString([visitors])](docs/API.md#tostring-visitors)
-    * [toAST()](docs/API.md#toast)
+  * [`parse(input)`](docs/api/parse.md)
+  * [`traverse(ast, visitors)`](docs/api/traverse.md)
+  * [`generate(ast, [generators])`](docs/api/generate.md)
+  * [`transform(input, [options])`](docs/api/transform.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Integer](docs/ASTNodes.md#integer)
@@ -83,10 +82,10 @@ ast === {
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
   * [URL](docs/ASTNodes.md#url)
-  * [String](docs/ASTNodes.md#string)
+  * [StringLiteral](docs/ASTNodes.md#stringliteral)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
-  * [Function](docs/ASTNodes.md#function)
+  * [FunctionExpression](docs/ASTNodes.md#functionExpression)
   * [Expression](docs/ASTNodes.md#expression)
 
 

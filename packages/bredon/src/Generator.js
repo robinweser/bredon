@@ -26,7 +26,7 @@ export default class Generator {
       case 'Expression':
         return node.body.map(generateCSSValue).join('')
 
-      case 'Function':
+      case 'FunctionExpression':
         return `${node.callee}(${node.params.map(generateCSSValue).join(',')})`
 
       case 'Dimension':
@@ -42,7 +42,7 @@ export default class Generator {
           ? ` ${node.value} `
           : node.value
 
-      case 'String':
+      case 'StringLiteral':
         return node.quote + node.value + node.quote
 
       case 'Identifier':
@@ -51,6 +51,7 @@ export default class Generator {
       case 'Integer':
       case 'Parenthese':
       case 'HexColor':
+      case 'Separator':
       case 'URL':
         return node.value
 

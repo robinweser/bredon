@@ -19,7 +19,7 @@ describe('Generating a string from an AST', () => {
                 value: 'inherit'
               },
               {
-                type: 'Function',
+                type: 'FunctionExpression',
                 callee: 'rgba',
                 params: [
                   {
@@ -67,7 +67,7 @@ describe('Generating a string from an AST', () => {
 
   it('should use custom formatters', () => {
     const generator = new Generator({
-      Function: (node, generate) =>
+      FunctionExpression: (node, generate) =>
         `${node.callee}(${node.params.map(generate).join(' , ')})`
     })
 
@@ -76,7 +76,7 @@ describe('Generating a string from an AST', () => {
         type: 'CSSValue',
         body: [
           {
-            type: 'Function',
+            type: 'FunctionExpression',
             callee: 'rgba',
             params: [
               {

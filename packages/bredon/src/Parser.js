@@ -21,7 +21,7 @@ import parseMultiValue from './utils/parseMultiValue'
 import isValidUnit from './utils/isValidUnit'
 import isValidHexadezimal from './utils/isValidHexadezimal'
 import isKeyword from './utils/isKeyword'
-import getQuoteType from './utils/getQuoteType'
+import getQuote from './utils/getQuote'
 
 import type { Token } from '../../../flowtypes/Token'
 import type {
@@ -328,7 +328,7 @@ export default class Parser {
           // setting the expression scope
           // to allow all operators
           this.setScope('expression')
-          const node = this.parseFunction(callee)
+          const node = this.parseFunctionExpression(callee)
           this.setScope()
 
           const calcExpression = expression(node.params)
@@ -337,7 +337,7 @@ export default class Parser {
           return node
         }
 
-        return this.parseFunction(callee)
+        return this.parseFunctionExpression(callee)
       }
 
       // parsing keywords into a special AST node
@@ -349,7 +349,7 @@ export default class Parser {
     }
   }
 
-  parseFunction(callee: SimpleNode): FunctionNode {
+  parseFunctionExpression(callee: SimpleNode): FunctionNode {
     this.updateCurrentToken(2)
     ++this.parenBalance
 
@@ -406,20 +406,17 @@ export default class Parser {
 
   parseStringLiteral(): SimpleNode {
     if (this.currentToken.type === 'quote') {
-      const quoteType = getQuoteType(this.currentToken.value)
+      const quote = getQuote(this.currentToken.value)
 
       let stringValue = ''
       this.updateCurrentToken(1)
 
-      while (
-        this.isRunning() &&
-        getQuoteType(this.currentToken.value) !== quoteType
-      ) {
+      while (this.isRunning() && getQuote(this.currentToken.value) !== quote) {
         stringValue += this.currentToken.value
         this.updateCurrentToken(1)
       }
 
-      return stringLiteral(stringValue, quoteType)
+      return stringLiteral(stringValue, quote)
     }
   }
 

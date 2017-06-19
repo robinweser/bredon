@@ -22,7 +22,7 @@ export default function wrap(node: ASTNode): Object {
     },
 
     traverse(visitors: Object = {}) {
-      travserse(node, visitors)
+      traverse(node, visitors)
     }
   }
 }

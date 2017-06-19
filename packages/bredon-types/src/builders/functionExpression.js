@@ -6,7 +6,7 @@ export default function functionExpression(
   params: Array<Node>
 ): FunctionNode {
   return {
-    type: 'Function',
+    type: 'FunctionExpression',
     callee,
     params
   }
