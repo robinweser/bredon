@@ -1,5 +1,5 @@
 /* @flow */
-import { isSingleValue } from './isSingleValue'
+import isSingleValue from './isSingleValue'
 
 import type { ASTNode } from '../../../flowtypes/AST'
 
