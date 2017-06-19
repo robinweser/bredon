@@ -35,6 +35,6 @@ export type Node =
   | ExpressionNode
 
 export type CSSValue = { type: 'CSSValue', body: Array<Node> }
-export type AST = { type: 'MultiValue', values: Array<CSSValue> }
+export type MultiValue = { type: 'MultiValue', values: Array<CSSValue> }
 
-export type ASTNode = Node | CSSValue | AST
+export type ASTNode = Node | CSSValue | MultiValue

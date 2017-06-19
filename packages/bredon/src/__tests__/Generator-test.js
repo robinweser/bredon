@@ -12,8 +12,7 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 value: 1,
-                unit: 'px',
-                dimension: 'absolute-length'
+                unit: 'px'
               },
               {
                 type: 'Keyword',
@@ -46,7 +45,7 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 unit: 'ms',
-                dimension: 'duration',
+
                 value: 300
               },
               {
