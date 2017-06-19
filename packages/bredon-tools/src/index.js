@@ -1,4 +1,14 @@
 import isSingleValue from './isSingleValue'
 import getSingleValue from './getSingleValue'
 
-export { isSingleValue, getSingleValue }
+import replaceNode from './replaceNode'
+import replaceChildNode from './replaceChildNode'
+import removeChildNode from './removeChildNode'
+
+export {
+  isSingleValue,
+  getSingleValue,
+  replaceNode,
+  replaceChildNode,
+  removeChildNode
+}

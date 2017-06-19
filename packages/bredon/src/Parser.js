@@ -269,7 +269,10 @@ export default class Parser {
         if (nextToken.type === 'number') {
           this.updateCurrentToken(1)
 
-          return float(integerPart, integer(parseInt(nextToken.value, 10)))
+          return float(
+            integerPart || integer(0),
+            integer(parseInt(nextToken.value, 10))
+          )
         }
 
         throw new SyntaxError(

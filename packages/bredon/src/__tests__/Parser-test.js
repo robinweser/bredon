@@ -310,6 +310,10 @@ describe('Parsing CSS values', () => {
                   fractional: {
                     type: 'Integer',
                     value: 34
+                  },
+                  integer: {
+                    type: 'Integer',
+                    value: 0
                   }
                 }
               ]
@@ -385,6 +389,10 @@ describe('Parsing CSS values', () => {
                   fractional: {
                     type: 'Integer',
                     value: 34
+                  },
+                  integer: {
+                    type: 'Integer',
+                    value: 0
                   }
                 }
               ]

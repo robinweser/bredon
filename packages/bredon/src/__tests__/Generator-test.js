@@ -38,6 +38,10 @@ describe('Generating a string from an AST', () => {
                   },
                   {
                     type: 'Float',
+                    integer: {
+                      type: 'Integer',
+                      value: 0
+                    },
                     fractional: {
                       type: 'Integer',
                       value: 34

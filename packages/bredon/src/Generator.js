@@ -35,10 +35,8 @@ export default class Generator {
         return generateCSSValue(node.value) + node.unit
 
       case 'Float':
-        return `${node.integer
-          ? `${node.integer.negative ? '-' : ''}${node.integer.value !== 0
-              ? node.integer.value
-              : ''}`
+        return `${node.integer.negative ? '-' : ''}${node.integer.value !== 0
+          ? node.integer.value
           : ''}.${generateCSSValue(node.fractional)}`
 
       case 'Operator':

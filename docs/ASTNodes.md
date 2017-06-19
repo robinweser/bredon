@@ -194,7 +194,7 @@ Floats are floating-point numbers with a fractional part and an integer part. *(
 
 | Property | Value | Description |
 | ------ | --- | ------ |
-| integer | (*[Integer](#integer)*) |The integer part |
+| integer | (*[Integer](#integer)*) |The integer part. Has a `negative`-flag if the float is negative.  |
 | fractional | (*[Integer](#integer)*) | The fractional part |
 
 ```javascript

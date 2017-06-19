@@ -7,10 +7,9 @@ import type {
   MultiValue
 } from '../../../flowtypes/AST'
 
-export default function replaceChildNode(
+export default function removeChildNode(
   parentNode: ExpressionNode | FunctionNode | CSSValue | MultiValue,
-  node: ASTNode,
-  newNode: ASTNode
+  node: ASTNode
 ): void {
   const children = parentNode.body
 
@@ -18,11 +17,5 @@ export default function replaceChildNode(
     // TODO: warn cant replace child node in primitive nodes
   }
 
-  parentNode.body = children.map(childNode => {
-    if (node === childNode) {
-      return newNode
-    }
-
-    return node
-  })
+  parentNode.body = children.filter(childNode => childNode === node)
 }

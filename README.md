@@ -35,34 +35,42 @@ const parsedValue = parse(input)
 const ast = parsedValue.toAST()
 
 ast === {
-  type: 'MultiValue',
-  values: [{
-    type: 'CSSValue',
-    body: [{
-      type: 'Dimension',
-      value: 10,
-      unit: 'px',
-      dimension: 'absolute-length'
-    }, {
+  type: 'CSSValue'
+  body: [{
+    type: 'Dimension',
+    value: {
+      type: 'Integer',
+      value: 10
+    },
+    unit: 'px'
+  }, {
+    type: 'Identifier',
+    value: 'solid'
+  }, {
+    type: 'Function',
+    callee: {
       type: 'Identifier',
-      value: 'solid'
+      value: 'rgba'
+    },
+    params: [{
+      type: 'Integer',
+      value: 255
     }, {
-      type: 'Function',
-      callee: 'rgba',
-      params: [{
-        type: 'Integer',
-        value: 255
-      }, {
+      type: 'Integer',
+      value: 0
+    }, {
+      type: 'Integer',
+      value: 255
+    }, {
+      type: 'Float',
+      integer: {
         type: 'Integer',
         value: 0
-      }, {
+      },
+      fractional: {
         type: 'Integer',
-        value: 255
-      }, {
-        type: 'Float',
-        integer: 0,
-        fractional: 55
-      }]
+        value: 55
+      }
     }]
   }]
 }
