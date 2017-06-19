@@ -1,6 +1,6 @@
 /* @flow */
-import type { Node } from '../../../../flowtypes/AST'
+import type { ASTNode } from '../../../../flowtypes/AST'
 
-export default function isOperator(node: Node): boolean {
+export default function isOperator(node: ASTNode): boolean {
   return node.type === 'Operator'
 }

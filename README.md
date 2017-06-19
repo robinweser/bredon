@@ -1,6 +1,6 @@
 # Bredon
 
-Bredon is a modern CSS value parser in JavaScript.<br>
+Bredon is a modern CSS value compiler in JavaScript.<br>
 It uses very detailed nodes and provides as much information as possible for each value.<br>
 You may also use it to transform the AST and generate new CSS values.
 
@@ -30,50 +30,60 @@ I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-c
 import { parse } from 'bredon'
 
 const input = '10px solid rgba(255, 0, 255, 0.55)'
-const parsedValue = parse(input)
-
-const ast = parsedValue.toAST()
+const ast = parse(input)
 
 ast === {
-  type: 'MultiValue',
-  values: [{
-    type: 'CSSValue',
-    body: [{
-      type: 'Dimension',
-      value: 10,
-      unit: 'px',
-      dimension: 'absolute-length'
-    }, {
+  type: 'CSSValue'
+  body: [{
+    type: 'Dimension',
+    value: {
+      type: 'Integer',
+      value: 10
+    },
+    unit: 'px'
+  }, {
+    type: 'Identifier',
+    value: 'solid'
+  }, {
+    type: 'Function',
+    callee: {
       type: 'Identifier',
-      value: 'solid'
+      value: 'rgba'
+    },
+    params: [{
+      type: 'Integer',
+      value: 255
     }, {
-      type: 'Function',
-      callee: 'rgba',
-      params: [{
-        type: 'Integer',
-        value: 255
-      }, {
+      type: 'Integer',
+      value: 0
+    }, {
+      type: 'Integer',
+      value: 255
+    }, {
+      type: 'Float',
+      integer: {
         type: 'Integer',
         value: 0
-      }, {
+      },
+      fractional: {
         type: 'Integer',
-        value: 255
-      }, {
-        type: 'Float',
-        integer: 0,
-        fractional: 55
-      }]
+        value: 55
+      }
     }]
   }]
 }
+
+const output = generate(ast)
+
+console.log(output)
+// => 10px solid rgba(255,0,255,.55)
 ```
 ## Documentation
 * [**API Reference**](docs/API.md)
-  * [parse(cssValue)](docs/API.md#parsecssvalue)
-  * [ParsedCSSValue](docs/API.md#parsedcssvalue)
-    * [traverse(visitors)](docs/API.md#traversevisitors)
-    * [toString([visitors])](docs/API.md#tostring-visitors)
-    * [toAST()](docs/API.md#toast)
+  * [`parse(input)`](docs/api/parse.md)
+  * [`traverse(ast, visitors)`](docs/api/traverse.md)
+  * [`generate(ast, [generators])`](docs/api/generate.md)
+  * [`transform(input, [options])`](docs/api/transform.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Integer](docs/ASTNodes.md#integer)
@@ -83,10 +93,10 @@ ast === {
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
   * [URL](docs/ASTNodes.md#url)
-  * [String](docs/ASTNodes.md#string)
+  * [StringLiteral](docs/ASTNodes.md#stringliteral)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
-  * [Function](docs/ASTNodes.md#function)
+  * [FunctionExpression](docs/ASTNodes.md#functionExpression)
   * [Expression](docs/ASTNodes.md#expression)
 
 

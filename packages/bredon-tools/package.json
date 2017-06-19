@@ -1,7 +1,7 @@
 {
-  "name": "bredon",
-  "version": "2.0.0",
-  "description": "A modern CSS value compiler in JavaScript",
+  "name": "bredon-tools",
+  "version": "2.0.2",
+  "description": "Useful functional utilities for working with Bredon",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -16,18 +16,17 @@
     "parser",
     "css-parser",
     "css-value-parser",
-    "compiler",
-    "css-compiler",
     "ast",
     "lexer",
     "tokenizer",
-    "cssinjs"
+    "cssinjs",
+    "bredon"
   ],
   "repository": "https://github.com/rofrischmann/bredon.git",
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "tokenize-sync": "^1.0.0",
-    "bredon-types": "^2.0.2"
+    "bredon-types": "^2.0.2",
+    "bredon": "^2.0.0"
   }
 }

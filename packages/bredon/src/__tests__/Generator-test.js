@@ -11,17 +11,22 @@ describe('Generating a string from an AST', () => {
             body: [
               {
                 type: 'Dimension',
-                value: 1,
-                unit: 'px',
-                dimension: 'absolute-length'
+                value: {
+                  type: 'Integer',
+                  value: 1
+                },
+                unit: 'px'
               },
               {
                 type: 'Keyword',
                 value: 'inherit'
               },
               {
-                type: 'Function',
-                callee: 'rgba',
+                type: 'FunctionExpression',
+                callee: {
+                  type: 'Identifier',
+                  value: 'rgba'
+                },
                 params: [
                   {
                     type: 'Integer',
@@ -33,8 +38,14 @@ describe('Generating a string from an AST', () => {
                   },
                   {
                     type: 'Float',
-                    integer: 0,
-                    fractional: 34
+                    integer: {
+                      type: 'Integer',
+                      value: 0
+                    },
+                    fractional: {
+                      type: 'Integer',
+                      value: 34
+                    }
                   }
                 ]
               }
@@ -46,8 +57,10 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 unit: 'ms',
-                dimension: 'duration',
-                value: 300
+                value: {
+                  type: 'Integer',
+                  value: 300
+                }
               },
               {
                 type: 'Identifier',
@@ -68,7 +81,7 @@ describe('Generating a string from an AST', () => {
 
   it('should use custom formatters', () => {
     const generator = new Generator({
-      Function: (node, generate) =>
+      FunctionExpression: (node, generate) =>
         `${node.callee}(${node.params.map(generate).join(' , ')})`
     })
 
@@ -77,7 +90,7 @@ describe('Generating a string from an AST', () => {
         type: 'CSSValue',
         body: [
           {
-            type: 'Function',
+            type: 'FunctionExpression',
             callee: 'rgba',
             params: [
               {
@@ -94,13 +107,20 @@ describe('Generating a string from an AST', () => {
               },
               {
                 type: 'Float',
-                integer: 0,
-                fractional: 55
+                integer: {
+                  type: 'Integer',
+                  value: 0,
+                  negative: true
+                },
+                fractional: {
+                  type: 'Integer',
+                  value: 55
+                }
               }
             ]
           }
         ]
       })
-    ).toBe('rgba(255 , 0 , 255 , .55)')
+    ).toBe('rgba(255 , 0 , 255 , -.55)')
   })
 })

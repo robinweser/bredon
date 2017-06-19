@@ -1,6 +1,6 @@
 /* @flow */
-import type { Node } from '../../../../flowtypes/AST'
+import type { ASTNode } from '../../../../flowtypes/AST'
 
-export default function isParenthesis(node: Node): boolean {
+export default function isParenthesis(node: ASTNode): boolean {
   return node.type === 'Parenthesis'
 }

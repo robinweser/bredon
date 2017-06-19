@@ -1,11 +1,35 @@
 /* @flow */
 import tokenize from 'tokenize-sync'
+import {
+  dimension,
+  integer,
+  float,
+  important,
+  operator,
+  identifier,
+  expression,
+  functionExpression,
+  url,
+  stringLiteral,
+  parenthesis,
+  hexColor,
+  keyword,
+  separator,
+  cssValue,
+  multiValue,
+  isSeparator
+} from 'bredon-types'
 
+import isValidUnit from './utils/isValidUnit'
+import isValidHexadezimal from './utils/isValidHexadezimal'
+import isKeyword from './utils/isKeyword'
+import getQuote from './utils/getQuote'
 import parseMultiValue from './utils/parseMultiValue'
 
 import type { Token } from '../../../flowtypes/Token'
 import type {
-  AST,
+  MultiValue,
+  CSSValue,
   Node,
   SimpleNode,
   DimensionNode,
@@ -14,87 +38,275 @@ import type {
 } from '../../../flowtypes/AST'
 
 const ruleMap = {
-  keyword: /^(initial|inherit|unset)$/,
-  important: /^(!important)$/,
-  percentage_unit: /^%$/,
-  font_length_unit: /^(em|ex|ch|rem)$/,
-  viewport_length_unit: /^(vw|vh|vmin|vmax)$/,
-  absolute_length_unit: /^(cm|mm|q|in|pt|pc|px)$/,
-  angle_unit: /^(deg|grad|rad|turn)$/,
-  duration_unit: /^((m)?s)$/,
-  frequency_unit: /^((k)?Hz)$/,
-  resolution_unit: /^(dpi|dpcm|dppx)$/,
-  singe_quote: /^('|\\')$/,
-  double_quote: /^("|\\")$/,
+  important: /^[!]$/,
+  quote: /^('|\\'|"|\\")$/,
   operator: /^(\+|-|\*|\/)$/,
   identifier: /^[a-z-]+$/i,
   number: /^\d+$/,
   url_chars: /^[&:=?]$/,
+  percentage: /^[%]$/,
   floating_point: /^[.]$/,
-  hexadecimal: /^#([0-9a-f]*)$/i,
+  hex: /^[#]$/,
   whitespace: /^\s+$/,
   paren: /^[()]$/,
   comma: /^,+$/
-}
-
-const basicNodes = {
-  keyword: 'Keyword',
-  important: 'Important',
-  comma: 'Separator',
-  operator: 'Operator',
-  hexadecimal: 'HexColor'
 }
 
 export default class Parser {
   currentPosition: number
   currentToken: Token
   parenBalance: number
+  scope: string
   tokens: Array<Token>
 
-  getNextToken(position: number): Token {
+  getNextToken(position: number): ?Token {
     const nextPosition = this.currentPosition + position
 
     if (nextPosition < this.tokens.length) {
       return this.tokens[nextPosition]
     }
+  }
 
-    return {
-      type: 'empty_token',
-      value: '',
-      start: 0,
-      end: 0
-    }
+  updateCurrentToken(increment?: number = 0): void {
+    this.currentPosition += increment
+    this.currentToken = this.tokens[this.currentPosition]
   }
 
   isRunning() {
     return this.currentPosition < this.tokens.length
   }
 
-  parseNumber(): SimpleNode | DimensionNode | FloatNode {
+  setScope(scope?: string): void {
+    this.scope = scope || ''
+  }
+
+  walkTokens(): Node {
+    this.updateCurrentToken()
+    this.parseWhitespace()
+
+    // skip parsing if no more tokens are coming
+    // this happens if the strings ends with whitespace
+    if (!this.currentToken) {
+      return false
+    }
+
+    const node =
+      this.parseOperator() ||
+      this.parseHex() ||
+      this.parseNumber() ||
+      this.parseFloat() ||
+      this.parseImportant() ||
+      this.parseIdentifier() ||
+      this.parseParenthesis() ||
+      this.parseStringLiteral() ||
+      this.parseSeparator()
+
+    if (!node) {
+      throw new SyntaxError(
+        `Could not parse the token "${this.currentToken
+          .type}" with the value "${this.currentToken.value}"`
+      )
+    }
+
+    ++this.currentPosition
+    return node
+  }
+
+  parse(input: string): MultiValue | CSSValue {
+    this.tokens = tokenize(input, ruleMap)
+
+    this.currentPosition = 0
+    this.parenBalance = 0
+    this.scope = ''
+
+    const nodes = []
+
+    while (this.isRunning()) {
+      const node = this.walkTokens()
+
+      if (node) {
+        nodes.push(node)
+      }
+    }
+
+    // split values into multi value if separator is present
+    if (nodes.find(node => isSeparator(node) && node.value === ',')) {
+      return multiValue(parseMultiValue(nodes))
+    }
+
+    return cssValue(nodes)
+  }
+
+  parseOperator(): SimpleNode {
+    if (this.currentToken.type === 'operator') {
+      if (this.scope === 'expression') {
+        return operator(this.currentToken.value)
+      }
+
+      // parse value separator
+      if (this.currentToken.value === '/') {
+        return separator('/')
+      }
+
+      // parse numbers and floats with an algebraic sign
+      if (this.currentToken.value === '+' || this.currentToken.value === '-') {
+        const nextToken = this.getNextToken(1)
+
+        if (nextToken) {
+          if (nextToken.type === 'number') {
+            const isNegative = this.currentToken.value === '-'
+
+            this.updateCurrentToken(1)
+            return this.parseNumber(isNegative)
+          }
+
+          if (nextToken.type === 'floating_point') {
+            const isNegative = this.currentToken.value === '-'
+
+            this.updateCurrentToken(1)
+            return this.parseFloat(integer(0, isNegative))
+          }
+
+          throw new SyntaxError(
+            `An addition or substraction sign must be used inside expressions ("calc()") or followed by a number/float. Instead found "${nextToken.value}" of type "${nextToken.type}".`
+          )
+        }
+
+        throw new SyntaxError(
+          'An addition or substraction sign must not be used at the end of a string.'
+        )
+      }
+
+      throw new SyntaxError(
+        'A multiplication sign (*) can only be used inside expression ("calc()").'
+      )
+    }
+  }
+
+  parseHex(): SimpleNode {
+    if (this.currentToken.type === 'hex') {
+      this.updateCurrentToken(1)
+      let hexValue = ''
+
+      while (
+        this.isRunning() &&
+        (this.currentToken.type === 'number' ||
+          this.currentToken.type === 'identifier')
+      ) {
+        hexValue += this.currentToken.value
+        this.updateCurrentToken(1)
+      }
+
+      const hexValueLength = hexValue.length
+      // validating correct hex value length
+      if (
+        hexValueLength !== 3 &&
+        hexValueLength !== 6 &&
+        hexValueLength !== 8
+      ) {
+        // TODO: throw invalid hex value length
+      }
+
+      // validating correct hex value
+      if (!isValidHexadezimal(hexValue)) {
+        // TODO: throw invalid hex value
+      }
+
+      return hexColor(`#${hexValue}`)
+    }
+  }
+
+  parseNumber(
+    isNegative?: boolean = false
+  ): SimpleNode | DimensionNode | FloatNode {
     if (this.currentToken.type === 'number') {
       const nextToken = this.getNextToken(1)
 
-      if (nextToken.type.indexOf('unit') > -1) {
+      // Parsing dimensions if a number is directly followed
+      // by an identifier that matches any of the valid units
+      if (
+        nextToken &&
+        (nextToken.type === 'identifier' || nextToken.type === 'percentage')
+      ) {
+        if (!isValidUnit(nextToken.value)) {
+          throw new SyntaxError(
+            `A number (${this.currentToken
+              .value}) must be followed by a valid unit. Instead found "${nextToken.value}" of type "${nextToken.type}".`
+          )
+        }
+
         ++this.currentPosition
 
-        return {
-          type: 'Dimension',
-          value: parseInt(this.currentToken.value, 10),
-          dimension: nextToken.type.replace('_unit', '').replace('_', '-'),
-          unit: nextToken.value
-        }
+        return dimension(
+          integer(parseInt(this.currentToken.value, 10), isNegative),
+          nextToken.value.toLowerCase()
+        )
       }
 
-      if (nextToken.type === 'floating_point') {
-        const integerPart = this.currentToken.value
+      const integerPart = integer(
+        parseInt(this.currentToken.value, 10),
+        isNegative
+      )
+
+      // Parsing floating point numbers if a number is directly followed
+      // by a floating point which is followed by a number
+      if (nextToken && nextToken.type === 'floating_point') {
         this.updateCurrentToken(1)
-        return this.parseFloat(integerPart)
+        return this.parseFloat(integerPart, isNegative)
       }
 
-      return {
-        type: 'Integer',
-        value: parseInt(this.currentToken.value, 10)
+      return integerPart
+    }
+  }
+
+  parseFloat(integerPart?: number): FloatNode {
+    // floats can also start with a floating point
+    // if the integer part is 0
+    if (this.currentToken.type === 'floating_point') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken) {
+        if (nextToken.type === 'number') {
+          this.updateCurrentToken(1)
+
+          return float(
+            integerPart || integer(0),
+            integer(parseInt(nextToken.value, 10))
+          )
+        }
+
+        throw new SyntaxError(
+          `A floating point (.) must be followed by a number. Instead found ${nextToken.value} of type ${nextToken.type}.`
+        )
       }
+
+      throw new SyntaxError(
+        'A floating point must not be used at the end of a string.'
+      )
+    }
+  }
+
+  parseImportant(): SimpleNode {
+    if (this.currentToken.type === 'important') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken) {
+        if (
+          nextToken.type === 'identifier' &&
+          nextToken.value.match(/^important$/i) !== null
+        ) {
+          this.updateCurrentToken(1)
+          return important()
+        }
+
+        throw new SyntaxError(
+          `An exclamation mark (!) must always be followed by an "important" identifier. Instead found "${nextToken.value}" of type "${nextToken.type}".`
+        )
+      }
+
+      throw new SyntaxError(
+        'An exclamation mark (!) must not be used at the end of a string.'
+      )
     }
   }
 
@@ -102,52 +314,50 @@ export default class Parser {
     if (this.currentToken.type === 'identifier') {
       const nextToken = this.getNextToken(1)
 
-      if (nextToken.type === 'paren' && nextToken.value === '(') {
-        const callee = {
-          type: 'Identifier',
-          value: this.currentToken.value
-        }
+      // parsing function expression
+      if (nextToken && nextToken.type === 'paren' && nextToken.value === '(') {
+        const callee = identifier(this.currentToken.value)
 
-        if (this.currentToken.value === 'url') {
+        // special parsing for url functions
+        // as they only allow a single url parameter
+        if (callee.value === 'url') {
           return this.parseURL(callee)
         }
 
-        if (this.currentToken.value.indexOf('calc') > -1) {
-          const node = this.parseFunction(callee)
+        // special parsing for calc functions that includes
+        // algebraic expressions with operators and parenthesis
+        if (callee.value.indexOf('calc') !== -1) {
+          // setting the expression scope
+          // to allow all operators
+          this.setScope('expression')
+          const node = this.parseFunctionExpression(callee)
+          this.setScope()
 
-          const functionParams = node.params
-
-          node.params = [
-            {
-              type: 'Expression',
-              body: functionParams
-            }
-          ]
+          const calcExpression = expression(node.params)
+          node.params = [calcExpression]
 
           return node
         }
 
-        return this.parseFunction(callee)
+        return this.parseFunctionExpression(callee)
       }
 
-      return {
-        type: 'Identifier',
-        value: this.currentToken.value
+      // parsing keywords into a special AST node
+      if (isKeyword(this.currentToken.value)) {
+        return keyword(this.currentToken.value)
       }
+
+      return identifier(this.currentToken.value)
     }
   }
 
-  parseFunction(callee: SimpleNode): FunctionNode {
-    const node = {
-      type: 'Function',
-      callee: callee,
-      params: []
-    }
-
+  parseFunctionExpression(callee: SimpleNode): FunctionNode {
     this.updateCurrentToken(2)
     ++this.parenBalance
 
     const startParenBalance = this.parenBalance
+
+    const params = []
 
     while (
       this.isRunning() &&
@@ -161,22 +371,17 @@ export default class Parser {
         this.updateCurrentToken(1)
       }
 
-      node.params.push(this.walkTokens())
+      params.push(this.walkTokens())
+
       this.updateCurrentToken()
       this.parseWhitespace()
     }
 
     --this.parenBalance
-    return node
+    return functionExpression(callee, params)
   }
 
   parseURL(callee: SimpleNode): FunctionNode {
-    const node = {
-      type: 'Function',
-      callee: callee,
-      params: []
-    }
-
     let urlValue = ''
 
     this.updateCurrentToken(2)
@@ -191,44 +396,33 @@ export default class Parser {
           this.currentToken.value !== ')') ||
         this.parenBalance !== startParenBalance)
     ) {
+      // concat any token to the url
+      // no validation is done here!
       urlValue += this.currentToken.value
       this.updateCurrentToken(1)
     }
 
-    node.params.push({
-      type: 'URL',
-      value: urlValue
-    })
-
     --this.parenBalance
-    return node
+    return functionExpression(callee, [url(urlValue)])
   }
 
-  parseString(): SimpleNode {
-    if (
-      this.currentToken.type === 'double_quote' ||
-      this.currentToken.type === 'single_quote'
-    ) {
-      const quoteType = this.currentToken.type
+  parseStringLiteral(): SimpleNode {
+    if (this.currentToken.type === 'quote') {
+      const quote = getQuote(this.currentToken.value)
 
-      const node = {
-        type: 'String',
-        quote: quoteType === 'double_quote' ? '"' : "'",
-        value: ''
-      }
-
+      let stringValue = ''
       this.updateCurrentToken(1)
 
-      while (this.isRunning() && this.currentToken.type !== quoteType) {
-        node.value += this.currentToken.value
+      while (this.isRunning() && getQuote(this.currentToken.value) !== quote) {
+        stringValue += this.currentToken.value
         this.updateCurrentToken(1)
       }
 
-      return node
+      return stringLiteral(stringValue, quote)
     }
   }
 
-  parseParen(): SimpleNode {
+  parseParenthesis(): SimpleNode {
     if (this.currentToken.type === 'paren') {
       // update paren balance
       if (this.currentToken.value === '(') {
@@ -237,114 +431,19 @@ export default class Parser {
         --this.parenBalance
       }
 
-      return {
-        type: 'Parenthesis',
-        value: this.currentToken.value
-      }
+      return parenthesis(this.currentToken.value)
     }
   }
 
-  parseFloat(integerPart?: number): FloatNode {
-    if (this.currentToken.type === 'floating_point') {
-      const nextToken = this.getNextToken(1)
-
-      if (nextToken.type === 'number') {
-        this.updateCurrentToken(1)
-
-        return {
-          type: 'Float',
-          integer: parseInt(integerPart, 10) || 0,
-          fractional: parseInt(nextToken.value, 10)
-        }
-      }
-
-      throw new SyntaxError('A floating point must be followed by a number.')
-    }
-  }
-
-  parseBasicNodes(): SimpleNode {
-    const nodeType = basicNodes[this.currentToken.type]
-
-    if (nodeType) {
-      return {
-        type: nodeType,
-        value: this.currentToken.value
-      }
+  parseSeparator(): SimpleNode {
+    if (this.currentToken.type === 'comma') {
+      return separator(',')
     }
   }
 
   parseWhitespace() {
     if (this.currentToken.type === 'whitespace') {
       this.updateCurrentToken(1)
-
-      if (!this.currentToken) {
-        return {
-          type: '_following_whitespace'
-        }
-      }
-    }
-  }
-
-  updateCurrentToken(increment?: number): void {
-    if (increment) {
-      this.currentPosition += increment
-    }
-
-    this.currentToken = this.tokens[this.currentPosition]
-  }
-
-  walkTokens(): Node {
-    this.updateCurrentToken()
-
-    const node =
-      this.parseWhitespace() ||
-      this.parseBasicNodes() ||
-      this.parseNumber() ||
-      this.parseFloat() ||
-      this.parseIdentifier() ||
-      this.parseParen() ||
-      this.parseString()
-
-    if (!node) {
-      throw new SyntaxError(
-        `Could not parse the token "${this.currentToken
-          .type}" with the value "${this.currentToken.value}"`
-      )
-    }
-
-    ++this.currentPosition
-    return node
-  }
-
-  parse(input: string): AST {
-    this.tokens = tokenize(input, ruleMap)
-
-    this.currentPosition = 0
-    this.parenBalance = 0
-
-    const nodes = []
-
-    while (this.isRunning()) {
-      nodes.push(this.walkTokens())
-    }
-
-    const lastNode = nodes.pop()
-
-    // remove following white space
-    if (lastNode.type !== '_following_whitespace') {
-      nodes.push(lastNode)
-    }
-
-    // split values into multi value if separator is present
-    if (nodes.find(node => node.type === 'Separator')) {
-      return {
-        type: 'MultiValue',
-        values: parseMultiValue(nodes)
-      }
-    }
-    return {
-      type: 'CSSValue',
-      body: nodes
     }
   }
 }

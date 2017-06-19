@@ -1,10 +1,10 @@
 /* @flow */
-import type { FloatNode } from '../../../../flowtypes/AST'
+import type { IntegerNode, FloatNode } from '../../../../flowtypes/AST'
 
-export default function float(integer: number, fractional: number): FloatNode {
+export default function float(integer: IntegerNode, fractional: IntegerNode): FloatNode {
   return {
     type: 'Float',
-    integer,
-    fractional
+    fractional,
+    integer
   }
 }
