@@ -25,6 +25,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "tokenize-sync": "^1.0.0"
+    "tokenize-sync": "^1.0.0",
+    "bredon-types": "^2.0.2"
   }
 }

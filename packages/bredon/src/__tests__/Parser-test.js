@@ -22,7 +22,23 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Integer',
-          value: 400
+          value: 400,
+          negative: false
+        }
+      ],
+      type: 'CSSValue'
+    })
+  })
+
+  it('should correctly parse algebraic signs', () => {
+    const parser = new Parser()
+
+    expect(parser.parse('-400')).toEqual({
+      body: [
+        {
+          type: 'Integer',
+          value: 400,
+          negative: true
         }
       ],
       type: 'CSSValue'
@@ -43,34 +59,6 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse Keywords', () => {
-    const parser = new Parser()
-
-    expect(parser.parse('initial')).toEqual({
-      body: [
-        {
-          type: 'Keyword',
-          value: 'initial'
-        }
-      ],
-      type: 'CSSValue'
-    })
-  })
-
-  it('should correctly parse Operators', () => {
-    const parser = new Parser()
-
-    expect(parser.parse('+')).toEqual({
-      body: [
-        {
-          type: 'Operator',
-          value: '+'
-        }
-      ],
-      type: 'CSSValue'
-    })
-  })
-
   it('should correctly parse HexColors', () => {
     const parser = new Parser()
 
@@ -85,14 +73,14 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse Strings', () => {
+  it('should correctly parse StringLiterals', () => {
     const parser = new Parser()
 
     expect(parser.parse('"hello, it\'s me."')).toEqual({
       body: [
         {
-          type: 'String',
-          quote: '"',
+          type: 'StringLiteral',
+          quote: 'double',
           value: "hello, it's me."
         }
       ],
@@ -107,16 +95,19 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Dimension',
-          dimension: 'absolute-length',
           unit: 'px',
-          value: 300
+          value: {
+            type: 'Integer',
+            value: 300,
+            negative: false
+          }
         }
       ],
       type: 'CSSValue'
     })
   })
 
-  it('should correctly parse Floats', () => {
+  it('should correctly parse Float', () => {
     const parser = new Parser()
 
     expect(parser.parse('200.55')).toEqual({
@@ -124,7 +115,8 @@ describe('Parsing CSS values', () => {
         {
           type: 'Float',
           integer: 200,
-          fractional: 55
+          fractional: 55,
+          negative: false
         }
       ],
       type: 'CSSValue'
@@ -145,11 +137,13 @@ describe('Parsing CSS values', () => {
           params: [
             {
               type: 'Integer',
-              value: 200
+              value: 200,
+              negative: false
             },
             {
               type: 'Integer',
-              value: 300
+              value: 300,
+              negative: false
             }
           ]
         }
@@ -204,8 +198,11 @@ describe('Parsing CSS values', () => {
                 {
                   type: 'Dimension',
                   unit: '%',
-                  dimension: 'percentage',
-                  value: 100
+                  value: {
+                    type: 'Integer',
+                    value: 100,
+                    negative: false
+                  }
                 },
                 {
                   type: 'Operator',
@@ -213,7 +210,8 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Integer',
-                  value: 5
+                  value: 5,
+                  negative: false
                 },
                 {
                   type: 'Operator',
@@ -221,7 +219,8 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Integer',
-                  value: 2
+                  value: 2,
+                  negative: false
                 }
               ]
             }
@@ -239,15 +238,18 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Integer',
-          value: 300
+          value: 300,
+          negative: false
         },
         {
           type: 'Integer',
-          value: 400
+          value: 400,
+          negative: false
         },
         {
           type: 'Integer',
-          value: 700
+          value: 700,
+          negative: false
         }
       ],
       type: 'CSSValue'
@@ -265,9 +267,12 @@ describe('Parsing CSS values', () => {
           body: [
             {
               type: 'Dimension',
-              value: 1,
-              unit: 'px',
-              dimension: 'absolute-length'
+              value: {
+                type: 'Integer',
+                value: 1,
+                negative: false
+              },
+              unit: 'px'
             },
             {
               type: 'Keyword',
@@ -282,16 +287,19 @@ describe('Parsing CSS values', () => {
               params: [
                 {
                   type: 'Integer',
-                  value: 255
+                  value: 255,
+                  negative: false
                 },
                 {
                   type: 'Integer',
-                  value: 94
+                  value: 94,
+                  negative: false
                 },
                 {
                   type: 'Float',
                   integer: 0,
-                  fractional: 34
+                  fractional: 34,
+                  negative: false
                 }
               ]
             }
@@ -303,8 +311,11 @@ describe('Parsing CSS values', () => {
             {
               type: 'Dimension',
               unit: 'ms',
-              dimension: 'duration',
-              value: 300
+              value: {
+                type: 'Integer',
+                value: 300,
+                negative: false
+              }
             },
             {
               type: 'Identifier',
@@ -334,9 +345,12 @@ describe('Parsing CSS values', () => {
           body: [
             {
               type: 'Dimension',
-              value: 1,
-              unit: 'px',
-              dimension: 'absolute-length'
+              value: {
+                type: 'Integer',
+                value: 1,
+                negative: false
+              },
+              unit: 'px'
             },
             {
               type: 'Keyword',
@@ -351,16 +365,19 @@ describe('Parsing CSS values', () => {
               params: [
                 {
                   type: 'Integer',
-                  value: 255
+                  value: 255,
+                  negative: false
                 },
                 {
                   type: 'Integer',
-                  value: 94
+                  value: 94,
+                  negative: false
                 },
                 {
                   type: 'Float',
                   integer: 0,
-                  fractional: 34
+                  fractional: 34,
+                  negative: false
                 }
               ]
             }
@@ -372,8 +389,11 @@ describe('Parsing CSS values', () => {
             {
               type: 'Dimension',
               unit: 'ms',
-              dimension: 'duration',
-              value: 300
+              value: {
+                type: 'Integer',
+                value: 300,
+                negative: false
+              }
             },
             {
               type: 'Identifier',

@@ -11,7 +11,8 @@ import keyword from './builders/keyword'
 import multiValue from './builders/multiValue'
 import operator from './builders/operator'
 import parenthesis from './builders/parenthesis'
-import string from './builders/string'
+import separator from './builders/separator'
+import stringLiteral from './builders/stringLiteral'
 import url from './builders/url'
 
 import isCSSValue from './validators/isCSSValue'
@@ -27,7 +28,8 @@ import isKeyword from './validators/isKeyword'
 import isMultiValue from './validators/isMultiValue'
 import isOperator from './validators/isOperator'
 import isParenthesis from './validators/isParenthesis'
-import isString from './validators/isString'
+import isSeparator from './validators/isSeparator'
+import isStringLiteral from './validators/isStringLiteral'
 import isUrl from './validators/isUrl'
 
 export {
@@ -44,7 +46,8 @@ export {
   multiValue,
   operator,
   parenthesis,
-  string,
+  separator,
+  stringLiteral,
   url,
   isCSSValue,
   isDimension,
@@ -59,6 +62,7 @@ export {
   isMultiValue,
   isOperator,
   isParenthesis,
-  isString,
+  isSeparator,
+  isStringLiteral,
   isUrl
 }
