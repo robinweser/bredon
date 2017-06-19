@@ -1,6 +1,6 @@
 # Bredon
 
-Bredon is a modern CSS value parser in JavaScript.<br>
+Bredon is a modern CSS value compiler in JavaScript.<br>
 It uses very detailed nodes and provides as much information as possible for each value.<br>
 You may also use it to transform the AST and generate new CSS values.
 
@@ -30,9 +30,7 @@ I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-c
 import { parse } from 'bredon'
 
 const input = '10px solid rgba(255, 0, 255, 0.55)'
-const parsedValue = parse(input)
-
-const ast = parsedValue.toAST()
+const ast = parse(input)
 
 ast === {
   type: 'CSSValue'
@@ -74,6 +72,11 @@ ast === {
     }]
   }]
 }
+
+const output = generate(ast)
+
+console.log(output)
+// => 10px solid rgba(255,0,255,.55)
 ```
 ## Documentation
 * [**API Reference**](docs/API.md)

@@ -1,7 +1,7 @@
 {
   "name": "bredon",
   "version": "2.0.0",
-  "description": "A modern CSS value parser in JavaScript",
+  "description": "A modern CSS value compiler in JavaScript",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -16,6 +16,8 @@
     "parser",
     "css-parser",
     "css-value-parser",
+    "compiler",
+    "css-compiler",
     "ast",
     "lexer",
     "tokenizer",
