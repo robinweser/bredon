@@ -1,6 +1,6 @@
 {
   "name": "bredon",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A modern CSS value compiler in JavaScript",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,7 +27,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "tokenize-sync": "^1.0.0",
-    "bredon-types": "^2.0.2"
+    "bredon-types": "^2.0.3",
+    "tokenize-sync": "^1.0.0"
   }
 }
