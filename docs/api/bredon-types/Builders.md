@@ -27,7 +27,7 @@ import { cssValue } from 'bredon-types'
 cssValue([ /* child nodes */ ])
 ```
 
-##### `dimension(value: number, unit: Unit)`
+### `dimension(value: number, unit: Unit)`
 
 where Unit refers to one of the validunits:<br>
 `%` | `em` | `ex`  | `ch`  | `rem`  | `vw`  | `vh`  | `vmin`  | `vmax`  | `cm`  | `mm`  | `q`  | `in`  | `pt`  | `pc`  | `px`  | `deg`  | `grad`  | `rad`  | `turn`  | `s`  | `ms`  | `Hz`  | `kHz`  | `dpi`  | `dpcm`  | `dppx`
@@ -55,7 +55,7 @@ float(0, 55)
 float(1, 10, true)
 ```
 
-##### `functionExpression(callee: string, params: Array<node>)`
+### `functionExpression(callee: string, params: Array<node>)`
 
 ```javascript
 import { functionExpression } from 'bredon-types'
