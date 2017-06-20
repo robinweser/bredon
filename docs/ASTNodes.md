@@ -74,10 +74,6 @@ Identifiers are all kind of words such as `solid`.
 ## Integer
 Integers are simple numbers without a unit or fractional part.
 
-| Property | Value | Description |
-| ------ | --- | ------ |
-| negative? | `true` | (Optional) flag that indicates that the value is negative |
-
 ```javascript
 // e.g. 34
 {
@@ -172,7 +168,7 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 
 | Property | Value | Description |
 | ------ | --- |  ------ |
-| value | (*[Integer](#integer)*) | The pure value without a unit |
+| value | (*number*) | The pure value without a unit |
 | unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
 
 
@@ -181,34 +177,25 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
 {
   type: 'Dimension',
   unit: 'px',
-  value: {
-    type: 'Integer',
-    value: 12
-  }
+  value: 12
 }
 ```
 
 ## Float
-Floats are floating-point numbers with a fractional part and an integer part. *(If the integer part is omitted, it is represented by `0`)*
-
+Floats are floating-point numbers with a fractional part and an integer part.
 
 | Property | Value | Description |
 | ------ | --- | ------ |
-| integer | (*[Integer](#integer)*) |The integer part. Has a `negative`-flag if the float is negative.  |
-| fractional | (*[Integer](#integer)*) | The fractional part |
+| integer | (*number*) |The integer part  |
+| fractional | (*number*) | The fractional part |
+| negative | (*boolean?*) | (Optional) flag indicating a negative value |
 
 ```javascript
 // e.g. 587.923
 {
   type: 'Float',
-  integer: {
-    type: 'Integer',
-    value: 587
-  },
-  fractional: {
-    type: 'Integer',
-    value: 923
-  }
+  integer: 587,
+  fractional: 923
 }
 ```
 
@@ -217,7 +204,7 @@ Functions represent CSS functions wrapped in parentheses.
 
 | Property | Value | Description |
 | ------ | --- | ------ |
-| callee | (*[Identifier](#identifier)*) | The function name |
+| callee | (*string*) | The function name |
 | params | *(Array)* | An array of function parameter of any AST node type |
 
 ```javascript
@@ -225,10 +212,7 @@ Functions represent CSS functions wrapped in parentheses.
 // e.g. rgba(10, 20, 30, 0.55)
 {
   type: 'FunctionExpression',
-  callee: {
-    type: 'Identifier',
-    value: 'rgba'
-  },
+  callee: 'rgba',
   params: [{
     type: 'Integer',
     value: 10
@@ -240,14 +224,8 @@ Functions represent CSS functions wrapped in parentheses.
     value: 30
   }, {
     type: 'Float',
-    integer: {
-      type: 'Integer',
-      value: 0
-    },
-    fractional: {
-      type: 'Integer',
-      value: 55
-    }
+    integer: 0,
+    fractional: 55
   }]
 }
 ```
@@ -268,16 +246,14 @@ They can only appear inside the CSS `calc`-function.
   body: [{
     type: 'Dimension',
     value: 100,
-    unit: '%',
-    dimension: 'percentage'
+    unit: '%'
   }, {
     type: 'Operator',
     value: '-'
   }, {
     type: 'Dimension',
     value: 30,
-    unit: 'px',
-    dimension: 'absolute-length'
+    unit: 'px'
   }, {
     type: 'Operator',
     value: '*'

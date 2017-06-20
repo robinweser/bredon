@@ -25,10 +25,7 @@ export function traverse(ast: AST, visitors: Object): void {
   return traverser.traverse(ast)
 }
 
-export function transform(
-  input: string,
-  options: TransformOptions = {}
-): string {
+export function compile(input: string, options: TransformOptions = {}): string {
   return generate(
     traverse(parse(input), options.visitors || {}),
     options.generators

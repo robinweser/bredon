@@ -27,7 +27,7 @@ I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-c
 
 ## The Gist
 ```javascript
-import { parse } from 'bredon'
+import { parse, generate } from 'bredon'
 
 const input = '10px solid rgba(255, 0, 255, 0.55)'
 const ast = parse(input)
@@ -36,20 +36,14 @@ ast === {
   type: 'CSSValue'
   body: [{
     type: 'Dimension',
-    value: {
-      type: 'Integer',
-      value: 10
-    },
+    value: 10,
     unit: 'px'
   }, {
     type: 'Identifier',
     value: 'solid'
   }, {
     type: 'Function',
-    callee: {
-      type: 'Identifier',
-      value: 'rgba'
-    },
+    callee: 'rgba',
     params: [{
       type: 'Integer',
       value: 255
@@ -61,14 +55,8 @@ ast === {
       value: 255
     }, {
       type: 'Float',
-      integer: {
-        type: 'Integer',
-        value: 0
-      },
-      fractional: {
-        type: 'Integer',
-        value: 55
-      }
+      integer: 0,
+      fractional: 55
     }]
   }]
 }
@@ -80,10 +68,14 @@ console.log(output)
 ```
 ## Documentation
 * [**API Reference**](docs/API.md)
-  * [`parse(input)`](docs/api/parse.md)
-  * [`traverse(ast, visitors)`](docs/api/traverse.md)
-  * [`generate(ast, [generators])`](docs/api/generate.md)
-  * [`transform(input, [options])`](docs/api/transform.md)
+  * bredon
+    * [parse](docs/api/bredon/parse.md)
+    * [traverse](docs/api/bredon/traverse.md)
+    * [generate](docs/api/bredon/generate.md)
+    * [compile](docs/api/bredon/compile.md)
+  * bredon-types
+    * [Validators](docs/api/bredon-types/Validators.md)
+    * [Builders](docs/api/bredon-types/Builders.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Integer](docs/ASTNodes.md#integer)

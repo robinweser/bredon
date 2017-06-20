@@ -10,12 +10,37 @@ describe('Generating a string from an AST', () => {
           {
             body: [
               {
-                type: 'Dimension',
-                value: {
-                  type: 'Integer',
-                  value: 1
-                },
-                unit: 'px'
+                type: 'FunctionExpression',
+                callee: 'calc',
+                params: [
+                  {
+                    type: 'Expression',
+                    body: [
+                      {
+                        type: 'Dimension',
+                        value: 100,
+                        unit: 'px'
+                      },
+                      {
+                        type: 'Operator',
+                        value: '/'
+                      },
+                      {
+                        type: 'Integer',
+                        value: 2
+                      },
+                      {
+                        type: 'Operator',
+                        value: '+'
+                      },
+                      {
+                        type: 'Dimension',
+                        value: 5,
+                        unit: 'px'
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 type: 'Keyword',
@@ -23,10 +48,7 @@ describe('Generating a string from an AST', () => {
               },
               {
                 type: 'FunctionExpression',
-                callee: {
-                  type: 'Identifier',
-                  value: 'rgba'
-                },
+                callee: 'rgba',
                 params: [
                   {
                     type: 'Integer',
@@ -38,14 +60,8 @@ describe('Generating a string from an AST', () => {
                   },
                   {
                     type: 'Float',
-                    integer: {
-                      type: 'Integer',
-                      value: 0
-                    },
-                    fractional: {
-                      type: 'Integer',
-                      value: 34
-                    }
+                    integer: 0,
+                    fractional: 34
                   }
                 ]
               }
@@ -57,10 +73,7 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 unit: 'ms',
-                value: {
-                  type: 'Integer',
-                  value: 300
-                }
+                value: 300
               },
               {
                 type: 'Identifier',
@@ -76,7 +89,20 @@ describe('Generating a string from an AST', () => {
         ],
         type: 'MultiValue'
       })
-    ).toBe('1px inherit rgba(255,94,.34),300ms all linear')
+    ).toBe('calc(100px/2 + 5px) inherit rgba(255,94,.34),300ms all linear')
+
+    expect(
+      generator.generate({
+        type: 'CSSValue',
+        body: [
+          {
+            type: 'StringLiteral',
+            value: "I'm a string.",
+            quote: '"'
+          }
+        ]
+      })
+    ).toBe('"I\'m a string."')
   })
 
   it('should use custom formatters', () => {
@@ -107,15 +133,9 @@ describe('Generating a string from an AST', () => {
               },
               {
                 type: 'Float',
-                integer: {
-                  type: 'Integer',
-                  value: 0,
-                  negative: true
-                },
-                fractional: {
-                  type: 'Integer',
-                  value: 55
-                }
+                integer: 0,
+                fractional: 55,
+                negative: true
               }
             ]
           }

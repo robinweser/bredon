@@ -5,7 +5,7 @@ It is commonly used to apply AST transformation.
 
 #### Arguments
 1. `ast` (*Object)*: An object containing the AST representation of a CSS value string
-1. `visitors` (*Object*): An object with AST node names as keys and an object containing `enter` and/or `exit` methods. The signature for both is *(node, parentNode) => void*
+2. `visitors` (*Object*): An object with AST node names as keys and an object containing `enter` and/or `exit` methods. The signature for both is *(node, parentNode) => void*
 
 #### Example
 ```javascript

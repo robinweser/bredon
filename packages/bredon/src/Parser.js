@@ -137,52 +137,6 @@ export default class Parser {
     return cssValue(nodes)
   }
 
-  parseOperator(): SimpleNode {
-    if (this.currentToken.type === 'operator') {
-      if (this.scope === 'expression') {
-        return operator(this.currentToken.value)
-      }
-
-      // parse value separator
-      if (this.currentToken.value === '/') {
-        return separator('/')
-      }
-
-      // parse numbers and floats with an algebraic sign
-      if (this.currentToken.value === '+' || this.currentToken.value === '-') {
-        const nextToken = this.getNextToken(1)
-
-        if (nextToken) {
-          if (nextToken.type === 'number') {
-            const isNegative = this.currentToken.value === '-'
-
-            this.updateCurrentToken(1)
-            return this.parseNumber(isNegative)
-          }
-
-          if (nextToken.type === 'floating_point') {
-            const isNegative = this.currentToken.value === '-'
-
-            this.updateCurrentToken(1)
-            return this.parseFloat(integer(0, isNegative))
-          }
-
-          throw new SyntaxError(
-            `An addition or substraction sign must be used inside expressions ("calc()") or followed by a number/float. Instead found "${nextToken.value}" of type "${nextToken.type}".`
-          )
-        }
-
-        throw new SyntaxError(
-          'An addition or substraction sign must not be used at the end of a string.'
-        )
-      }
-
-      throw new SyntaxError(
-        'A multiplication sign (*) can only be used inside expression ("calc()").'
-      )
-    }
-  }
-
   parseHex(): SimpleNode {
     if (this.currentToken.type === 'hex') {
       this.updateCurrentToken(1)
@@ -216,11 +170,57 @@ export default class Parser {
     }
   }
 
+  parseOperator(): SimpleNode {
+    if (this.currentToken.type === 'operator') {
+      if (this.scope === 'expression') {
+        return operator(this.currentToken.value)
+      }
+
+      // parse value separator
+      if (this.currentToken.value === '/') {
+        return separator()
+      }
+
+      // parse numbers and floats with an algebraic sign
+      if (this.currentToken.value === '+' || this.currentToken.value === '-') {
+        const nextToken = this.getNextToken(1)
+
+        if (nextToken) {
+          if (nextToken.type === 'number') {
+            const isNegative = this.currentToken.value === '-'
+
+            this.updateCurrentToken(1)
+            return this.parseNumber(isNegative)
+          }
+
+          if (nextToken.type === 'floating_point') {
+            const isNegative = this.currentToken.value === '-'
+            this.updateCurrentToken(1)
+            return this.parseFloat(0, isNegative)
+          }
+
+          throw new SyntaxError(
+            `An addition or substraction sign must be used inside expressions ("calc()") or followed by a number/float. Instead found "${nextToken.value}" of type "${nextToken.type}".`
+          )
+        }
+
+        throw new SyntaxError(
+          'An addition or substraction sign must not be used at the end of a string.'
+        )
+      }
+
+      throw new SyntaxError(
+        'A multiplication sign (*) can only be used inside expression ("calc()").'
+      )
+    }
+  }
+
   parseNumber(
     isNegative?: boolean = false
   ): SimpleNode | DimensionNode | FloatNode {
     if (this.currentToken.type === 'number') {
       const nextToken = this.getNextToken(1)
+      const integerPart = parseInt(this.currentToken.value, 10)
 
       // Parsing dimensions if a number is directly followed
       // by an identifier that matches any of the valid units
@@ -238,15 +238,10 @@ export default class Parser {
         ++this.currentPosition
 
         return dimension(
-          integer(parseInt(this.currentToken.value, 10), isNegative),
+          isNegative ? -integerPart : integerPart,
           nextToken.value.toLowerCase()
         )
       }
-
-      const integerPart = integer(
-        parseInt(this.currentToken.value, 10),
-        isNegative
-      )
 
       // Parsing floating point numbers if a number is directly followed
       // by a floating point which is followed by a number
@@ -255,11 +250,11 @@ export default class Parser {
         return this.parseFloat(integerPart, isNegative)
       }
 
-      return integerPart
+      return integer(isNegative ? -integerPart : integerPart)
     }
   }
 
-  parseFloat(integerPart?: number): FloatNode {
+  parseFloat(integerPart?: number, isNegative?: boolean = false): FloatNode {
     // floats can also start with a floating point
     // if the integer part is 0
     if (this.currentToken.type === 'floating_point') {
@@ -269,10 +264,7 @@ export default class Parser {
         if (nextToken.type === 'number') {
           this.updateCurrentToken(1)
 
-          return float(
-            integerPart || integer(0),
-            integer(parseInt(nextToken.value, 10))
-          )
+          return float(integerPart, parseInt(nextToken.value, 10), isNegative)
         }
 
         throw new SyntaxError(
@@ -316,17 +308,17 @@ export default class Parser {
 
       // parsing function expression
       if (nextToken && nextToken.type === 'paren' && nextToken.value === '(') {
-        const callee = identifier(this.currentToken.value)
+        const callee = this.currentToken.value
 
         // special parsing for url functions
         // as they only allow a single url parameter
-        if (callee.value === 'url') {
+        if (callee === 'url') {
           return this.parseURL(callee)
         }
 
         // special parsing for calc functions that includes
         // algebraic expressions with operators and parenthesis
-        if (callee.value.indexOf('calc') !== -1) {
+        if (callee.indexOf('calc') !== -1) {
           // setting the expression scope
           // to allow all operators
           this.setScope('expression')
@@ -351,7 +343,7 @@ export default class Parser {
     }
   }
 
-  parseFunctionExpression(callee: SimpleNode): FunctionNode {
+  parseFunctionExpression(callee: string): FunctionNode {
     this.updateCurrentToken(2)
     ++this.parenBalance
 
@@ -381,7 +373,7 @@ export default class Parser {
     return functionExpression(callee, params)
   }
 
-  parseURL(callee: SimpleNode): FunctionNode {
+  parseURL(callee: string): FunctionNode {
     let urlValue = ''
 
     this.updateCurrentToken(2)

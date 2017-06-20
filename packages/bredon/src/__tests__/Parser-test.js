@@ -1,7 +1,7 @@
 import Parser from '../Parser'
 
 describe('Parsing CSS values', () => {
-  it('should correctly parse Identifiers', () => {
+  it('should correctly parse identifiers', () => {
     const parser = new Parser()
 
     expect(parser.parse('flex-start')).toEqual({
@@ -15,7 +15,7 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse Integers', () => {
+  it('should correctly parse integers', () => {
     const parser = new Parser()
 
     expect(parser.parse('400')).toEqual({
@@ -29,6 +29,20 @@ describe('Parsing CSS values', () => {
     })
   })
 
+  it('should correctly parse !important', () => {
+    const parser = new Parser()
+
+    expect(parser.parse('!important')).toEqual({
+      body: [
+        {
+          type: 'Important',
+          value: '!important'
+        }
+      ],
+      type: 'CSSValue'
+    })
+  })
+
   it('should correctly parse algebraic signs', () => {
     const parser = new Parser()
 
@@ -36,15 +50,14 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Integer',
-          value: 400,
-          negative: true
+          value: -400
         }
       ],
       type: 'CSSValue'
     })
   })
 
-  it('should correctly parse Parentheses', () => {
+  it('should correctly parse parentheses', () => {
     const parser = new Parser()
 
     expect(parser.parse('(')).toEqual({
@@ -72,7 +85,7 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse StringLiterals', () => {
+  it('should correctly parse strings', () => {
     const parser = new Parser()
 
     expect(parser.parse('"hello, it\'s me."')).toEqual({
@@ -87,7 +100,7 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse Dimensions', () => {
+  it('should correctly parse dimensions', () => {
     const parser = new Parser()
 
     expect(parser.parse('300px')).toEqual({
@@ -95,31 +108,22 @@ describe('Parsing CSS values', () => {
         {
           type: 'Dimension',
           unit: 'px',
-          value: {
-            type: 'Integer',
-            value: 300
-          }
+          value: 300
         }
       ],
       type: 'CSSValue'
     })
   })
 
-  it('should correctly parse Float', () => {
+  it('should correctly parse floats', () => {
     const parser = new Parser()
 
     expect(parser.parse('200.55')).toEqual({
       body: [
         {
           type: 'Float',
-          fractional: {
-            type: 'Integer',
-            value: 55
-          },
-          integer: {
-            type: 'Integer',
-            value: 200
-          }
+          fractional: 55,
+          integer: 200
         }
       ],
       type: 'CSSValue'
@@ -129,32 +133,23 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'Float',
-          integer: {
-            type: 'Integer',
-            value: 0,
-            negative: true
-          },
-          fractional: {
-            type: 'Integer',
-            value: 55
-          }
+          integer: 0,
+          fractional: 55,
+          negative: true
         }
       ],
       type: 'CSSValue'
     })
   })
 
-  it('should correctly parse FunctionExpressions', () => {
+  it('should correctly parse function expressions', () => {
     const parser = new Parser()
 
     expect(parser.parse('rgba(200,300)')).toEqual({
       body: [
         {
           type: 'FunctionExpression',
-          callee: {
-            type: 'Identifier',
-            value: 'rgba'
-          },
+          callee: 'rgba',
           params: [
             {
               type: 'Integer',
@@ -182,10 +177,7 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'FunctionExpression',
-          callee: {
-            type: 'Identifier',
-            value: 'url'
-          },
+          callee: 'url',
           params: [
             {
               type: 'URL',
@@ -199,17 +191,14 @@ describe('Parsing CSS values', () => {
     })
   })
 
-  it('should correctly parse Expressions', () => {
+  it('should correctly parse expressions', () => {
     const parser = new Parser()
 
     expect(parser.parse('calc(100%+5/2)')).toEqual({
       body: [
         {
           type: 'FunctionExpression',
-          callee: {
-            type: 'Identifier',
-            value: 'calc'
-          },
+          callee: 'calc',
           params: [
             {
               type: 'Expression',
@@ -217,10 +206,7 @@ describe('Parsing CSS values', () => {
                 {
                   type: 'Dimension',
                   unit: '%',
-                  value: {
-                    type: 'Integer',
-                    value: 100
-                  }
+                  value: 100
                 },
                 {
                   type: 'Operator',
@@ -280,10 +266,7 @@ describe('Parsing CSS values', () => {
           body: [
             {
               type: 'Dimension',
-              value: {
-                type: 'Integer',
-                value: 1
-              },
+              value: 1,
               unit: 'px'
             },
             {
@@ -292,10 +275,7 @@ describe('Parsing CSS values', () => {
             },
             {
               type: 'FunctionExpression',
-              callee: {
-                type: 'Identifier',
-                value: 'rgba'
-              },
+              callee: 'rgba',
               params: [
                 {
                   type: 'Integer',
@@ -307,14 +287,8 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Float',
-                  fractional: {
-                    type: 'Integer',
-                    value: 34
-                  },
-                  integer: {
-                    type: 'Integer',
-                    value: 0
-                  }
+                  fractional: 34,
+                  integer: 0
                 }
               ]
             }
@@ -326,10 +300,7 @@ describe('Parsing CSS values', () => {
             {
               type: 'Dimension',
               unit: 'ms',
-              value: {
-                type: 'Integer',
-                value: 300
-              }
+              value: 300
             },
             {
               type: 'Identifier',
@@ -359,10 +330,7 @@ describe('Parsing CSS values', () => {
           body: [
             {
               type: 'Dimension',
-              value: {
-                type: 'Integer',
-                value: 1
-              },
+              value: 1,
               unit: 'px'
             },
             {
@@ -371,10 +339,7 @@ describe('Parsing CSS values', () => {
             },
             {
               type: 'FunctionExpression',
-              callee: {
-                type: 'Identifier',
-                value: 'rgba'
-              },
+              callee: 'rgba',
               params: [
                 {
                   type: 'Integer',
@@ -386,14 +351,8 @@ describe('Parsing CSS values', () => {
                 },
                 {
                   type: 'Float',
-                  fractional: {
-                    type: 'Integer',
-                    value: 34
-                  },
-                  integer: {
-                    type: 'Integer',
-                    value: 0
-                  }
+                  fractional: 34,
+                  integer: 0
                 }
               ]
             }
@@ -405,10 +364,7 @@ describe('Parsing CSS values', () => {
             {
               type: 'Dimension',
               unit: 'ms',
-              value: {
-                type: 'Integer',
-                value: 300
-              }
+              value: 300
             },
             {
               type: 'Identifier',

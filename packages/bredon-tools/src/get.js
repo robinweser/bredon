@@ -9,7 +9,7 @@ import getSingleValue from './getSingleValue'
 
 import type { ASTNode } from '../../../flowtypes/AST'
 
-export default function wrap(node: ASTNode): Object {
+export default function get(node: ASTNode): Object {
   return {
     replaceWith(newNode: ASTNode): void {
       replaceNode(node, newNode)

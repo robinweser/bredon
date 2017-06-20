@@ -2,7 +2,7 @@
 import type { Node, FunctionNode } from '../../../../flowtypes/AST'
 
 export default function functionExpression(
-  callee: Node,
+  callee: string,
   params: Array<Node>
 ): FunctionNode {
   return {
