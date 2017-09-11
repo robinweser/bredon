@@ -101,3 +101,5 @@ We also love to get feedback.
 Bredon is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@rofrischmann](http://rofrischmann.de).
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/bredon'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/bredon.svg' /></a>
