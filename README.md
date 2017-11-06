@@ -8,7 +8,7 @@ You may also use it to transform the AST and generate new CSS values.
 
 
 ## Support Us
-Support Robin Frischmann's work on Fela and its ecosystem (Bredon) directly via [**Patreon**](https://www.patreon.com/rofrischmann).
+Support Robin Frischmann's work on [Fela](https://github.com/rofrischmann/fela) and its ecosystem (Bredon) directly via [**Patreon**](https://www.patreon.com/rofrischmann).
 
 Or support us on [**Open Collective**](https://opencollective.com/fela) to fund community work. This also includes Bredon as well.<br>
 Thank you to all our backers!
