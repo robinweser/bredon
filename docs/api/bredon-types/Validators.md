@@ -31,9 +31,6 @@ const ast = {
   value: '#FFF'  
 }
 
-console.log(isIdentifier(ast))
-// => false
-
-console.log(isHexColor(ast))
-// => true
+isIdentifier(ast) // => false
+isHexColor(ast) // => true
 ```

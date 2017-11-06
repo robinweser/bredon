@@ -3,23 +3,23 @@
 For every AST node, the `bredon-types` package also ships a builder function which safely creates AST nodes manually.
 
 * [cssValue](#cssvaluebody-arraynode)
-* [dimension](#dimensionvalue-number-unit-string)
+* [dimension](#dimensionvalue-number-unit-unit)
 * [expression](#expressionbody-arraynode)
-* [float](#float)
-* [functionExpression]()
-* [hexColor]()
-* [identifier]()
-* [important]()
-* [integer]()
-* [keyword]()
-* [multiValue]()
-* [operator]()
-* [parenthesis]()
-* [separator]()
-* [stringLiteral]()
-* [url]()
+* [float](#floatinteger-number-fractional-number-isnegative-boolean--false)
+* [functionExpression](#functionexpressioncallee-string-params-arraynode)
+* [hexColor](#hexcolorcolor-string)
+* [identifier](#identifiername-string)
+* [important](#important)
+* [integer](#integervalue-number)
+* [keyword](#keywordword-inherit-initial--unset)
+* [multiValue](#multivaluebody-arraycssvalue)
+* [operator](#operatorsign--------)
+* [parenthesis](#parenthesisparen--)
+* [separator](#separator)
+* [stringLiteral](#stringliteralstr-string-quote-----)
+* [url](#urluri-string)
 
-##### `cssValue(body: Array<node>)`
+### `cssValue(body: Array<node>)`
 
 ```javascript
 import { cssValue } from 'bredon-types'
@@ -27,7 +27,7 @@ import { cssValue } from 'bredon-types'
 cssValue([ /* child nodes */ ])
 ```
 
-##### `dimension(value: number, unit: Unit)`
+### `dimension(value: number, unit: Unit)`
 
 where Unit refers to one of the validunits:<br>
 `%` | `em` | `ex`  | `ch`  | `rem`  | `vw`  | `vh`  | `vmin`  | `vmax`  | `cm`  | `mm`  | `q`  | `in`  | `pt`  | `pc`  | `px`  | `deg`  | `grad`  | `rad`  | `turn`  | `s`  | `ms`  | `Hz`  | `kHz`  | `dpi`  | `dpcm`  | `dppx`
@@ -38,7 +38,7 @@ import { dimension } from 'bredon-types'
 dimension(300, 'px')
 ```
 
-##### `expression(body: Array<node>)`
+### `expression(body: Array<node>)`
 
 ```javascript
 import { expression } from 'bredon-types'
@@ -46,7 +46,7 @@ import { expression } from 'bredon-types'
 expression([ /* child nodes */ ])
 ```
 
-##### `float(integer: number, fractional: number, isNegative?: boolean = false)`
+### `float(integer: number, fractional: number, isNegative?: boolean = false)`
 
 ```javascript
 import { float } from 'bredon-types'
@@ -55,7 +55,7 @@ float(0, 55)
 float(1, 10, true)
 ```
 
-##### `functionExpression(callee: string, params: Array<node>)`
+### `functionExpression(callee: string, params: Array<node>)`
 
 ```javascript
 import { functionExpression } from 'bredon-types'
@@ -63,7 +63,7 @@ import { functionExpression } from 'bredon-types'
 functionExpression('rgba', [ /* param nodes */ ])
 ```
 
-##### `hexColor(color: string)`
+### `hexColor(color: string)`
 
 ```javascript
 import { hexColor } from 'bredon-types'
@@ -71,7 +71,7 @@ import { hexColor } from 'bredon-types'
 hexColor('#FFF')
 ```
 
-##### `identifier(name: string)`
+### `identifier(name: string)`
 
 ```javascript
 import { identifier } from 'bredon-types'
@@ -79,7 +79,7 @@ import { identifier } from 'bredon-types'
 identifier('solid')
 ```
 
-##### `important()`
+### `important()`
 
 ```javascript
 import { important } from 'bredon-types'
@@ -95,7 +95,7 @@ import { integer } from 'bredon-types'
 integer(55)
 ```
 
-##### `keyword(word: 'inherit' | 'initial' | 'unset')`
+### `keyword(word: 'inherit' | 'initial' | 'unset')`
 
 ```javascript
 import { keyword } from 'bredon-types'
@@ -104,7 +104,7 @@ keyword('inherit')
 ```
 
 
-##### `multiValue(body: Array<cssValue>)`
+### `multiValue(body: Array<cssValue>)`
 
 ```javascript
 import { multiValue } from 'bredon-types'
@@ -112,7 +112,7 @@ import { multiValue } from 'bredon-types'
 multiValue([ /* at least 2 cssValue nodes */])
 ```
 
-##### `operator(sign: '+' | '-' | '/' | '*')`
+### `operator(sign: '+' | '-' | '/' | '*')`
 
 ```javascript
 import { operator } from 'bredon-types'
@@ -128,7 +128,7 @@ import { parenthesis } from 'bredon-types'
 parenthesis('(')
 ```
 
-##### `seperator()`
+### `seperator()`
 
 ```javascript
 import { seperator } from 'bredon-types'
@@ -136,7 +136,7 @@ import { seperator } from 'bredon-types'
 seperator()
 ```
 
-##### `stringLiteral(str: string, quote?: '"' | "'" = "'")`
+### `stringLiteral(str: string, quote?: '"' | "'" = "'")`
 
 ```javascript
 import { stringLiteral } from 'bredon-types'
@@ -144,7 +144,7 @@ import { stringLiteral } from 'bredon-types'
 stringLiteral("Hello, I am a string.", '"')
 ```
 
-##### `url(uri: string)`
+### `url(uri: string)`
 
 ```javascript
 import { url } from 'bredon-types'
