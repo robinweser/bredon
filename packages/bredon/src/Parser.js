@@ -57,6 +57,7 @@ export default class Parser {
   currentToken: Token
   parenBalance: number
   scope: string
+  important: boolean
   tokens: Array<Token>
 
   getNextToken(position: number): ?Token {
@@ -90,12 +91,19 @@ export default class Parser {
       return false
     }
 
+    this.parseImportant()
+
+    // skip parsing if no more tokens are coming
+    // this time it happens if the last token was an !important
+    if (!this.currentToken) {
+      return false
+    }
+
     const node =
       this.parseOperator() ||
       this.parseHex() ||
       this.parseNumber() ||
       this.parseFloat() ||
-      this.parseImportant() ||
       this.parseIdentifier() ||
       this.parseParenthesis() ||
       this.parseStringLiteral() ||
@@ -117,6 +125,7 @@ export default class Parser {
 
     this.currentPosition = 0
     this.parenBalance = 0
+    this.important = false
     this.scope = ''
 
     const nodes = []
@@ -134,7 +143,7 @@ export default class Parser {
       return multiValue(parseMultiValue(nodes))
     }
 
-    return cssValue(nodes)
+    return cssValue(nodes, this.important)
   }
 
   parseHex(): SimpleNode {
@@ -166,7 +175,7 @@ export default class Parser {
         // TODO: throw invalid hex value
       }
 
-      return hexColor(`#${hexValue}`)
+      return hexColor(hexValue)
     }
   }
 
@@ -278,7 +287,7 @@ export default class Parser {
     }
   }
 
-  parseImportant(): SimpleNode {
+  parseImportant(): any {
     if (this.currentToken.type === 'important') {
       const nextToken = this.getNextToken(1)
 
@@ -287,8 +296,9 @@ export default class Parser {
           nextToken.type === 'identifier' &&
           nextToken.value.match(/^important$/i) !== null
         ) {
-          this.updateCurrentToken(1)
-          return important()
+          this.updateCurrentToken(2)
+          this.important = true
+          return
         }
 
         throw new SyntaxError(
@@ -297,7 +307,7 @@ export default class Parser {
       }
 
       throw new SyntaxError(
-        'An exclamation mark (!) must not be used at the end of a string.'
+        'An exclamation mark (!) must not be used at the end of a value.'
       )
     }
   }

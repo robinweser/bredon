@@ -18,11 +18,5 @@ export default function replaceChildNode(
     // TODO: warn cant replace child node in primitive nodes
   }
 
-  parentNode.body = children.map(childNode => {
-    if (node === childNode) {
-      return newNode
-    }
-
-    return node
-  })
+  parentNode.body[children.indexOf(node)] = newNode
 }

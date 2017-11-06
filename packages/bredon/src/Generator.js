@@ -4,7 +4,7 @@ import type { ASTNode } from '../../../flowtypes/AST'
 export default class Generator {
   generators: Object
 
-  constructor(generators: Object = {}) {
+  constructor(generators?: Object = {}) {
     this.generators = generators
   }
 
@@ -21,7 +21,10 @@ export default class Generator {
         return node.body.map(generateCSSValue).join(',')
 
       case 'CSSValue':
-        return node.body.map(generateCSSValue).join(' ')
+        return (
+          node.body.map(generateCSSValue).join(' ') +
+          (node.important ? '!important' : '')
+        )
 
       case 'Expression':
         return node.body.map(generateCSSValue).join('')
@@ -47,11 +50,12 @@ export default class Generator {
       case 'StringLiteral':
         return node.quote + node.value + node.quote
 
+      case 'HexColor':
+        return '#' + node.value
+
       case 'Identifier':
-      case 'Important':
       case 'Keyword':
       case 'Parenthesis':
-      case 'HexColor':
       case 'Separator':
       case 'Integer':
       case 'URL':

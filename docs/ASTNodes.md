@@ -50,7 +50,6 @@ For example, `opacity 100ms linear, transform 1s ease-in` is a multi value.
 * [Identifier](#identifier)
 * [Integer](#integer)
 * [Keyword](#keyword)
-* [Important](#important)
 * [Operator](#operator)
 * [HexColor](#hexcolor)
 * [Parenthesis](#parenthesis)
@@ -89,17 +88,6 @@ Keywords are special identifier that are globally valid for CSS. These are `inhe
 {
   type: 'Keyword',
   value: 'inherit'
-}
-```
-
-## Important
-Important is a special identifier for the `!important` rule.
-
-```javascript
-// e.g. !important
-{
-  type: 'Important',
-  value: '!important'
 }
 ```
 
@@ -188,14 +176,15 @@ Floats are floating-point numbers with a fractional part and an integer part.
 | ------ | --- | ------ |
 | integer | (*number*) |The integer part  |
 | fractional | (*number*) | The fractional part |
-| negative | (*boolean?*) | (Optional) flag indicating a negative value |
+| negative | (*boolean*) | flag indicating a negative value |
 
 ```javascript
 // e.g. 587.923
 {
   type: 'Float',
   integer: 587,
-  fractional: 923
+  fractional: 923,
+  negative: false
 }
 ```
 

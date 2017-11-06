@@ -11,6 +11,7 @@ describe('Parsing CSS values', () => {
           value: 'flex-start'
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -25,6 +26,7 @@ describe('Parsing CSS values', () => {
           value: 400
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -33,12 +35,8 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(parser.parse('!important')).toEqual({
-      body: [
-        {
-          type: 'Important',
-          value: '!important'
-        }
-      ],
+      body: [],
+      important: true,
       type: 'CSSValue'
     })
   })
@@ -53,6 +51,7 @@ describe('Parsing CSS values', () => {
           value: -400
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -67,6 +66,7 @@ describe('Parsing CSS values', () => {
           value: '('
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -78,9 +78,10 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'HexColor',
-          value: '#66FF66'
+          value: '66FF66'
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -96,6 +97,7 @@ describe('Parsing CSS values', () => {
           value: "hello, it's me."
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -111,6 +113,7 @@ describe('Parsing CSS values', () => {
           value: 300
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -123,9 +126,11 @@ describe('Parsing CSS values', () => {
         {
           type: 'Float',
           fractional: 55,
-          integer: 200
+          integer: 200,
+          negative: false
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
 
@@ -138,6 +143,7 @@ describe('Parsing CSS values', () => {
           negative: true
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -162,6 +168,7 @@ describe('Parsing CSS values', () => {
           ]
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -187,6 +194,7 @@ describe('Parsing CSS values', () => {
           ]
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -229,6 +237,7 @@ describe('Parsing CSS values', () => {
           ]
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
   })
@@ -251,6 +260,7 @@ describe('Parsing CSS values', () => {
           value: 700
         }
       ],
+      important: false,
       type: 'CSSValue'
     })
 
@@ -263,6 +273,7 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'CSSValue',
+          important: false,
           body: [
             {
               type: 'Dimension',
@@ -288,7 +299,8 @@ describe('Parsing CSS values', () => {
                 {
                   type: 'Float',
                   fractional: 34,
-                  integer: 0
+                  integer: 0,
+                  negative: false
                 }
               ]
             }
@@ -296,6 +308,7 @@ describe('Parsing CSS values', () => {
         },
         {
           type: 'CSSValue',
+          important: false,
           body: [
             {
               type: 'Dimension',
@@ -327,6 +340,7 @@ describe('Parsing CSS values', () => {
       body: [
         {
           type: 'CSSValue',
+          important: false,
           body: [
             {
               type: 'Dimension',
@@ -352,7 +366,8 @@ describe('Parsing CSS values', () => {
                 {
                   type: 'Float',
                   fractional: 34,
-                  integer: 0
+                  integer: 0,
+                  negative: false
                 }
               ]
             }
@@ -360,6 +375,7 @@ describe('Parsing CSS values', () => {
         },
         {
           type: 'CSSValue',
+          important: false,
           body: [
             {
               type: 'Dimension',

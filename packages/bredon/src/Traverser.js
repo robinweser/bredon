@@ -1,11 +1,13 @@
 /* @flow */
+import combineVisitors from './utils/combineVisitors'
+
 import type { AST, ASTNode } from '../../../flowtypes/AST'
 
 export default class Traverser {
   visitors: Object
 
-  constructor(visitors: Object) {
-    this.visitors = visitors
+  constructor(visitors?: Array<Object> = []) {
+    this.visitors = combineVisitors(visitors)
   }
 
   traverseNodeList(nodeList: Array<ASTNode>, parentNode: ASTNode | null) {
@@ -52,7 +54,8 @@ export default class Traverser {
     }
   }
 
-  traverse(ast: AST): void {
+  traverse(ast: AST): AST {
     this.traverseNode(ast)
+    return ast
   }
 }
