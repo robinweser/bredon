@@ -1,4 +1,5 @@
 export default {
   border: true,
-  blockSize: true
+  blockSize: true,
+  strokeDasharray: true
 }

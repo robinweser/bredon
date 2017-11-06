@@ -33,7 +33,8 @@ const input = '10px solid rgba(255, 0, 255, 0.55)'
 const ast = parse(input)
 
 ast === {
-  type: 'CSSValue'
+  type: 'CSSValue',
+  important: false,
   body: [{
     type: 'Dimension',
     value: 10,
@@ -42,7 +43,7 @@ ast === {
     type: 'Identifier',
     value: 'solid'
   }, {
-    type: 'Function',
+    type: 'FunctionExpression',
     callee: 'rgba',
     params: [{
       type: 'Integer',
@@ -56,7 +57,8 @@ ast === {
     }, {
       type: 'Float',
       integer: 0,
-      fractional: 55
+      fractional: 55,
+      negative: false
     }]
   }]
 }
@@ -65,6 +67,9 @@ const output = generate(ast)
 
 console.log(output)
 // => 10px solid rgba(255,0,255,.55)
+
+// parsing and generation can be combined
+const output = compile(input)
 ```
 ## Documentation
 * [**API Reference**](docs/API.md)
@@ -80,7 +85,6 @@ console.log(output)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Integer](docs/ASTNodes.md#integer)
   * [Keyword](docs/ASTNodes.md#keyword)
-  * [Important](docs/ASTNodes.md#important)
   * [Operator](docs/ASTNodes.md#operator)
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
@@ -88,7 +92,7 @@ console.log(output)
   * [StringLiteral](docs/ASTNodes.md#stringliteral)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Float](docs/ASTNodes.md#float)
-  * [FunctionExpression](docs/ASTNodes.md#functionExpression)
+  * [FunctionExpression](docs/ASTNodes.md#functionexpression)
   * [Expression](docs/ASTNodes.md#expression)
 
 

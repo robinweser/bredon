@@ -44,8 +44,13 @@ describe('Validating properties', () => {
     expect(isValidProperty('paddingLeft', '2px 2px')).toBe(false)
     expect(isValidProperty('paddingLeft', '2px, 2px')).toBe(false)
     expect(isValidProperty('blockSize', '2px')).toBe(true)
+    expect(isValidProperty('blockSize', 'inherit')).toBe(true)
     expect(isValidProperty('blockSize', '2px border-box')).toBe(true)
     expect(isValidProperty('blockSize', '2px available')).toBe(false)
+    expect(isValidProperty('strokeDasharray', 'none')).toBe(true)
+    expect(isValidProperty('strokeDasharray', '2px 10%')).toBe(true)
+    expect(isValidProperty('strokeDasharray', 'none 2px')).toBe(false)
+    expect(isValidProperty('strokeDasharray', '2px none')).toBe(false)
   })
 
   it('should throw a warning', () => {

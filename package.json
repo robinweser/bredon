@@ -5,7 +5,7 @@
     "build": "./scripts/build.sh",
     "clean": "lerna clean --yes && rimraf packages/*/es && rimraf packages/*/lib",
     "check": "npm run lint && npm run test:coverage && npm run flow",
-    "format": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"packages/*/src/**/*.js\"",
+    "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
     "publish": "git pull --rebase && npm run build && lerna publish",

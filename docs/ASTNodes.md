@@ -16,6 +16,7 @@ For example, both `1px` and `1px solid black` are single values.
 ```javascript
 {
   type: 'CSSValue',
+  important: false,
   body: [
     /* child nodes */
   ]
@@ -33,11 +34,13 @@ For example, `opacity 100ms linear, transform 1s ease-in` is a multi value.
   type: 'MultiValue',
   body: [{
     type: 'CSSValue',
+    important: true,
     body: [
       /* first value child nodes */
     ]
   }, {
     type: 'CSSValue',
+    important: false,
     body: [
       /* second value child nodes */
     ]
@@ -109,7 +112,7 @@ HexColor represents color values given in hexadecimal notation.
 // e.g. #FF66FF
 {
   type: 'HexColor',
-  value: '#FF66FF'
+  value: 'FF66FF'
 }
 ```
 

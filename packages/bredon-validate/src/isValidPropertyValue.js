@@ -1,5 +1,5 @@
 /* @flow */
-import { isMultiValue, isCSSValue } from 'bredon-types'
+import { isMultiValue, isCSSValue, isKeyword } from 'bredon-types'
 
 import isMultiValueProperty from './isMultiValueProperty'
 import isValueSetProperty from './isValueSetProperty'
@@ -36,16 +36,12 @@ export default function isValidPropertyValue(
         return false
       }
 
-      return arrayReduce(
-        ast.body,
-        // the property is invalid as soon as one value is invalid
-        // TODO: do not regenerate the value
-        (isValid, singleValue) => isValid && validator(ast.body, true),
-        true
-      )
+      return validator(ast.body, true)
     }
 
-    return validator(ast.body[0])
+    const node = ast.body[0]
+    // keyword values are always valid
+    return isKeyword(node) || validator(node)
   }
 
   // TODO: true or false?

@@ -19,12 +19,13 @@ For every AST node, the `bredon-types` package also ships a builder function whi
 * [stringLiteral](#stringliteralstr-string-quote-----)
 * [url](#urluri-string)
 
-### `cssValue(body: Array<node>)`
+### `cssValue(body: Array<node>, isImportant?: boolean = false)`
 
 ```javascript
 import { cssValue } from 'bredon-types'
 
 cssValue([ /* child nodes */ ])
+cssValue([ /* child nodes */ ], true)
 ```
 
 ### `dimension(value: number, unit: Unit)`
@@ -77,14 +78,6 @@ hexColor('#FFF')
 import { identifier } from 'bredon-types'
 
 identifier('solid')
-```
-
-### `important()`
-
-```javascript
-import { important } from 'bredon-types'
-
-important()
 ```
 
 ##### `integer(value: number)`

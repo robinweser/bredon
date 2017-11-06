@@ -10,7 +10,6 @@ The following validators exist:
 * isFunctionExpression
 * isHexColor
 * isIdentifier
-* isImportant
 * isInteger
 * isKeyword
 * isMultiValue
