@@ -749,6 +749,7 @@ export default {
   textAnchor: ['end', 'middle', 'start'],
   textDecorationLine: ['line-through', 'none', 'overline', 'underline'],
   textDecorationStyle: ['solid', 'double', 'dotted', 'dashed', 'wavy'],
+  textOrientation: ['mixed', 'upright', 'sideways'],
   textOverflow: ['clip', 'ellipsis'],
   textJustify: ['auto', 'inter-character', 'inter-word', 'none'],
   textRendering: [

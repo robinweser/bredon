@@ -305,5 +305,15 @@ export default {
   overflowX: matchesKeyword('overflowX'),
   overflowClipBox: matchesKeyword('overflowClipBox'),
   overflowBreak: matchesKeyword('overflowBreak'),
-  overflowY: matchesKeyword('overflowY')
+  overflowY: matchesKeyword('overflowY'),
+  textOrientation: matchesKeyword('textOrientation'),
+  textOverflow: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(
+        node => isStringLiteral(node) || matchesKeyword('textOverflow')(node)
+      )
+    }
+
+    return isStringLiteral(node) || matchesKeyword('textOverflow')(node)
+  }
 }
