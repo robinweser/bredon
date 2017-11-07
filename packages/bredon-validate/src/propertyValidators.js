@@ -52,6 +52,10 @@ function validateNodeList(validator) {
     )
 }
 
+function isPercentage(node) {
+  return true
+}
+
 export default {
   alignItems: matchesKeyword('alignItems'),
   alignContent: matchesKeyword('alignContent'),
@@ -305,5 +309,7 @@ export default {
   overflowX: matchesKeyword('overflowX'),
   overflowClipBox: matchesKeyword('overflowClipBox'),
   overflowBreak: matchesKeyword('overflowBreak'),
-  overflowY: matchesKeyword('overflowY')
+  overflowY: matchesKeyword('overflowY'),
+  textSizeAdjust: node =>
+    isPercentage(node) || matchesKeyword('textSizeAdjust')(node)
 }

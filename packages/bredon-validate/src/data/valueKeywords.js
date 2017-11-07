@@ -767,6 +767,7 @@ export default {
     'right',
     'under'
   ],
+  textSizeAdjust: ['auto', 'none'],
   top: ['auto'],
   transformOrigin: ['bottom', 'center', 'left', 'right', 'top'],
   transformOriginX: ['center', 'left', 'right'],
