@@ -315,5 +315,6 @@ export default {
     }
 
     return isStringLiteral(node) || matchesKeyword('textOverflow')(node)
-  }
+  },
+  textRendering: matchesKeyword('textRendering')
 }
