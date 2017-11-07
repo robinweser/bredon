@@ -6,7 +6,7 @@ import {
   isFloat,
   isKeyword,
   isDimension,
-  isFunctionExpression
+  isFunctionExpression,
 } from 'bredon-types'
 import { isLength, isColor } from './types'
 
@@ -56,7 +56,68 @@ function isPercentage(node) {
   return true
 }
 
+function isNumber(node) {
+  return isFloat(node) || isInteger(node)
+}
+
 export default {
+  MozAppearance: matchesKeyword('MozAppearance'),
+  MozBackgroundClip: matchesKeyword('MozBackgroundClip'),
+  MozBinding: node => isURL(node) || matchesKeyword('MozBinding'),
+  MozBorderRadiusBottomleft: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozBorderRadiusBottomright: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozBorderRadiusTopleft: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozBorderRadiusTopright: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozFloatEdge: matchesKeyword('MozFloatEdge'),
+  MozForceBrokenImageIcon: isInteger,
+  MozOrient: matchesKeyword('MozOrient'),
+  MozOsxFontSmoothing: matchesKeyword('MozOsxFontSmoothing'),
+  MozOutlineRadiusBottomleft: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozOutlineRadiusBottomright: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozOutlineRadiusTopleft: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozOutlineRadiusTopright: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  MozStackSizing: matchesKeyword('MozStackSizing'),
+  MozTextBlink: matchesKeyword('MozTextBlink'),
   alignItems: matchesKeyword('alignItems'),
   alignContent: matchesKeyword('alignContent'),
   justifyContent: matchesKeyword('justifyContent'),
@@ -112,6 +173,142 @@ export default {
   animationTimingFunction: node =>
     isFunctionExpression(node) ||
     matchesKeyword('animationTimingFunction')(node),
+  borderTopLeftRadius: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  borderTopRightRadius: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  borderBottomLeftRadius: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  borderBottomRightRadius: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(node => isLength(node) || isPercentage(node))
+    }
+    return isLength(node) || isPercentage(node)
+  },
+  borderSpacing: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(isLength)
+    }
+
+    return isLength(node)
+  },
+  borderBlockEndColor: isColor,
+  borderBlockEndStyle: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(matchesKeyword('borderBlockEndStyle'))
+    }
+
+    return matchesKeyword('borderBlockEndStyle')(node)
+  },
+  borderBlockEndWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node => isLength(node) || matchesKeyword('borderBlockEndWidth')(node)
+      )
+    }
+
+    return isLength(node) || matchesKeyword('borderBlockEndWidth')(node)
+  },
+
+  borderBlockStartColor: isColor,
+  borderBlockStartStyle: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(matchesKeyword('borderBlockStartStyle'))
+    }
+
+    return matchesKeyword('borderBlockStartStyle')(node)
+  },
+  borderBlockStartWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node => isLength(node) || matchesKeyword('borderBlockStartWidth')(node)
+      )
+    }
+
+    return isLength(node) || matchesKeyword('borderBlockStartWidth')(node)
+  },
+
+  borderInlineEndColor: isColor,
+  borderInlineEndStyle: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(matchesKeyword('borderInlineEndStyle'))
+    }
+
+    return matchesKeyword('borderInlineEndStyle')(node)
+  },
+  borderInlineEndWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node => isLength(node) || matchesKeyword('borderInlineEndWidth')(node)
+      )
+    }
+
+    return isLength(node) || matchesKeyword('borderInlineEndWidth')(node)
+  },
+
+  borderInlineStartColor: isColor,
+  borderInlineStartStyle: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(matchesKeyword('borderInlineStartStyle'))
+    }
+
+    return matchesKeyword('borderInlineStartStyle')(node)
+  },
+  borderInlineStartWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node => isLength(node) || matchesKeyword('borderInlineStartWidth')(node)
+      )
+    }
+
+    return isLength(node) || matchesKeyword('borderInlineStartWidth')(node)
+  },
+
+  borderImageOutset: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(node => isLength(node) || isNumber(node))
+    }
+
+    return isLength(node) || isNumber(node)
+  },
+  borderImageWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node =>
+          isLength(node) ||
+          isPercentage(node) ||
+          isNumber(node) ||
+          matchesKeyword('borderImageWidth')(node)
+      )
+    }
+
+    return (
+      isLength(node) ||
+      isPercentage(node) ||
+      isNumber(node) ||
+      matchesKeyword('borderImageWidth')(node)
+    )
+  },
+  borderImageRepeat: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(matchesKeyword('borderImageRepeat'))
+    }
+
+    return matchesKeyword('borderImageRepeat')(node)
+  },
+  borderCollapse: matchesKeyword('borderCollapse'),
   borderBottomColor: isColor,
   borderBottomStyle: matchesKeyword('borderBottomStyle'),
   borderBottomWidth: node =>
@@ -311,5 +508,38 @@ export default {
   overflowBreak: matchesKeyword('overflowBreak'),
   overflowY: matchesKeyword('overflowY'),
   textSizeAdjust: node =>
-    isPercentage(node) || matchesKeyword('textSizeAdjust')(node)
+    isPercentage(node) || matchesKeyword('textSizeAdjust')(node),
+  textOrientation: matchesKeyword('textOrientation'),
+  textOverflow: (node, isValueSet) => {
+    if (isValueSet && node.length === 2) {
+      return validateNodeList(
+        node => isStringLiteral(node) || matchesKeyword('textOverflow')(node)
+      )
+    }
+
+    return isStringLiteral(node) || matchesKeyword('textOverflow')(node)
+  },
+  textRendering: matchesKeyword('textRendering'),
+  textTransform: matchesKeyword('textTransform'),
+  transformBox: matchesKeyword('transformBox'),
+  transformStyle: matchesKeyword('textTransform'),
+  unicodeBidi: matchesKeyword('unicodeBidi'),
+  userSelect: matchesKeyword('userSelect'),
+  visibility: matchesKeyword('visibility'),
+  verticalAlign: node =>
+    isLength(node) ||
+    isPercentage(node) ||
+    matchesKeyword('verticalAlign')(node),
+  voiceBalance: node => isNumber(node) || matchesKeyword('voiceBalance')(node),
+  voiceDuration: node => isTime(node) || matchesKeyword('voiceDuration')(node),
+  voiceStress: matchesKeyword('voiceStress'),
+  whiteSpace: matchesKeyword('whiteSpace'),
+  wordBreak: matchesKeyword('wordBreak'),
+  wordSpacing: node =>
+    isLength(node) || isPercentage(node) || matchesKeyword('wordSpacing'),
+  wordWrap: matchesKeyword('wordWrap'),
+  writingMode: matchesKeyword('writingMode'),
+  zIndex: node => isInteger(node) || matchesKeyword('zIndex'),
+  zoom: node => isNumber(node) || isPercentage(node) || matchesKeyword('zoom'),
+  widows: isInteger,
 }

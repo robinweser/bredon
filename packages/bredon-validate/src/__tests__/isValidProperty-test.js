@@ -19,19 +19,10 @@ ${Object.keys(mdnData)
     .join('\n')}
 
 Having ${Object.keys(propertyValidators).length} out of ${Object.keys(mdnData)
-    .length} (${Object.keys(mdnData).length -
-    Object.keys(mdnData).filter(
-      prop => prop.match(/-webkit-|-moz-|-ms-/) !== null
-    ).length}) properties.
+    .length} properties.
 Progress: ${Math.round(
     Object.keys(propertyValidators).length / Object.keys(mdnData).length * 10000
-  ) / 100}% (${Math.round(
-    Object.keys(propertyValidators).length /
-      Object.keys(mdnData).filter(
-        prop => prop.match(/-webkit-|-moz-|-ms-/) === null
-      ).length *
-      10000
-  ) / 100}%) done.`
+  ) / 100}% done.`
 )
 
 describe('Validating properties', () => {

@@ -1,11 +1,131 @@
 export default {
+  MozAppearance: [
+    'none',
+    'button',
+    'button-arrow-down',
+    'button-arrow-next',
+    'button-arrow-previous',
+    'button-arrow-up',
+    'button-bevel',
+    'button-focus',
+    'caret',
+    'checkbox',
+    'checkbox-container',
+    'checkbox-label',
+    'checkmenuitem',
+    'dualbutton',
+    'groupbox',
+    'listbox',
+    'listitem',
+    'menuarrow',
+    'menubar',
+    'menucheckbox',
+    'menuimage',
+    'menuitem',
+    'menuitemtext',
+    'menulist',
+    'menulist-button',
+    'menulist-text',
+    'menulist-textfield',
+    'menupopup',
+    'menuradio',
+    'menuseparator',
+    'meterbar',
+    'meterchunk',
+    'progressbar',
+    'progressbar-vertical',
+    'progresschunk',
+    'progresschunk-vertical',
+    'radio',
+    'radio-container',
+    'radio-label',
+    'radiomenuitem',
+    'range',
+    'range-thumb',
+    'resizer',
+    'resizerpanel',
+    'scale-horizontal',
+    'scalethumbend',
+    'scalethumb-horizontal',
+    'scalethumbstart',
+    'scalethumbtick',
+    'scalethumb-vertical',
+    'scale-vertical',
+    'scrollbarbutton-down',
+    'scrollbarbutton-left',
+    'scrollbarbutton-right',
+    'scrollbarbutton-up',
+    'scrollbarthumb-horizontal',
+    'scrollbarthumb-vertical',
+    'scrollbartrack-horizontal',
+    'scrollbartrack-vertical',
+    'searchfield',
+    'separator',
+    'sheet',
+    'spinner',
+    'spinner-downbutton',
+    'spinner-textfield',
+    'spinner-upbutton',
+    'splitter',
+    'statusbar',
+    'statusbarpanel',
+    'tab',
+    'tabpanel',
+    'tabpanels',
+    'tab-scroll-arrow-back',
+    'tab-scroll-arrow-forward',
+    'textfield',
+    'textfield-multiline',
+    'toolbar',
+    'toolbarbutton',
+    'toolbarbutton-dropdown',
+    'toolbargripper',
+    'toolbox',
+    'tooltip',
+    'treeheader',
+    'treeheadercell',
+    'treeheadersortarrow',
+    'treeitem',
+    'treeline',
+    'treetwisty',
+    'treetwistyopen',
+    'treeview',
+    '-moz-mac-unified-toolbar',
+    '-moz-win-borderless-glass',
+    '-moz-win-browsertabbar-toolbox',
+    '-moz-win-communicationstext',
+    '-moz-win-communications-toolbox',
+    '-moz-win-exclude-glass',
+    '-moz-win-glass',
+    '-moz-win-mediatext',
+    '-moz-win-media-toolbox',
+    '-moz-window-button-box',
+    '-moz-window-button-box-maximized',
+    '-moz-window-button-close',
+    '-moz-window-button-maximize',
+    '-moz-window-button-minimize',
+    '-moz-window-button-restore',
+    '-moz-window-frame-bottom',
+    '-moz-window-frame-left',
+    '-moz-window-frame-right',
+    '-moz-window-titlebar',
+    '-moz-window-titlebar-maximized',
+  ],
+  MozBackgroundClip: ['padding', 'border'],
+  MozBinding: ['none'],
+  MozFloatEdge: ['border-box', 'content-box', 'margin-box', 'padding-box'],
+  MozOrient: ['inline', 'block', 'horizontal', 'vertical'],
+  MozOsxFontSmoothing: ['auto', 'unset', 'grayscale'],
+  MozStackSizing: ['ignore', 'stretch-to-fit'],
+  MozTextBlink: ['none', 'blink'],
   alignContent: [
     'center',
     'flex-end',
     'flex-start',
     'space-around',
     'space-between',
-    'stretch'
+    'space-evenly',
+    'stretch',
   ],
   alignSelf: ['baseline', 'center', 'flex-end', 'flex-start', 'stretch'],
   alignItems: ['baseline', 'center', 'flex-end', 'flex-start', 'stretch'],
@@ -22,7 +142,7 @@ export default {
     'middle',
     'text-after-edge',
     'text-before-edge',
-    'use-script'
+    'use-script',
   ],
   animationDirection: ['alternate', 'alternate-reverse', 'normal', 'reverse'],
   animationFillMode: ['backwards', 'both', 'forwards', 'none'],
@@ -40,7 +160,7 @@ export default {
     'ease-out',
     'linear',
     'step-end',
-    'step-start'
+    'step-start',
   ],
   appearance: ['none', 'auto'],
   backfaceVisibility: ['hidden', 'visible'],
@@ -61,7 +181,7 @@ export default {
     'overlay',
     'saturation',
     'screen',
-    'soft-light'
+    'soft-light',
   ],
   boxDecorationBreak: ['slice', 'clone'],
   boxDirection: ['normal', 'reverse', 'inherit'],
@@ -81,6 +201,22 @@ export default {
   baselineShift: ['baseline', 'sub', 'super', 'auto'],
   border: ['none'],
   borderBottom: ['none'],
+
+  borderBlockEndStyle: [
+    'dashed',
+    'dotted',
+    'double',
+    'groove',
+    'hidden',
+    'inset',
+    'none',
+    'outset',
+    'ridge',
+    'solid',
+  ],
+
+  borderBlockEndWidth: ['thin', 'medium', 'thick'],
+
   borderBottomStyle: [
     'dashed',
     'dotted',
@@ -91,12 +227,13 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   borderBottomWidth: ['medium', 'thick', 'thin'],
   borderCollapse: ['collapse', 'seperate'],
-  borderImageRepeat: ['repeat', 'round', 'stretch'],
+  borderImageRepeat: ['repeat', 'round', 'stretch', 'space'],
   borderImageSlice: ['fill'],
+  borderImageWidth: ['auto'],
   borderImageSource: ['none'],
   borderLeft: ['none'],
   borderLeftStyle: [
@@ -109,7 +246,7 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   borderLeftWidth: ['medium', 'thick', 'thin'],
   borderRight: ['none'],
@@ -123,7 +260,7 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   borderRightWidth: ['medium', 'thick', 'thin'],
   borderStyle: [
@@ -136,7 +273,7 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   borderTop: ['none'],
   borderTopStyle: [
@@ -149,7 +286,7 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   borderTopWidth: ['medium', 'thick', 'thin'],
   bottom: ['auto'],
@@ -162,7 +299,7 @@ export default {
     'block-start',
     'block-end',
     'inline-start',
-    'inline-end'
+    'inline-end',
   ],
   clear: ['both', 'left', 'none', 'right', 'inline-start', 'inline-end'],
   clip: ['auto'],
@@ -174,7 +311,7 @@ export default {
     'none',
     'padding-box',
     'stroke-box',
-    'view-box'
+    'view-box',
   ],
   blockSize: ['available', 'min-content', 'max-content', 'fit-content', 'auto'],
   clipRule: ['evenodd', 'nonezero'],
@@ -195,7 +332,7 @@ export default {
     'none',
     'outset',
     'ridge',
-    'solid'
+    'solid',
   ],
   columnRuleWidth: ['medium', 'thick', 'thin'],
   columnSpan: ['none', 'all'],
@@ -209,7 +346,7 @@ export default {
     'no-open-quote',
     'none',
     'normal',
-    'open-quote'
+    'open-quote',
   ],
   counterIncrement: ['none'],
   counterReset: ['none'],
@@ -253,7 +390,7 @@ export default {
     '-moz-grab',
     '-moz-grabbing',
     '-moz-zoom-in',
-    '-moz-zoom-out'
+    '-moz-zoom-out',
   ],
   direction: ['ltr', 'rtl'],
   rubyAlign: ['start', 'center', 'space-between', 'space-around'],
@@ -296,7 +433,7 @@ export default {
     '-webkit-inline-box',
     '-moz-inline-stack',
     '-moz-box',
-    '-moz-inline-box'
+    '-moz-inline-box',
   ],
   displayInside: ['auto', 'block', 'table', 'flex', 'grid', 'ruby'],
   displayList: ['none', 'list-item'],
@@ -317,7 +454,7 @@ export default {
     'ruby-base',
     'ruby-text',
     'ruby-base-container',
-    'ruby-text-container'
+    'ruby-text-container',
   ],
   dominantBaseline: [
     'alphabetic',
@@ -331,7 +468,7 @@ export default {
     'reset-size',
     'text-after-edge',
     'text-before-edge',
-    'use-script'
+    'use-script',
   ],
   emptyCells: ['hide', 'show'],
   enableBackground: ['accumulate'],
@@ -343,7 +480,7 @@ export default {
     'fit-content',
     'max-content',
     'min-content',
-    'available'
+    'available',
   ],
   flexDirection: ['column', 'column-reverse', 'row', 'row-reverse'],
   flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
@@ -354,7 +491,7 @@ export default {
     'monospace',
     'sans-serif',
     'serif',
-    'system-ui'
+    'system-ui',
   ],
   fontKerning: ['auto', 'normal', 'none'],
   fontLanguageOverwrite: ['normal'],
@@ -367,7 +504,7 @@ export default {
     'x-large',
     'x-small',
     'xx-large',
-    'xx-small'
+    'xx-small',
   ],
   fontSizeAdjust: ['none'],
   fontStretch: [
@@ -379,7 +516,7 @@ export default {
     'semi-condensed',
     'semi-expanded',
     'ultra-condensed',
-    'ultra-expanded'
+    'ultra-expanded',
   ],
   fontStyle: ['italic', 'normal', 'oblique'],
   fontSynthesis: ['none', 'style', 'weight', 'weight style'],
@@ -391,7 +528,7 @@ export default {
     'petite-caps',
     'all-petite-caps',
     'unicase',
-    'titling-caps'
+    'titling-caps',
   ],
   fontVariantNumeric: ['normal'],
   fontVariantAlternates: ['normal'],
@@ -411,7 +548,7 @@ export default {
     'optimize-contrast',
     '-moz-crisp-edges',
     '-o-crisp-edges',
-    '-webkit-optimize-contrast'
+    '-webkit-optimize-contrast',
   ],
   isolation: ['auto', 'isolate'],
   justifyContent: [
@@ -420,7 +557,7 @@ export default {
     'flex-start',
     'space-around',
     'space-between',
-    'space-evenly'
+    'space-evenly',
   ],
   imeMode: ['auto', 'normal', 'active', 'inactive', 'disabled'],
   initialLetterAlign: ['auto', 'alphabetic', 'hanging', 'ideographic'],
@@ -489,7 +626,7 @@ export default {
     'upper-alpha',
     'upper-armenian',
     'upper-latin',
-    'upper-roman'
+    'upper-roman',
   ],
   listStyle: ['none'],
   marginBottom: ['auto'],
@@ -514,7 +651,7 @@ export default {
     'margin-box',
     'border-box',
     'padding-box',
-    'content-box'
+    'content-box',
   ],
   maskComposite: ['add', 'substract', 'intersect', 'exclude'],
   maskType: ['alpha', 'luminance'],
@@ -526,14 +663,14 @@ export default {
     'margin-box',
     'border-box',
     'padding-box',
-    'content-box'
+    'content-box',
   ],
   maxHeight: [
     'fill-available',
     'fit-content',
     'max-content',
     'min-content',
-    'none'
+    'none',
   ],
   maxBlockSize: [
     'none',
@@ -546,7 +683,7 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   maxWidth: [
     'fill-available',
@@ -560,7 +697,7 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   maxInlineSize: [
     'fill-available',
@@ -574,14 +711,14 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   minHeight: [
     'fill-available',
     'fit-content',
     'max-content',
     'min-content',
-    'none'
+    'none',
   ],
   minBlockSize: [
     'none',
@@ -594,7 +731,7 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   minWidth: [
     'fill-available',
@@ -608,7 +745,7 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   minInlineSize: [
     'fill-available',
@@ -622,7 +759,7 @@ export default {
     '-moz-min-content',
     '-moz-max-content',
     '-webkit-min-content',
-    '-webkit-max-content'
+    '-webkit-max-content',
   ],
   mixBlendMode: [
     'color',
@@ -640,7 +777,7 @@ export default {
     'overlay',
     'saturation',
     'screen',
-    'soft-light'
+    'soft-light',
   ],
   objectFit: ['contain', 'cover', 'fill', 'none', 'scale-down'],
   offsetBlockEnd: ['auto'],
@@ -659,7 +796,7 @@ export default {
     'outset',
     'ridge',
     'solid',
-    'auto'
+    'auto',
   ],
   scrollBehavior: ['auto', 'smooth'],
   scrollSnapType: ['none', 'mandatory', 'proximity'],
@@ -683,7 +820,7 @@ export default {
     'avoid-column',
     'column',
     'avoid-region',
-    'region'
+    'region',
   ],
   breakBefore: [
     'auto',
@@ -697,7 +834,7 @@ export default {
     'avoid-column',
     'column',
     'avoid-region',
-    'region'
+    'region',
   ],
   breakInside: ['auto', 'avoid', 'avoid-page', 'avoid-column', 'avoid-region'],
   pageBreakAfter: ['always', 'auto', 'avoid', 'left', 'right'],
@@ -717,7 +854,7 @@ export default {
     'visible',
     'visibleFill',
     'visiblePainted',
-    'visibleStroke'
+    'visibleStroke',
   ],
   position: [
     'absolute',
@@ -725,7 +862,7 @@ export default {
     'relative',
     'static',
     'sticky',
-    '-webkit-sticky'
+    '-webkit-sticky',
   ],
   quotes: ['none'],
   resize: ['block', 'both', 'horizontal', 'inline', 'none', 'vertical'],
@@ -743,19 +880,20 @@ export default {
     'right',
     'center',
     'justify',
-    'match-parent'
+    'match-parent',
   ],
   textAlignLast: ['auto', 'start', 'end', 'left', 'right', 'center', 'justify'],
   textAnchor: ['end', 'middle', 'start'],
   textDecorationLine: ['line-through', 'none', 'overline', 'underline'],
   textDecorationStyle: ['solid', 'double', 'dotted', 'dashed', 'wavy'],
+  textOrientation: ['mixed', 'upright', 'sideways'],
   textOverflow: ['clip', 'ellipsis'],
   textJustify: ['auto', 'inter-character', 'inter-word', 'none'],
   textRendering: [
     'auto',
     'geometricPrecision',
     'optimizeLegibility',
-    'optimizeSpeed'
+    'optimizeSpeed',
   ],
   textTransform: ['capitalize', 'full-width', 'lowercase', 'none', 'uppercase'],
   textUnderlinePosition: [
@@ -765,10 +903,11 @@ export default {
     'below',
     'left',
     'right',
-    'under'
+    'under',
   ],
   textSizeAdjust: ['auto', 'none'],
   top: ['auto'],
+  transformBox: ['border-box', 'fill-box', 'view-box'],
   transformOrigin: ['bottom', 'center', 'left', 'right', 'top'],
   transformOriginX: ['center', 'left', 'right'],
   transformOriginY: ['bottom', 'center', 'top'],
@@ -781,7 +920,7 @@ export default {
     'ease-out',
     'linear',
     'step-end',
-    'step-start'
+    'step-start',
   ],
   unicodeBidi: [
     'bidi-override',
@@ -789,8 +928,13 @@ export default {
     'isolate',
     'isolate-override',
     'normal',
-    'plaintext'
+    'plaintext',
+    '-moz-isolate',
+    '-moz-isolate-override',
+    '-moz-plaintext',
+    '-webkit-isolate',
   ],
+  userSelect: ['auto', 'contain', 'text', 'none', 'all'],
   verticalAlign: [
     'baseline',
     'bottom',
@@ -799,26 +943,30 @@ export default {
     'super',
     'text-bottom',
     'text-top',
-    'top'
+    'top',
   ],
   visibility: ['collapse', 'hidden', 'visible'],
+  voiceBalance: ['left', 'center', 'right', 'leftwards', 'rightwards'],
+  voiceDuration: ['auto'],
+  voiceStress: ['normal', 'strong', 'moderate', 'none', 'reduced'],
   whiteSpace: ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'],
   width: ['auto', 'available', 'fit-content', 'max-content', 'min-content'],
-  wordBreak: ['break-all', 'keep-all', 'normal'],
+  wordBreak: ['break-all', 'keep-all', 'normal', 'break-word'],
   wordSpacing: ['normal'],
   wordWrap: ['break-word', 'normal'],
   writingMode: [
     'horizontal-tb',
     'lr',
     'lr-tb',
-    'rb-rl',
+    'rl-tb',
+    'tb-rl',
     'rl',
     'sideways-lr',
     'sideways-rl',
     'tb',
     'vertical-lr',
-    'vertical-rl'
+    'vertical-rl',
   ],
   zIndex: ['auto'],
-  zoom: ['normal']
+  zoom: ['normal', 'reset'],
 }
