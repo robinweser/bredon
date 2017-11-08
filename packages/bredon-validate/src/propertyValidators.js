@@ -118,6 +118,82 @@ export default {
   },
   MozStackSizing: matchesKeyword('MozStackSizing'),
   MozTextBlink: matchesKeyword('MozTextBlink'),
+  MozUserFocus: matchesKeyword('MozUserFocus'),
+  MozUserInput: matchesKeyword('MozUserInput'),
+  MozUserModify: matchesKeyword('MozUserModify'),
+  MozUserSelect: matchesKeyword('MozUserSelect'),
+  MozWindowShadow: matchesKeyword('MozWindowShadow'),
+  msFilter: isStringLiteral,
+  msFlexAlign: matchesKeyword('msFlexAlign'),
+  msFlexItemAlign: matchesKeyword('msFlexItemAlign'),
+  msFlexLinePack: matchesKeyword('msFlexLinePack'),
+  msFlexNegative: isNumber,
+  msFlexOrder: isInteger,
+  msFlexPack: matchesKeyword('msFlexPack'),
+  msFlexPositive: isNumber,
+  msFlexPreferredSize: isSize('msFlexPreferredSize'),
+  msGridColumnAlign: matchesKeyword('msGridColumnAlign'),
+  msGridRowAlign: matchesKeyword('msGridRowAlign'),
+  msHighContrastAdjust: matchesKeyword('msHighContrastAdjust'),
+  msInterpolationMode: matchesKeyword('msInterpolationMode'),
+  msOverflowStyle: matchesKeyword('msOverflowStyle'),
+  msUserSelect: matchesKeyword('msUserSelect'),
+  WebkitAppearance: matchesKeyword('WebkitAppearance'),
+  // TODO: multivalue?
+  WebkitBackgroundClip: matchesKeyword('WebkitBackgroundClip'),
+  WebkitBorderBeforeColor: isColor,
+  WebkitBorderBeforeStyle: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(matchesKeyword('WebkitBorderBeforeStyle'))
+    }
+
+    return matchesKeyword('WebkitBorderBeforeStyle')(node)
+  },
+  WebkitBorderBeforeWidth: (node, isValueSet) => {
+    if (isValueSet && node.length <= 4) {
+      return validateNodeList(
+        node =>
+          isLength(node) || matchesKeyword('WebkitBorderBeforeWidth')(node)
+      )
+    }
+
+    return isLength(node) || matchesKeyword('WebkitBorderBeforeWidth')(node)
+  },
+  WebkitColumnBreakAfter: matchesKeyword('WebkitColumnBreakAfter'),
+  WebkitColumnBreakBefore: matchesKeyword('WebkitColumnBreakBefore'),
+  WebkitColumnBreakInside: matchesKeyword('WebkitColumnBreakInside'),
+  WebkitFontSmoothing: matchesKeyword('WebkitFontSmoothing'),
+  WebkitLineCamp: node => isInteger(node) && !node.negative,
+  // TODO: multivalue
+  WebkitMaskAttachment: matchesKeyword('WebkitMaskAttachment'),
+  // TODO: multivalue
+  WebkitMaskClip: matchesKeyword('WebkitMaskClip'),
+  // TODO: multivalue
+  WebkitMaskComposite: matchesKeyword('WebkitMaskComposite'),
+  // TODO: multivalue
+  WebkitMaskOrigin: matchesKeyword('WebkitMaskOrigin'),
+  // TODO: multivalue
+  WebkitMaskPositionX: node =>
+    isLength(node) ||
+    isPercentage(node) ||
+    matchesKeyword('WebkitMaskPositionX')(node),
+  // TODO: multivalue
+  WebkitMaskPositionY: node =>
+    isLength(node) ||
+    isPercentage(node) ||
+    matchesKeyword('WebkitMaskPositionY')(node),
+  WebkitMaskRepeatX: matchesKeyword('WebkitMaskRepeatX'),
+  WebkitMaskRepeatY: matchesKeyword('WebkitMaskRepeatY'),
+  WebkitOverflowScrolling: matchesKeyword('WebkitOverflowScrolling'),
+  WebkitPrintColorAdjust: matchesKeyword('WebkitPrintColorAdjust'),
+  WebkitTapHighlightColor: isColor,
+  WebkitTextFillColor: isColor,
+  WebkitTextSecurity: matchesKeyword('WebkitTextSecurity'),
+  WebkitTextStrokeColor: isColor,
+  WebkitTextStrokeWidth: isLength,
+  WebkitTouchCallout: matchesKeyword('WebkitTouchCallout'),
+  WebkitUserDrag: matchesKeyword('WebkitUserDrag'),
+  WebkitUserSelect: matchesKeyword('WebkitUserSelect'),
   alignItems: matchesKeyword('alignItems'),
   alignContent: matchesKeyword('alignContent'),
   justifyContent: matchesKeyword('justifyContent'),
@@ -366,8 +442,7 @@ export default {
   emptyCells: matchesKeyword('emptyCells'),
   fillOpacity: isOpacity,
   fillRule: matchesKeyword('fillRule'),
-  // TODO: 2 values
-  flexBasis: node => matchesKeyword('flexBasis')(node),
+  flexBasis: isSize('flexBasis'),
   flexDirection: matchesKeyword('flexDirection'),
   flexWrap: matchesKeyword('flexWrap'),
   float: matchesKeyword('float'),

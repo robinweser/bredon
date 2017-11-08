@@ -42,6 +42,15 @@ describe('Validating properties', () => {
     expect(isValidProperty('strokeDasharray', '2px 10%')).toBe(true)
     expect(isValidProperty('strokeDasharray', 'none 2px')).toBe(false)
     expect(isValidProperty('strokeDasharray', '2px none')).toBe(false)
+    expect(isValidProperty('WebkitMaskAttachment', 'scroll')).toBe(true)
+    expect(isValidProperty('WebkitMaskAttachment', 'scroll, fixed')).toBe(true)
+    expect(
+      isValidProperty('WebkitMaskAttachment', 'scroll, fixed, scroll, local')
+    ).toBe(true)
+    expect(
+      isValidProperty('WebkitMaskAttachment', 'scroll, fixed, 2px, local')
+    ).toBe(false)
+    expect(isValidProperty('WebkitMaskAttachment', 'scroll fixed')).toBe(false)
   })
 
   it('should throw a warning', () => {
