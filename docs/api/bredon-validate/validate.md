@@ -1,4 +1,4 @@
-# `isValidProperty(property, value)`
+# `validate(property, value)`
 
 Validates a property by type-checking its value.
 
@@ -12,10 +12,10 @@ Validates a property by type-checking its value.
 ##### Example
 
 ```javascript
-import { isValidProperty } from 'bredon-validate'
+import validate from 'bredon-validate'
 
-console.log(isValidProperty('borderLeft', '1px solid rgba(100, 200, 50, .55)'))
+console.log(validate('borderLeft', '1px solid rgba(100, 200, 50, .55)'))
 // => true
-console.log(isValidProperty('borderLeft', '1px 2px rgba(100, 200, 50, .55)'))
+console.log(validate('borderLeft', '1px 2px rgba(100, 200, 50, .55)'))
 // => false
 ```

@@ -19,7 +19,7 @@ Thumbs.db
 *.sw?
 *.vi
 
-node_modules
-es
-coverage
-lib
+**/node_modules
+**/es
+**/coverage
+**/lib

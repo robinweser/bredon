@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Parsing CSS values should correctly parse !important 1`] = `
 Array [
   "3px !important",
@@ -360,15 +362,15 @@ Array [
 
 exports[`Parsing CSS values should correctly parse strings 1`] = `
 Array [
-  "\"hello, it\'s me.\"",
+  "\\"hello, it's me.\\"",
   Object {
     "body": Array [
       Object {
         "body": Array [
           Object {
-            "quote": "\"",
+            "quote": "\\"",
             "type": "StringLiteral",
-            "value": "hello, it\'s me.",
+            "value": "hello, it's me.",
           },
         ],
         "important": false,

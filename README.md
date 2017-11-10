@@ -104,7 +104,7 @@ const output = compile(input)
     * [Validators](docs/api/bredon-types/Validators.md)
     * [Builders](docs/api/bredon-types/Builders.md)
   * bredon-validate
-    * [isValidProperty](docs/api/bredon-validate/isValidProperty.md)
+    * [validate](docs/api/bredon-validate/validate.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Operator](docs/ASTNodes.md#operator)
