@@ -1,6 +1,6 @@
 {
   "name": "bredon-tools",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Useful functional utilities for working with Bredon",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,11 +26,11 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "peerDependencies": {
-    "bredon": "^3.0.0",
+    "bredon": "^3.0.1",
     "bredon-types": "^3.0.0"
   },
   "devDependencies": {
-    "bredon": "^3.0.0",
+    "bredon": "^3.0.1",
     "bredon-types": "^3.0.0"
   }
 }

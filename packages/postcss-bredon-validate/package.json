@@ -28,7 +28,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "bredon-validate": "^0.0.1",
+    "bredon-validate": "^0.0.2",
     "css-in-js-utils": "^2.0.0",
     "postcss": "^6.0.14"
   },

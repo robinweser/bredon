@@ -1,6 +1,6 @@
 {
   "name": "bredon",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A modern CSS value compiler in JavaScript",
   "main": "lib/index.js",
   "module": "es/index.js",
