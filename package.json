@@ -8,7 +8,7 @@
     "format": "prettier --write \"packages/*/src/**/*.js\"",
     "flow": "flow",
     "lint": "eslint packages/*/src/**/*.js",
-    "publish": "git pull --rebase && npm run build && lerna publish",
+    "release": "git pull --rebase && npm run build && lerna publish",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "test:coverage": "cross-env BABEL_ENV=commonjs jest --coverage",
     "watch": "yarn test -- --watch",
