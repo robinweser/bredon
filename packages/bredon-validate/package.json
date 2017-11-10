@@ -28,7 +28,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "bredon": "^2.0.2",
-    "bredon-types": "^2.0.4"
+    "bredon": "^3.0.0",
+    "bredon-types": "^3.0.0"
   }
 }
