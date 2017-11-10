@@ -25,7 +25,7 @@
   "repository": "https://github.com/rofrischmann/bredon.git",
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "bredon": "^3.0.0",
     "bredon-types": "^3.0.0"
   }

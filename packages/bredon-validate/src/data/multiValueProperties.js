@@ -45,7 +45,10 @@ export default {
   borderTopRightRadius: true,
   borderWidth: true,
   flex: true,
+  flexBasis: true,
   flexFlow: true,
+  height: true,
+  inlineSize: true,
   margin: true,
   maskBorderOutset: true,
   maskBorderWidth: true,
@@ -67,5 +70,6 @@ export default {
   touchAction: true,
   transformOrigin: true,
   transition: true,
+  width: true,
   willChange: true,
 }
