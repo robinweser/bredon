@@ -39,7 +39,12 @@ export type Node =
   | StringNode
   | ExpressionNode
 
-export type Value = { type: 'Value', body: Array<Node> }
+export type Value = {
+  type: 'Value',
+  body: Array<Node>,
+  important: boolean,
+  multi: boolean,
+}
 export type ValueList = { type: 'ValueList', values: Array<Value> }
 
 export type ASTNode = Node | Value | ValueList

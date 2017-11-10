@@ -3,12 +3,12 @@ import type {
   ASTNode,
   ExpressionNode,
   FunctionNode,
-  CSSValue,
-  MultiValue
+  Value,
+  ValueList,
 } from '../../../flowtypes/AST'
 
 export default function replaceChildNode(
-  parentNode: ExpressionNode | FunctionNode | CSSValue | MultiValue,
+  parentNode: ExpressionNode | FunctionNode | Value | ValueList,
   node: ASTNode,
   newNode: ASTNode
 ): void {

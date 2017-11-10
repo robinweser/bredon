@@ -153,6 +153,11 @@ export default class Parser {
 
       if (node) {
         this.currentNode.body.push(node)
+
+        // set multi indicator as soon as the value has more than one node
+        if (this.currentNode.body.length > 1) {
+          this.currentNode.multi = true
+        }
       }
     }
 

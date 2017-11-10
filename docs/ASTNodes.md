@@ -8,8 +8,9 @@ Container nodes on the other hand have a property that contains an array of chil
 
 #### ValueList
 ValueList is the **root** node of every bredon AST.<br>
-It contains a list of Value nodes which are comma-separated CSS values.<br>
-For example: `opacity 100ms linear, transform 1s ease-in`
+It contains a list of Value nodes which are comma-separated CSS values.
+
+For example: `opacity, transform 1s ease-in`
 
 ```javascript
 {
@@ -17,12 +18,14 @@ For example: `opacity 100ms linear, transform 1s ease-in`
   body: [{
     type: 'Value',
     important: false,
+    multi: false,
     body: [
-      /* AST for opacity 100ms linear */
+      /* AST for opacity */
     ]
   }, {
-    type: 'CSSValue',
+    type: 'Value',
     important: false,
+    multi: true,
     body: [
       /* AST for transform 1s ease-in */
     ]
@@ -31,7 +34,7 @@ For example: `opacity 100ms linear, transform 1s ease-in`
 ```
 
 #### Value
-Value contains a set of nodes that are whitespace-separated.<br>
+Value contains a set of nodes that are whitespace-separated.
 
 For example: `1px solid black`
 
@@ -39,6 +42,7 @@ For example: `1px solid black`
 {
   type: 'Value',
   important: false,
+  multi: true,
   body: [
     /* Nodes for 1px solid black */
   ]

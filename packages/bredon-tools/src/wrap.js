@@ -31,8 +31,8 @@ export default function wrap(node: ASTNode): Object {
       return getSingleValue(node)
     },
 
-    traverse(visitors: Object = {}) {
+    traverse(visitors?: Array<Object>) {
       traverse(node, visitors)
-    }
+    },
   }
 }

@@ -6,6 +6,8 @@ export default {
   WebkitMaskOrigin: true,
   WebkitMaskPositionX: true,
   WebkitMaskPositionY: true,
+  animationDelay: true,
+  animationDuration: true,
   backgroundPosition: true,
   backgroundPositionX: true,
   backgroundPositionY: true,
