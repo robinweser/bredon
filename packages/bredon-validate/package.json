@@ -30,9 +30,5 @@
   "dependencies": {
     "bredon": "^3.0.1",
     "bredon-types": "^3.0.0"
-  },
-  "devDependencies": {
-    "bredon": "^3.0.1",
-    "bredon-types": "^3.0.0"
   }
 }
