@@ -1,1 +1,3 @@
-export default {}
+import isValidProperty from './isValidProperty'
+
+export { isValidProperty }

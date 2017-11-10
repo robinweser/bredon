@@ -1,10 +1,20 @@
 exports[`Parsing CSS values should correctly parse !important 1`] = `
 Array [
-  "!important",
+  "3px !important",
   Object {
     "body": Array [
       Object {
-        "body": Array [],
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "px",
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 3,
+            },
+          },
+        ],
         "important": true,
         "type": "Value",
       },
@@ -70,8 +80,9 @@ Array [
       Object {
         "body": Array [
           Object {
+            "negative": true,
             "type": "Integer",
-            "value": -400,
+            "value": 400,
           },
         ],
         "important": false,
@@ -93,7 +104,38 @@ Array [
           Object {
             "type": "Dimension",
             "unit": "px",
-            "value": 300,
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 300,
+            },
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse dimensions 2`] = `
+Array [
+  "-33.33%",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "%",
+            "value": Object {
+              "fractional": 33,
+              "integer": 33,
+              "negative": true,
+              "type": "Float",
+            },
           },
         ],
         "important": false,
@@ -120,13 +162,18 @@ Array [
                   Object {
                     "type": "Dimension",
                     "unit": "%",
-                    "value": 100,
+                    "value": Object {
+                      "negative": false,
+                      "type": "Integer",
+                      "value": 100,
+                    },
                   },
                   Object {
                     "type": "Operator",
                     "value": "+",
                   },
                   Object {
+                    "negative": false,
                     "type": "Integer",
                     "value": 5,
                   },
@@ -135,6 +182,7 @@ Array [
                     "value": "/",
                   },
                   Object {
+                    "negative": false,
                     "type": "Integer",
                     "value": 2,
                   },
@@ -211,10 +259,12 @@ Array [
             "callee": "rgba",
             "params": Array [
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 200,
               },
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 300,
               },
@@ -260,6 +310,7 @@ Array [
       Object {
         "body": Array [
           Object {
+            "negative": false,
             "type": "Integer",
             "value": 400,
           },
@@ -324,14 +375,17 @@ Array [
       Object {
         "body": Array [
           Object {
+            "negative": false,
             "type": "Integer",
             "value": 300,
           },
           Object {
+            "negative": false,
             "type": "Integer",
             "value": 400,
           },
           Object {
+            "negative": false,
             "type": "Integer",
             "value": 700,
           },
@@ -355,7 +409,11 @@ Array [
           Object {
             "type": "Dimension",
             "unit": "px",
-            "value": 1,
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 1,
+            },
           },
           Object {
             "type": "Identifier",
@@ -365,10 +423,12 @@ Array [
             "callee": "rgba",
             "params": Array [
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 255,
               },
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 94,
               },
@@ -390,7 +450,11 @@ Array [
           Object {
             "type": "Dimension",
             "unit": "ms",
-            "value": 300,
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 300,
+            },
           },
           Object {
             "type": "Identifier",
@@ -420,7 +484,11 @@ Array [
           Object {
             "type": "Dimension",
             "unit": "px",
-            "value": 1,
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 1,
+            },
           },
           Object {
             "type": "Identifier",
@@ -430,10 +498,12 @@ Array [
             "callee": "rgba",
             "params": Array [
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 255,
               },
               Object {
+                "negative": false,
                 "type": "Integer",
                 "value": 94,
               },
@@ -455,7 +525,11 @@ Array [
           Object {
             "type": "Dimension",
             "unit": "ms",
-            "value": 300,
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 300,
+            },
           },
           Object {
             "type": "Identifier",

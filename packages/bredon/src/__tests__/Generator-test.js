@@ -18,7 +18,11 @@ describe('Generating a string from an AST', () => {
                     body: [
                       {
                         type: 'Dimension',
-                        value: 100,
+                        value: {
+                          type: 'Integer',
+                          negative: false,
+                          value: 100,
+                        },
                         unit: 'px',
                       },
                       {
@@ -27,6 +31,7 @@ describe('Generating a string from an AST', () => {
                       },
                       {
                         type: 'Integer',
+                        negative: false,
                         value: 2,
                       },
                       {
@@ -35,7 +40,11 @@ describe('Generating a string from an AST', () => {
                       },
                       {
                         type: 'Dimension',
-                        value: 5,
+                        value: {
+                          type: 'Integer',
+                          negative: false,
+                          value: 5,
+                        },
                         unit: 'px',
                       },
                     ],
@@ -52,16 +61,19 @@ describe('Generating a string from an AST', () => {
                 params: [
                   {
                     type: 'Integer',
+                    negative: false,
                     value: 255,
                   },
                   {
                     type: 'Integer',
+                    negative: false,
                     value: 94,
                   },
                   {
                     type: 'Float',
                     integer: 0,
                     fractional: 34,
+                    negative: false,
                   },
                 ],
               },
@@ -73,7 +85,11 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Dimension',
                 unit: 'ms',
-                value: 300,
+                value: {
+                  type: 'Integer',
+                  negative: false,
+                  value: 300,
+                },
               },
               {
                 type: 'Identifier',
@@ -121,14 +137,17 @@ describe('Generating a string from an AST', () => {
             params: [
               {
                 type: 'Integer',
+                negative: false,
                 value: 255,
               },
               {
                 type: 'Integer',
+                negative: false,
                 value: 0,
               },
               {
                 type: 'Integer',
+                negative: true,
                 value: 255,
               },
               {
@@ -141,6 +160,6 @@ describe('Generating a string from an AST', () => {
           },
         ],
       })
-    ).toBe('rgba(255 , 0 , 255 , -.55)')
+    ).toBe('rgba(255 , 0 , -255 , -.55)')
   })
 })

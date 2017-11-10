@@ -1,5 +1,4 @@
 export default {
-  boxShadow: true,
   WebkitBackgroundClip: true,
   WebkitMaskAttachment: true,
   WebkitMaskClip: true,
@@ -7,8 +6,15 @@ export default {
   WebkitMaskOrigin: true,
   WebkitMaskPositionX: true,
   WebkitMaskPositionY: true,
+  backgroundPosition: true,
+  backgroundPositionX: true,
+  backgroundPositionY: true,
+  boxShadow: true,
+  maskPosition: true,
+  scrollSnapCoordinate: true,
   transitionDelay: true,
   transitionDuration: true,
   transitionProperty: true,
   transitionTimingFunction: true,
+  willChange: true,
 }

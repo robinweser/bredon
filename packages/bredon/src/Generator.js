@@ -33,7 +33,10 @@ export default class Generator {
         return `${node.callee}(${node.params.map(generateValue).join(',')})`
 
       case 'Dimension':
-        return node.value + node.unit
+        return generateValue(node.value) + node.unit
+
+      case 'Integer':
+        return `${node.negative ? '-' : ''}${node.value}`
 
       case 'Float':
         return `${node.negative ? '-' : ''}${node.integer !== 0
@@ -56,7 +59,6 @@ export default class Generator {
       case 'Identifier':
       case 'Parenthesis':
       case 'Separator':
-      case 'Integer':
       case 'URL':
         return node.value
 

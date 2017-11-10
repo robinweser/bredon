@@ -260,7 +260,7 @@ export default class Parser {
         ++this.currentPosition
 
         return dimension(
-          isNegative ? -integerPart : integerPart,
+          integer(integerPart, isNegative),
           nextToken.value.toLowerCase()
         )
       }
@@ -272,7 +272,7 @@ export default class Parser {
         return this.parseFloat(integerPart, isNegative)
       }
 
-      return integer(isNegative ? -integerPart : integerPart)
+      return integer(integerPart, isNegative)
     }
   }
 
@@ -286,7 +286,34 @@ export default class Parser {
         if (nextToken.type === 'number') {
           this.updateCurrentToken(1)
 
-          return float(integerPart, parseInt(nextToken.value, 10), isNegative)
+          const floatValue = float(
+            integerPart,
+            parseInt(nextToken.value, 10),
+            isNegative
+          )
+
+          const innerNextToken = this.getNextToken(1)
+
+          // Parsing dimensions if a float is directly followed
+          // by an identifier that matches any of the valid units
+          if (
+            innerNextToken &&
+            (innerNextToken.type === 'identifier' ||
+              innerNextToken.type === 'percentage')
+          ) {
+            if (!isValidUnit(innerNextToken.value)) {
+              throw new SyntaxError(
+                `A float (${this.currentToken
+                  .value}) must be followed by a valid unit. Instead found "${innerNextToken.value}" of type "${innerNextToken.type}".`
+              )
+            }
+
+            ++this.currentPosition
+
+            return dimension(floatValue, innerNextToken.value.toLowerCase())
+          }
+
+          return floatValue
         }
 
         throw new SyntaxError(

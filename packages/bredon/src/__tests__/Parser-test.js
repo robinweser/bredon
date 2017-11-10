@@ -16,7 +16,7 @@ describe('Parsing CSS values', () => {
   it('should correctly parse !important', () => {
     const parser = new Parser()
 
-    expect(['!important', parser.parse('!important')]).toMatchSnapshot()
+    expect(['3px !important', parser.parse('3px !important')]).toMatchSnapshot()
   })
 
   it('should correctly parse algebraic signs', () => {
@@ -50,6 +50,7 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(['300px', parser.parse('300px')]).toMatchSnapshot()
+    expect(['-33.33%', parser.parse('-33.33%')]).toMatchSnapshot()
   })
 
   it('should correctly parse floats', () => {

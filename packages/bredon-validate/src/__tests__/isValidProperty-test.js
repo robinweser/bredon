@@ -1,5 +1,6 @@
 import isValidProperty from '../isValidProperty'
 
+/* eslint-disable */
 import mdnData from '../data/__mdnData'
 import propertyValidators from '../propertyValidators'
 
@@ -14,10 +15,32 @@ function camelCaseProperty(property) {
     .replace(msRegex, 'ms')
 }
 
+var uppercasePattern = /[A-Z]/g
+var msPattern = /^ms-/
+var cache = {}
+
+function hyphenateStyleName(string) {
+  return string in cache
+    ? cache[string]
+    : (cache[string] = string
+        .replace(uppercasePattern, '-$&')
+        .toLowerCase()
+        .replace(msPattern, '-ms-'))
+}
+
+const additional = Object.keys(properties).filter(
+  prop => !mdnData.hasOwnProperty(hyphenateStyleName(prop))
+)
+
+additional.forEach(prop => {
+  mdnData[prop] = true
+})
+
 console.log(
   `Missing properties:
 ${Object.keys(mdnData)
     .filter(prop => !properties.hasOwnProperty(camelCaseProperty(prop)))
+    .map(camelCaseProperty)
     .join('\n')}
 
 Having ${Object.keys(properties).length} out of ${Object.keys(mdnData)
@@ -26,6 +49,8 @@ Progress: ${Math.round(
     Object.keys(properties).length / Object.keys(mdnData).length * 10000
   ) / 100}% done.`
 )
+
+/* eslint-enable */
 
 describe('Validating properties', () => {
   it('should correctly validate property values', () => {
@@ -66,6 +91,17 @@ describe('Validating properties', () => {
     expect(isValidProperty('touchAction', 'none pan-x')).toBe(false)
     expect(isValidProperty('touchAction', 'pan-x none')).toBe(false)
     expect(isValidProperty('touchAction', 'pan-x pan-x')).toBe(false)
+
+    expect(isValidProperty('willChange', 'auto')).toBe(true)
+    expect(isValidProperty('willChange', 'scroll-position, contents')).toBe(
+      true
+    )
+    expect(isValidProperty('willChange', 'auto, auto')).toBe(false)
+    expect(isValidProperty('willChange', 'auto, scroll-position')).toBe(false)
+    expect(isValidProperty('scrollSnapCoordinate', 'none')).toBe(true)
+    expect(isValidProperty('scrollSnapCoordinate', 'none, none')).toBe(false)
+    expect(isValidProperty('scrollSnapCoordinate', '30px')).toBe(true)
+    expect(isValidProperty('scrollSnapCoordinate', '40px, left')).toBe(true)
 
     expect(isValidProperty('WebkitMaskAttachment', 'scroll')).toBe(true)
     expect(isValidProperty('WebkitMaskAttachment', 'scroll, fixed')).toBe(true)

@@ -1,4 +1,4 @@
-import { isFunctionExpression } from 'bredon-types'
+import { isInteger, isFunctionExpression } from 'bredon-types'
 
 export default function isFrames(node) {
   return (

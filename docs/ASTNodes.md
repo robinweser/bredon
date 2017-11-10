@@ -45,7 +45,6 @@ For example: `1px solid black`
 }
 ```
 
-
 ### Node Types
 * [Identifier](#identifier)
 * [Operator](#operator)
@@ -53,9 +52,9 @@ For example: `1px solid black`
 * [Parenthesis](#parenthesis)
 * [URL](#url)
 * [StringLiteral](#stringliteral)
-* [Dimension](#dimension)
 * [Integer](#integer)
 * [Float](#float)
+* [Dimension](#dimension)
 * [FunctionExpression](#functionexpression)
 * [Expression](#expression)
 
@@ -129,24 +128,6 @@ Strings are all values that are wrapped in quotes, either single `'` or double `
 }
 ```
 
-## Dimension
-Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
-
-| Property | Value | Description |
-| ------ | --- |  ------ |
-| value | (*number*) | The pure value without a unit |
-| unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
-
-
-```javascript
-// e.g. 12px
-{
-  type: 'Dimension',
-  unit: 'px',
-  value: 12
-}
-```
-
 ## Integer
 Integers are simple numbers without a unit or fractional part.
 
@@ -179,6 +160,40 @@ Floats are floating-point numbers with a fractional part and an integer part.
   integer: 587,
   fractional: 923,
   negative: false
+}
+```
+
+## Dimension
+Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
+
+| Property | Value | Description |
+| ------ | --- |  ------ |
+| value | (*[Integer](#integer)*, *[Float](#float)*) | The pure value without a unit |
+| unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
+
+
+```javascript
+// e.g. 12px
+{
+  type: 'Dimension',
+  unit: 'px',
+  value: {
+    type: 'Integer',
+    negative: false,
+    value: 12
+  }
+}
+
+// e.g. 33.33%
+{
+  type: 'Dimension',
+  unit: 'px',
+  value: {
+    type: 'Float',
+    fractional: 33,
+    integer: 33,
+    negative: false
+  }
 }
 ```
 

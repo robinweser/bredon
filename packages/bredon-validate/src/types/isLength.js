@@ -1,6 +1,6 @@
 import { isDimension, isInteger, isFunctionExpression } from 'bredon-types'
 
-export default function isLength(node): boolean {
+export default function isLength(node) {
   return (
     // all dimensional values are length values
     (isDimension(node) &&

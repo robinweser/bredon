@@ -1,7 +1,7 @@
 {
   "name": "bredon-validate",
   "version": "2.0.4",
-  "description": "Validation Functions for CSS values",
+  "description": "Validation Methods for CSS values",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",

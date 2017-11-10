@@ -10,12 +10,13 @@ You may also use it to transform the AST and generate new CSS values.
 ```sh
 yarn add bredon
 ```
+Alternatively use `npm i --save bredon`.
 
 ## Why?
-I am heavily involved in the whole CSS-in-JS movement with [Fela](https://github.com/rofrischmann/fela) and [Elodin](https://github.com/rofrischmann/react-look) as well as [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer). While writing Elodin, a plugin-based style object linter, I struggled to do complex value validation and related operations. Stuff like *"Is the property/value prefixed?"* or even *"Is it compatible with browser ...?"* has been pretty straightforward, but I couldn't really come up with a simple solution to correctly validate CSS values with all their complexity.<br>
+I am heavily involved in the whole CSS-in-JS movement with [Fela](https://github.com/rofrischmann/fela) and [Elodin](https://github.com/rofrischmann/elodin) as well as [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer). While writing Elodin, a plugin-based style object linter, I struggled to do complex value validation and related operations. Stuff like *"Is the property/value prefixed?"* or even *"Is it compatible with browser ...?"* has been pretty straightforward, but I couldn't really come up with a simple solution to correctly validate CSS values with all their complexity.<br>
 Here, I made the decision to write a modern CSS value parser that provides the required degree of accuracy and detail - Bredon.
 
-> Bredon also is a project to understand how compilers work. It's quite fascinating after you understand how simple they actually are.
+> Bredon also is a project to understand how compilers work. It's quite fascinating as soon as you understand how simple they actually are.
 
 ## How?
 I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler) to build Bredon. It follows the exact same steps as any other compiler does:
@@ -84,6 +85,8 @@ const output = compile(input)
   * bredon-types
     * [Validators](docs/api/bredon-types/Validators.md)
     * [Builders](docs/api/bredon-types/Builders.md)
+  * bredon-validate
+    * [isValidProperty](docs/api/bredon-validate/isValidProperty.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Operator](docs/ASTNodes.md#operator)

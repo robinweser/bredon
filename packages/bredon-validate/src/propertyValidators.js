@@ -14,10 +14,14 @@ import {
   isCubicBezier,
   isFrames,
   isGlobal,
+  isImage,
   isLength,
+  isLengthPercentage,
   isNumber,
   isOpacity,
   isPercentage,
+  isPosition,
+  isRepeat,
   isSize,
   isSteps,
   isSvgLength,
@@ -28,106 +32,73 @@ import matchesKeyword from './utils/matchesKeyword'
 import matchesIdentifier from './utils/matchesIdentifier'
 import validateNodeList from './utils/validateNodeList'
 import validateUnorderedNodeList from './utils/validateUnorderedNodeList'
+import normalizeNodeList from './utils/normalizeNodeList'
 import arrayReduce from './utils/arrayReduce'
 
 const validators = {
-  MozBinding: node => isURL(node) || matchesKeyword('MozBinding'),
-  MozBorderBottomColors: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateNodeList(isColor)(node)
-    }
-
-    return isColor(node)
-  },
-  MozBorderLeftColors: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateNodeList(isColor)(node)
-    }
-
-    return isColor(node)
-  },
-  MozBorderRadiusBottomleft: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozBorderRadiusBottomright: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozBorderRadiusTopleft: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozBorderRadiusTopright: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozBorderRightColors: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateNodeList(isColor)(node)
-    }
-
-    return isColor(node)
-  },
-  MozBorderTopColors: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateNodeList(isColor)(node)
-    }
-
-    return isColor(node)
-  },
+  MozBinding: isURL,
+  MozBorderBottomColors: (node, isMultiValue) =>
+    validateNodeList(isColor)(normalizeNodeList(node, isMultiValue)),
+  MozBorderLeftColors: (node, isMultiValue) =>
+    validateNodeList(isColor)(normalizeNodeList(node, isMultiValue)),
+  MozBorderRadiusBottomleft: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozBorderRadiusBottomright: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozBorderRadiusTopleft: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozBorderRadiusTopright: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozBorderRightColors: (node, isMultiValue) =>
+    validateNodeList(isColor)(normalizeNodeList(node, isMultiValue)),
+  MozBorderTopColors: (node, isMultiValue) =>
+    validateNodeList(isColor)(normalizeNodeList(node, isMultiValue)),
   MozForceBrokenImageIcon: isInteger,
-  MozOutlineRadiusBottomleft: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozOutlineRadiusBottomright: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozOutlineRadiusTopleft: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  MozOutlineRadiusTopright: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-
+  MozOutlineRadiusBottomleft: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozOutlineRadiusBottomright: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozOutlineRadiusTopleft: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  MozOutlineRadiusTopright: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
   WebkitBorderBeforeColor: isColor,
-  WebkitBorderBeforeStyle: (node, isValueSet) =>
-    isValueSet &&
+  WebkitBorderBeforeStyle: (node, isMultiValue) =>
+    isMultiValue &&
     node.length <= 4 &&
     validateNodeList(matchesKeyword('WebkitBorderBeforeStyle')),
-  WebkitBorderBeforeWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
-      return validateNodeList(
-        node =>
-          isLength(node) || matchesKeyword('WebkitBorderBeforeWidth')(node)
+  WebkitBorderBeforeWidth: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return (
+        node.length <= 4 &&
+        validateNodeList(
+          node =>
+            isLength(node) || matchesKeyword('WebkitBorderBeforeWidth')(node)
+        )
       )
     }
 
     return isLength(node)
   },
   WebkitLineCamp: node => isInteger(node) && !node.negative,
-  WebkitMaskPositionX: node => isLength(node) || isPercentage(node),
-  WebkitMaskPositionY: node => isLength(node) || isPercentage(node),
+  WebkitMaskPositionX: isLengthPercentage,
+  WebkitMaskPositionY: isLengthPercentage,
   WebkitTapHighlightColor: isColor,
   WebkitTextFillColor: isColor,
   WebkitTextStrokeColor: isColor,
@@ -138,28 +109,59 @@ const validators = {
   animationName: isIdentifier,
   animationTimingFunction: isFunctionExpression,
   backgroundColor: isColor,
+  backgroundPosition: isPosition,
+  backgroundPositionX: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return (
+        node.length === 2 &&
+        matchesIdentifier(['left', 'right', 'x-start', 'x-end'])(node[0]) &&
+        isLengthPercentage(node[1])
+      )
+    }
+
+    return (
+      matchesIdentifier(['center', 'left', 'right', 'x-start', 'x-end'])(
+        node
+      ) || isLengthPercentage(node)
+    )
+  },
+  backgroundPositionY: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return (
+        node.length === 2 &&
+        matchesIdentifier(['top', 'bottom', 'y-start', 'y-end'])(node[0]) &&
+        isLengthPercentage(node[1])
+      )
+    }
+
+    return (
+      matchesIdentifier(['center', 'top', 'bottom', 'y-start', 'y-end'])(
+        node
+      ) || isLengthPercentage(node)
+    )
+  },
   baselineShift: node => isNumber(node) || isLength(node),
   behavior: isURL,
   blockSize: isSize,
-  border: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  border: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderWidth,
       validators.borderStyle,
       validators.borderColor,
-    ]),
-  borderBlockEnd: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+    ])(normalizeNodeList(node, isMultiValue)),
+  borderBlockEnd: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderBlockEndWidth,
       validators.borderBlockEndColor,
       validators.borderBlockEndStyle,
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderBlockEndColor: isColor,
-  borderBlockEndStyle: (node, isValueSet) =>
-    isValueSet &&
+  borderBlockEndStyle: (node, isMultiValue) =>
+    isMultiValue &&
     node.length <= 4 &&
     validateNodeList(matchesKeyword('borderBlockEndStyle')),
-  borderBlockEndWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
+  borderBlockEndWidth: (node, isMultiValue) => {
+    if (isMultiValue && node.length <= 4) {
       return validateNodeList(
         node => isLength(node) || matchesKeyword('borderBlockEndWidth')(node)
       )
@@ -167,19 +169,19 @@ const validators = {
 
     return isLength(node)
   },
-  borderBlockStart: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderBlockStart: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderBlockStartWidth,
       validators.borderBlockStartColor,
       validators.borderBlockStartStyle,
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderBlockStartColor: isColor,
-  borderBlockStartStyle: (node, isValueSet) =>
-    isValueSet &&
+  borderBlockStartStyle: (node, isMultiValue) =>
+    isMultiValue &&
     node.length <= 4 &&
     validateNodeList(matchesKeyword('borderBlockStartStyle')),
-  borderBlockStartWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
+  borderBlockStartWidth: (node, isMultiValue) => {
+    if (isMultiValue && node.length <= 4) {
       return validateNodeList(
         node => isLength(node) || matchesKeyword('borderBlockStartWidth')(node)
       )
@@ -187,46 +189,39 @@ const validators = {
 
     return isLength(node)
   },
-  borderBottom: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderBottom: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderBottomWidth,
       validators.borderBottomColor,
       matchesKeyword('borderBottomStyle'),
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderBottomColor: isColor,
-  borderBottomLeftRadius: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  borderBottomRightRadius: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
+  borderBottomLeftRadius: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  borderBottomRightRadius: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
   borderBottomWidth: isLength,
-  borderColor: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderColor: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderTopColor,
       validators.borderLeftColor,
       validators.borderBottomColor,
       validators.borderRightColor,
-    ]),
-  borderImageOutset: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
-      return validateNodeList(node => isLength(node) || isNumber(node))
-    }
-
-    return isLength(node) || isNumber(node)
-  },
-  borderImageRepeat: (node, isValueSet) =>
-    isValueSet &&
+    ])(normalizeNodeList(node, isMultiValue)),
+  borderImageOutset: (node, isMultiValue) =>
+    validateNodeList(node => isNumber(node) || isLength(number), 4)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  borderImageRepeat: (node, isMultiValue) =>
+    isMultiValue &&
     node.length === 2 &&
     validateNodeList(matchesKeyword('borderImageRepeat')),
-  borderImageWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
+  borderImageWidth: (node, isMultiValue) => {
+    if (isMultiValue && node.length <= 4) {
       return validateNodeList(
         node =>
           isLength(node) ||
@@ -238,19 +233,19 @@ const validators = {
 
     return isLength(node) || isPercentage(node) || isNumber(node)
   },
-  borderInlineEnd: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderInlineEnd: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderInlineEndWidth,
       validators.borderInlineEndColor,
       validators.borderInlineEndStyle,
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderInlineEndColor: isColor,
-  borderInlineEndStyle: (node, isValueSet) =>
-    isValueSet &&
+  borderInlineEndStyle: (node, isMultiValue) =>
+    isMultiValue &&
     node.length <= 4 &&
     validateNodeList(matchesKeyword('borderInlineEndStyle')),
-  borderInlineEndWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
+  borderInlineEndWidth: (node, isMultiValue) => {
+    if (isMultiValue && node.length <= 4) {
       return validateNodeList(
         node => isLength(node) || matchesKeyword('borderInlineEndWidth')(node)
       )
@@ -258,19 +253,19 @@ const validators = {
 
     return isLength(node)
   },
-  borderInlineStart: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderInlineStart: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderInlineStartWidth,
       validators.borderInlineStartColor,
       validators.borderInlineStartStyle,
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderInlineStartColor: isColor,
-  borderInlineStartStyle: (node, isValueSet) =>
-    isValueSet &&
+  borderInlineStartStyle: (node, isMultiValue) =>
+    isMultiValue &&
     node.length <= 4 &&
     validateNodeList(matchesKeyword('borderInlineStartStyle')),
-  borderInlineStartWidth: (node, isValueSet) => {
-    if (isValueSet && node.length <= 4) {
+  borderInlineStartWidth: (node, isMultiValue) => {
+    if (isMultiValue && node.length <= 4) {
       return validateNodeList(
         node => isLength(node) || matchesKeyword('borderInlineStartWidth')(node)
       )
@@ -278,76 +273,61 @@ const validators = {
 
     return isLength(node)
   },
-  borderLeft: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderLeft: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderLeftWidth,
       validators.borderLeftColor,
       matchesKeyword('borderLeftStyle'),
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderLeftColor: isColor,
   borderLeftWidth: isLength,
   // TODO: / value syntax
-  borderRadius: (node, isValueSet) => {
-    if (isValueSet) {
-      return (
-        node.length === 2 &&
-        validateNodeList(node => isLength(node) || isPercetange(node))(node)
-      )
-    }
-
-    return isLength(node) || isPercentage(node)
-  },
-  borderRight: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderRadius: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  borderRight: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderRightWidth,
       validators.borderRightColor,
       matchesKeyword('borderRightStyle'),
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderRightColor: isColor,
   borderRightWidth: isLength,
-  borderSpacing: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(isLength)
-    }
-
-    return isLength(node)
-  },
-  borderStyle: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderSpacing: (node, isMultiValue) =>
+    validateNodeList(isLength, 2)(normalizeNodeList(node, isMultiValue)),
+  borderStyle: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       matchesKeyword('borderLeftStyle'),
       matchesKeyword('borderTopStyle'),
       matchesKeyword('borderBottomStyle'),
       matchesKeyword('borderRightStyle'),
-    ]),
-  borderTop: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+    ])(normalizeNodeList(node, isMultiValue)),
+  borderTop: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderTopWidth,
       validators.borderTopColor,
       matchesKeyword('borderTopStyle'),
-    ]),
+    ])(normalizeNodeList(node, isMultiValue)),
   borderTopColor: isColor,
   borderTopWidth: isLength,
-  borderTopLeftRadius: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  borderTopRightRadius: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
-      return validateNodeList(node => isLength(node) || isPercentage(node))
-    }
-    return isLength(node) || isPercentage(node)
-  },
-  borderWidth: (node, isValueSet) =>
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  borderTopLeftRadius: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  borderTopRightRadius: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  borderWidth: (node, isMultiValue) =>
+    validateUnorderedNodeList([
       validators.borderTopWidth,
       validators.borderLeftWidth,
       validators.borderBottomWidth,
       validators.borderRightWidth,
-    ]),
-  bottom: isLength,
-  boxFlex: node => isFloat(node) || isInteger(node),
+    ])(normalizeNodeList(node, isMultiValue)),
+  bottom: isLengthPercentage,
+  boxFlex: isNumber,
   boxFlexGroup: isInteger,
   boxOrdinalGroup: isInteger,
   caretColor: isColor,
@@ -360,14 +340,14 @@ const validators = {
   columnRuleWidth: isLength,
   columnWidth: isLength,
   fillOpacity: isOpacity,
-  flex: (node, isValueSet) => {
-    if (isValueSet) {
+  flex: (node, isMultiValue) => {
+    if (isMultiValue) {
       return (
         (node.length === 2 &&
-          validateUnorderedNodeList(node, [
+          validateUnorderedNodeList([
             validators.flexGrow,
             validators.flexBasis,
-          ])) ||
+          ])(node)) ||
         (node.length === 3 &&
           ((validators.flexGrow(node[0]) &&
             validators.flexShrink(node[1]) &&
@@ -380,11 +360,17 @@ const validators = {
 
     return validators.flexBasis(node) || validators.flexGrow(node)
   },
-  flexGrow: node => isFloat(node) || isInteger(node),
-  flexShrink: node => isFloat(node) || isInteger(node),
+  flexBasis: isSize,
+  flexFlow: (value, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesKeyword('flexDirection'),
+      matchesKeyword('flexWrap'),
+    ])(normalizeNodeList(node, isMultiValue)),
+  flexGrow: isNumber,
+  flexShrink: isNumber,
   fontFamily: node => isStringLiteral(node) || isIdentifier(node),
   fontLanguageOverwrite: isStringLiteral,
-  fontSize: isLength,
+  fontSize: isLengthPercentage,
   fontSizeAdjust: isFloat,
   fontWeight: node =>
     isInteger(node) &&
@@ -394,23 +380,47 @@ const validators = {
   height: isSize,
   inlineSize: isSize,
   kerning: isSvgLength,
-  left: isLength,
-  letterSpacing: isLength,
-  lineHeight: node => isLength(node) || isFloat(node) || isInteger(node),
+  left: isLengthPercentage,
+  letterSpacing: isLengthPercentage,
+  lineHeight: node => isLength(node) || isNumber(node),
   listStyleImage: isURL,
-  marginBlockEnd: isLength,
-  marginBlockStart: isLength,
-  marginBottom: isLength,
-  marginInlineEnd: isLength,
-  marginInlineStart: isLength,
-  marginLeft: isLength,
-  marginRight: isLength,
-  marginTop: isLength,
+  margin: (node, isMultiValue) =>
+    validateNodeList(
+      // margin-left is equivalent to -top, -bottom, -right
+      node => validators.marginLeft(node) || matchesKeyword('marginLeft')(node),
+      4
+    )(normalizeNodeList(node, isMultiValue)),
+  marginBlockEnd: isLengthPercentage,
+  marginBlockStart: isLengthPercentage,
+  marginBottom: isLengthPercentage,
+  marginInlineEnd: isLengthPercentage,
+  marginInlineStart: isLengthPercentage,
+  marginLeft: isLengthPercentage,
+  marginRight: isLengthPercentage,
+  marginTop: isLengthPercentage,
   marker: isURL,
   markerEnd: isURL,
   markerMid: isURL,
   markerOffset: isLength,
   markerStart: isURL,
+  maskBorderOutset: (node, isMultiValue) =>
+    validateNodeList(node => isLength(node) || isNumber(node), 4)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  maskBorderOutset: (node, isMultiValue) =>
+    isMultiValue &&
+    node.length === 2 &&
+    validateNodeList(matchesKeyword('maskBorderOutset'))(node),
+  maskBorderSource: isImage,
+  maskBorderWidth: (node, isMultiValue) =>
+    validateNodeList(
+      node =>
+        isLengthPercentage(node) ||
+        isNumber(node) ||
+        matchesKeyword('maskBorderWidth')(node),
+      4
+    )(normalizeNodeList(node, isMultiValue)),
+  maskPosition: isPosition,
   maxBlockSize: isLength,
   maxHeight: isLength,
   maxInlineSize: isLength,
@@ -423,41 +433,59 @@ const validators = {
   msFlexNegative: isNumber,
   msFlexOrder: isInteger,
   msFlexPositive: isNumber,
+  objectPosition: isPosition,
   offsetBlockEnd: isLength,
   offsetBlockStart: isLength,
-  offsetDistance: isLength,
+  offsetDistance: isLengthPercentage,
   offsetInlineEnd: isLength,
   offsetInlineStart: isLength,
+  offsetAnchor: isPosition,
+  offsetPosition: isPosition,
   opacity: isOpacity,
   order: isInteger,
   orphans: isInteger,
   outlineColor: isColor,
   outlineOffset: isLength,
   outlineWidth: isLength,
-  paddingBlockEnd: isLength,
-  paddingBlockStart: isLength,
-  paddingBottom: isLength,
-  paddingInlineEnd: isLength,
-  paddingInlineStart: isLength,
-  // TODO: add laddings with percentage
-  paddingLeft: node => isLength(node) || isPercentage(node),
-  paddingRight: isLength,
-  paddingTop: isLength,
+  padding: (node, isMultiValue) =>
+    validateNodeList(
+      // padding-left is equivalent to -top, -bottom, -right
+      node =>
+        validators.paddingLeft(node) || matchesKeyword('paddingLeft')(node),
+      4
+    )(normalizeNodeList(node, isMultiValue)),
+  paddingBlockEnd: isLengthPercentage,
+  paddingBlockStart: isLengthPercentage,
+  paddingBottom: isLengthPercentage,
+  paddingInlineEnd: isLengthPercentage,
+  paddingInlineStart: isLengthPercentage,
+  paddingLeft: isLengthPercentage,
+  paddingRight: isLengthPercentage,
+  paddingTop: isLengthPercentage,
   pauseAfter: isTime,
   pauseBefore: isTime,
   perspective: isLength,
+  perspectiveOrigin: isPosition,
+  quotes: (node, isMultiValue) =>
+    isMultiValue &&
+    node.length % 2 === 0 &&
+    validateNodeList(isStringLiteral)(node),
+  rest: (node, isMultiValue) =>
+    validateUnorderedNodeList([validators.restAfter, validators.restBefore])(
+      normalizeNodeList(node, isMultiValue)
+    ),
   restAfter: isTime,
   restBefore: isTime,
-  right: isLength,
-  shapeImageThreshold: node => isFloat(node) || isInteger(node),
-  shapeMargin: isLength,
-  strokeDasharray: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateNodeList(isSvgLength)(node)
-    }
-
-    return isSvgLength(node)
-  },
+  right: isLengthPercentage,
+  shapeImageThreshold: isNumber,
+  scrollSnapCoordinate: (node, isMultiValue, isValueList) =>
+    (!isValueList && matchesIdentifier(['none'])(node)) || isPosition(node),
+  scrollSnapDestination: isPosition,
+  scrollSnapPointsX: isRepeat,
+  scrollSnapPointsY: isRepeat,
+  shapeMargin: isLengthPercentage,
+  strokeDasharray: (node, isMultiValue) =>
+    validateNodeList(isSvgLength)(normalizeNodeList(node, isMultiValue)),
   strokeDashoffset: isSvgLength,
   strokeMiterlimit: node =>
     (isInteger(node) && node.value >= 1) ||
@@ -465,26 +493,70 @@ const validators = {
   strokeOpacity: isOpacity,
   strokeWidth: isSvgLength,
   tabSize: isInteger,
+  textDecoration: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesKeyword('textDecorationStyle'),
+      validators.textDecorationColor,
+      node =>
+        validators.textDecorationLine(node) ||
+        matchesKeyword('textDecorationLine')(node),
+    ])(normalizeNodeList(node, isMultiValue)),
   textDecorationColor: isColor,
+  textDecorationLine: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesIdentifier(['underline']),
+      matchesIdentifier(['overline']),
+      matchesIdentifier(['line-through']),
+      matchesIdentifier(['blink']),
+    ])(normalizeNodeList(node, isMultiValue)),
+  textDecorationSkip: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesIdentifier(['objects']),
+      matchesIdentifier(['spaces']),
+      matchesIdentifier(['ink']),
+      matchesIdentifier(['edges']),
+      matchesIdentifier(['box-decoration']),
+    ])(normalizeNodeList(node, isMultiValue)),
+  textEmphasis: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      validators.textEmphasisColor,
+      validators.textEmphasisStyle,
+    ])(normalizeNodeList(node, isMultiValue)),
   textEmphasisColor: isColor,
-  textEmphasisPosition: (node, isValueSet) =>
-    isValueSet &&
+  textEmphasisPosition: (node, isMultiValue) =>
+    isMultiValue &&
     node.length === 2 &&
     matchesIdentifier(['over', 'under'])(node[0]) &&
     matchesIdentifier(['left', 'right'])(node[1]),
-  textIdent: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateUnorderedNodeList(node, [
-        node => isLength(node) || isPercentage(node),
-        matchesIdentifier(['hanging']),
-        matchesIdentifier(['each-line']),
-      ])
+  textEmphasisStyle: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return validateUnorderedNodeList([
+        matchesIdentifier(['filled', 'open']),
+        matchesIdentifier([
+          'dot',
+          'circle',
+          'double-circle',
+          'triangle',
+          'sesame',
+        ]),
+      ])(node)
     }
 
-    return isLength(node) || isPercentage(node)
+    return isStringLiteral(node)
   },
-  textOverflow: (node, isValueSet) => {
-    if (isValueSet && node.length === 2) {
+  textIndent: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return validateUnorderedNodeList([
+        isLengthPercentage,
+        matchesIdentifier(['hanging']),
+        matchesIdentifier(['each-line']),
+      ])(node)
+    }
+
+    return isLengthPercentage(node)
+  },
+  textOverflow: (node, isMultiValue) => {
+    if (isMultiValue && node.length === 2) {
       return validateNodeList(
         node => isStringLiteral(node) || matchesKeyword('textOverflow')(node)
       )
@@ -492,8 +564,8 @@ const validators = {
 
     return isStringLiteral(node)
   },
-  textShadow: (node, isValueSet) => {
-    if (isValueSet) {
+  textShadow: (node, isMultiValue) => {
+    if (isMultiValue) {
       if (node.length === 2) {
         return validateNodeList(isLength)(node)
       }
@@ -516,14 +588,20 @@ const validators = {
     }
   },
   textSizeAdjust: isPercentage,
+  textUnderlinePosition: (node, isMultiValue) =>
+    isMultiValue &&
+    validateUnorderedNodeList([
+      matchesIdentifier(['under']),
+      matchesIdentifier(['left', 'right']),
+    ])(node),
   top: isLength,
-  touchAction: (node, isValueSet) => {
-    if (isValueSet) {
-      return validateUnorderedNodeList(node, [
+  touchAction: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return validateUnorderedNodeList([
         matchesIdentifier(['pan-x', 'pan-left', 'pan-right']),
         matchesIdentifier(['pan-y', 'pan-up', 'pan-down']),
         matchesIdentifier(['pinch-zoom']),
-      ])
+      ])(node)
     }
 
     return matchesIdentifier([
@@ -536,23 +614,56 @@ const validators = {
       'pinch-zoom',
     ])(node)
   },
-  transition: (node, isValueSet) => {
-    validateUnorderedNodeList(isValueSet ? node : [node], [
+  transformOrigin: (node, isMultiValue) => {
+    if (isMultiValue) {
+      return (
+        (node.length === 2 &&
+          validateUnorderedNodeList([
+            node =>
+              isLengthPercentage(node) ||
+              matchesIdentifier(['left', 'center', 'right'])(node),
+            node =>
+              isLengthPercentage(node) ||
+              matchesIdentifier(['top', 'center', 'bottom'])(node),
+          ])(node)) ||
+        (node.length === 3 &&
+          validateUnorderedNodeList([
+            node =>
+              isLengthPercentage(node) ||
+              matchesIdentifier(['left', 'center', 'right'])(node),
+            node =>
+              isLengthPercentage(node) ||
+              matchesIdentifier(['top', 'center', 'bottom'])(node),
+          ])([node[0], node[1]]) &&
+          isLengthPercentage(node[2]))
+      )
+    }
+
+    return isLengthPercentage(node)
+  },
+  transition: (node, isMultiValue) => {
+    validateUnorderedNodeList([
       validators.transitionDelay,
       validators.transitionDuration,
       validators.transitionProperty,
       validators.transitionTimingFunction,
-    ])
+    ])(normalizeNodeList(node, isMultiValue))
   },
+  transitionDelay: isTime,
+  transitionDuration: isTime,
   transitionProperty: isIdentifier,
   transitionTimingFunction: node =>
     isCubicBezier(node) || isFrames(node) || isSteps(node),
-  verticalAlign: node => isLength(node) || isPercentage(node),
+  verticalAlign: isLengthPercentage,
   voiceBalance: isNumber,
   voiceDuration: isTime,
   widows: isInteger,
   width: isSize,
-  wordSpacing: node => isLength(node) || isPercentage(node),
+  willChange: (node, isMultiValue, isValueList) =>
+    isValueList
+      ? isIdentifier(node) && node.value !== 'auto'
+      : matchesIdentifier(['auto'])(node),
+  wordSpacing: isLengthPercentage,
   zIndex: isInteger,
   zoom: node => isNumber(node) || isPercentage(node),
 }

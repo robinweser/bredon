@@ -14,7 +14,8 @@ const defaultValidator = () => false
 
 export default function isValidPropertyValue(
   property: string,
-  ast: any
+  ast: any,
+  isList?: boolean = false
 ): boolean {
   if (isValueList(ast)) {
     if (ast.body.length > 1 && !isValueListProperty(property)) {
@@ -27,7 +28,8 @@ export default function isValidPropertyValue(
       // the property is invalid as soon as one value is invalid
       // TODO: do not regenerate the value
       (isValid, cssValue) =>
-        isValid && isValidPropertyValue(property, cssValue),
+        isValid &&
+        isValidPropertyValue(property, cssValue, ast.body.length > 1),
       true
     )
   }
@@ -47,7 +49,7 @@ export default function isValidPropertyValue(
         return false
       }
 
-      return validator(ast.body, true)
+      return validator(ast.body, true, isList)
     }
 
     const node = ast.body[0]
@@ -58,7 +60,7 @@ export default function isValidPropertyValue(
       // also check for any keyword value
       matchesKeyword(property)(node) ||
       // use the property validator
-      validator(node)
+      validator(node, false, isList)
     )
   }
 

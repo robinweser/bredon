@@ -2,13 +2,13 @@
 
 For every AST node, the `bredon-types` package also ships a builder function which safely creates AST nodes manually.
 
-* [dimension](#dimensionvalue-number-unit-unit)
+* [dimension](#dimensionvalue-integer-float-unit-unit)
 * [expression](#expressionbody-arraynode)
 * [float](#floatinteger-number-fractional-number-isnegative-boolean--false)
 * [functionExpression](#functionexpressioncallee-string-params-arraynode)
 * [hexColor](#hexcolorcolor-string)
 * [identifier](#identifiername-string)
-* [integer](#integervalue-number)
+* [integer](#integervalue-number-isnegative-boolean--false)
 * [operator](#operatorsign--------)
 * [parenthesis](#parenthesisparen--)
 * [separator](#separator)
@@ -17,15 +17,16 @@ For every AST node, the `bredon-types` package also ships a builder function whi
 * [value](#valuebody-arraynode)
 * [valueList](#valuelistbody-arraycssvalue)
 
-### `dimension(value: number, unit: Unit)`
+### `dimension(value: Integer | Float, unit: Unit)`
 
-where Unit refers to one of the validunits:<br>
-`%` | `em` | `ex`  | `ch`  | `rem`  | `vw`  | `vh`  | `vmin`  | `vmax`  | `cm`  | `mm`  | `q`  | `in`  | `pt`  | `pc`  | `px`  | `deg`  | `grad`  | `rad`  | `turn`  | `s`  | `ms`  | `Hz`  | `kHz`  | `dpi`  | `dpcm`  | `dppx`
+where Unit refers to one of the valid units:<br>
+`%`, `em`, `ex` , `ch` , `rem` , `vw` , `vh` , `vmin` , `vmax` , `cm` , `mm` , `q` , `in` , `pt` , `pc` , `px` , `deg` , `grad` , `rad` , `turn` , `s` , `ms` , `Hz` , `kHz` , `dpi` , `dpcm` , `dppx`
 
 ```javascript
 import { dimension } from 'bredon-types'
 
-dimension(300, 'px')
+dimension(integer(300), 'px') // => 30px
+dimension(float(33, 33, true), '%') // => -33.33%
 ```
 
 ### `expression(body: Array<node>)`
@@ -41,8 +42,8 @@ expression([ /* child nodes */ ])
 ```javascript
 import { float } from 'bredon-types'
 
-float(0, 55)
-float(1, 10, true)
+float(0, 55) // => .55
+float(1, 10, true) // => -1.10
 ```
 
 ### `functionExpression(callee: string, params: Array<node>)`
@@ -50,7 +51,7 @@ float(1, 10, true)
 ```javascript
 import { functionExpression } from 'bredon-types'
 
-functionExpression('rgba', [ /* param nodes */ ])
+functionExpression('rgba', [ /* param nodes */ ]) // => rgba(...)
 ```
 
 ### `hexColor(color: string)`
@@ -58,7 +59,7 @@ functionExpression('rgba', [ /* param nodes */ ])
 ```javascript
 import { hexColor } from 'bredon-types'
 
-hexColor('FFF')
+hexColor('FFF') // => #FFF
 ```
 
 ### `identifier(name: string)`
@@ -66,7 +67,7 @@ hexColor('FFF')
 ```javascript
 import { identifier } from 'bredon-types'
 
-identifier('solid')
+identifier('solid') // => solid
 ```
 
 ##### `integer(value: number, isNegative?: boolean)`
@@ -74,8 +75,8 @@ identifier('solid')
 ```javascript
 import { integer } from 'bredon-types'
 
-integer(55)
-integer(55, true)
+integer(55) // => 55
+integer(55, true) // => -55
 ```
 
 ### `operator(sign: '+' | '-' | '/' | '*')`
@@ -83,7 +84,7 @@ integer(55, true)
 ```javascript
 import { operator } from 'bredon-types'
 
-operator('+')
+operator('+') // => +
 ```
 
 ##### `parenthesis(paren: '(' | ')')`
@@ -91,7 +92,7 @@ operator('+')
 ```javascript
 import { parenthesis } from 'bredon-types'
 
-parenthesis('(')
+parenthesis('(') // => (
 ```
 
 ### `seperator()`
@@ -99,7 +100,7 @@ parenthesis('(')
 ```javascript
 import { seperator } from 'bredon-types'
 
-seperator()
+seperator() // => /
 ```
 
 ### `stringLiteral(str: string, quote?: '"' | "'" = "'")`
@@ -107,7 +108,7 @@ seperator()
 ```javascript
 import { stringLiteral } from 'bredon-types'
 
-stringLiteral("Hello, I am a string.", '"')
+stringLiteral("Hello, I am a string.", '"') // => "Hello, I am a string."
 ```
 
 ### `url(uri: string)`
@@ -115,7 +116,7 @@ stringLiteral("Hello, I am a string.", '"')
 ```javascript
 import { url } from 'bredon-types'
 
-url("https://www.github.com/")
+url("https://www.github.com/") // => url("https://www.github.com/") 
 ```
 
 ### `value(body: Array<node>, isImportant?: boolean = false)`
