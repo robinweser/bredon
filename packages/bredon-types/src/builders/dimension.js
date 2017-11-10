@@ -1,5 +1,9 @@
 /* @flow */
-import type { DimensionNode } from '../../../../flowtypes/AST'
+import type {
+  DimensionNode,
+  FloatNode,
+  IntegerNode,
+} from '../../../../flowtypes/AST'
 
 type Unit =
   | '%'
@@ -30,10 +34,13 @@ type Unit =
   | 'dpcm'
   | 'dppx'
 
-export default function dimension(value: number, unit: Unit): DimensionNode {
+export default function dimension(
+  value: FloatNode | IntegerNode,
+  unit: Unit
+): DimensionNode {
   return {
     type: 'Dimension',
     value,
-    unit
+    unit,
   }
 }

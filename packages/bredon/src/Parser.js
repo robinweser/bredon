@@ -15,30 +15,28 @@ import {
   hexColor,
   keyword,
   separator,
-  cssValue,
-  multiValue,
-  isSeparator
+  value,
+  valueList,
+  isSeparator,
 } from 'bredon-types'
 
 import isValidUnit from './utils/isValidUnit'
 import isValidHexadezimal from './utils/isValidHexadezimal'
-import isKeyword from './utils/isKeyword'
 import getQuote from './utils/getQuote'
-import parseMultiValue from './utils/parseMultiValue'
 
 import type { Token } from '../../../flowtypes/Token'
 import type {
-  MultiValue,
-  CSSValue,
+  ValueList,
+  Value,
   Node,
   SimpleNode,
   DimensionNode,
   FloatNode,
-  FunctionNode
+  FunctionNode,
 } from '../../../flowtypes/AST'
 
 const ruleMap = {
-  important: /^[!]$/,
+  exclamation_mark: /^[!]$/,
   quote: /^('|\\'|"|\\")$/,
   operator: /^(\+|-|\*|\/)$/,
   identifier: /^[a-z-]+$/i,
@@ -49,10 +47,12 @@ const ruleMap = {
   hex: /^[#]$/,
   whitespace: /^\s+$/,
   paren: /^[()]$/,
-  comma: /^,+$/
+  comma: /^,+$/,
 }
 
 export default class Parser {
+  currentNode: Value
+  nodes: Array<Value>
   currentPosition: number
   currentToken: Token
   parenBalance: number
@@ -83,20 +83,37 @@ export default class Parser {
 
   walkTokens(): Node {
     this.updateCurrentToken()
-    this.parseWhitespace()
 
-    // skip parsing if no more tokens are coming
-    // this happens if the strings ends with whitespace
-    if (!this.currentToken) {
-      return false
-    }
+    // the following token do not return a node
+    // but rather add some flags
+    while (
+      this.currentToken.type === 'comma' ||
+      this.currentToken.type === 'whitespace' ||
+      this.currentToken.type === 'exclamation_mark'
+    ) {
+      this.parseSeparator()
 
-    this.parseImportant()
+      if (!this.currentToken) {
+        throw new SyntaxError(
+          `A comma separator (,) must be followed by a value.`
+        )
+      }
 
-    // skip parsing if no more tokens are coming
-    // this time it happens if the last token was an !important
-    if (!this.currentToken) {
-      return false
+      this.parseWhitespace()
+
+      // skip parsing if no more tokens are coming
+      // this happens if the strings ends with whitespace
+      if (!this.currentToken) {
+        return false
+      }
+
+      this.parseImportant()
+
+      // skip parsing if no more tokens are coming
+      // this time it happens if the last token was an !important
+      if (!this.currentToken) {
+        return false
+      }
     }
 
     const node =
@@ -106,8 +123,7 @@ export default class Parser {
       this.parseFloat() ||
       this.parseIdentifier() ||
       this.parseParenthesis() ||
-      this.parseStringLiteral() ||
-      this.parseSeparator()
+      this.parseStringLiteral()
 
     if (!node) {
       throw new SyntaxError(
@@ -120,30 +136,27 @@ export default class Parser {
     return node
   }
 
-  parse(input: string): MultiValue | CSSValue {
+  parse(input: string): ValueList {
     this.tokens = tokenize(input, ruleMap)
 
     this.currentPosition = 0
     this.parenBalance = 0
-    this.important = false
     this.scope = ''
 
-    const nodes = []
+    this.nodes = []
+
+    this.currentNode = value()
+    this.nodes.push(this.currentNode)
 
     while (this.isRunning()) {
       const node = this.walkTokens()
 
       if (node) {
-        nodes.push(node)
+        this.currentNode.body.push(node)
       }
     }
 
-    // split values into multi value if separator is present
-    if (nodes.find(node => isSeparator(node) && node.value === ',')) {
-      return multiValue(parseMultiValue(nodes))
-    }
-
-    return cssValue(nodes, this.important)
+    return valueList(this.nodes)
   }
 
   parseHex(): SimpleNode {
@@ -247,7 +260,7 @@ export default class Parser {
         ++this.currentPosition
 
         return dimension(
-          isNegative ? -integerPart : integerPart,
+          integer(integerPart, isNegative),
           nextToken.value.toLowerCase()
         )
       }
@@ -259,7 +272,7 @@ export default class Parser {
         return this.parseFloat(integerPart, isNegative)
       }
 
-      return integer(isNegative ? -integerPart : integerPart)
+      return integer(integerPart, isNegative)
     }
   }
 
@@ -273,7 +286,34 @@ export default class Parser {
         if (nextToken.type === 'number') {
           this.updateCurrentToken(1)
 
-          return float(integerPart, parseInt(nextToken.value, 10), isNegative)
+          const floatValue = float(
+            integerPart,
+            parseInt(nextToken.value, 10),
+            isNegative
+          )
+
+          const innerNextToken = this.getNextToken(1)
+
+          // Parsing dimensions if a float is directly followed
+          // by an identifier that matches any of the valid units
+          if (
+            innerNextToken &&
+            (innerNextToken.type === 'identifier' ||
+              innerNextToken.type === 'percentage')
+          ) {
+            if (!isValidUnit(innerNextToken.value)) {
+              throw new SyntaxError(
+                `A float (${this.currentToken
+                  .value}) must be followed by a valid unit. Instead found "${innerNextToken.value}" of type "${innerNextToken.type}".`
+              )
+            }
+
+            ++this.currentPosition
+
+            return dimension(floatValue, innerNextToken.value.toLowerCase())
+          }
+
+          return floatValue
         }
 
         throw new SyntaxError(
@@ -288,7 +328,7 @@ export default class Parser {
   }
 
   parseImportant(): any {
-    if (this.currentToken.type === 'important') {
+    if (this.currentToken.type === 'exclamation_mark') {
       const nextToken = this.getNextToken(1)
 
       if (nextToken) {
@@ -297,7 +337,7 @@ export default class Parser {
           nextToken.value.match(/^important$/i) !== null
         ) {
           this.updateCurrentToken(2)
-          this.important = true
+          this.currentNode.important = true
           return
         }
 
@@ -342,11 +382,6 @@ export default class Parser {
         }
 
         return this.parseFunctionExpression(callee)
-      }
-
-      // parsing keywords into a special AST node
-      if (isKeyword(this.currentToken.value)) {
-        return keyword(this.currentToken.value)
       }
 
       return identifier(this.currentToken.value)
@@ -437,9 +472,11 @@ export default class Parser {
     }
   }
 
-  parseSeparator(): SimpleNode {
+  parseSeparator() {
     if (this.currentToken.type === 'comma') {
-      return separator(',')
+      this.currentNode = value()
+      this.nodes.push(this.currentNode)
+      this.updateCurrentToken(1)
     }
   }
 

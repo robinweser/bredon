@@ -10,6 +10,6 @@ export default function float(
     type: 'Float',
     fractional,
     integer,
-    negative: isNegative
+    negative: isNegative,
   }
 }

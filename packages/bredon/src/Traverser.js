@@ -22,8 +22,8 @@ export default class Traverser {
     }
 
     switch (node.type) {
-      case 'CSSValue':
-      case 'MutliValue':
+      case 'Value':
+      case 'ValueList':
       case 'Expression':
         this.traverseNodeList(node.body, node)
         break
@@ -33,8 +33,6 @@ export default class Traverser {
         break
 
       case 'Integer':
-      case 'Keyword':
-      case 'Important':
       case 'Dimension':
       case 'Float':
       case 'Identifier':

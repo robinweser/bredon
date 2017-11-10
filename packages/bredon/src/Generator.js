@@ -9,31 +9,34 @@ export default class Generator {
   }
 
   generate(node: ASTNode): string {
-    const generateCSSValue = this.generate.bind(this)
+    const generateValue = this.generate.bind(this)
     const customGenerator = this.generators[node.type]
 
     if (customGenerator) {
-      return customGenerator(node, generateCSSValue)
+      return customGenerator(node, generateValue)
     }
 
     switch (node.type) {
-      case 'MultiValue':
-        return node.body.map(generateCSSValue).join(',')
+      case 'ValueList':
+        return node.body.map(generateValue).join(',')
 
-      case 'CSSValue':
+      case 'Value':
         return (
-          node.body.map(generateCSSValue).join(' ') +
+          node.body.map(generateValue).join(' ') +
           (node.important ? '!important' : '')
         )
 
       case 'Expression':
-        return node.body.map(generateCSSValue).join('')
+        return node.body.map(generateValue).join('')
 
       case 'FunctionExpression':
-        return `${node.callee}(${node.params.map(generateCSSValue).join(',')})`
+        return `${node.callee}(${node.params.map(generateValue).join(',')})`
 
       case 'Dimension':
-        return node.value + node.unit
+        return generateValue(node.value) + node.unit
+
+      case 'Integer':
+        return `${node.negative ? '-' : ''}${node.value}`
 
       case 'Float':
         return `${node.negative ? '-' : ''}${node.integer !== 0
@@ -54,10 +57,8 @@ export default class Generator {
         return '#' + node.value
 
       case 'Identifier':
-      case 'Keyword':
       case 'Parenthesis':
       case 'Separator':
-      case 'Integer':
       case 'URL':
         return node.value
 

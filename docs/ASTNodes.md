@@ -4,59 +4,57 @@ Every AST node is an object with certain properties. They all share the `type` f
 All primitive nodes also share the `value` property which simply yields the node's value.<br>
 Container nodes on the other hand have a property that contains an array of child nodes.
 
-### Root Node
-There are two different root node types.
+## Root Nodes
 
-#### CSSValue
-The CSSValue root is used if the parsed CSS value only contains a single value definition.<br>
-Basically all values are single values as long as they're not comma-separated.
-
-For example, both `1px` and `1px solid black` are single values.
+#### ValueList
+ValueList is the **root** node of every bredon AST.<br>
+It contains a list of Value nodes which are comma-separated CSS values.<br>
+For example: `opacity 100ms linear, transform 1s ease-in`
 
 ```javascript
 {
-  type: 'CSSValue',
-  body: [
-    /* child nodes */
-  ]
-}
-```
-
-#### MultiValue
-The MultiValue root is used if the parsed value string contains multiple comma-separated values.<br>
-It contains at least 2 CSSValue child nodes.
-
-For example, `opacity 100ms linear, transform 1s ease-in` is a multi value.
-
-```javascript
-{
-  type: 'MultiValue',
+  type: 'ValueList',
   body: [{
-    type: 'CSSValue',
+    type: 'Value',
+    important: false,
     body: [
-      /* first value child nodes */
+      /* AST for opacity 100ms linear */
     ]
   }, {
     type: 'CSSValue',
+    important: false,
     body: [
-      /* second value child nodes */
+      /* AST for transform 1s ease-in */
     ]
   }]
 }
 ```
 
+#### Value
+Value contains a set of nodes that are whitespace-separated.<br>
+
+For example: `1px solid black`
+
+```javascript
+{
+  type: 'Value',
+  important: false,
+  body: [
+    /* Nodes for 1px solid black */
+  ]
+}
+```
 
 ### Node Types
 * [Identifier](#identifier)
-* [Integer](#integer)
-* [Keyword](#keyword)
 * [Operator](#operator)
 * [HexColor](#hexcolor)
 * [Parenthesis](#parenthesis)
 * [URL](#url)
 * [StringLiteral](#stringliteral)
-* [Dimension](#dimension)
+* [Integer](#integer)
 * [Float](#float)
+* [Dimension](#dimension)
 * [FunctionExpression](#functionexpression)
 * [Expression](#expression)
 
@@ -67,27 +65,6 @@ Identifiers are all kind of words such as `solid`.
 {
   type: 'Identifier',
   value: 'solid'
-}
-```
-
-## Integer
-Integers are simple numbers without a unit or fractional part.
-
-```javascript
-// e.g. 34
-{
-  type: 'Integer',
-  value: 34
-}
-```
-
-## Keyword
-Keywords are special identifier that are globally valid for CSS. These are `inherit`, `initial` and `unset`.
-```javascript
-// e.g. inherit
-{
-  type: 'Keyword',
-  value: 'inherit'
 }
 ```
 
@@ -109,7 +86,7 @@ HexColor represents color values given in hexadecimal notation.
 // e.g. #FF66FF
 {
   type: 'HexColor',
-  value: '#FF66FF'
+  value: 'FF66FF'
 }
 ```
 
@@ -151,21 +128,19 @@ Strings are all values that are wrapped in quotes, either single `'` or double `
 }
 ```
 
-## Dimension
-Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
+## Integer
+Integers are simple numbers without a unit or fractional part.
 
 | Property | Value | Description |
-| ------ | --- |  ------ |
-| value | (*number*) | The pure value without a unit |
-| unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
-
+| ------ | --- | ------ |
+| negative | (*boolean*) | flag indicating a negative value |
 
 ```javascript
-// e.g. 12px
+// e.g. 34
 {
-  type: 'Dimension',
-  unit: 'px',
-  value: 12
+  type: 'Integer',
+  negative: false,
+  value: 34
 }
 ```
 
@@ -185,6 +160,40 @@ Floats are floating-point numbers with a fractional part and an integer part.
   integer: 587,
   fractional: 923,
   negative: false
+}
+```
+
+## Dimension
+Dimensions are special integers or floats that are postfixed with an extra unit. They are used *e.g. to measure font sizes*.
+
+| Property | Value | Description |
+| ------ | --- |  ------ |
+| value | (*[Integer](#integer)*, *[Float](#float)*) | The pure value without a unit |
+| unit | `%`, `em`, `ex`, `ch`, `rem`, `vw`, `vh`, `vmin`, `vmax`, `cm`, `mm`, `q`, `in`, `pt`, `pc`, `px`, `deg`, `grad`, `rad`, `turn`, `s`, `ms`, `Hz`, `kHz`, `dpi`, `dpcm`, `dppx`  | The concrete dimension unit |
+
+
+```javascript
+// e.g. 12px
+{
+  type: 'Dimension',
+  unit: 'px',
+  value: {
+    type: 'Integer',
+    negative: false,
+    value: 12
+  }
+}
+
+// e.g. 33.33%
+{
+  type: 'Dimension',
+  unit: 'px',
+  value: {
+    type: 'Float',
+    fractional: 33,
+    integer: 33,
+    negative: false
+  }
 }
 ```
 

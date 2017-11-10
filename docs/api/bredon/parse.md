@@ -22,6 +22,7 @@ ast === {
     unit: 'px',
     value: {
       type: 'Integer',
+      negative: false,
       value: 1
     }
   }, {
@@ -35,17 +36,21 @@ ast === {
     },
     params: [{
       type: 'Integer',
+      negative: false,
       value: 100
     }, {
       type: 'Integer',
+      negative: false,
       value: 250
     }, {
       type: 'Integer',
+      negative: false,
       value: 50
     }, {
       type: 'Float',
       integer: 0,
-      fractional: 55
+      fractional: 55,
+      negative: false
     }]
   }]
 }

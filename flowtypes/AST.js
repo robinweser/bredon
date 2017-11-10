@@ -2,37 +2,44 @@ export type SimpleNode = { type: string, value: string | number }
 export type FunctionNode = {
   type: 'FunctionExpression',
   callee: string,
-  params: Array<Node>
+  params: Array<Node>,
 }
 export type DimensionNode = {
   type: 'Dimension',
   value: number,
   dimension: string,
-  unit: string
+  unit: string,
 }
 export type IntegerNode = {
   type: 'Integer',
   value: number,
-  negative?: boolean
+  negative?: boolean,
 }
 export type FloatNode = {
   type: 'Float',
   integer?: number,
-  fractional: number
+  fractional: number,
 }
 export type StringNode = {
   type: 'StringLiteral',
   value: string,
-  quote: '"' | "'"
+  quote: '"' | "'",
 }
 export type ExpressionNode = {
   type: 'Expression',
-  body: Array<Node>
+  body: Array<Node>,
 }
 
-export type Node = SimpleNode | FunctionNode | DimensionNode | FloatNode | IntegerNode | StringNode | ExpressionNode
+export type Node =
+  | SimpleNode
+  | FunctionNode
+  | DimensionNode
+  | FloatNode
+  | IntegerNode
+  | StringNode
+  | ExpressionNode
 
-export type CSSValue = { type: 'CSSValue', body: Array<Node> }
-export type MultiValue = { type: 'MultiValue', values: Array<CSSValue> }
+export type Value = { type: 'Value', body: Array<Node> }
+export type ValueList = { type: 'ValueList', values: Array<Value> }
 
-export type ASTNode = Node | CSSValue | MultiValue
+export type ASTNode = Node | Value | ValueList

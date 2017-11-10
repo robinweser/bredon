@@ -4,7 +4,7 @@ Compile basically is shorthand and executes [`parse`](parse.md), [`traverse`](tr
 
 #### Arguments
 1. `input` (*string*): The CSS value that gets parsed
-2. `options` (*Object?*): An object containing `visitors` (see [`traverse`](traverse.md)) and/or `generators` (see [`generate`](generate.md))
+2. `options` (*Object?*): An object containing a list of `plugins` which basically are `visitors` (see [`traverse`](traverse.md)) and/or `generators` (see [`generate`](generate.md))
 
 ##### Returns
 (*string*) formatted and minified string version of the CSS value
@@ -16,7 +16,7 @@ import { compile } from 'bredon'
 
 const input = ' 1px solid   rgba(100   , 200, 50, 0.55 ) '
 
-const visitors = {
+const visitor = {
   Float: {
     enter(node, parentNode) {
       console.log(parentNode.callee.value)
@@ -31,6 +31,8 @@ const visitors = {
   }
 }
 
+const plugins = [visitor]
+
 const generators = {
   Function: (node, generate) =>
     `${node.callee}(${node.params.map(generate).join(', ')})`
@@ -38,7 +40,7 @@ const generators = {
 
 const output = compile(input, {
   generators,
-  visitors
+  plugins
 })
 
 console.log(output)
