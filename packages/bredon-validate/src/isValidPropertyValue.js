@@ -1,18 +1,23 @@
 /* @flow */
-import { isMultiValue, isCSSValue, isKeyword } from 'bredon-types'
+import { isValueList, isValue } from 'bredon-types'
 
-import isMultiValueProperty from './isMultiValueProperty'
-import isValueSetProperty from './isValueSetProperty'
+import isValueListProperty from './utils/isValueListProperty'
+import isMultiValueProperty from './utils/isMultiValueProperty'
+import matchesKeyword from './utils/matchesKeyword'
+import arrayReduce from './utils/arrayReduce'
 
-import arrayReduce from './arrayReduce'
+import isGlobal from './types/isGlobal'
+
+import propertyValidators from './propertyValidators'
+
+const defaultValidator = () => false
 
 export default function isValidPropertyValue(
   property: string,
-  ast: any,
-  validator: Function
+  ast: any
 ): boolean {
-  if (isMultiValue(ast)) {
-    if (!isMultiValueProperty(property)) {
+  if (isValueList(ast)) {
+    if (ast.body.length > 1 && !isValueListProperty(property)) {
       // TODO: invalid warning
       return false
     }
@@ -22,17 +27,23 @@ export default function isValidPropertyValue(
       // the property is invalid as soon as one value is invalid
       // TODO: do not regenerate the value
       (isValid, cssValue) =>
-        isValid && isValidPropertyValue(property, cssValue, validator),
+        isValid && isValidPropertyValue(property, cssValue),
       true
     )
   }
 
-  if (isCSSValue(ast)) {
+  if (isValue(ast)) {
     const valueCount = ast.body.length
+    const validator = propertyValidators[property] || defaultValidator
 
     if (valueCount > 1) {
-      if (!isValueSetProperty(property)) {
+      if (!isMultiValueProperty(property)) {
         // TODO: invalid warning
+        return false
+      }
+
+      if (!validator) {
+        // TODO: add warning
         return false
       }
 
@@ -40,10 +51,19 @@ export default function isValidPropertyValue(
     }
 
     const node = ast.body[0]
-    // keyword values are always valid
-    return isKeyword(node) || validator(node)
+
+    return (
+      // global values are always valid
+      isGlobal(node) ||
+      // also check for any keyword value
+      matchesKeyword(property)(node) ||
+      // use the property validator
+      validator(node)
+    )
   }
 
   // TODO: true or false?
-  return true
+  // this branch can only be reached if the value was not parseable
+  // which in general throws an error anyways
+  return false
 }

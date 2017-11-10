@@ -2,31 +2,20 @@
 
 For every AST node, the `bredon-types` package also ships a builder function which safely creates AST nodes manually.
 
-* [cssValue](#cssvaluebody-arraynode)
 * [dimension](#dimensionvalue-number-unit-unit)
 * [expression](#expressionbody-arraynode)
 * [float](#floatinteger-number-fractional-number-isnegative-boolean--false)
 * [functionExpression](#functionexpressioncallee-string-params-arraynode)
 * [hexColor](#hexcolorcolor-string)
 * [identifier](#identifiername-string)
-* [important](#important)
 * [integer](#integervalue-number)
-* [keyword](#keywordword-inherit-initial--unset)
-* [multiValue](#multivaluebody-arraycssvalue)
 * [operator](#operatorsign--------)
 * [parenthesis](#parenthesisparen--)
 * [separator](#separator)
 * [stringLiteral](#stringliteralstr-string-quote-----)
 * [url](#urluri-string)
-
-### `cssValue(body: Array<node>, isImportant?: boolean = false)`
-
-```javascript
-import { cssValue } from 'bredon-types'
-
-cssValue([ /* child nodes */ ])
-cssValue([ /* child nodes */ ], true)
-```
+* [value](#valuebody-arraynode)
+* [valueList](#valuelistbody-arraycssvalue)
 
 ### `dimension(value: number, unit: Unit)`
 
@@ -69,7 +58,7 @@ functionExpression('rgba', [ /* param nodes */ ])
 ```javascript
 import { hexColor } from 'bredon-types'
 
-hexColor('#FFF')
+hexColor('FFF')
 ```
 
 ### `identifier(name: string)`
@@ -80,29 +69,13 @@ import { identifier } from 'bredon-types'
 identifier('solid')
 ```
 
-##### `integer(value: number)`
+##### `integer(value: number, isNegative?: boolean)`
 
 ```javascript
 import { integer } from 'bredon-types'
 
 integer(55)
-```
-
-### `keyword(word: 'inherit' | 'initial' | 'unset')`
-
-```javascript
-import { keyword } from 'bredon-types'
-
-keyword('inherit')
-```
-
-
-### `multiValue(body: Array<cssValue>)`
-
-```javascript
-import { multiValue } from 'bredon-types'
-
-multiValue([ /* at least 2 cssValue nodes */])
+integer(55, true)
 ```
 
 ### `operator(sign: '+' | '-' | '/' | '*')`
@@ -143,4 +116,21 @@ stringLiteral("Hello, I am a string.", '"')
 import { url } from 'bredon-types'
 
 url("https://www.github.com/")
+```
+
+### `value(body: Array<node>, isImportant?: boolean = false)`
+
+```javascript
+import { cssValue } from 'bredon-types'
+
+value([ /* child nodes */ ])
+value([ /* child nodes */ ], true)
+```
+
+### `valueList(body: Array<value>)`
+
+```javascript
+import { valueList } from 'bredon-types'
+
+valueList([ /* value nodes */])
 ```

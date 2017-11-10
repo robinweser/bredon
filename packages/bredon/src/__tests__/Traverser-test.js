@@ -7,7 +7,7 @@ describe('Traversing CSS values', () => {
         if (node.value === 'flex-start') {
           node.value = 'flex-end'
         }
-      }
+      },
     }
 
     const traverser = new Traverser([visitor])
@@ -17,21 +17,21 @@ describe('Traversing CSS values', () => {
         body: [
           {
             type: 'Identifier',
-            value: 'flex-start'
-          }
+            value: 'flex-start',
+          },
         ],
         important: false,
-        type: 'CSSValue'
+        type: 'Value',
       })
     ).toEqual({
       body: [
         {
           type: 'Identifier',
-          value: 'flex-end'
-        }
+          value: 'flex-end',
+        },
       ],
       important: false,
-      type: 'CSSValue'
+      type: 'Value',
     })
   })
 
@@ -41,7 +41,7 @@ describe('Traversing CSS values', () => {
         if (node.value === 'flex-start') {
           node.value = 'flex-end'
         }
-      }
+      },
     }
 
     const visitor2 = {
@@ -49,7 +49,7 @@ describe('Traversing CSS values', () => {
         if (node.value === 'flex-end') {
           node.value += '-test'
         }
-      }
+      },
     }
 
     const traverser = new Traverser([visitor, visitor2])
@@ -59,21 +59,21 @@ describe('Traversing CSS values', () => {
         body: [
           {
             type: 'Identifier',
-            value: 'flex-start'
-          }
+            value: 'flex-start',
+          },
         ],
         important: false,
-        type: 'CSSValue'
+        type: 'Value',
       })
     ).toEqual({
       body: [
         {
           type: 'Identifier',
-          value: 'flex-end-test'
-        }
+          value: 'flex-end-test',
+        },
       ],
       important: false,
-      type: 'CSSValue'
+      type: 'Value',
     })
   })
 
@@ -85,8 +85,8 @@ describe('Traversing CSS values', () => {
         },
         exit(node) {
           node.value += ':exited'
-        }
-      }
+        },
+      },
     }
 
     const traverser = new Traverser([visitor])
@@ -96,21 +96,21 @@ describe('Traversing CSS values', () => {
         body: [
           {
             type: 'Identifier',
-            value: ''
-          }
+            value: '',
+          },
         ],
         important: false,
-        type: 'CSSValue'
+        type: 'Value',
       })
     ).toEqual({
       body: [
         {
           type: 'Identifier',
-          value: 'entered:exited'
-        }
+          value: 'entered:exited',
+        },
       ],
       important: false,
-      type: 'CSSValue'
+      type: 'Value',
     })
   })
 })

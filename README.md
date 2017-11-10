@@ -33,32 +33,35 @@ const input = '10px solid rgba(255, 0, 255, 0.55)'
 const ast = parse(input)
 
 ast === {
-  type: 'CSSValue',
-  important: false,
+  type: 'ValueList',
   body: [{
-    type: 'Dimension',
-    value: 10,
-    unit: 'px'
-  }, {
-    type: 'Identifier',
-    value: 'solid'
-  }, {
-    type: 'FunctionExpression',
-    callee: 'rgba',
-    params: [{
-      type: 'Integer',
-      value: 255
+    type: 'Value',
+    important: false,
+    body: [{
+      type: 'Dimension',
+      value: 10,
+      unit: 'px'
     }, {
-      type: 'Integer',
-      value: 0
+      type: 'Identifier',
+      value: 'solid'
     }, {
-      type: 'Integer',
-      value: 255
-    }, {
-      type: 'Float',
-      integer: 0,
-      fractional: 55,
-      negative: false
+      type: 'FunctionExpression',
+      callee: 'rgba',
+      params: [{
+        type: 'Integer',
+        value: 255
+      }, {
+        type: 'Integer',
+        value: 0
+      }, {
+        type: 'Integer',
+        value: 255
+      }, {
+        type: 'Float',
+        integer: 0,
+        fractional: 55,
+        negative: false
+      }]
     }]
   }]
 }
@@ -83,14 +86,13 @@ const output = compile(input)
     * [Builders](docs/api/bredon-types/Builders.md)
 * [**AST Nodes**](docs/ASTNodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
-  * [Integer](docs/ASTNodes.md#integer)
-  * [Keyword](docs/ASTNodes.md#keyword)
   * [Operator](docs/ASTNodes.md#operator)
   * [HexColor](docs/ASTNodes.md#hexcolor)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
   * [URL](docs/ASTNodes.md#url)
   * [StringLiteral](docs/ASTNodes.md#stringliteral)
   * [Dimension](docs/ASTNodes.md#dimension)
+  * [Integer](docs/ASTNodes.md#integer)
   * [Float](docs/ASTNodes.md#float)
   * [FunctionExpression](docs/ASTNodes.md#functionexpression)
   * [Expression](docs/ASTNodes.md#expression)

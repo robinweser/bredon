@@ -19,32 +19,32 @@ describe('Generating a string from an AST', () => {
                       {
                         type: 'Dimension',
                         value: 100,
-                        unit: 'px'
+                        unit: 'px',
                       },
                       {
                         type: 'Operator',
-                        value: '/'
+                        value: '/',
                       },
                       {
                         type: 'Integer',
-                        value: 2
+                        value: 2,
                       },
                       {
                         type: 'Operator',
-                        value: '+'
+                        value: '+',
                       },
                       {
                         type: 'Dimension',
                         value: 5,
-                        unit: 'px'
-                      }
-                    ]
-                  }
-                ]
+                        unit: 'px',
+                      },
+                    ],
+                  },
+                ],
               },
               {
-                type: 'Keyword',
-                value: 'inherit'
+                type: 'Identifier',
+                value: 'inherit',
               },
               {
                 type: 'FunctionExpression',
@@ -52,55 +52,55 @@ describe('Generating a string from an AST', () => {
                 params: [
                   {
                     type: 'Integer',
-                    value: 255
+                    value: 255,
                   },
                   {
                     type: 'Integer',
-                    value: 94
+                    value: 94,
                   },
                   {
                     type: 'Float',
                     integer: 0,
-                    fractional: 34
-                  }
-                ]
-              }
+                    fractional: 34,
+                  },
+                ],
+              },
             ],
-            type: 'CSSValue'
+            type: 'Value',
           },
           {
             body: [
               {
                 type: 'Dimension',
                 unit: 'ms',
-                value: 300
+                value: 300,
               },
               {
                 type: 'Identifier',
-                value: 'all'
+                value: 'all',
               },
               {
                 type: 'Identifier',
-                value: 'linear'
-              }
+                value: 'linear',
+              },
             ],
-            type: 'CSSValue'
-          }
+            type: 'Value',
+          },
         ],
-        type: 'MultiValue'
+        type: 'ValueList',
       })
     ).toBe('calc(100px/2 + 5px) inherit rgba(255,94,.34),300ms all linear')
 
     expect(
       generator.generate({
-        type: 'CSSValue',
+        type: 'Value',
         body: [
           {
             type: 'StringLiteral',
             value: "I'm a string.",
-            quote: '"'
-          }
-        ]
+            quote: '"',
+          },
+        ],
       })
     ).toBe('"I\'m a string."')
   })
@@ -108,12 +108,12 @@ describe('Generating a string from an AST', () => {
   it('should use custom formatters', () => {
     const generator = new Generator({
       FunctionExpression: (node, generate) =>
-        `${node.callee}(${node.params.map(generate).join(' , ')})`
+        `${node.callee}(${node.params.map(generate).join(' , ')})`,
     })
 
     expect(
       generator.generate({
-        type: 'CSSValue',
+        type: 'Value',
         body: [
           {
             type: 'FunctionExpression',
@@ -121,25 +121,25 @@ describe('Generating a string from an AST', () => {
             params: [
               {
                 type: 'Integer',
-                value: 255
+                value: 255,
               },
               {
                 type: 'Integer',
-                value: 0
+                value: 0,
               },
               {
                 type: 'Integer',
-                value: 255
+                value: 255,
               },
               {
                 type: 'Float',
                 integer: 0,
                 fractional: 55,
-                negative: true
-              }
-            ]
-          }
-        ]
+                negative: true,
+              },
+            ],
+          },
+        ],
       })
     ).toBe('rgba(255 , 0 , 255 , -.55)')
   })

@@ -1,0 +1,476 @@
+exports[`Parsing CSS values should correctly parse !important 1`] = `
+Array [
+  "!important",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [],
+        "important": true,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse HexColors 1`] = `
+Array [
+  "#66FF66",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "HexColor",
+            "value": "66FF66",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse URLs 1`] = `
+Array [
+  "url(https://www.google.de/request#something?param=true&foo=bar%20)",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "url",
+            "params": Array [
+              Object {
+                "type": "URL",
+                "value": "https://www.google.de/request#something?param=true&foo=bar%20",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse algebraic signs 1`] = `
+Array [
+  "-400",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Integer",
+            "value": -400,
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse dimensions 1`] = `
+Array [
+  "300px",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "px",
+            "value": 300,
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse expressions 1`] = `
+Array [
+  "calc(100%+5/2)",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "calc",
+            "params": Array [
+              Object {
+                "body": Array [
+                  Object {
+                    "type": "Dimension",
+                    "unit": "%",
+                    "value": 100,
+                  },
+                  Object {
+                    "type": "Operator",
+                    "value": "+",
+                  },
+                  Object {
+                    "type": "Integer",
+                    "value": 5,
+                  },
+                  Object {
+                    "type": "Operator",
+                    "value": "/",
+                  },
+                  Object {
+                    "type": "Integer",
+                    "value": 2,
+                  },
+                ],
+                "type": "Expression",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse floats 1`] = `
+Array [
+  "200.55",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "fractional": 55,
+            "integer": 200,
+            "negative": false,
+            "type": "Float",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse floats 2`] = `
+Array [
+  "-.55",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "fractional": 55,
+            "integer": 0,
+            "negative": true,
+            "type": "Float",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse function expressions 1`] = `
+Array [
+  "rgba(200,300)",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "rgba",
+            "params": Array [
+              Object {
+                "type": "Integer",
+                "value": 200,
+              },
+              Object {
+                "type": "Integer",
+                "value": 300,
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse identifiers 1`] = `
+Array [
+  "flex-start",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Identifier",
+            "value": "flex-start",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse integers 1`] = `
+Array [
+  "400",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Integer",
+            "value": 400,
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse parentheses 1`] = `
+Array [
+  "(",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Parenthesis",
+            "value": "(",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse strings 1`] = `
+Array [
+  "\"hello, it\'s me.\"",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "quote": "\"",
+            "type": "StringLiteral",
+            "value": "hello, it\'s me.",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly skip whitespaces 1`] = `
+Array [
+  "300 400   700",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Integer",
+            "value": 300,
+          },
+          Object {
+            "type": "Integer",
+            "value": 400,
+          },
+          Object {
+            "type": "Integer",
+            "value": 700,
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly skip whitespaces 2`] = `
+Array [
+  " 1px   inherit rgba( 255  , 94 ,  0.34 ) , 300ms all linear ",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "px",
+            "value": 1,
+          },
+          Object {
+            "type": "Identifier",
+            "value": "inherit",
+          },
+          Object {
+            "callee": "rgba",
+            "params": Array [
+              Object {
+                "type": "Integer",
+                "value": 255,
+              },
+              Object {
+                "type": "Integer",
+                "value": 94,
+              },
+              Object {
+                "fractional": 34,
+                "integer": 0,
+                "negative": false,
+                "type": "Float",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "ms",
+            "value": 300,
+          },
+          Object {
+            "type": "Identifier",
+            "value": "all",
+          },
+          Object {
+            "type": "Identifier",
+            "value": "linear",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should return a correct AST 1`] = `
+Array [
+  "1px inherit rgba(255, 94, 0.34), 300ms all linear",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "px",
+            "value": 1,
+          },
+          Object {
+            "type": "Identifier",
+            "value": "inherit",
+          },
+          Object {
+            "callee": "rgba",
+            "params": Array [
+              Object {
+                "type": "Integer",
+                "value": 255,
+              },
+              Object {
+                "type": "Integer",
+                "value": 94,
+              },
+              Object {
+                "fractional": 34,
+                "integer": 0,
+                "negative": false,
+                "type": "Float",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "ms",
+            "value": 300,
+          },
+          Object {
+            "type": "Identifier",
+            "value": "all",
+          },
+          Object {
+            "type": "Identifier",
+            "value": "linear",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;

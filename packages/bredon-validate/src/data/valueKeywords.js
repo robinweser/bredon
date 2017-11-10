@@ -111,6 +111,10 @@ export default {
     '-moz-window-titlebar',
     '-moz-window-titlebar-maximized',
   ],
+  MozBorderTopColors: ['none'],
+  MozBorderBottomColors: ['none'],
+  MozBorderLeftColors: ['none'],
+  MozBorderRightColors: ['none'],
   MozBackgroundClip: ['padding', 'border'],
   MozBinding: ['none'],
   MozFloatEdge: ['border-box', 'content-box', 'margin-box', 'padding-box'],
@@ -345,8 +349,6 @@ export default {
   backgroundSize: ['auto', 'contain', 'cover'],
   baselineShift: ['baseline', 'sub', 'super', 'auto'],
   border: ['none'],
-  borderBottom: ['none'],
-
   borderBlockEndStyle: [
     'dashed',
     'dotted',
@@ -380,7 +382,6 @@ export default {
   borderImageSlice: ['fill'],
   borderImageWidth: ['auto'],
   borderImageSource: ['none'],
-  borderLeft: ['none'],
   borderLeftStyle: [
     'dashed',
     'dotted',
@@ -394,7 +395,6 @@ export default {
     'solid',
   ],
   borderLeftWidth: ['medium', 'thick', 'thin'],
-  borderRight: ['none'],
   borderRightStyle: [
     'dashed',
     'dotted',
@@ -420,7 +420,6 @@ export default {
     'ridge',
     'solid',
   ],
-  borderTop: ['none'],
   borderTopStyle: [
     'dashed',
     'dotted',
@@ -618,7 +617,7 @@ export default {
   emptyCells: ['hide', 'show'],
   enableBackground: ['accumulate'],
   fillRule: ['evenodd', 'nonzero'],
-  flex: ['auto'],
+  flex: ['none'],
   flexBasis: [
     'auto',
     'content',
@@ -1051,6 +1050,7 @@ export default {
     'under',
   ],
   textSizeAdjust: ['auto', 'none'],
+  textShadow: ['none'],
   top: ['auto'],
   transformBox: ['border-box', 'fill-box', 'view-box'],
   transformOrigin: ['bottom', 'center', 'left', 'right', 'top'],
@@ -1067,6 +1067,7 @@ export default {
     'step-end',
     'step-start',
   ],
+  touchAction: ['auto', 'none', 'manipulation'],
   unicodeBidi: [
     'bidi-override',
     'embed',

@@ -7,7 +7,7 @@ import Generator from './Generator'
 
 type TransformOptions = {
   plugins?: Array<Object>,
-  generators?: Object
+  generators?: Object,
 }
 
 export function parse(input: string): AST {
@@ -20,14 +20,11 @@ export function generate(ast: AST, generators?: Object = {}): string {
   return generator.generate(ast)
 }
 
-export function traverse(ast: AST, visitors: Array<Object>): void {
+export function traverse(ast: AST, visitors?: Array<Object> = []): void {
   const traverser = new Traverser(visitors)
   return traverser.traverse(ast)
 }
 
 export function compile(input: string, options: TransformOptions = {}): string {
-  return generate(
-    traverse(parse(input), options.plugins || []),
-    options.generators || {}
-  )
+  return generate(traverse(parse(input), options.plugins), options.generators)
 }
