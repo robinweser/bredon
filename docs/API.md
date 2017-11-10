@@ -7,5 +7,7 @@
 * [`compile(input, [options])`](api/bredon/compile.md)
 
 ## bredon-types
+> Note: Bredon itself exports `bredon-types` as [`types`](api/bredon/types.md).
+
 * [Validators](api/bredon-types/Validators.md)
 * [Builders](api/bredon-types/Builders.md)

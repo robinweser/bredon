@@ -1,30 +1,34 @@
 /* @flow */
-import type { AST } from '../../../flowtypes/AST'
+import * as types from 'bredon-types'
 
 import Parser from './Parser'
 import Traverser from './Traverser'
 import Generator from './Generator'
+
+import type { AST } from '../../../flowtypes/AST'
 
 type TransformOptions = {
   plugins?: Array<Object>,
   generators?: Object,
 }
 
-export function parse(input: string): AST {
+function parse(input: string): AST {
   const parser = new Parser()
   return parser.parse(input)
 }
 
-export function generate(ast: AST, generators?: Object = {}): string {
+function generate(ast: AST, generators?: Object = {}): string {
   const generator = new Generator(generators)
   return generator.generate(ast)
 }
 
-export function traverse(ast: AST, visitors?: Array<Object> = []): void {
+function traverse(ast: AST, visitors?: Array<Object> = []): void {
   const traverser = new Traverser(visitors)
   return traverser.traverse(ast)
 }
 
-export function compile(input: string, options: TransformOptions = {}): string {
+function compile(input: string, options: TransformOptions = {}): string {
   return generate(traverse(parse(input), options.plugins), options.generators)
 }
+
+export { parse, generate, traverse, compile, types }
