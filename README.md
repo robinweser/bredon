@@ -56,9 +56,14 @@ ast === {
   body: [{
     type: 'Value',
     important: false,
+    mutli: true,
     body: [{
       type: 'Dimension',
-      value: 10,
+      value: {
+        type: 'Integer',
+        value: 10,
+        negative: false
+      },
       unit: 'px'
     }, {
       type: 'Identifier',
@@ -68,18 +73,21 @@ ast === {
       callee: 'rgba',
       params: [{
         type: 'Integer',
+        negative: false,
         value: 255
       }, {
         type: 'Integer',
+        negative: false,
         value: 0
       }, {
         type: 'Integer',
+        negative: true,
         value: 255
       }, {
         type: 'Float',
-        integer: 0,
+        negative: false,
         fractional: 55,
-        negative: false
+        integer: 0,
       }]
     }]
   }]
