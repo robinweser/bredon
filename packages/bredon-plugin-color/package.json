@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "bredon-plugin-color",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Bredon color to normalize color values",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,9 +27,9 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "bredon": "^3.0.1",
-    "bredon-tools": "^3.0.1",
-    "bredon-types": "^3.0.0",
     "color": "^2.0.0"
+  },
+  "devDependencies": {
+    "bredon": "^3.0.1"
   }
 }

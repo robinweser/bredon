@@ -1,17 +1,13 @@
 # bredon-plugin-color
 
-> This is still a proof of concept for bredon plugins!
-
 <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-color.svg">
 
 The color plugin is, as the name hints, all about modifying CSS color values. It can transform values into different color formats.
 
 Supported color formats are:  
 * hex *(`#ffffff`)*
-* rgb *(`rgb(255, 0, 255)`)*
-* rgba *(`rgb(255, 0, 255, 0.55)`)*
-* hsl *(`hsl(100, 100%, 50%)`)*
-* hsla *(`hsla(100, 100%, 50%, 0.45)`)*
+* rgb *(`rgb(255, 0, 255)`, `rgba(255, 0, 255, 0.55))*
+* hsl *(`hsl(100, 100%, 50%)`, `hsla(100, 50%, 50%, 0.55))*
 
 It can also process color names e.g. `white`, but will not output those.
 
@@ -45,7 +41,8 @@ You can pass a custom color format with an options object.
 
 | Options | Value | Default | Description |
 | ------- | ----- | ------- | ----------- |
-| format  | `hex`, `rgb`, `rgba`, `hsl`, `hsla` | `hex` | The output color format |
+| preserveAlpha  | *boolean* | true | Values with alpha won't be transformed to `hex` |
+| format  | `hex`, `rgb`, `hsl` | `hex` | The output color format |
 
 ```javascript
 import { compile } from 'bredon'

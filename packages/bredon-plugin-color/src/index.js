@@ -1,19 +1,38 @@
 /* @flow */
-import { generate } from 'bredon'
-import { wrap } from 'bredon-tools'
-import { hexColor } from 'bredon-types'
 import color from 'color'
 
-export default function colorPlugin(config: Object): Object {
-  return {
-    FunctionExpression(node, parentNode) {
-      if (node.callee.match(/^(rgba?|hsla?)$/) !== null) {
-        const hexValue = color(generate(node))
-          .hex()
-          .slice(1)
+const resolvers = {
+  rgb: value => value.rgb().string(),
+  hsl: value => value.hsl().string(),
+  hex: value => value.hex(),
+}
 
-        wrap(parentNode).replaceChildNode(node, hexColor(hexValue))
+const COLOR_REGEX = /^(rgba?|hsla?)$/i
+
+export default function colorPlugin(config?: Object = {}): Object {
+  const preserveAlpha = config.preserveAlpha || true
+  const format = config.format || 'hex'
+
+  return {
+    FunctionExpression(path, { generate, parse }) {
+      if (path.node.callee.match(COLOR_REGEX) !== null) {
+        const value = color(generate(path.node))
+
+        if (!(format === 'hex' && preserveAlpha && value.alpha() < 1)) {
+          path.replaceNode(parse(resolvers[format](value)))
+        }
       }
-    }
+    },
+    HexColor(path, { generate, parse }) {
+      const value = color(generate(path.node))
+      path.replaceNode(parse(resolvers[format](value)))
+    },
+    Identifier(path, { generate, parse }) {
+      // TODO: ugly
+      try {
+        const value = color(generate(path.node))
+        path.replaceNode(parse(resolvers[format](value)))
+      } catch (e) {}
+    },
   }
 }
