@@ -18,15 +18,15 @@ const input = ' 1px solid   rgba(100   , 200, 50, 0.55 ) '
 
 const visitor = {
   Float: {
-    enter(node, parentNode) {
-      console.log(parentNode.callee.value)
-      console.log(node)
+    enter(path) {
+      console.log(path.parent.callee)
+      console.log(path.node)
       // transforming the fractional part of each float
-      node.fractional += 5
+      path.node.fractional += 5
     }
 
-    exit(node) {
-      console.log(node)
+    exit(path) {
+      console.log(path.node)
     }
   }
 }
@@ -42,7 +42,10 @@ const output = compile(input, {
   generators,
   plugins
 })
+// => rgba
+// => { type: 'Float', integer: 0, fractional: 55, negative: false }
+// => { type: 'Float', integer: 0, fractional: 60, negative: false }
 
 console.log(output)
-// => '1px solid rgba(100, 200, 50, .55)'
+// => '1px solid rgba(100, 200, 50, .60)'
 ```

@@ -1,10 +1,8 @@
 /* @flow */
-import { isValue, isValueList } from 'bredon-types'
+import { types } from 'bredon'
 
 import type { ASTNode } from '../../../flowtypes/AST'
 
 export default function isSingleValue(ast: ASTNode) {
-  return (
-    (isValue(ast) && !ast.mutli) || (isValueList(ast) && ast.body.length <= 1)
-  )
+  return (types.isValue(ast) || types.isValueList(ast)) && ast.body.length <= 1
 }

@@ -10,9 +10,9 @@ export default function combineVisitors(visitors: Array<Object>): Object {
 
         if (typeof normalizedVisitor === 'function') {
           normalizedVisitor = {
-            enter(node, parentNode) {
-              visitor[nodeType](node, parentNode)
-            }
+            enter(path, bredon) {
+              visitor[nodeType](path, bredon)
+            },
           }
         }
 
@@ -22,24 +22,24 @@ export default function combineVisitors(visitors: Array<Object>): Object {
           const { enter, exit } = combinedVisitors[nodeType]
 
           combinedVisitors[nodeType] = {
-            enter(node, parentNode) {
+            enter(path, bredon) {
               if (enter) {
-                enter(node, parentNode)
+                enter(path, bredon)
               }
 
               if (normalizedVisitor.enter) {
-                normalizedVisitor.enter(node, parentNode)
+                normalizedVisitor.enter(path, bredon)
               }
             },
-            exit(node, parentNode) {
+            exit(path, bredon) {
               if (exit) {
-                exit(node, parentNode)
+                exit(path, bredon)
               }
 
               if (normalizedVisitor.exit) {
-                normalizedVisitor.exit(node, parentNode)
+                normalizedVisitor.exit(path, bredon)
               }
-            }
+            },
           }
         }
       })

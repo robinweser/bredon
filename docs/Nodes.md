@@ -18,14 +18,12 @@ For example: `opacity, transform 1s ease-in`
   body: [{
     type: 'Value',
     important: false,
-    multi: false,
     body: [
       /* AST for opacity */
     ]
   }, {
     type: 'Value',
     important: false,
-    multi: true,
     body: [
       /* AST for transform 1s ease-in */
     ]
@@ -42,7 +40,6 @@ For example: `1px solid black`
 {
   type: 'Value',
   important: false,
-  multi: true,
   body: [
     /* Nodes for 1px solid black */
   ]

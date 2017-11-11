@@ -14,23 +14,23 @@ import { travsere, parse } from 'bredon'
 const input = '1px solid rgba(100, 250, 50, 0.55)'
 const ast = parse(input)
 
-const visitors = {
+const visitor = {
   Float: {
-    enter(node, parentNode) {
-      console.log(parentNode.callee.value)
-      console.log(node)
+    enter(path) {
+      console.log(path.parent.callee)
+      console.log(path.node)
       // transforming the fractional part of each float
-      node.fractional += 5
+      path.node.fractional += 5
     }
 
-    exit(node) {
-      console.log(node)
+    exit(path) {
+      console.log(path.node)
     }
   }
 }
 
-traverse(ast, [visitors])
+traverse(ast, [visitor])
 // => rgba
-// => { type: 'Float', integer: 0, fractional: 55 }
-// => { type: 'Float', integer: 0, fractional: 60 }
+// => { type: 'Float', integer: 0, fractional: 55, negative: false }
+// => { type: 'Float', integer: 0, fractional: 60, negative: false }
 ```

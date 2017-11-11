@@ -1,7 +1,10 @@
 /* @flow */
+import * as bredon from './index'
 import combineVisitors from './utils/combineVisitors'
+import createPath from './utils/createPath'
 
-import type { AST, ASTNode } from '../../../flowtypes/AST'
+import type { ASTNode } from '../../../flowtypes/AST'
+import type { Path } from '../../../flowtypes/Path'
 
 export default class Traverser {
   visitors: Object
@@ -10,26 +13,28 @@ export default class Traverser {
     this.visitors = combineVisitors(visitors)
   }
 
-  traverseNodeList(nodeList: Array<ASTNode>, parentNode: ASTNode | null) {
-    nodeList.forEach(childNode => this.traverseNode(childNode, parentNode))
+  traverseNodeList(nodeList: Array<ASTNode>, parentPath: Path) {
+    nodeList.forEach(childNode => this.traverseNode(childNode, parentPath))
   }
 
-  traverseNode(node: ASTNode, parentNode: ASTNode) {
+  traverseNode(node: ASTNode, parentPath: Path) {
     const methods = this.visitors[node.type]
 
+    const nodePath = createPath(node, parentPath)
+
     if (methods && methods.enter) {
-      methods.enter(node, parentNode)
+      methods.enter(nodePath, bredon)
     }
 
     switch (node.type) {
       case 'Value':
       case 'ValueList':
       case 'Expression':
-        this.traverseNodeList(node.body, node)
+        this.traverseNodeList(node.body, nodePath)
         break
 
       case 'FunctionExpression':
-        this.traverseNodeList(node.params, node)
+        this.traverseNodeList(node.params, nodePath)
         break
 
       case 'Integer':
@@ -48,12 +53,12 @@ export default class Traverser {
     }
 
     if (methods && methods.exit) {
-      methods.exit(node, parentNode)
+      methods.exit(nodePath, bredon)
     }
   }
 
-  traverse(ast: AST): AST {
-    this.traverseNode(ast)
+  traverse(ast: ASTNode): ASTNode {
+    this.traverseNode(ast, createPath(ast))
     return ast
   }
 }

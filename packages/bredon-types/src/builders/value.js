@@ -8,7 +8,6 @@ export default function cssValue(
   return {
     type: 'Value',
     important,
-    multi: body.length > 1,
     body,
   }
 }

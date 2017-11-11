@@ -16,7 +16,8 @@ const input = '1px solid rgba(100, 250, 50, 0.55)'
 const ast = parse(input)
 
 ast === {
-  type: 'CSSValue',
+  type: 'Value',
+  important: false,
   body: [{
     type: 'Dimension',
     unit: 'px',
