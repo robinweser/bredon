@@ -1,13 +1,13 @@
 # `validate(property, value)`
 
-Validates a property by type-checking its value.
+Validates a CSS declaration using type-checking.
 
 #### Arguments
 1. `property` (*string*): The CSS property that should be validated
 2. `value` (*string*): The CSS value that is parsed and type-checked
 
 ##### Returns
-(*boolean*) Indicator if the property is valid or invalid
+(*boolean*) Indicator if the declaration is valid or invalid
 
 ##### Example
 
