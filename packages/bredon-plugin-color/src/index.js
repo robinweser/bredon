@@ -13,26 +13,26 @@ export default function colorPlugin(config?: Object = {}): Object {
   const preserveAlpha = config.preserveAlpha || true
   const format = config.format || 'hex'
 
-  return {
-    FunctionExpression(path, { generate, parse }) {
-      if (path.node.callee.match(COLOR_REGEX) !== null) {
-        const value = color(generate(path.node))
+  return ({ generate, parse }) => ({
+    FunctionExpression({ node, replaceNode }) {
+      if (node.callee.match(COLOR_REGEX) !== null) {
+        const value = color(generate(node))
 
         if (!(format === 'hex' && preserveAlpha && value.alpha() < 1)) {
-          path.replaceNode(parse(resolvers[format](value)))
+          replaceNode(parse(resolvers[format](value)))
         }
       }
     },
-    HexColor(path, { generate, parse }) {
-      const value = color(generate(path.node))
-      path.replaceNode(parse(resolvers[format](value)))
+    HexColor({ node, replaceNode }) {
+      const value = color(generate(node))
+      replaceNode(parse(resolvers[format](value)))
     },
-    Identifier(path, { generate, parse }) {
+    Identifier({ node, replaceNode }) {
       // TODO: ugly
       try {
-        const value = color(generate(path.node))
-        path.replaceNode(parse(resolvers[format](value)))
+        const value = color(generate(node))
+        replaceNode(parse(resolvers[format](value)))
       } catch (e) {}
     },
-  }
+  })
 }

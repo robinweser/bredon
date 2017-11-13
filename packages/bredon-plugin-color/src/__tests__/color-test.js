@@ -16,7 +16,7 @@ describe('Using the color plugin', () => {
       compile('1px solid rgba(100, 100, 200, 0.55)', {
         plugins: [colorPlugin({ format: 'hsl' })],
       })
-    ).toBe('1px solid hsla(240,47.6%,58.8%,.55)')
+    ).toBe('1px solid hsla(240, 47.6%, 58.8%, 0.55)')
   })
 
   it('should normalize color values to rgb', () => {
@@ -24,7 +24,7 @@ describe('Using the color plugin', () => {
       compile('1px solid #FFFFFF', {
         plugins: [colorPlugin({ format: 'rgb' })],
       })
-    ).toBe('1px solid rgb(255,255,255)')
+    ).toBe('1px solid rgb(255, 255, 255)')
   })
 
   it('should normalize named colors to hex', () => {
@@ -32,6 +32,6 @@ describe('Using the color plugin', () => {
       compile('1px solid red', {
         plugins: [colorPlugin({ format: 'rgb' })],
       })
-    ).toBe('1px solid rgb(255,0,0)')
+    ).toBe('1px solid rgb(255, 0, 0)')
   })
 })

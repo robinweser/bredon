@@ -1,5 +1,4 @@
 /* @flow */
-import * as bredon from './index'
 import combineVisitors from './utils/combineVisitors'
 import createPath from './utils/createPath'
 
@@ -8,9 +7,11 @@ import type { Path } from '../../../flowtypes/Path'
 
 export default class Traverser {
   visitors: Object
+  context: Object
 
-  constructor(visitors?: Array<Object> = []) {
+  constructor(visitors?: Array<Object> = [], context?: Object = {}) {
     this.visitors = combineVisitors(visitors)
+    this.context = context
   }
 
   traverseNodeList(nodeList: Array<ASTNode>, parentPath: Path) {
@@ -20,10 +21,10 @@ export default class Traverser {
   traverseNode(node: ASTNode, parentPath: Path) {
     const methods = this.visitors[node.type]
 
-    const nodePath = createPath(node, parentPath)
+    const nodePath = createPath(node, parentPath, this.context)
 
     if (methods && methods.enter) {
-      methods.enter(nodePath, bredon)
+      methods.enter(nodePath)
     }
 
     switch (node.type) {
@@ -53,12 +54,12 @@ export default class Traverser {
     }
 
     if (methods && methods.exit) {
-      methods.exit(nodePath, bredon)
+      methods.exit(nodePath)
     }
   }
 
   traverse(ast: ASTNode): ASTNode {
-    this.traverseNode(ast, createPath(ast))
+    this.traverseNode(ast, createPath(ast, undefined, this.context))
     return ast
   }
 }

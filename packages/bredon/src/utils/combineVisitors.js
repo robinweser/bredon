@@ -1,17 +1,24 @@
 /* @flow */
+import * as bredon from '../index'
+
 import arrayReduce from './arrayReduce'
 
-export default function combineVisitors(visitors: Array<Object>): Object {
+export default function combineVisitors(
+  visitors: Array<Object | Function>
+): Object {
   return arrayReduce(
     visitors,
     (combinedVisitors, visitor) => {
-      Object.keys(visitor).forEach(nodeType => {
-        let normalizedVisitor = visitor[nodeType]
+      const resolvedVisitor =
+        typeof visitor === 'function' ? visitor(bredon) : visitor
+
+      Object.keys(resolvedVisitor).forEach(nodeType => {
+        let normalizedVisitor = resolvedVisitor[nodeType]
 
         if (typeof normalizedVisitor === 'function') {
           normalizedVisitor = {
-            enter(path, bredon) {
-              visitor[nodeType](path, bredon)
+            enter(path) {
+              resolvedVisitor[nodeType](path)
             },
           }
         }
@@ -22,22 +29,22 @@ export default function combineVisitors(visitors: Array<Object>): Object {
           const { enter, exit } = combinedVisitors[nodeType]
 
           combinedVisitors[nodeType] = {
-            enter(path, bredon) {
+            enter(path) {
               if (enter) {
-                enter(path, bredon)
+                enter(path)
               }
 
               if (normalizedVisitor.enter) {
-                normalizedVisitor.enter(path, bredon)
+                normalizedVisitor.enter(path)
               }
             },
-            exit(path, bredon) {
+            exit(path) {
               if (exit) {
-                exit(path, bredon)
+                exit(path)
               }
 
               if (normalizedVisitor.exit) {
-                normalizedVisitor.exit(path, bredon)
+                normalizedVisitor.exit(path)
               }
             },
           }

@@ -1,7 +1,7 @@
 {
-  "name": "bredon-plugin-color",
+  "name": "bredon-plugin-calc",
   "version": "1.0.0",
-  "description": "Bredon plugin to normalize color values",
+  "description": "Bredon color to precalculate calc expressions",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
@@ -26,7 +26,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "color": "^2.0.0"
+    "reduce-css-calc": "^2.1.1"
   },
   "devDependencies": {
     "bredon": "^3.0.1"

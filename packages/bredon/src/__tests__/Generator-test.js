@@ -105,7 +105,7 @@ describe('Generating a string from an AST', () => {
         ],
         type: 'ValueList',
       })
-    ).toBe('calc(100px/2 + 5px) inherit rgba(255,94,.34),300ms all linear')
+    ).toBe('calc(100px/2 + 5px) inherit rgba(255, 94, 0.34), 300ms all linear')
 
     expect(
       generator.generate({
@@ -160,6 +160,6 @@ describe('Generating a string from an AST', () => {
           },
         ],
       })
-    ).toBe('rgba(255 , 0 , -255 , -.55)')
+    ).toBe('rgba(255 , 0 , -255 , -0.55)')
   })
 })

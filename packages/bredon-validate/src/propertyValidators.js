@@ -62,6 +62,13 @@ const validators = {
   MozBorderTopColors: (node, isMultiValue) =>
     validateNodeList(isColor)(normalizeNodeList(node, isMultiValue)),
   MozForceBrokenImageIcon: isInteger,
+  // TODO: validate rect
+  MozImageRegion: node => isFunctionExpression(node) && node.callee === 'rect',
+  // TODO: keyword split
+  MozOutlineRadiust: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 16)(
+      normalizeNodeList(node, isMultiValue)
+    ),
   MozOutlineRadiusBottomleft: (node, isMultiValue) =>
     validateNodeList(isLengthPercentage, 2)(
       normalizeNodeList(node, isMultiValue)
@@ -78,6 +85,13 @@ const validators = {
     validateNodeList(isLengthPercentage, 2)(
       normalizeNodeList(node, isMultiValue)
     ),
+  // TODO: order multi value
+  WebkitBorderBefore: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      validators.WebkitBorderBeforeColor,
+      validators.WebkitBorderBeforeStyle,
+      validators.WebkitBorderBeforeStyle,
+    ])(normalizeNodeList(node, isMultiValue)),
   WebkitBorderBeforeColor: isColor,
   WebkitBorderBeforeStyle: (node, isMultiValue) =>
     isMultiValue &&
@@ -103,6 +117,17 @@ const validators = {
   WebkitTextFillColor: isColor,
   WebkitTextStrokeColor: isColor,
   WebkitTextStrokeWidth: isLength,
+  animation: (node, isMultiValue) => {
+    validateUnorderedNodeList([
+      validators.animationTimingFunction,
+      validators.animationDuration,
+      validators.animationDelay,
+      validators.animationDirection,
+      validators.animationFillMode,
+      validators.animationPlayState,
+      validators.animationName,
+    ])(normalizeNodeList(node, isMultiValue))
+  },
   animationDelay: isTime,
   animationDuration: isTime,
   animationIterationCount: isInteger,
@@ -140,6 +165,16 @@ const validators = {
       ) || isLengthPercentage(node)
     )
   },
+  backgroundRepeat: (node, isMultiValue) =>
+    validateNodeList(
+      matchesIdentifier(['repeat', 'space', 'round', 'no-repeat']),
+      2
+    )(normalizeNodeList(node, isMultiValue)),
+  backgroundSize: (node, isMultiValue) =>
+    validateNodeList(
+      node => isLengthPercentage(node) || matchesIdentifier(['auto'])(node),
+      2
+    )(normalizeNodeList(node, isMultiValue)),
   baselineShift: node => isNumber(node) || isLength(node),
   behavior: isURL,
   blockSize: isSize,
@@ -281,9 +316,9 @@ const validators = {
     ])(normalizeNodeList(node, isMultiValue)),
   borderLeftColor: isColor,
   borderLeftWidth: isLength,
-  // TODO: / value syntax
+  // TODO: keyword split
   borderRadius: (node, isMultiValue) =>
-    validateNodeList(isLengthPercentage, 2)(
+    validateNodeList(isLengthPercentage, 8)(
       normalizeNodeList(node, isMultiValue)
     ),
   borderRight: (node, isMultiValue) =>
@@ -332,13 +367,30 @@ const validators = {
   boxOrdinalGroup: isInteger,
   caretColor: isColor,
   // TODO: is valid rect
-  clip: node => isFunctionExpression(node) && node.callee.name === 'rect',
+  clip: node => isFunctionExpression(node) && node.callee === 'rect',
   color: isColor,
+  columns: (node, isMultiValue) =>
+    validateUnorderedNodeList([validators.columnWidth, validators.columnCount])(
+      normalizeNodeList(node, isMultiValue)
+    ),
   columnCount: isInteger,
   columnGap: isLength,
+  columnRule: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      validators.columnRuleWidth,
+      matchesKeyword('columnRuleStyle'),
+      validators.columnRuleColor,
+    ])(normalizeNodeList(node, isMultiValue)),
   columnRuleColor: isColor,
   columnRuleWidth: isLength,
   columnWidth: isLength,
+  contain: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesIdentifier(['size']),
+      matchesIdentifier(['layout']),
+      matchesIdentifier(['style']),
+      matchesIdentifier(['paint']),
+    ])(normalizeNodeList(node, isMultiValue)),
   fillOpacity: isOpacity,
   flex: (node, isMultiValue) => {
     if (isMultiValue) {
@@ -377,6 +429,19 @@ const validators = {
     [100, 200, 300, 400, 500, 600, 700, 800, 900].indexOf(node.value) !== -1,
   glyphOrientationHorizontal: isAngle,
   glyphOrientationVertical: isAngle,
+  gridAutoFlow: (node, isMultiValue) =>
+    validateUnorderedNodeList([
+      matchesIdentifier(['row', 'column']),
+      matchesIdentifier(['dense']),
+    ])(normalizeNodeList(node, isMultiValue)),
+  gridColumnGap: isLengthPercentage,
+  gridGap: (node, isMultiValue) =>
+    validateNodeList(isLengthPercentage, 2)(
+      normalizeNodeList(node, isMultiValue)
+    ),
+  gridRowGap: isLengthPercentage,
+  gridTemplateAreas: (node, isMultiValue) =>
+    validateNodeList(isStringLiteral)(normalizeNodeList(node, isMultiValue)),
   height: isSize,
   inlineSize: isSize,
   kerning: isSvgLength,

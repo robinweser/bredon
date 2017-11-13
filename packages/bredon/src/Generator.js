@@ -18,7 +18,7 @@ export default class Generator {
 
     switch (node.type) {
       case 'ValueList':
-        return node.body.map(generateValue).join(',')
+        return node.body.map(generateValue).join(', ')
 
       case 'Value':
         return (
@@ -30,7 +30,7 @@ export default class Generator {
         return node.body.map(generateValue).join('')
 
       case 'FunctionExpression':
-        return `${node.callee}(${node.params.map(generateValue).join(',')})`
+        return `${node.callee}(${node.params.map(generateValue).join(', ')})`
 
       case 'Dimension':
         return generateValue(node.value) + node.unit
@@ -39,9 +39,7 @@ export default class Generator {
         return `${node.negative ? '-' : ''}${node.value}`
 
       case 'Float':
-        return `${node.negative ? '-' : ''}${node.integer !== 0
-          ? node.integer
-          : ''}.${node.fractional}`
+        return `${node.negative ? '-' : ''}${node.integer}.${node.fractional}`
 
       case 'Operator':
         // for addition and substraction we use spacings left and right

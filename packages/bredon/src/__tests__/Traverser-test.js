@@ -2,13 +2,13 @@ import Traverser from '../Traverser'
 
 describe('Traversing CSS values', () => {
   it('should correctly traverse ast nodes', () => {
-    const visitor = {
-      Identifier(path, { types }) {
+    const visitor = ({ types }) => ({
+      Identifier(path) {
         if (path.node.value === 'flex-start') {
           path.replaceNode(types.identifier('flex-end'))
         }
       },
-    }
+    })
 
     const traverser = new Traverser([visitor])
 
@@ -74,13 +74,13 @@ describe('Traversing CSS values', () => {
   })
 
   it('should correctly merge visitors from left to right', () => {
-    const visitor = {
-      Identifier(path, { types }) {
+    const visitor = ({ types }) => ({
+      Identifier(path) {
         if (path.node.value === 'flex-start') {
           path.replaceNode(types.identifier('flex-end'))
         }
       },
-    }
+    })
 
     const visitor2 = {
       Identifier(path) {

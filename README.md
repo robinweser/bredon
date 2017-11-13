@@ -56,15 +56,14 @@ ast === {
   body: [{
     type: 'Value',
     important: false,
-    mutli: true,
     body: [{
       type: 'Dimension',
+      unit: 'px',
       value: {
         type: 'Integer',
-        value: 10,
-        negative: false
-      },
-      unit: 'px'
+        negative: false,
+        value: 10
+      }
     }, {
       type: 'Identifier',
       value: 'solid'
@@ -96,7 +95,7 @@ ast === {
 const output = generate(ast)
 
 console.log(output)
-// => 10px solid rgba(255,0,255,.55)
+// => 10px solid rgba(255, 0, 255, 0.55)
 
 // parsing and generation can be combined
 const output = compile(input)
