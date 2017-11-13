@@ -1,5 +1,5 @@
 /* @flow */
-import combineVisitors from './utils/combineVisitors'
+import normalizeVisitors from './utils/normalizeVisitors'
 import createPath from './utils/createPath'
 
 import type { ASTNode } from '../../../flowtypes/AST'
@@ -10,16 +10,22 @@ export default class Traverser {
   context: Object
 
   constructor(visitors?: Array<Object> = [], context?: Object = {}) {
-    this.visitors = combineVisitors(visitors)
+    this.visitors = normalizeVisitors(visitors)
     this.context = context
   }
 
-  traverseNodeList(nodeList: Array<ASTNode>, parentPath: Path) {
-    nodeList.forEach(childNode => this.traverseNode(childNode, parentPath))
+  traverseNodeList(
+    visitor: Object,
+    nodeList: Array<ASTNode>,
+    parentPath: Path
+  ) {
+    nodeList.forEach(childNode =>
+      this.traverseNode(visitor, childNode, parentPath)
+    )
   }
 
-  traverseNode(node: ASTNode, parentPath: Path) {
-    const methods = this.visitors[node.type]
+  traverseNode(visitor: Object, node: ASTNode, parentPath: Path) {
+    const methods = visitor[node.type]
 
     const nodePath = createPath(node, parentPath, this.context)
 
@@ -31,11 +37,11 @@ export default class Traverser {
       case 'Value':
       case 'ValueList':
       case 'Expression':
-        this.traverseNodeList(node.body, nodePath)
+        this.traverseNodeList(visitor, node.body, nodePath)
         break
 
       case 'FunctionExpression':
-        this.traverseNodeList(node.params, nodePath)
+        this.traverseNodeList(visitor, node.params, nodePath)
         break
 
       case 'Integer':
@@ -59,7 +65,9 @@ export default class Traverser {
   }
 
   traverse(ast: ASTNode): ASTNode {
-    this.traverseNode(ast, createPath(ast, undefined, this.context))
+    this.visitors.forEach(visitor =>
+      this.traverseNode(visitor, ast, createPath(ast, undefined, this.context))
+    )
     return ast
   }
 }

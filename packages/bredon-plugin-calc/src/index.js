@@ -1,7 +1,7 @@
 /* @flow */
 import reduceCalc from 'reduce-css-calc'
 
-export default function initialPlugin(config?: Object = {}): Object {
+export default function calcPlugin(config?: Object = {}): Object {
   const precision = config.precision || 2
 
   return ({ generate, parse, types }) => ({

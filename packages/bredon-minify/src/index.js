@@ -1,8 +1,8 @@
 import { compile } from 'bredon'
 
+import calcPlugin from 'bredon-plugin-calc'
 import colorPlugin from 'bredon-plugin-color'
 import initialPlugin from 'bredon-plugin-initial'
-import calcPlugin from 'bredon-plugin-calc'
 
 const generators = {
   ValueList: (node, generate) => node.body.map(generate).join(','),
