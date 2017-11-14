@@ -1,6 +1,6 @@
 {
   "name": "bredon-minify",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "Preconfigured Bredon Compiler to minify CSS values",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,6 +31,8 @@
     "bredon": "^3.0.1",
     "bredon-plugin-calc": "^1.0.0",
     "bredon-plugin-color": "^1.0.0",
-    "bredon-plugin-initial": "^1.0.0"
+    "bredon-plugin-initial": "^1.0.0",
+    "bredon-plugin-precision": "^1.0.0",
+    "bredon-plugin-trim-hex": "^1.0.0"
   }
 }

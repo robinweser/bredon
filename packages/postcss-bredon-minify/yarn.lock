@@ -8,25 +8,7 @@ ansi-styles@^3.1.0:
   dependencies:
     color-convert "^1.9.0"
 
-bredon-types@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/bredon-types/-/bredon-types-3.0.0.tgz#1d49122f12df2c2868ba3065e27eede76b5af93e"
-
-bredon-validate@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/bredon-validate/-/bredon-validate-0.0.2.tgz#a845d9ce0d5e6798fe51216a8a058c159fcfefe8"
-  dependencies:
-    bredon "^3.0.1"
-    bredon-types "^3.0.0"
-
-bredon@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/bredon/-/bredon-3.0.1.tgz#42d101c8dd7c6fca42ff4106a54049ff935d6cac"
-  dependencies:
-    bredon-types "^3.0.0"
-    tokenize-sync "^1.0.0"
-
-chalk@^2.0.1, chalk@^2.3.0:
+chalk@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.0.tgz#b5ea48efc9c1793dccc9b4767c93914d3f2d52ba"
   dependencies:
@@ -62,34 +44,7 @@ hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
 
-lodash@^4.17.4:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
-
-log-symbols@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.1.0.tgz#f35fa60e278832b538dc4dddcbb478a45d3e3be6"
-  dependencies:
-    chalk "^2.0.1"
-
-postcss-bredon-validate@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-bredon-validate/-/postcss-bredon-validate-0.0.1.tgz#4faab0550f233342dce0110fcf898da5e440c796"
-  dependencies:
-    bredon-validate "^0.0.2"
-    css-in-js-utils "^2.0.0"
-    postcss "^6.0.14"
-
-postcss-reporter@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-reporter/-/postcss-reporter-5.0.0.tgz#a14177fd1342829d291653f2786efd67110332c3"
-  dependencies:
-    chalk "^2.0.1"
-    lodash "^4.17.4"
-    log-symbols "^2.0.0"
-    postcss "^6.0.8"
-
-postcss@^6.0.14, postcss@^6.0.8:
+postcss@^6.0.14:
   version "6.0.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.14.tgz#5534c72114739e75d0afcf017db853099f562885"
   dependencies:
@@ -106,7 +61,3 @@ supports-color@^4.0.0, supports-color@^4.4.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
   dependencies:
     has-flag "^2.0.0"
-
-tokenize-sync@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tokenize-sync/-/tokenize-sync-1.0.0.tgz#65b5b72bb208b013166e4d253e0b8b4990c70e83"
