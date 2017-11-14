@@ -1,6 +1,7 @@
 /* @flow */
 import tokenize from 'tokenize-sync'
 import {
+  assignment,
   dimension,
   integer,
   float,
@@ -31,6 +32,7 @@ import type {
   Node,
   SimpleNode,
   DimensionNode,
+  AssignmentNode,
   FloatNode,
   FunctionNode,
 } from '../../../flowtypes/AST'
@@ -39,9 +41,12 @@ const ruleMap = {
   exclamation_mark: /^[!]$/,
   quote: /^('|\\'|"|\\")$/,
   operator: /^(\+|-|\*|\/)$/,
-  identifier: /^[a-z-]+$/i,
+  identifier: /^[a-z-_]+$/i,
   number: /^\d+$/,
-  url_chars: /^[&:=?]$/,
+  colon: /^[:]$/,
+  equal: /^[=]$/,
+  ie_hack: /^\\$/,
+  others: /^[&?;]+$/,
   percentage: /^[%]$/,
   floating_point: /^[.]$/,
   hex: /^[#]$/,
@@ -89,7 +94,8 @@ export default class Parser {
     while (
       this.currentToken.type === 'comma' ||
       this.currentToken.type === 'whitespace' ||
-      this.currentToken.type === 'exclamation_mark'
+      this.currentToken.type === 'exclamation_mark' ||
+      this.currentToken.type === 'ie_hack'
     ) {
       this.parseSeparator()
 
@@ -111,6 +117,14 @@ export default class Parser {
 
       // skip parsing if no more tokens are coming
       // this time it happens if the last token was an !important
+      if (!this.currentToken) {
+        return false
+      }
+
+      this.parseIEHack()
+
+      // skip parsing if no more tokens are coming
+      // this time it happens if the last token was
       if (!this.currentToken) {
         return false
       }
@@ -137,7 +151,7 @@ export default class Parser {
   }
 
   parse(input: string): ValueList {
-    this.tokens = tokenize(input, ruleMap)
+    this.tokens = tokenize(input, ruleMap, 'identifier')
 
     this.currentPosition = 0
     this.parenBalance = 0
@@ -153,11 +167,6 @@ export default class Parser {
 
       if (node) {
         this.currentNode.body.push(node)
-
-        // set multi indicator as soon as the value has more than one node
-        if (this.currentNode.body.length > 1) {
-          this.currentNode.multi = true
-        }
       }
     }
 
@@ -357,39 +366,107 @@ export default class Parser {
     }
   }
 
-  parseIdentifier(): SimpleNode | FunctionNode {
+  parseIdentifier(partial: string = ''): SimpleNode | FunctionNode {
     if (this.currentToken.type === 'identifier') {
-      const nextToken = this.getNextToken(1)
+      let nextToken = this.getNextToken(1)
+
+      let ident = partial + this.currentToken.value
 
       // parsing function expression
-      if (nextToken && nextToken.type === 'paren' && nextToken.value === '(') {
-        const callee = this.currentToken.value
-
-        // special parsing for url functions
-        // as they only allow a single url parameter
-        if (callee === 'url') {
-          return this.parseURL(callee)
+      if (nextToken) {
+        if (nextToken.type === 'identifier') {
+          this.updateCurrentToken(1)
+          return this.parseIdentifier(ident)
         }
 
-        // special parsing for calc functions that includes
-        // algebraic expressions with operators and parenthesis
-        if (callee.indexOf('calc') !== -1) {
-          // setting the expression scope
-          // to allow all operators
-          this.setScope('expression')
-          const node = this.parseFunctionExpression(callee)
+        if (nextToken.type === 'paren' && nextToken.value === '(') {
+          // special parsing for url functions
+          // as they only allow a single url parameter
+          if (ident === 'url') {
+            return this.parseURL(ident)
+          }
+
+          // special parsing for calc functions that includes
+          // algebraic expressions with operators and parenthesis
+          if (ident.indexOf('calc') !== -1) {
+            // setting the expression scope
+            // to allow all operators
+            this.setScope('expression')
+            const node = this.parseFunctionExpression(ident)
+            this.setScope()
+
+            const calcExpression = expression(node.params)
+            node.params = [calcExpression]
+
+            return node
+          }
+
+          this.setScope('function')
+          const fn = this.parseFunctionExpression(ident)
           this.setScope()
 
-          const calcExpression = expression(node.params)
-          node.params = [calcExpression]
-
-          return node
+          return fn
         }
 
-        return this.parseFunctionExpression(callee)
+        // TODO: ensure only function callees can have colon and floating_point
+        if (
+          nextToken.type === 'number' ||
+          nextToken.type === 'colon' ||
+          nextToken.type === 'floating_point'
+        ) {
+          this.updateCurrentToken(1)
+
+          const allowedTypes = {
+            number: true,
+            colon: true,
+            floating_point: true,
+          }
+
+          // TODO: parse concatenated identifiers
+          while (this.isRunning() && allowedTypes[this.currentToken.type]) {
+            ident += this.currentToken.value
+            this.updateCurrentToken(1)
+          }
+
+          if (this.currentToken.type === 'identifier') {
+            return this.parseIdentifier(ident)
+          }
+
+          this.updateCurrentToken(-1)
+          nextToken = this.getNextToken(1)
+        }
+
+        // named parameters
+        if (
+          nextToken &&
+          nextToken.type === 'equal' &&
+          this.scope === 'function'
+        ) {
+          this.updateCurrentToken(2)
+          return this.parseEqual(ident)
+        }
       }
 
-      return identifier(this.currentToken.value)
+      return identifier(ident)
+    }
+  }
+
+  parseEqual(name: string): AssignmentNode {
+    const value = this.walkTokens()
+    // reset auto-incremented token
+    this.updateCurrentToken(-1)
+
+    return assignment(name, value)
+  }
+
+  parseIEHack(): void {
+    if (this.currentToken.type === 'ie_hack') {
+      const nextToken = this.getNextToken(1)
+
+      if (nextToken && nextToken.type === 'number') {
+        this.currentNode.ie_only = nextToken.value
+        this.updateCurrentToken(2)
+      }
     }
   }
 

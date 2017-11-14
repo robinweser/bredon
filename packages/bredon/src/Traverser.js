@@ -44,8 +44,12 @@ export default class Traverser {
         this.traverseNodeList(visitor, node.params, nodePath)
         break
 
-      case 'Integer':
       case 'Dimension':
+      case 'Assignment':
+        this.traverseNode(visitor, node.value, nodePath)
+        break
+
+      case 'Integer':
       case 'Float':
       case 'Identifier':
       case 'Operator':

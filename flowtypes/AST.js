@@ -30,6 +30,12 @@ export type ExpressionNode = {
   body: Array<Node>,
 }
 
+export type AssignmentNode = {
+  type: 'Assignment',
+  name: string,
+  value: Node,
+}
+
 export type Node =
   | SimpleNode
   | FunctionNode

@@ -96,6 +96,79 @@ Array [
 ]
 `;
 
+exports[`Parsing CSS values should correctly parse assigments inside function expressions 1`] = `
+Array [
+  "alpha(opacity=90)",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "alpha",
+            "params": Array [
+              Object {
+                "name": "opacity",
+                "type": "Assignment",
+                "value": Object {
+                  "negative": false,
+                  "type": "Integer",
+                  "value": 90,
+                },
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse assigments inside function expressions 2`] = `
+Array [
+  "alpha(opacity=90, color=\\"red\\")",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "alpha",
+            "params": Array [
+              Object {
+                "name": "opacity",
+                "type": "Assignment",
+                "value": Object {
+                  "negative": false,
+                  "type": "Integer",
+                  "value": 90,
+                },
+              },
+              Object {
+                "name": "color",
+                "type": "Assignment",
+                "value": Object {
+                  "quote": "\\"",
+                  "type": "StringLiteral",
+                  "value": "red",
+                },
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
 exports[`Parsing CSS values should correctly parse dimensions 1`] = `
 Array [
   "300px",
@@ -283,6 +356,57 @@ Array [
 ]
 `;
 
+exports[`Parsing CSS values should correctly parse function expressions 2`] = `
+Array [
+  "progid:DXImageTransform.Microsoft.gradient(opacity=0.9, color=\\"red\\", M21=3)",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "callee": "progid:DXImageTransform.Microsoft.gradient",
+            "params": Array [
+              Object {
+                "name": "opacity",
+                "type": "Assignment",
+                "value": Object {
+                  "fractional": 9,
+                  "integer": 0,
+                  "negative": false,
+                  "type": "Float",
+                },
+              },
+              Object {
+                "name": "color",
+                "type": "Assignment",
+                "value": Object {
+                  "quote": "\\"",
+                  "type": "StringLiteral",
+                  "value": "red",
+                },
+              },
+              Object {
+                "name": "M21",
+                "type": "Assignment",
+                "value": Object {
+                  "negative": false,
+                  "type": "Integer",
+                  "value": 3,
+                },
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
 exports[`Parsing CSS values should correctly parse identifiers 1`] = `
 Array [
   "flex-start",
@@ -295,6 +419,54 @@ Array [
             "value": "flex-start",
           },
         ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse identifiers 2`] = `
+Array [
+  "progid:DXImageTransform.Microsoft.gradient",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Identifier",
+            "value": "progid:DXImageTransform.Microsoft.gradient",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse ie hacks 1`] = `
+Array [
+  "100%\\\\9",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Dimension",
+            "unit": "%",
+            "value": Object {
+              "negative": false,
+              "type": "Integer",
+              "value": 100,
+            },
+          },
+        ],
+        "ie_only": "9",
         "important": false,
         "type": "Value",
       },
@@ -369,6 +541,49 @@ Array [
 ]
 `;
 
+exports[`Parsing CSS values should correctly parse unknown input 1`] = `
+Array [
+  "\\"メイリオ\\"",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "quote": "\\"",
+            "type": "StringLiteral",
+            "value": "メイリオ",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
+exports[`Parsing CSS values should correctly parse unknown input 2`] = `
+Array [
+  "メイリオ",
+  Object {
+    "body": Array [
+      Object {
+        "body": Array [
+          Object {
+            "type": "Identifier",
+            "value": "メイリオ",
+          },
+        ],
+        "important": false,
+        "type": "Value",
+      },
+    ],
+    "type": "ValueList",
+  },
+]
+`;
+
 exports[`Parsing CSS values should correctly skip whitespaces 1`] = `
 Array [
   "300 400   700",
@@ -393,7 +608,6 @@ Array [
           },
         ],
         "important": false,
-        "multi": true,
         "type": "Value",
       },
     ],
@@ -446,7 +660,6 @@ Array [
           },
         ],
         "important": false,
-        "multi": true,
         "type": "Value",
       },
       Object {
@@ -470,7 +683,6 @@ Array [
           },
         ],
         "important": false,
-        "multi": true,
         "type": "Value",
       },
     ],
@@ -523,7 +735,6 @@ Array [
           },
         ],
         "important": false,
-        "multi": true,
         "type": "Value",
       },
       Object {
@@ -547,7 +758,6 @@ Array [
           },
         ],
         "important": false,
-        "multi": true,
         "type": "Value",
       },
     ],

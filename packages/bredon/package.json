@@ -28,6 +28,6 @@
   "license": "MIT",
   "dependencies": {
     "bredon-types": "^3.0.0",
-    "tokenize-sync": "^1.0.0"
+    "tokenize-sync": "^2.0.0"
   }
 }

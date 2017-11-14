@@ -1,10 +1,27 @@
 import Parser from '../Parser'
 
 describe('Parsing CSS values', () => {
+  it('should correctly parse unknown input', () => {
+    const parser = new Parser()
+
+    expect(['"メイリオ"', parser.parse('"メイリオ"')]).toMatchSnapshot()
+    expect(['メイリオ', parser.parse('メイリオ')]).toMatchSnapshot()
+  })
+
   it('should correctly parse identifiers', () => {
     const parser = new Parser()
 
     expect(['flex-start', parser.parse('flex-start')]).toMatchSnapshot()
+    expect([
+      'progid:DXImageTransform.Microsoft.gradient',
+      parser.parse('progid:DXImageTransform.Microsoft.gradient'),
+    ]).toMatchSnapshot()
+  })
+
+  it('should correctly parse ie hacks', () => {
+    const parser = new Parser()
+
+    expect(['100%\\9', parser.parse('100%\\9')]).toMatchSnapshot()
   })
 
   it('should correctly parse integers', () => {
@@ -65,6 +82,26 @@ describe('Parsing CSS values', () => {
     const parser = new Parser()
 
     expect(['rgba(200,300)', parser.parse('rgba(200,300)')]).toMatchSnapshot()
+    expect([
+      'progid:DXImageTransform.Microsoft.gradient(opacity=0.9, color="red", M21=3)',
+      parser.parse(
+        'progid:DXImageTransform.Microsoft.gradient(opacity=0.9, color="red", M21=3)'
+      ),
+    ]).toMatchSnapshot()
+  })
+
+  it('should correctly parse assigments inside function expressions', () => {
+    const parser = new Parser()
+
+    expect([
+      'alpha(opacity=90)',
+      parser.parse('alpha(opacity=90)'),
+    ]).toMatchSnapshot()
+
+    expect([
+      'alpha(opacity=90, color="red")',
+      parser.parse('alpha(opacity=90, color="red")'),
+    ]).toMatchSnapshot()
   })
 
   it('should correctly parse URLs', () => {

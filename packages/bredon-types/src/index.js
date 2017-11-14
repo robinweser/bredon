@@ -1,3 +1,4 @@
+import assignment from './builders/assignment'
 import value from './builders/value'
 import dimension from './builders/dimension'
 import expression from './builders/expression'
@@ -14,6 +15,7 @@ import stringLiteral from './builders/stringLiteral'
 import url from './builders/url'
 
 import isValue from './validators/isValue'
+import isAssignment from './validators/isAssignment'
 import isDimension from './validators/isDimension'
 import isExpression from './validators/isExpression'
 import isFloat from './validators/isFloat'
@@ -29,6 +31,7 @@ import isStringLiteral from './validators/isStringLiteral'
 import isUrl from './validators/isUrl'
 
 export {
+  assignment,
   value,
   dimension,
   expression,
@@ -43,6 +46,7 @@ export {
   separator,
   stringLiteral,
   url,
+  isAssignment,
   isValue,
   isDimension,
   isExpression,

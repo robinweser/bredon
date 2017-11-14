@@ -23,6 +23,7 @@ export default class Generator {
       case 'Value':
         return (
           node.body.map(generateValue).join(' ') +
+          (node.ie_only ? '\\' + node.ie_only : '') +
           (node.important ? '!important' : '')
         )
 
@@ -47,6 +48,9 @@ export default class Generator {
         return node.value === '+' || node.value === '-'
           ? ` ${node.value} `
           : node.value
+
+      case 'Assignment':
+        return `${node.name}+${generateValue(node.value)}`
 
       case 'StringLiteral':
         return node.quote + node.value + node.quote
