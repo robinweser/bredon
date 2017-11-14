@@ -9,7 +9,7 @@ const css = `
   font-size: solid;
 }
 `
-
+/* eslint-disable no-console */
 describe('Using the bredon-validate PostCSS plugin', () => {
   jest.spyOn(global.console, 'log')
 

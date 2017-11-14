@@ -14,6 +14,7 @@ const fixtures = fs
     return fixureList
   }, [])
 
+/* eslint-disable no-console */
 function processFile(filename, stop, done) {
   const css = fs.readFileSync(filename)
 
@@ -29,7 +30,7 @@ function processFile(filename, stop, done) {
 
 describe('Monkey testing bredon-validate', () => {
   jest.spyOn(global.console, 'log')
-  //global.console.warn = () => false
+  // global.console.warn = () => false
 
   it('should not throw any warning', done => {
     fixtures.forEach((fixture, index) =>

@@ -13,7 +13,7 @@ export default function normalizeVisitors(
         typeof visitor === 'function' ? visitor(bredon) : visitor
 
       Object.keys(resolvedVisitor).forEach(nodeType => {
-        let normalizedVisitor = resolvedVisitor[nodeType]
+        const normalizedVisitor = resolvedVisitor[nodeType]
 
         if (typeof normalizedVisitor === 'function') {
           resolvedVisitor[nodeType] = {
