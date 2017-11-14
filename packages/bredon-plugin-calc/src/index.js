@@ -2,7 +2,7 @@
 import reduceCalc from 'reduce-css-calc'
 
 export default function calcPlugin(config?: Object = {}): Object {
-  const precision = config.precision || 2
+  const precision = config.precision || 4
 
   return ({ generate, parse, types }) => ({
     FunctionExpression({ node, replaceNode }) {
