@@ -1,34 +1,5 @@
 {
-    "name": "bredon-plugin-color",
-    "version": "1.0.0",
-    "description": "Bredon plugin to normalize color values",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "jsnext:main": "es/index.js",
-    "files": [
-        "LICENSE",
-        "README.md",
-        "lib/**",
-        "es/**"
-    ],
-    "keywords": [
-        "css",
-        "parser",
-        "css-parser",
-        "css-value-parser",
-        "ast",
-        "lexer",
-        "tokenizer",
-        "cssinjs",
-        "bredon"
-    ],
-    "repository": "https://github.com/rofrischmann/bredon.git",
-    "author": "Robin Frischmann <robin@rofrischmann.de>",
-    "license": "MIT",
-    "dependencies": {
-        "color": "^2.0.0"
-    },
-    "devDependencies": {
-        "bredon": "^3.0.1"
-    }
+	"dependencies": {
+		"color": "^2.0.0"
+	}
 }
