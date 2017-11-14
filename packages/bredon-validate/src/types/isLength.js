@@ -10,6 +10,6 @@ export default function isLength(node) {
     // 0 doesn't require a unit
     (isInteger(node) && node.value === 0) ||
     // calc() functions are length values as well
-    (isFunctionExpression(node) && node.callee.value.indexOf('calc') !== -1)
+    (isFunctionExpression(node) && node.callee.indexOf('calc') !== -1)
   )
 }

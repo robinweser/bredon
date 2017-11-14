@@ -1,5 +1,6 @@
 /* @flow */
 import { isValueList, isValue } from 'bredon-types'
+import unprefixProperty from 'css-in-js-utils/lib/unprefixProperty'
 
 import isValueListProperty from './utils/isValueListProperty'
 import isMultiValueProperty from './utils/isMultiValueProperty'
@@ -10,6 +11,7 @@ import isGlobal from './types/isGlobal'
 
 import propertyValidators from './propertyValidators'
 import properties from './data/properties'
+import _missingProps from './data/_missingProps'
 
 const defaultValidator = () => false
 
@@ -22,6 +24,19 @@ export default function isValidProperty(
   // and pretend its valid anyways
   // TODO: add valid property list
   if (!properties.hasOwnProperty(property)) {
+    const unprefixedProperty = unprefixProperty(property)
+
+    // we also check for prefixed properties that are
+    // actually standard CSS properties
+    if (properties.hasOwnProperty(unprefixedProperty)) {
+      return isValidProperty(unprefixedProperty, ast, isList)
+    }
+
+    // TODO: remove as soon as 100% props are covered
+    if (_missingProps.indexOf(property) !== -1) {
+      return true
+    }
+
     console.warn(
       `Unknown property: "${property}". If it is a valid CSS property, please file an issue.
 https://github.com/rofrischmann/bredon/issues/new`

@@ -2,7 +2,7 @@ import { isHexColor, isIdentifier, isFunctionExpression } from 'bredon-types'
 
 import colorNames from '../data/colorNames'
 
-const COLOR_REGEX = /^(rgba?|hsla?)$/
+const COLOR_REGEX = /^(rgba?|hsla?)$/i
 
 // TODO: validation
 export default function isColor(node) {

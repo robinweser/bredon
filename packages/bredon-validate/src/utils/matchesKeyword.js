@@ -9,5 +9,5 @@ export default function matchesKeyword(property) {
     // only match if the property has keyword values
     valueKeywords[property] &&
     // if the value is an actual property keyword
-    valueKeywords[property].indexOf(node.value) !== -1
+    valueKeywords[property].indexOf(node.value.toLowerCase()) !== -1
 }

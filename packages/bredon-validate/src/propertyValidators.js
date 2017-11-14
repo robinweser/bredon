@@ -117,22 +117,27 @@ const validators = {
   WebkitTextFillColor: isColor,
   WebkitTextStrokeColor: isColor,
   WebkitTextStrokeWidth: isLength,
-  animation: (node, isMultiValue) => {
+  animation: (node, isMultiValue) =>
     validateUnorderedNodeList([
-      validators.animationTimingFunction,
+      matchesKeyword('animationFillMode'),
+      matchesKeyword('animationDirection'),
+      matchesKeyword('animationPlayState'),
+      node =>
+        matchesKeyword('animationIterationCount')(node) ||
+        validators.animationIterationCount(node),
+      node =>
+        validators.animationTimingFunction(node) ||
+        matchesKeyword('animationTimingFunction')(node),
       validators.animationDuration,
       validators.animationDelay,
-      validators.animationDirection,
-      validators.animationFillMode,
-      validators.animationPlayState,
       validators.animationName,
-    ])(normalizeNodeList(node, isMultiValue))
-  },
+    ])(normalizeNodeList(node, isMultiValue)),
   animationDelay: isTime,
   animationDuration: isTime,
   animationIterationCount: isInteger,
-  animationName: isIdentifier,
-  animationTimingFunction: isFunctionExpression,
+  animationName: node => isIdentifier(node) || isStringLiteral(node),
+  animationTimingFunction: node =>
+    isCubicBezier(node) || isFrames(node) || isSteps(node),
   backgroundColor: isColor,
   backgroundPosition: isPosition,
   backgroundPositionX: (node, isMultiValue) => {
@@ -486,14 +491,14 @@ const validators = {
       4
     )(normalizeNodeList(node, isMultiValue)),
   maskPosition: isPosition,
-  maxBlockSize: isLength,
-  maxHeight: isLength,
-  maxInlineSize: isLength,
-  maxWidth: isLength,
-  minBlockSize: isLength,
-  minHeight: isLength,
-  minInlineSize: isLength,
-  minWidth: isLength,
+  maxBlockSize: isLengthPercentage,
+  maxHeight: isLengthPercentage,
+  maxInlineSize: isLengthPercentage,
+  maxWidth: isLengthPercentage,
+  minBlockSize: isLengthPercentage,
+  minHeight: isLengthPercentage,
+  minInlineSize: isLengthPercentage,
+  minWidth: isLengthPercentage,
   msFilter: isStringLiteral,
   msFlexNegative: isNumber,
   msFlexOrder: isInteger,
@@ -659,7 +664,7 @@ const validators = {
       matchesIdentifier(['under']),
       matchesIdentifier(['left', 'right']),
     ])(node),
-  top: isLength,
+  top: isLengthPercentage,
   touchAction: (node, isMultiValue) => {
     if (isMultiValue) {
       return validateUnorderedNodeList([
@@ -706,14 +711,15 @@ const validators = {
 
     return isLengthPercentage(node)
   },
-  transition: (node, isMultiValue) => {
+  transition: (node, isMultiValue) =>
     validateUnorderedNodeList([
       validators.transitionDelay,
       validators.transitionDuration,
+      node =>
+        validators.transitionTimingFunction(node) ||
+        matchesKeyword('transitionTimingFunction')(node),
       validators.transitionProperty,
-      validators.transitionTimingFunction,
-    ])(normalizeNodeList(node, isMultiValue))
-  },
+    ])(normalizeNodeList(node, isMultiValue)),
   transitionDelay: isTime,
   transitionDuration: isTime,
   transitionProperty: isIdentifier,

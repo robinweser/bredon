@@ -5,5 +5,5 @@ export default function matchesIdentifier(identifiers) {
     // the value needs to be an identifier
     isIdentifier(node) &&
     // if the value is an actual property keyword
-    identifiers.indexOf(node.value) !== -1
+    identifiers.indexOf(node.value.toLowerCase()) !== -1
 }

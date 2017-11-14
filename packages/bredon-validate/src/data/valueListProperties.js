@@ -13,6 +13,7 @@ export default {
   backgroundPositionY: true,
   animation: true,
   boxShadow: true,
+  fontFamily: true,
   maskPosition: true,
   scrollSnapCoordinate: true,
   transition: true,

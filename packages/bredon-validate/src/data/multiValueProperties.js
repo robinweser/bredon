@@ -15,6 +15,7 @@ export default {
   WebkitBorderBeforeStyle: true,
   WebkitBorderBeforeWidth: true,
   animation: true,
+  backgroundPosition: true,
   backgroundPositionX: true,
   backgroundPositionY: true,
   backgroundRepeat: true,
