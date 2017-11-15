@@ -206,7 +206,7 @@ Array [
             "type": "Dimension",
             "unit": "%",
             "value": Object {
-              "fractional": 33,
+              "fractional": 0.33,
               "integer": 33,
               "negative": true,
               "type": "Float",
@@ -285,7 +285,7 @@ Array [
       Object {
         "body": Array [
           Object {
-            "fractional": 55,
+            "fractional": 0.55,
             "integer": 200,
             "negative": false,
             "type": "Float",
@@ -308,7 +308,7 @@ Array [
       Object {
         "body": Array [
           Object {
-            "fractional": 55,
+            "fractional": 0.55,
             "integer": 0,
             "negative": true,
             "type": "Float",
@@ -370,7 +370,7 @@ Array [
                 "name": "opacity",
                 "type": "Assignment",
                 "value": Object {
-                  "fractional": 9,
+                  "fractional": 0.9,
                   "integer": 0,
                   "negative": false,
                   "type": "Float",
@@ -650,7 +650,7 @@ Array [
                 "value": 94,
               },
               Object {
-                "fractional": 34,
+                "fractional": 0.34,
                 "integer": 0,
                 "negative": false,
                 "type": "Float",
@@ -725,7 +725,7 @@ Array [
                 "value": 94,
               },
               Object {
-                "fractional": 34,
+                "fractional": 0.34,
                 "integer": 0,
                 "negative": false,
                 "type": "Float",

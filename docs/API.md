@@ -2,7 +2,7 @@
 
 ## bredon
 * [`parse(input)`](api/bredon/parse.md)
-* [`traverse(ast, [visitors])`](api/bredon/traverse.md)
+* [`traverse(ast, [visitors], [context])`](api/bredon/traverse.md)
 * [`generate(ast, [generators])`](api/bredon/generate.md)
 * [`compile(input, [options])`](api/bredon/compile.md)
 
@@ -11,3 +11,9 @@
 
 * [Validators](api/bredon-types/Validators.md)
 * [Builders](api/bredon-types/Builders.md)
+
+## bredon-validate
+* [`validate(property, value)`](api/bredon-validate/validate.md)
+
+## bredon-minify
+* [`minify(property, value)`](api/bredon-minify/minify.md)

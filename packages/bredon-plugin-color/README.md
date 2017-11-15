@@ -48,14 +48,14 @@ You can pass a custom color format with an options object.
 import { compile } from 'bredon'
 import colorPlugin from 'bredon-plugin-color'
 
-const color = colorPlugin({
-  format: 'rgb'
-})
-
 const input = '1px solid white'
 
 const output = compile(input, {
-  plugins: [ color ]
+  plugins: [ 
+    colorPlugin({
+      format: 'rgb'
+    })
+   ]
 })
 
 console.log(output)

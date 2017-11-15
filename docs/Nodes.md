@@ -55,6 +55,7 @@ For example: `1px solid black`
 * [StringLiteral](#stringliteral)
 * [Integer](#integer)
 * [Float](#float)
+* [Assignment](#assignment)
 * [Dimension](#dimension)
 * [FunctionExpression](#functionexpression)
 * [Expression](#expression)
@@ -159,8 +160,40 @@ Floats are floating-point numbers with a fractional part and an integer part.
 {
   type: 'Float',
   integer: 587,
-  fractional: 923,
+  fractional: 0.923,
   negative: false
+}
+```
+
+## Assignment
+Assignments are combinations of identifiers and a value, combined using an equal sign. They may only appear within [FunctionExpression](#functionexpression)s.
+
+| Property | Value | Description |
+| ------ | --- |  ------ |
+| name | (*string*) | The variable name that is assigned to |
+| value | (*Node*) | The value that is assigned |
+
+```javascript
+// e.g. color="red"
+{
+  type: 'Assignment',
+  name: 'color',
+  value: {
+    type: 'Identifier',
+    value: 'red'
+  }
+}
+
+// e.g. opacity=0.9
+{
+  type: 'Assignment',
+  name: 'opacity',
+  value: {
+    type: 'Float',
+    negative: false,
+    fractional: 0.9,
+    integer: 0
+  }
 }
 ```
 
@@ -191,7 +224,7 @@ Dimensions are special integers or floats that are postfixed with an extra unit.
   unit: 'px',
   value: {
     type: 'Float',
-    fractional: 33,
+    fractional: 0.33,
     integer: 33,
     negative: false
   }
@@ -214,17 +247,21 @@ Functions represent CSS functions wrapped in parentheses.
   callee: 'rgba',
   params: [{
     type: 'Integer',
+    negative: false,
     value: 10
   }, {
     type: 'Integer',
+    negative: false, 
     value: 20
   }, {
     type: 'Integer',
+    negative: false,
     value: 30
   }, {
     type: 'Float',
-    integer: 0,
-    fractional: 55
+    negative: false,
+    fractional: 0.55,
+    integer: 0
   }]
 }
 ```
@@ -244,20 +281,29 @@ They can only appear inside the CSS `calc`-function.
   type: 'Expression',
   body: [{
     type: 'Dimension',
-    value: 100,
+    value: {
+      type: 'Integer',
+      negative: false,
+      value: 100
+    },
     unit: '%'
   }, {
     type: 'Operator',
     value: '-'
   }, {
     type: 'Dimension',
-    value: 30,
+    value: {
+      type: 'Integer',
+      negative: false,
+      value: 30
+    },
     unit: 'px'
   }, {
     type: 'Operator',
     value: '*'
   }, {
     type: 'Integer',
+    negative: false,
     value: 3
   }]
 }

@@ -72,7 +72,7 @@ describe('Generating a string from an AST', () => {
                   {
                     type: 'Float',
                     integer: 0,
-                    fractional: 34,
+                    fractional: 0.34,
                     negative: false,
                   },
                 ],
@@ -153,7 +153,7 @@ describe('Generating a string from an AST', () => {
               {
                 type: 'Float',
                 integer: 0,
-                fractional: 55,
+                fractional: 0.55,
                 negative: true,
               },
             ],

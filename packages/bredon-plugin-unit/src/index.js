@@ -5,6 +5,12 @@ const defaultFormats = {
   angle: 'deg',
 }
 
+const groups = {
+  length: /^(px|in|pt|pc|cm|mm|q)$/i,
+  time: /^((m)?s)$/i,
+  angle: /^(deg|rad|grad|turn)$/i,
+}
+
 const convertion = {
   // length
   px: 1,
@@ -47,7 +53,7 @@ function convert(
   value: number,
   from: Unit,
   to: Unit,
-  precision?: number = 5
+  precision?: number = 6
 ): number {
   const precisionFactor = Math.pow(10, precision)
 
@@ -57,15 +63,49 @@ function convert(
   )
 }
 
+function getGroup(unit: Unit): ?string {
+  return Object.keys(groups).find(group => unit.match(groups[group]) !== null)
+}
+
+function isFloat(value: number): boolean {
+  return value === +value && value !== (value | 0)
+}
+
 export default function unitPlugin(config?: Object = {}): Object {
   const configFormats = config.formats || {}
+  const precision = config.precision || 4
 
-  const format = {
+  const formats = {
     ...defaultFormats,
     ...configFormats,
   }
 
-  return ({ generate, parse }) => ({
-    Dimension({ node }) {},
+  return ({ types }) => ({
+    Dimension({ node }) {
+      const group = getGroup(node.unit)
+
+      if (group) {
+        const format = formats[group]
+        const value =
+          node.value.value || node.value.integer + node.value.fractional
+
+        const newValue = convert(value, node.unit, format, precision)
+
+        node.unit = format
+
+        if (isFloat(newValue)) {
+          const integerPart = Math.floor(newValue)
+          const precisionFactor = Math.pow(10, precision)
+
+          const floatPart =
+            Math.round((newValue - integerPart) * precisionFactor) /
+            precisionFactor
+
+          node.value = types.float(integerPart, floatPart, node.negative)
+        } else {
+          node.value = types.integer(newValue, node.negative)
+        }
+      }
+    },
   })
 }

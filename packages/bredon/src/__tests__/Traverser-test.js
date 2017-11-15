@@ -115,6 +115,74 @@ describe('Traversing CSS values', () => {
     })
   })
 
+  it('should correctly traverse nested nodes', () => {
+    const visitor = {
+      FunctionExpression(path) {
+        if (path.node.callee === 'foo') {
+          path.node.callee = 'buz'
+
+          path.traverse({
+            Identifier(innerPath) {
+              if (innerPath.node.value === 'bar') {
+                innerPath.node.value = 'baz'
+              }
+            },
+          })
+        }
+      },
+    }
+
+    const traverser = new Traverser([visitor])
+
+    expect(
+      traverser.traverse({
+        type: 'Value',
+        body: [
+          {
+            type: 'FunctionExpression',
+            callee: 'foo',
+            params: [
+              {
+                type: 'Identifier',
+                value: 'bar',
+              },
+              {
+                type: 'Identifier',
+                value: 'baz',
+              },
+            ],
+          },
+          {
+            type: 'Identifier',
+            value: 'bar',
+          },
+        ],
+      })
+    ).toEqual({
+      type: 'Value',
+      body: [
+        {
+          type: 'FunctionExpression',
+          callee: 'buz',
+          params: [
+            {
+              type: 'Identifier',
+              value: 'baz',
+            },
+            {
+              type: 'Identifier',
+              value: 'baz',
+            },
+          ],
+        },
+        {
+          type: 'Identifier',
+          value: 'bar',
+        },
+      ],
+    })
+  })
+
   it('should correctly enter and exit nodes', () => {
     const visitor = {
       Identifier: {

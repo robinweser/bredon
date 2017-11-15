@@ -1,65 +1,65 @@
-# bredon-plugin-color
+# bredon-plugin-initial
 
-<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-color.svg">
+<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-initial.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-initial.svg">
 
-The color plugin is, as the name hints, all about modifying CSS color values. It can transform values into different color formats.
-
-Supported color formats are:  
-* hex *(`#ffffff`)*
-* rgb *(`rgb(255, 0, 255)`, `rgba(255, 0, 255, 0.55))*
-* hsl *(`hsl(100, 100%, 50%)`, `hsla(100, 50%, 50%, 0.55))*
-
-It can also process color names e.g. `white`, but will not output those.
+The initial plugin replaces, normalizes and minifies initial values.
+In order to replace the `initial` keyword, the associated CSS property is required within `context`.
 
 ## Installation
 ```sh
-yarn add bredon-plugin-color
+yarn add bredon-plugin-initial
 ```
-You may alternatively use `npm i --save bredon-plugin-color`.
+You may alternatively use `npm i --save bredon-plugin-initial`.
 
 ## Usage
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import initialPlugin from 'bredon-plugin-initial'
 
-const input = '1px solid white'
+const input = 'initial'
 
 const output = compile(input, {
   plugins: [ 
-    colorPlugin()
-  ]
+    initialPlugin()
+  ],
+  context: {
+    property: 'paddingLeft'
+  }
 })
 
 console.log(output)
-// => 1px solid #ffffff
+// => 0
 ```
 
 ### Configuration
-By default the plugin transforms every color value to the hex color format.<br>
-You can pass a custom color format with an options object.
+By default the plugin replaces all `initial` keywords.<br>
+Using the `useShorter`, it will the one that's shorter in length.<br>
+It may also replace values with the `initial` keyword if `useShorter` is used.
 
 | Options | Value | Default | Description |
 | ------- | ----- | ------- | ----------- |
-| preserveAlpha  | *boolean* | true | Values with alpha won't be transformed to `hex` |
-| format  | `hex`, `rgb`, `hsl` | `hex` | The output color format |
+| useShorter | *(boolean)* | `false` | If the shorter value should be used |
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import colorPlugin from 'bredon-plugin-initial'
 
-const color = colorPlugin({
-  format: 'rgb'
-})
-
-const input = '1px solid white'
+const input = 'initial'
 
 const output = compile(input, {
-  plugins: [ color ]
+  plugins: [ 
+    initialPlugin({
+      useShorter: true
+    })
+   ],
+   context: {
+     property: 'overflowClipBox'
+   }
 })
 
 console.log(output)
-// => 1px solid rgb(255, 255, 255)
+// => initial
 ```
 
 ## License

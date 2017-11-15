@@ -302,7 +302,7 @@ export default class Parser {
 
           const floatValue = float(
             integerPart,
-            parseInt(nextToken.value, 10),
+            parseFloat('0.' + nextToken.value),
             isNegative
           )
 

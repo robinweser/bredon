@@ -1,65 +1,67 @@
-# bredon-plugin-color
+# bredon-plugin-unit
 
-<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-color.svg">
+<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-unit.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-unit.svg">
 
-The color plugin is, as the name hints, all about modifying CSS color values. It can transform values into different color formats.
-
-Supported color formats are:  
-* hex *(`#ffffff`)*
-* rgb *(`rgb(255, 0, 255)`, `rgba(255, 0, 255, 0.55))*
-* hsl *(`hsl(100, 100%, 50%)`, `hsla(100, 50%, 50%, 0.55))*
-
-It can also process color names e.g. `white`, but will not output those.
+The unit plugin will convert, normalize and minify unit values.
 
 ## Installation
 ```sh
-yarn add bredon-plugin-color
+yarn add bredon-plugin-unit
 ```
-You may alternatively use `npm i --save bredon-plugin-color`.
+You may alternatively use `npm i --save bredon-plugin-unit`.
 
 ## Usage
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import unitPlugin from 'bredon-plugin-unit'
 
-const input = '1px solid white'
+const input = '12pt 0.25turn 3s 15px 2.53cm'
 
 const output = compile(input, {
   plugins: [ 
-    colorPlugin()
+    unitPlugin()
   ]
 })
 
 console.log(output)
-// => 1px solid #ffffff
+// => 16px 90deg 3000ms 15px 95.622px
 ```
 
 ### Configuration
-By default the plugin transforms every color value to the hex color format.<br>
-You can pass a custom color format with an options object.
+By default the output precision is `4`.<br>
+The default unit formats are:
+
+* length: `px`
+* time: `ms`
+* angle: `deg`
 
 | Options | Value | Default | Description |
 | ------- | ----- | ------- | ----------- |
-| preserveAlpha  | *boolean* | true | Values with alpha won't be transformed to `hex` |
-| format  | `hex`, `rgb`, `hsl` | `hex` | The output color format |
+| precision  | *number* | 4 | The prefered precision |
+| formats  | *Object* | `{ length: 'px', time: 'ms', angle: 'deg' }` | The prefered unit formats |
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import unitPlugin from 'bredon-plugin-unit'
 
-const color = colorPlugin({
-  format: 'rgb'
-})
-
-const input = '1px solid white'
+const input = '12pt 0.25turn 3s 15px 2.53cm'
 
 const output = compile(input, {
-  plugins: [ color ]
+  plugins: [ 
+    unitPlugin({
+       precision: 2,
+       formats: {
+        length: 'mm',
+        angle: 'grad',
+        time: 's',
+      }         
+    })
+  ]
 })
 
 console.log(output)
-// => 1px solid rgb(255, 255, 255)
+// => 4.23mm 100grad 3s 3.97mm 25.3mm
 ```
 
 ## License

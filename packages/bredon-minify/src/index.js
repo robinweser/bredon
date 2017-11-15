@@ -9,9 +9,8 @@ import precision from 'bredon-plugin-precision'
 const generators = {
   ValueList: (node, generate) => node.body.map(generate).join(','),
   Float: node =>
-    `${node.negative ? '-' : ''}${node.integer
-      ? node.integer
-      : ''}.${node.fractional}`,
+    `${node.negative ? '-' : ''}${node.integer ||
+      ''}${node.fractional.toString().slice(1)}`,
   FunctionExpression: (node, generate) =>
     `${node.callee}(${node.params.map(generate).join(',')})`,
 }

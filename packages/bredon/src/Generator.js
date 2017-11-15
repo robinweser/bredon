@@ -40,7 +40,9 @@ export default class Generator {
         return `${node.negative ? '-' : ''}${node.value}`
 
       case 'Float':
-        return `${node.negative ? '-' : ''}${node.integer}.${node.fractional}`
+        return `${node.negative
+          ? '-'
+          : ''}${node.integer}${node.fractional.toString().slice(1)}`
 
       case 'Operator':
         // for addition and substraction we use spacings left and right

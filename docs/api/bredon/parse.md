@@ -16,42 +16,42 @@ const input = '1px solid rgba(100, 250, 50, 0.55)'
 const ast = parse(input)
 
 ast === {
-  type: 'Value',
-  important: false,
+  type: 'ValueList',
   body: [{
-    type: 'Dimension',
-    unit: 'px',
-    value: {
-      type: 'Integer',
-      negative: false,
-      value: 1
-    }
-  }, {
-    type: 'Identifier',
-    value: 'solid'
-  }, {
-    type: 'Function',
-    callee: {
+    type: 'Value',
+    important: false,
+    body: [{
+      type: 'Dimension',
+      unit: 'px',
+      value: {
+        type: 'Integer',
+        negative: false,
+        value: 1
+      }
+    }, {
       type: 'Identifier',
-      value: 'rgba'
-    },
-    params: [{
-      type: 'Integer',
-      negative: false,
-      value: 100
+      value: 'solid'
     }, {
-      type: 'Integer',
-      negative: false,
-      value: 250
-    }, {
-      type: 'Integer',
-      negative: false,
-      value: 50
-    }, {
-      type: 'Float',
-      integer: 0,
-      fractional: 55,
-      negative: false
+      type: 'FunctionExpression',
+      callee: 'rgba',
+      params: [{
+        type: 'Integer',
+        negative: false,
+        value: 100
+      }, {
+        type: 'Integer',
+        negative: false,
+        value: 250
+      }, {
+        type: 'Integer',
+        negative: false,
+        value: 50
+      }, {
+        type: 'Float',   
+        negative: false,
+        fractional: 0.55,
+        integer: 0
+      }]
     }]
   }]
 }

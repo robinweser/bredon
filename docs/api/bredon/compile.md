@@ -2,14 +2,23 @@
 
 Compile basically is shorthand and executes [`parse`](parse.md), [`traverse`](traverse.md) and [`generate`](generate.md) in exact order.
 
-#### Arguments
+## Arguments
 1. `input` (*string*): The CSS value that gets parsed
-2. `options` (*Object?*): An object containing a list of `plugins` which basically are `visitors` (see [`traverse`](traverse.md)) and/or `generators` (see [`generate`](generate.md))
+2. `options` (*Object?*): An object containing compilation options
 
-##### Returns
-(*string*) formatted and minified string version of the CSS value
+ a list of `plugins` which basically are `visitors` (see [`traverse`](traverse.md)) and/or `generators` (see [`generate`](generate.md))
 
-##### Example
+#### Options
+| Option | Value | Default | Description |
+| ------ | ----- | ------- | ----------- |
+| plugins | (*Array?*) | `[]` | A list of `visitors` (see [`traverse`](traverse.md)) |
+| generators | (*Object?*) | `{}` | An object containing node `generators` (see [`generate`](generate.md)) |
+| context | (*Object?*) | `{}` | An object containing additional context information which is required by some plugins (see [`traverse`](traverse.md)) | 
+
+## Returns
+(*string*) transformed CSS value
+
+## Example
 
 ```javascript
 import { compile } from 'bredon'
@@ -22,7 +31,7 @@ const visitor = {
       console.log(path.parent.callee)
       console.log(path.node)
       // transforming the fractional part of each float
-      path.node.fractional += 5
+      path.node.fractional += 0.5
     }
 
     exit(path) {
@@ -35,7 +44,7 @@ const plugins = [visitor]
 
 const generators = {
   Function: (node, generate) =>
-    `${node.callee}(${node.params.map(generate).join(', ')})`
+    `${node.callee}(${node.params.map(generate).join(' , ')})`
 }
 
 const output = compile(input, {
@@ -43,9 +52,9 @@ const output = compile(input, {
   plugins
 })
 // => rgba
-// => { type: 'Float', integer: 0, fractional: 55, negative: false }
-// => { type: 'Float', integer: 0, fractional: 60, negative: false }
+// => { type: 'Float', integer: 0, fractional: 0.55, negative: false }
+// => { type: 'Float', integer: 0, fractional: 0.60, negative: false }
 
 console.log(output)
-// => '1px solid rgba(100, 200, 50, .60)'
+// => '1px solid rgba(100 , 200 , 50 , 0.60)'
 ```

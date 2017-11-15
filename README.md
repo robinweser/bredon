@@ -85,7 +85,7 @@ ast === {
       }, {
         type: 'Float',
         negative: false,
-        fractional: 55,
+        fractional: 0.55,
         integer: 0,
       }]
     }]
@@ -100,6 +100,7 @@ console.log(output)
 // parsing and generation can be combined
 const output = compile(input)
 ```
+
 ## Documentation
 * [**API Reference**](docs/API.md)
   * bredon
@@ -113,6 +114,8 @@ const output = compile(input)
     * [Builders](docs/api/bredon-types/Builders.md)
   * bredon-validate
     * [validate](docs/api/bredon-validate/validate.md)
+  * bredon-minify
+    * [minify](docs/api/bredon-minify/minify.md)
 * [**AST Nodes**](docs/Nodes.md)
   * [Identifier](docs/ASTNodes.md#identifier)
   * [Operator](docs/ASTNodes.md#operator)
@@ -120,12 +123,26 @@ const output = compile(input)
   * [Parenthesis](docs/ASTNodes.md#parenthesis)
   * [URL](docs/ASTNodes.md#url)
   * [StringLiteral](docs/ASTNodes.md#stringliteral)
+  * [Assignment](docs/ASTNodes.md#assignment)
   * [Dimension](docs/ASTNodes.md#dimension)
   * [Integer](docs/ASTNodes.md#integer)
   * [Float](docs/ASTNodes.md#float)
   * [FunctionExpression](docs/ASTNodes.md#functionexpression)
   * [Expression](docs/ASTNodes.md#expression)
 
+## Plugins
+Bredon's most powerful part is its extendable plugin system.<br>
+Plugins are used to analyze and transform AST nodes.
+
+| Plugin | Version | Size | Description |
+| ------ | ------- | ---- | ----------- |
+| [calc](packages/bredon-plugin-calc)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-calc.svg"> | tbd | Precalculate calc() expression as much as possible | 
+| [case](packages/bredon-plugin-case)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-case.svg"> | tbd | Normalize letter case for all identifiers |
+| [color](packages/bredon-plugin-color)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> | tbd | Manipulate, normalize and minify CSS color values | 
+| [initial](packages/bredon-plugin-initial)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-initial.svg"> | tbd | Replace, normalize and minify initial values | 
+| [precision](packages/bredon-plugin-trim-hex)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-trim-hex.svg"> | tbd | Minify hex color values if possible |
+| [trim-hex](packages/bredon-plugin-precision)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-precision.svg"> | tbd | Normalize decimal number precision |
+| [unit](packages/bredon-plugin-unit)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-unit.svg"> | tbd | Convert, normalize and minify unit values |
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/bredon). <br>

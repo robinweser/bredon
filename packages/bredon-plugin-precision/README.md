@@ -1,65 +1,57 @@
-# bredon-plugin-color
+# bredon-plugin-precision
 
-<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-color.svg">
+<img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-precision.svg"> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon-plugin-precision.svg">
 
-The color plugin is, as the name hints, all about modifying CSS color values. It can transform values into different color formats.
-
-Supported color formats are:  
-* hex *(`#ffffff`)*
-* rgb *(`rgb(255, 0, 255)`, `rgba(255, 0, 255, 0.55))*
-* hsl *(`hsl(100, 100%, 50%)`, `hsla(100, 50%, 50%, 0.55))*
-
-It can also process color names e.g. `white`, but will not output those.
+The precision plugin normalizes decimal number precision.<br>
+It will automatically round up values.
 
 ## Installation
 ```sh
-yarn add bredon-plugin-color
+yarn add bredon-plugin-precision
 ```
-You may alternatively use `npm i --save bredon-plugin-color`.
+You may alternatively use `npm i --save bredon-plugin-precision`.
 
 ## Usage
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import precisionPlugin from 'bredon-plugin-precision'
 
-const input = '1px solid white'
+const input = '33.3333333% solid rgba(10, 10, 10, 0.564)'
 
 const output = compile(input, {
   plugins: [ 
-    colorPlugin()
+    precisionPlugin()
   ]
 })
 
 console.log(output)
-// => 1px solid #ffffff
+// => 33.3333% solid rgba(10, 10, 10, 0.564)
 ```
 
 ### Configuration
-By default the plugin transforms every color value to the hex color format.<br>
-You can pass a custom color format with an options object.
+By default, the precision is set to `4`.
 
 | Options | Value | Default | Description |
 | ------- | ----- | ------- | ----------- |
-| preserveAlpha  | *boolean* | true | Values with alpha won't be transformed to `hex` |
-| format  | `hex`, `rgb`, `hsl` | `hex` | The output color format |
+| precision  | *number* | 4 | The prefered precision |
 
 ```javascript
 import { compile } from 'bredon'
-import colorPlugin from 'bredon-plugin-color'
+import precisionPlugin from 'bredon-plugin-precision'
 
-const color = colorPlugin({
-  format: 'rgb'
-})
-
-const input = '1px solid white'
+const input = '33.3333333% solid rgba(10, 10, 10, 0.564)'
 
 const output = compile(input, {
-  plugins: [ color ]
+  plugins: [ 
+    precisionPlugin({
+      precision: 2
+    })
+  ]
 })
 
 console.log(output)
-// => 1px solid rgb(255, 255, 255)
+// => 33.3% solid rgba(10, 10, 10, 0.56)
 ```
 
 ## License
