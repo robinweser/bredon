@@ -1,6 +1,6 @@
 {
   "name": "bredon-validate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Validation Methods for CSS values",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,14 +28,14 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "bredon": "^3.0.1",
-    "bredon-types": "^3.0.0",
+    "bredon": "^4.0.0",
     "bredon-plugin-case": "^1.0.0",
+    "bredon-types": "^3.0.1",
     "css-in-js-utils": "^2.0.0"
   },
   "devDependencies": {
     "postcss": "^6.0.14",
-    "postcss-bredon-validate": "^0.0.1",
+    "postcss-bredon-validate": "^0.0.2",
     "postcss-reporter": "^5.0.0"
   }
 }

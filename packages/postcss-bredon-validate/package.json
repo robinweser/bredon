@@ -1,6 +1,6 @@
 {
   "name": "postcss-bredon-validate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PostCSS plugin to validate values using bredon-validate",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,7 +28,7 @@
   "author": "Robin Frischmann <robin@rofrischmann.de>",
   "license": "MIT",
   "dependencies": {
-    "bredon-validate": "^0.0.2",
+    "bredon-validate": "^0.0.3",
     "css-in-js-utils": "^2.0.0",
     "postcss": "^6.0.14"
   },

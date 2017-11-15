@@ -1,6 +1,6 @@
 {
   "name": "postcss-bredon-minify",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "PostCSS plugin to minify values using bredon-minify",
   "main": "lib/index.js",
   "module": "es/index.js",

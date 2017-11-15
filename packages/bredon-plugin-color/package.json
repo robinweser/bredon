@@ -29,6 +29,6 @@
         "color": "^2.0.0"
     },
     "devDependencies": {
-        "bredon": "^3.0.1"
+        "bredon": "^4.0.0"
     }
 }

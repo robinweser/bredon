@@ -29,6 +29,6 @@
     "reduce-css-calc": "^2.1.1"
   },
   "devDependencies": {
-    "bredon": "^3.0.1"
+    "bredon": "^4.0.0"
   }
 }

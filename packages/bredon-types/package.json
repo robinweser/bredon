@@ -1,6 +1,6 @@
 {
   "name": "bredon-types",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Factories and Validators to manually create and check bredon AST Nodes",
   "main": "lib/index.js",
   "module": "es/index.js",
