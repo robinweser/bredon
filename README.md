@@ -4,7 +4,7 @@ Bredon is a modern CSS value compiler in JavaScript.<br>
 It uses very detailed nodes and provides as much information as possible for each value.<br>
 You may also use it to transform the AST and generate new CSS values.
 
-<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/bredon.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/bredon/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/bredon/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon.svg"> <img alt="npm version" src="https://badge.fury.io/js/bredon.svg"> <a href="https://gitter.im/rofrischmann/bredon"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/bredon.svg"></a>
+<img alt="TravisCI" src="https://travis-ci.org/rofrischmann/bredon.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/bredon/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/bredon/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-4.4kb-brightgreen.svg"> <img alt="npm version" src="https://badge.fury.io/js/bredon.svg"> <a href="https://gitter.im/rofrischmann/bredon"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/bredon.svg"></a>
 
 
 ## Support Us
@@ -136,13 +136,13 @@ Plugins are used to analyze and transform AST nodes.
 
 | Plugin | Version | Size | Description |
 | ------ | ------- | ---- | ----------- |
-| [calc](packages/bredon-plugin-calc)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-calc.svg"> | tbd | Precalculate calc() expression as much as possible | 
-| [case](packages/bredon-plugin-case)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-case.svg"> | tbd | Normalize letter case for all identifiers |
-| [color](packages/bredon-plugin-color)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> | tbd | Manipulate, normalize and minify CSS color values | 
-| [initial](packages/bredon-plugin-initial)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-initial.svg"> | tbd | Replace, normalize and minify initial values | 
-| [precision](packages/bredon-plugin-trim-hex)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-trim-hex.svg"> | tbd | Minify hex color values if possible |
-| [trim-hex](packages/bredon-plugin-precision)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-precision.svg"> | tbd | Normalize decimal number precision |
-| [unit](packages/bredon-plugin-unit)  | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-unit.svg"> | tbd | Convert, normalize and minify unit values |
+| [calc](packages/bredon-plugin-calc) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-calc.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-8.6kb-brightgreen.svg"> | Precalculate calc() expression as much as possible | 
+| [case](packages/bredon-plugin-case) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-case.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.31kb-brightgreen.svg"> | Normalize letter case for all identifiers |
+| [color](packages/bredon-plugin-color) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-color.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-7.9kb-brightgreen.svg"> | Manipulate, normalize and minify CSS color values | 
+| [initial](packages/bredon-plugin-initial) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-initial.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-2.6kb-brightgreen.svg"> | Replace, normalize and minify initial values | 
+| [precision](packages/bredon-plugin-precision) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-precision.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.27kb-brightgreen.svg"> | Normalize decimal number precision |
+| [trim-hex](packages/bredon-plugin-trim-hex) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-trim-hex.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.21kb-brightgreen.svg"> | Minify hex color values if possible |
+| [unit](packages/bredon-plugin-unit) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-unit.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.73kb-brightgreen.svg"> | Convert, normalize and minify unit values |
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/bredon). <br>

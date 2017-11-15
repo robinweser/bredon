@@ -11,8 +11,8 @@
 | bredon-plugin-color<br>bredon-plugin-case<br>bredon-plugin-color<br>bredon-plugin-initial<br>bredon-plugin-precision<br>bredon-plugin-trim-hex<br>bredon-plugin-unit | 1.0.0 | initial release |
 | bredon-validate | 0.0.3 | Updated some property validators |
 | postcss-bredon-validate | 0.0.2 | updated bredon-validate to 0.0.3 |
-| bredon-minify | 0.0.1 | initial release |
-| postcss-bredon-minify | 0.0.1 | initial release |
+| bredon-minify | 1.0.0 | initial release |
+| postcss-bredon-minify | 1.0.0 | initial release |
 
 ### 10/10/17
 | Package | Version | Changes |
