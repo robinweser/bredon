@@ -1,8 +1,8 @@
 # Bredon
 
-Bredon is a modern CSS value compiler in JavaScript.<br>
-It uses very detailed nodes and provides as much information as possible for each value.<br>
-You may also use it to transform the AST and generate new CSS values.
+Bredon is a modern, specification-driven CSS value compiler in JavaScript.<br>
+It's parser uses very detailed nodes and provides as much information as possible.<br>
+The generated AST ([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) is simple and readable which allows efficient and straight-forward transormation. It automatically outputs formatted CSS values.
 
 <img alt="TravisCI" src="https://travis-ci.org/rofrischmann/bredon.svg?branch=master"> <a href="https://codeclimate.com/github/rofrischmann/bredon/coverage"><img alt="Test Coverage" src="https://codeclimate.com/github/rofrischmann/bredon/badges/coverage.svg"></a> <img alt="npm downloads" src="https://img.shields.io/npm/dm/bredon.svg"> <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-4.4kb-brightgreen.svg"> <img alt="npm version" src="https://badge.fury.io/js/bredon.svg"> <a href="https://gitter.im/rofrischmann/bredon"><img alt="Gitter" src="https://img.shields.io/gitter/room/rofrischmann/bredon.svg"></a>
 
@@ -31,16 +31,16 @@ yarn add bredon
 Alternatively use `npm i --save bredon`.
 
 ## Why?
-I am heavily involved in the whole CSS-in-JS movement with [Fela](https://github.com/rofrischmann/fela) and [Elodin](https://github.com/rofrischmann/elodin) as well as [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer). While writing Elodin, a plugin-based style object linter, I struggled to do complex value validation and related operations. Stuff like *"Is the property/value prefixed?"* or even *"Is it compatible with browser ...?"* has been pretty straightforward, but I couldn't really come up with a simple solution to correctly validate CSS values with all their complexity.<br>
-Here, I made the decision to write a modern CSS value parser that provides the required degree of accuracy and detail - Bredon.
+I am heavily involved in the whole CSS in JS movement with [Fela](https://github.com/rofrischmann/fela) and [Elodin](https://github.com/rofrischmann/elodin) as well as [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer). While writing Elodin, a plugin-based style object linter, I struggled to do complex value validation and value transformation. As CSS values are just plain strings, we do not have any meaningful types.<br>
+But, in order to perform efficient validation and transformation, we have to parse CSS values into useful type-aware components. That's where Bredon joins the game. It uses a specification-driven value parser that provides the required degree of accuracy and detail.
 
-> Bredon also is a project to understand how compilers work. It's quite fascinating as soon as you understand how simple they actually are.
+> Bredon also serves as a personal project to learn and understand how compilers work.
 
 ## How?
 I heavily used [James Kyle](https://github.com/thejameskyle)'s [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler) to build Bredon. It follows the exact same steps as any other compiler does:
 
 1. First of all we read the input, one by one, and generate tokens
-2. Then we parse these tokens into syntactic nodes, also know as AST ([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree))
+2. Then we parse these tokens into syntactic nodes, also know as AST
 3. *(optional)* We may now traverse the AST and transform nodes
 4. Finally we generate a new CSS value using the transformed AST
 
@@ -143,6 +143,20 @@ Plugins are used to analyze and transform AST nodes.
 | [precision](packages/bredon-plugin-precision) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-precision.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.27kb-brightgreen.svg"> | Normalize decimal number precision |
 | [trim-hex](packages/bredon-plugin-trim-hex) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-trim-hex.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.21kb-brightgreen.svg"> | Minify hex color values if possible |
 | [unit](packages/bredon-plugin-unit) | <img alt="npm version" src="https://badge.fury.io/js/bredon-plugin-unit.svg"> | <img alt="gzipped size" src="https://img.shields.io/badge/gzipped-0.73kb-brightgreen.svg"> | Convert, normalize and minify unit values |
+
+## Integrations
+To use Bredon within your project, you will need to somehow integrate the compiler into your workflow.<br>
+Currently, we support to options to do so. You can either use Bredon with your existing CSS codebase using [PostCSS](http://postcss.org).
+For JavaScript-based styling solutions (CSS in JS), there is [Elodin](https://github.com/rofrischmann/elodin) which can be configured to auto-fix styles.
+
+* [elodin](https://github.com/rofrischmann/elodin)
+* [postcss-bredon](packages/postcss-bredon)
+
+### PostCSS Stand-Alones
+You can also use [bredon-minify](packages/bredon-minify) and [bredon-validate](packages/bredon-validate) as a stand-alone plugin for PostCSS:
+
+* [postcss-bredon-minify](postcss-bredon-minify)
+* [postcss-bredon-validate](postcss-bredon-validate)
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/bredon). <br>
