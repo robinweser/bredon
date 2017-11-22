@@ -1,0 +1,31 @@
+{
+    "name": "bredon-plugin-remove-unit",
+    "version": "1.0.0",
+    "description": "Bredon plugin to remove unnecessary units from values",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "jsnext:main": "es/index.js",
+    "files": [
+        "LICENSE",
+        "README.md",
+        "lib/**",
+        "es/**"
+    ],
+    "keywords": [
+        "css",
+        "parser",
+        "css-parser",
+        "css-value-parser",
+        "ast",
+        "lexer",
+        "tokenizer",
+        "cssinjs",
+        "bredon"
+    ],
+    "repository": "https://github.com/rofrischmann/bredon.git",
+    "author": "Robin Frischmann <robin@rofrischmann.de>",
+    "license": "MIT",
+    "devDependencies": {
+        "bredon": "^4.0.0"
+    }
+}
