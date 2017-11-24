@@ -33,6 +33,7 @@
     "bredon-plugin-color": "^1.0.0",
     "bredon-plugin-initial": "^1.0.0",
     "bredon-plugin-precision": "^1.0.0",
+    "bredon-plugin-remove-unit": "^1.0.0",
     "bredon-plugin-trim-hex": "^1.0.0"
   }
 }

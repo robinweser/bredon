@@ -5,6 +5,7 @@ import color from 'bredon-plugin-color'
 import initial from 'bredon-plugin-initial'
 import trimHex from 'bredon-plugin-trim-hex'
 import precision from 'bredon-plugin-precision'
+import removeUnit from 'bredon-plugin-remove-unit'
 
 const generators = {
   ValueList: (node, generate) => node.body.map(generate).join(','),
@@ -18,6 +19,7 @@ const generators = {
 const plugins = [
   calc(),
   precision({ precision: 2 }),
+  removeUnit(),
   color({
     format: 'hex',
   }),
