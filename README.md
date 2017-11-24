@@ -156,8 +156,8 @@ For JavaScript-based styling solutions (CSS in JS), there is [Elodin](https://gi
 ### PostCSS Stand-Alones
 You can also use [bredon-minify](packages/bredon-minify) and [bredon-validate](packages/bredon-validate) as a stand-alone plugin for PostCSS:
 
-* [postcss-bredon-minify](postcss-bredon-minify)
-* [postcss-bredon-validate](postcss-bredon-validate)
+* [postcss-bredon-minify](packages/postcss-bredon-minify)
+* [postcss-bredon-validate](packages/postcss-bredon-validate)
 
 ## Support
 Join us on [Gitter](https://gitter.im/rofrischmann/bredon). <br>

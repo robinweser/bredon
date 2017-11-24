@@ -5,7 +5,9 @@
 ### 24/10/17
 | Package | Version | Changes |
 | ------- | ------- | ------- |
+| postcss-bredon | 1.0.0 | initial release |
 | bredon-plugin-remove-unit | 1.0.0 | initial release |
+| bredon-minify<br>postcss-bredon-minify | 1.0.1 | add bredon-plugin-remove-unit to bredon-minify |
 
 ### 15/10/17
 | Package | Version | Changes |
