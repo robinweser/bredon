@@ -1,6 +1,6 @@
 {
     "name": "bredon-plugin-remove-unit",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Bredon plugin to remove unnecessary units from values",
     "main": "lib/index.js",
     "module": "es/index.js",
