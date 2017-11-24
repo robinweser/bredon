@@ -2,6 +2,11 @@
 
 > Dates are in `dd/mm/yy` format.
 
+### 24/10/17
+| Package | Version | Changes |
+| ------- | ------- | ------- |
+| bredon-plugin-remove-unit | 1.0.0 | initial release |
+
 ### 15/10/17
 | Package | Version | Changes |
 | ------- | ------- | ------- |
