@@ -1,6 +1,6 @@
 {
   "name": "postcss-bredon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "PostCSS plugin to compile values using Bredon",
   "main": "lib/index.js",
   "module": "es/index.js",

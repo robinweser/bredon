@@ -1,6 +1,6 @@
 {
   "name": "bredon-minify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Preconfigured Bredon Compiler to minify CSS values",
   "main": "lib/index.js",
   "module": "es/index.js",
