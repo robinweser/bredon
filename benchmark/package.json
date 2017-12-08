@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "performance-benchmarks",
+  "version": "0.0.1",
+  "scripts": {
+    "bench": "babel-node index"
+  },
+  "dependencies": {
+    "babel-cli": "6.18.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "beautify-benchmark": "0.2.4",
+    "benchmark": "2.1.2",
+    "bredon": "^4.0.0",
+    "postcss-value-parser": "^3.3.0"
+  }
+}
