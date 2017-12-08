@@ -8,6 +8,6 @@ export default function functionExpression(
   return {
     type: 'FunctionExpression',
     callee,
-    params
+    params,
   }
 }

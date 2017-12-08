@@ -10,6 +10,6 @@ export default function stringLiteral(
   return {
     type: 'StringLiteral',
     value: str,
-    quote
+    quote,
   }
 }

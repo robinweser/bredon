@@ -6,6 +6,6 @@ type ExpressionSymbol = '+' | '-' | '*' | '/'
 export default function operator(symbol: ExpressionSymbol): SimpleNode {
   return {
     type: 'Operator',
-    value: symbol
+    value: symbol,
   }
 }

@@ -1,1 +1,1 @@
-export type RuleMap = {[token: string]: string | Function};
+export type RuleMap = { [token: string]: string | Function }

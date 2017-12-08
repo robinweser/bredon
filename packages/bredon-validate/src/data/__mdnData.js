@@ -10,7 +10,7 @@ export default {
     appliesto: 'nonReplacedBlockAndInlineBlockElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-appearance': {
     syntax:
@@ -24,7 +24,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-binding': {
     syntax: '<url> | none',
@@ -37,7 +37,7 @@ export default {
     appliesto: 'allElementsExceptGeneratedContentOrPseudoElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-border-bottom-colors': {
     syntax: '[ <color> ]* <color> | none',
@@ -50,7 +50,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-border-left-colors': {
     syntax: '[ <color> ]* <color> | none',
@@ -63,7 +63,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-border-right-colors': {
     syntax: '[ <color> ]* <color> | none',
@@ -76,7 +76,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-border-top-colors': {
     syntax: '[ <color> ]* <color> | none',
@@ -89,7 +89,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-context-properties': {
     syntax: 'none | [ fill | fill-opacity | stroke | stroke-opacity ]#',
@@ -102,7 +102,7 @@ export default {
     appliesto: 'allElementsThatCanReferenceImages',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-float-edge': {
     syntax: 'border-box | content-box | margin-box | padding-box',
@@ -115,7 +115,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-force-broken-image-icon': {
     syntax: '<integer>',
@@ -128,7 +128,7 @@ export default {
     appliesto: 'images',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-image-region': {
     syntax: '<shape> | auto',
@@ -141,7 +141,7 @@ export default {
     appliesto: 'xulImageElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-orient': {
     syntax: 'inline | block | horizontal | vertical',
@@ -154,7 +154,7 @@ export default {
     appliesto: 'anyElementEffectOnProgressAndMeter',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-outline-radius': {
     syntax: '<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?',
@@ -164,30 +164,30 @@ export default {
       '-moz-outline-radius-topleft',
       '-moz-outline-radius-topright',
       '-moz-outline-radius-bottomright',
-      '-moz-outline-radius-bottomleft'
+      '-moz-outline-radius-bottomleft',
     ],
     percentages: [
       '-moz-outline-radius-topleft',
       '-moz-outline-radius-topright',
       '-moz-outline-radius-bottomright',
-      '-moz-outline-radius-bottomleft'
+      '-moz-outline-radius-bottomleft',
     ],
     groups: ['Mozilla Extensions'],
     initial: [
       '-moz-outline-radius-topleft',
       '-moz-outline-radius-topright',
       '-moz-outline-radius-bottomright',
-      '-moz-outline-radius-bottomleft'
+      '-moz-outline-radius-bottomleft',
     ],
     appliesto: 'allElements',
     computed: [
       '-moz-outline-radius-topleft',
       '-moz-outline-radius-topright',
       '-moz-outline-radius-bottomright',
-      '-moz-outline-radius-bottomleft'
+      '-moz-outline-radius-bottomleft',
     ],
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-outline-radius-bottomleft': {
     syntax: '<outline-radius>',
@@ -200,7 +200,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-outline-radius-bottomright': {
     syntax: '<outline-radius>',
@@ -213,7 +213,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-outline-radius-topleft': {
     syntax: '<outline-radius>',
@@ -226,7 +226,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-outline-radius-topright': {
     syntax: '<outline-radius>',
@@ -239,7 +239,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-stack-sizing': {
     syntax: 'ignore | stretch-to-fit',
@@ -252,7 +252,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-text-blink': {
     syntax: 'none | blink',
@@ -265,7 +265,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-user-focus': {
     syntax:
@@ -279,7 +279,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-user-input': {
     syntax: 'auto | none | enabled | disabled',
@@ -292,7 +292,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-user-modify': {
     syntax: 'read-only | read-write | write-only',
@@ -305,7 +305,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-window-dragging': {
     syntax: 'drag | no-drag',
@@ -318,7 +318,7 @@ export default {
     appliesto: 'allElementsCreatingNativeWindows',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-moz-window-shadow': {
     syntax: 'default | menu | tooltip | sheet | none',
@@ -331,7 +331,7 @@ export default {
     appliesto: 'allElementsCreatingNativeWindows',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-border-before': {
     syntax: "<'border-width'> || <'border-style'> || <'color'>",
@@ -344,7 +344,7 @@ export default {
     appliesto: 'allElements',
     computed: ['border-width', 'border-style', 'color'],
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-border-before-color': {
     syntax: "<'color'>",
@@ -357,7 +357,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-border-before-style': {
     syntax: "<'border-style'>",
@@ -370,7 +370,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-border-before-width': {
     syntax: "<'border-width'>",
@@ -383,7 +383,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthZeroIfBorderStyleNoneOrHidden',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-box-reflect': {
     syntax: '[ above | below | right | left ]? <length>? <image>?',
@@ -396,7 +396,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask': {
     syntax:
@@ -412,7 +412,7 @@ export default {
       '-webkit-mask-attachment',
       '-webkit-mask-position',
       '-webkit-mask-origin',
-      '-webkit-mask-clip'
+      '-webkit-mask-clip',
     ],
     appliesto: 'allElements',
     computed: [
@@ -421,10 +421,10 @@ export default {
       '-webkit-mask-attachment',
       '-webkit-mask-position',
       '-webkit-mask-origin',
-      '-webkit-mask-clip'
+      '-webkit-mask-clip',
     ],
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-attachment': {
     syntax: '<attachment> [, <attachment> ]*',
@@ -437,7 +437,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-clip': {
     syntax:
@@ -451,7 +451,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-composite': {
     syntax: '<composite-style> [, <composite-style> ]*',
@@ -464,7 +464,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-image': {
     syntax: '<mask-image> [, <mask-image> ]*',
@@ -477,7 +477,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteURIOrNone',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-origin': {
     syntax:
@@ -491,7 +491,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-position': {
     syntax: '<mask-position>#',
@@ -504,7 +504,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthOrPercentage',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-position-x': {
     syntax: '[ <length-percentage> | left | center | right ]#',
@@ -517,7 +517,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthOrPercentage',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-position-y': {
     syntax: '[ <length-percentage> | top | center | bottom ]#',
@@ -530,7 +530,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthOrPercentage',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-repeat': {
     syntax: '<repeat-style> [, <repeat-style> ]*',
@@ -543,7 +543,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-repeat-x': {
     syntax: 'repeat | no-repeat | space | round',
@@ -556,7 +556,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-mask-repeat-y': {
     syntax: 'repeat | no-repeat | space | round',
@@ -569,7 +569,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-overflow-scrolling': {
     syntax: 'auto | touch',
@@ -582,7 +582,7 @@ export default {
     appliesto: 'scrollingBoxes',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-tap-highlight-color': {
     syntax: '<color>',
@@ -595,7 +595,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-text-fill-color': {
     syntax: '<color>',
@@ -608,7 +608,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-text-stroke': {
     syntax: '<length> || <color>',
@@ -621,7 +621,7 @@ export default {
     appliesto: 'allElements',
     computed: ['-webkit-text-stroke-width', '-webkit-text-stroke-color'],
     order: 'canonicalOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-text-stroke-color': {
     syntax: '<color>',
@@ -634,7 +634,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-text-stroke-width': {
     syntax: '<length>',
@@ -647,7 +647,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLength',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   '-webkit-touch-callout': {
     syntax: 'default | none',
@@ -660,7 +660,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'align-content': {
     syntax:
@@ -674,7 +674,7 @@ export default {
     appliesto: 'multilineFlexContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'align-items': {
     syntax: 'flex-start | flex-end | center | baseline | stretch',
@@ -687,7 +687,7 @@ export default {
     appliesto: 'flexContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'align-self': {
     syntax: 'auto | flex-start | flex-end | center | baseline | stretch',
@@ -700,7 +700,7 @@ export default {
     appliesto: 'flexItemsAndInFlowPseudos',
     computed: 'autoOnAbsolutelyPositionedElementsValueOfAlignItemsOnParent',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   all: {
     syntax: 'initial | inherit | unset | revert',
@@ -713,7 +713,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecifiedAppliesToEachProperty',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   animation: {
     syntax: '<single-animation>#',
@@ -730,7 +730,7 @@ export default {
       'animation-iteration-count',
       'animation-direction',
       'animation-fill-mode',
-      'animation-play-state'
+      'animation-play-state',
     ],
     appliesto: 'allElementsAndPseudos',
     computed: [
@@ -741,10 +741,10 @@ export default {
       'animation-direction',
       'animation-iteration-count',
       'animation-fill-mode',
-      'animation-play-state'
+      'animation-play-state',
     ],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-delay': {
     syntax: '<time>#',
@@ -757,7 +757,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-direction': {
     syntax: '<single-animation-direction>#',
@@ -770,7 +770,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-duration': {
     syntax: '<time>#',
@@ -783,7 +783,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-fill-mode': {
     syntax: '<single-animation-fill-mode>#',
@@ -796,7 +796,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-iteration-count': {
     syntax: '<single-animation-iteration-count>#',
@@ -809,7 +809,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-name': {
     syntax: '[ none | <keyframes-name> ]#',
@@ -822,7 +822,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-play-state': {
     syntax: '<single-animation-play-state>#',
@@ -835,7 +835,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'animation-timing-function': {
     syntax: '<single-timing-function>#',
@@ -848,7 +848,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   appearance: {
     syntax: 'auto | none',
@@ -861,7 +861,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   azimuth: {
     syntax:
@@ -875,7 +875,7 @@ export default {
     appliesto: 'allElements',
     computed: 'normalizedAngle',
     order: 'orderOfAppearance',
-    status: 'obsolete'
+    status: 'obsolete',
   },
   'backdrop-filter': {
     syntax: 'none | <filter-function-list>',
@@ -888,7 +888,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'backface-visibility': {
     syntax: 'visible | hidden',
@@ -901,7 +901,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   background: {
     syntax: '[ <bg-layer> , ]* <final-bg-layer>',
@@ -914,7 +914,7 @@ export default {
       'background-position',
       'background-size',
       'background-repeat',
-      'background-attachment'
+      'background-attachment',
     ],
     percentages: ['background-position', 'background-size'],
     groups: ['CSS Backgrounds and Borders'],
@@ -926,7 +926,7 @@ export default {
       'background-origin',
       'background-clip',
       'background-attachment',
-      'background-color'
+      'background-color',
     ],
     appliesto: 'allElements',
     computed: [
@@ -937,11 +937,11 @@ export default {
       'background-origin',
       'background-clip',
       'background-attachment',
-      'background-color'
+      'background-color',
     ],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-attachment': {
     syntax: '<attachment>#',
@@ -955,7 +955,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-blend-mode': {
     syntax: '<blend-mode>#',
@@ -969,7 +969,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-clip': {
     syntax: '<box>#',
@@ -983,7 +983,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-color': {
     syntax: '<color>',
@@ -997,7 +997,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-image': {
     syntax: '<bg-image>#',
@@ -1011,7 +1011,7 @@ export default {
     computed: 'asSpecifiedURLsAbsolute',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-origin': {
     syntax: '<box>#',
@@ -1025,7 +1025,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-position': {
     syntax: '<position>#',
@@ -1040,7 +1040,7 @@ export default {
     computed: 'listEachItemTwoKeywordsOriginOffsets',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-position-x': {
     syntax:
@@ -1055,7 +1055,7 @@ export default {
     appliesto: 'allElements',
     computed: 'listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'background-position-y': {
     syntax:
@@ -1070,7 +1070,7 @@ export default {
     appliesto: 'allElements',
     computed: 'listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'background-repeat': {
     syntax: '<repeat-style>#',
@@ -1084,7 +1084,7 @@ export default {
     computed: 'listEachItemHasTwoKeywordsOnePerDimension',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'background-size': {
     syntax: '<bg-size>#',
@@ -1098,7 +1098,7 @@ export default {
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'block-size': {
     syntax: "<'width'>",
@@ -1111,7 +1111,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsWidthAndHeight',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   border: {
     syntax: '<br-width> || <br-style> || <color>',
@@ -1125,7 +1125,7 @@ export default {
     computed: ['border-width', 'border-style', 'border-color'],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-end': {
     syntax: "<'border-width'> || <'border-style'> || <'color'>",
@@ -1138,7 +1138,7 @@ export default {
     appliesto: 'allElements',
     computed: ['border-width', 'border-style', 'border-block-end-color'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-end-color': {
     syntax: "<'color'>",
@@ -1151,7 +1151,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-end-style': {
     syntax: "<'border-style'>",
@@ -1164,7 +1164,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-end-width': {
     syntax: "<'border-width'>",
@@ -1177,7 +1177,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthZeroIfBorderStyleNoneOrHidden',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-start': {
     syntax: "<'border-width'> || <'border-style'> || <'color'>",
@@ -1190,7 +1190,7 @@ export default {
     appliesto: 'allElements',
     computed: ['border-width', 'border-style', 'border-block-start-color'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-start-color': {
     syntax: "<'color'>",
@@ -1203,7 +1203,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-start-style': {
     syntax: "<'border-style'>",
@@ -1216,7 +1216,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-block-start-width': {
     syntax: "<'border-width'>",
@@ -1229,7 +1229,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthZeroIfBorderStyleNoneOrHidden',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom': {
     syntax: '<br-width> || <br-style> || <color>',
@@ -1238,24 +1238,24 @@ export default {
     animationType: [
       'border-bottom-color',
       'border-bottom-style',
-      'border-bottom-width'
+      'border-bottom-width',
     ],
     percentages: 'no',
     groups: ['CSS Backgrounds and Borders'],
     initial: [
       'border-bottom-width',
       'border-bottom-style',
-      'border-bottom-color'
+      'border-bottom-color',
     ],
     appliesto: 'allElements',
     computed: [
       'border-bottom-width',
       'border-bottom-style',
-      'border-bottom-color'
+      'border-bottom-color',
     ],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom-color': {
     syntax: '<color>',
@@ -1269,7 +1269,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom-left-radius': {
     syntax: '<length-percentage>{1,2}',
@@ -1283,7 +1283,7 @@ export default {
     computed: 'twoAbsoluteLengthOrPercentages',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom-right-radius': {
     syntax: '<length-percentage>{1,2}',
@@ -1297,7 +1297,7 @@ export default {
     computed: 'twoAbsoluteLengthOrPercentages',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom-style': {
     syntax: '<br-style>',
@@ -1311,7 +1311,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-bottom-width': {
     syntax: '<br-width>',
@@ -1325,7 +1325,7 @@ export default {
     computed: 'absoluteLengthOr0IfBorderBottomStyleNoneOrHidden',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-collapse': {
     syntax: 'collapse | separate',
@@ -1338,7 +1338,7 @@ export default {
     appliesto: 'tableElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-color': {
     syntax: '<color>{1,4}',
@@ -1348,7 +1348,7 @@ export default {
       'border-bottom-color',
       'border-left-color',
       'border-right-color',
-      'border-top-color'
+      'border-top-color',
     ],
     percentages: 'no',
     groups: ['CSS Backgrounds and Borders'],
@@ -1356,18 +1356,18 @@ export default {
       'border-top-color',
       'border-right-color',
       'border-bottom-color',
-      'border-left-color'
+      'border-left-color',
     ],
     appliesto: 'allElements',
     computed: [
       'border-bottom-color',
       'border-left-color',
       'border-right-color',
-      'border-top-color'
+      'border-top-color',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image': {
     syntax:
@@ -1382,7 +1382,7 @@ export default {
       'border-image-slice',
       'border-image-width',
       'border-image-outset',
-      'border-image-repeat'
+      'border-image-repeat',
     ],
     appliesto: 'allElementsExceptTableElementsWhenCollapse',
     computed: [
@@ -1390,11 +1390,11 @@ export default {
       'border-image-repeat',
       'border-image-slice',
       'border-image-source',
-      'border-image-width'
+      'border-image-width',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image-outset': {
     syntax: '[ <length> | <number> ]{1,4}',
@@ -1408,7 +1408,7 @@ export default {
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image-repeat': {
     syntax: '[ stretch | repeat | round | space ]{1,2}',
@@ -1422,7 +1422,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image-slice': {
     syntax: '<number-percentage>{1,4} && fill?',
@@ -1436,7 +1436,7 @@ export default {
     computed: 'oneToFourPercentagesOrAbsoluteLengthsPlusFill',
     order: 'percentagesOrLengthsFollowedByFill',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image-source': {
     syntax: 'none | <image>',
@@ -1450,7 +1450,7 @@ export default {
     computed: 'noneOrImageWithAbsoluteURI',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-image-width': {
     syntax: '[ <length-percentage> | <number> | auto ]{1,4}',
@@ -1464,7 +1464,7 @@ export default {
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-end': {
     syntax: "<'border-width'> || <'border-style'> || <'color'>",
@@ -1477,7 +1477,7 @@ export default {
     appliesto: 'allElements',
     computed: ['border-width', 'border-style', 'border-inline-end-color'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-end-color': {
     syntax: "<'color'>",
@@ -1490,7 +1490,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-end-style': {
     syntax: "<'border-style'>",
@@ -1503,7 +1503,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-end-width': {
     syntax: "<'border-width'>",
@@ -1516,7 +1516,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthZeroIfBorderStyleNoneOrHidden',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-start': {
     syntax: "<'border-width'> || <'border-style'> || <'color'>",
@@ -1529,7 +1529,7 @@ export default {
     appliesto: 'allElements',
     computed: ['border-width', 'border-style', 'border-inline-start-color'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-start-color': {
     syntax: "<'color'>",
@@ -1542,7 +1542,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-start-style': {
     syntax: "<'border-style'>",
@@ -1555,7 +1555,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-inline-start-width': {
     syntax: "<'border-width'>",
@@ -1568,7 +1568,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLengthZeroIfBorderStyleNoneOrHidden',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-left': {
     syntax: '<br-width> || <br-style> || <color>',
@@ -1577,7 +1577,7 @@ export default {
     animationType: [
       'border-left-color',
       'border-left-style',
-      'border-left-width'
+      'border-left-width',
     ],
     percentages: 'no',
     groups: ['CSS Backgrounds and Borders'],
@@ -1586,7 +1586,7 @@ export default {
     computed: ['border-left-width', 'border-left-style', 'border-left-color'],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-left-color': {
     syntax: '<color>',
@@ -1600,7 +1600,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-left-style': {
     syntax: '<br-style>',
@@ -1614,7 +1614,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-left-width': {
     syntax: '<br-width>',
@@ -1628,7 +1628,7 @@ export default {
     computed: 'absoluteLengthOr0IfBorderLeftStyleNoneOrHidden',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-radius': {
     syntax: '<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?',
@@ -1638,7 +1638,7 @@ export default {
       'border-top-left-radius',
       'border-top-right-radius',
       'border-bottom-right-radius',
-      'border-bottom-left-radius'
+      'border-bottom-left-radius',
     ],
     percentages: 'referToDimensionOfBorderBox',
     groups: ['CSS Backgrounds and Borders'],
@@ -1646,18 +1646,18 @@ export default {
       'border-top-left-radius',
       'border-top-right-radius',
       'border-bottom-right-radius',
-      'border-bottom-left-radius'
+      'border-bottom-left-radius',
     ],
     appliesto: 'allElementsUAsNotRequiredWhenCollapse',
     computed: [
       'border-bottom-left-radius',
       'border-bottom-right-radius',
       'border-top-left-radius',
-      'border-top-right-radius'
+      'border-top-right-radius',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-right': {
     syntax: '<br-width> || <br-style> || <color>',
@@ -1666,7 +1666,7 @@ export default {
     animationType: [
       'border-right-color',
       'border-right-style',
-      'border-right-width'
+      'border-right-width',
     ],
     percentages: 'no',
     groups: ['CSS Backgrounds and Borders'],
@@ -1675,11 +1675,11 @@ export default {
     computed: [
       'border-right-width',
       'border-right-style',
-      'border-right-color'
+      'border-right-color',
     ],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-right-color': {
     syntax: '<color>',
@@ -1693,7 +1693,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-right-style': {
     syntax: '<br-style>',
@@ -1707,7 +1707,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-right-width': {
     syntax: '<br-width>',
@@ -1721,7 +1721,7 @@ export default {
     computed: 'absoluteLengthOr0IfBorderRightStyleNoneOrHidden',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-spacing': {
     syntax: '<length> <length>?',
@@ -1734,7 +1734,7 @@ export default {
     appliesto: 'tableElements',
     computed: 'twoAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'border-style': {
     syntax: '<br-style>{1,4}',
@@ -1747,18 +1747,18 @@ export default {
       'border-top-style',
       'border-right-style',
       'border-bottom-style',
-      'border-left-style'
+      'border-left-style',
     ],
     appliesto: 'allElements',
     computed: [
       'border-bottom-style',
       'border-left-style',
       'border-right-style',
-      'border-top-style'
+      'border-top-style',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top': {
     syntax: '<br-width> || <br-style> || <color>',
@@ -1772,7 +1772,7 @@ export default {
     computed: ['border-top-width', 'border-top-style', 'border-top-color'],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top-color': {
     syntax: '<color>',
@@ -1786,7 +1786,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top-left-radius': {
     syntax: '<length-percentage>{1,2}',
@@ -1800,7 +1800,7 @@ export default {
     computed: 'twoAbsoluteLengthOrPercentages',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top-right-radius': {
     syntax: '<length-percentage>{1,2}',
@@ -1814,7 +1814,7 @@ export default {
     computed: 'twoAbsoluteLengthOrPercentages',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top-style': {
     syntax: '<br-style>',
@@ -1828,7 +1828,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-top-width': {
     syntax: '<br-width>',
@@ -1842,7 +1842,7 @@ export default {
     computed: 'absoluteLengthOr0IfBorderTopStyleNoneOrHidden',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'border-width': {
     syntax: '<br-width>{1,4}',
@@ -1852,7 +1852,7 @@ export default {
       'border-bottom-width',
       'border-left-width',
       'border-right-width',
-      'border-top-width'
+      'border-top-width',
     ],
     percentages: 'no',
     groups: ['CSS Backgrounds and Borders'],
@@ -1860,18 +1860,18 @@ export default {
       'border-top-width',
       'border-right-width',
       'border-bottom-width',
-      'border-left-width'
+      'border-left-width',
     ],
     appliesto: 'allElements',
     computed: [
       'border-bottom-width',
       'border-left-width',
       'border-right-width',
-      'border-top-width'
+      'border-top-width',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   bottom: {
     syntax: '<length> | <percentage> | auto',
@@ -1884,7 +1884,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'box-align': {
     syntax: 'start | center | end | baseline | stretch',
@@ -1897,7 +1897,7 @@ export default {
     appliesto: 'elementsWithDisplayBoxOrInlineBox',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-decoration-break': {
     syntax: 'slice | clone',
@@ -1910,7 +1910,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'box-direction': {
     syntax: 'normal | reverse | inherit',
@@ -1923,7 +1923,7 @@ export default {
     appliesto: 'elementsWithDisplayBoxOrInlineBox',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-flex': {
     syntax: '<number>',
@@ -1936,7 +1936,7 @@ export default {
     appliesto: 'directChildrenOfElementsWithDisplayMozBoxMozInlineBox',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-flex-group': {
     syntax: '<integer>',
@@ -1949,7 +1949,7 @@ export default {
     appliesto: 'inFlowChildrenOfBoxElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-lines': {
     syntax: 'single | multiple',
@@ -1962,7 +1962,7 @@ export default {
     appliesto: 'boxElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-ordinal-group': {
     syntax: '<integer>',
@@ -1975,7 +1975,7 @@ export default {
     appliesto: 'childrenOfBoxElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-orient': {
     syntax: 'horizontal | vertical | inline-axis | block-axis | inherit',
@@ -1988,7 +1988,7 @@ export default {
     appliesto: 'elementsWithDisplayBoxOrInlineBox',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-pack': {
     syntax: 'start | center | end | justify',
@@ -2001,7 +2001,7 @@ export default {
     appliesto: 'elementsWithDisplayMozBoxMozInlineBox',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'box-shadow': {
     syntax: 'none | <shadow>#',
@@ -2015,7 +2015,7 @@ export default {
     computed: 'absoluteLengthsSpecifiedColorAsSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'box-sizing': {
     syntax: 'content-box | border-box',
@@ -2028,7 +2028,7 @@ export default {
     appliesto: 'allElementsAcceptingWidthOrHeight',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'break-after': {
     syntax:
@@ -2042,7 +2042,7 @@ export default {
     appliesto: 'blockLevelElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'break-before': {
     syntax:
@@ -2056,7 +2056,7 @@ export default {
     appliesto: 'blockLevelElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'break-inside': {
     syntax: 'auto | avoid | avoid-page | avoid-column | avoid-region',
@@ -2069,7 +2069,7 @@ export default {
     appliesto: 'blockLevelElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'caption-side': {
     syntax:
@@ -2083,7 +2083,7 @@ export default {
     appliesto: 'tableCaptionElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'caret-color': {
     syntax: 'auto | <color>',
@@ -2096,7 +2096,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asAutoOrColor',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   clear: {
     syntax: 'none | left | right | both | inline-start | inline-end',
@@ -2109,7 +2109,7 @@ export default {
     appliesto: 'blockLevelElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   clip: {
     syntax: '<shape> | auto',
@@ -2122,7 +2122,7 @@ export default {
     appliesto: 'absolutelyPositionedElements',
     computed: 'autoOrRectangle',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'clip-path': {
     syntax: '<clip-source> | [ <basic-shape> || <geometry-box> ] | none',
@@ -2135,7 +2135,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedURLsAbsolute',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   color: {
     syntax: '<color>',
@@ -2149,7 +2149,7 @@ export default {
     computed: 'translucentValuesRGBAOtherwiseRGB',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'column-count': {
     syntax: '<integer> | auto',
@@ -2162,7 +2162,7 @@ export default {
     appliesto: 'blockContainersExceptTableWrappers',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-fill': {
     syntax: 'auto | balance | balance-all',
@@ -2175,7 +2175,7 @@ export default {
     appliesto: 'multicolElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-gap': {
     syntax: '<length-percentage> | normal',
@@ -2188,7 +2188,7 @@ export default {
     appliesto: 'multicolElements',
     computed: 'asSpecifiedWithLengthsMadeAbsolute',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-rule': {
     syntax:
@@ -2198,7 +2198,7 @@ export default {
     animationType: [
       'column-rule-color',
       'column-rule-style',
-      'column-rule-width'
+      'column-rule-width',
     ],
     percentages: 'no',
     groups: ['CSS Columns'],
@@ -2206,7 +2206,7 @@ export default {
     appliesto: 'multicolElements',
     computed: ['column-rule-color', 'column-rule-style', 'column-rule-width'],
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-rule-color': {
     syntax: '<color>',
@@ -2219,7 +2219,7 @@ export default {
     appliesto: 'multicolElements',
     computed: 'computedColor',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-rule-style': {
     syntax: "<'border-style'>",
@@ -2232,7 +2232,7 @@ export default {
     appliesto: 'multicolElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-rule-width': {
     syntax: "<'border-width'>",
@@ -2245,7 +2245,7 @@ export default {
     appliesto: 'multicolElements',
     computed: 'absoluteLength0IfColumnRuleStyleNoneOrHidden',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-span': {
     syntax: 'none | all',
@@ -2258,7 +2258,7 @@ export default {
     appliesto: 'inFlowBlockLevelElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'column-width': {
     syntax: '<length> | auto',
@@ -2271,7 +2271,7 @@ export default {
     appliesto: 'blockContainersExceptTableWrappers',
     computed: 'absoluteLengthZeroOrLarger',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   columns: {
     syntax: "<'column-width'> || <'column-count'>",
@@ -2284,7 +2284,7 @@ export default {
     appliesto: 'blockContainersExceptTableWrappers',
     computed: ['column-width', 'column-count'],
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   contain: {
     syntax: 'none | strict | content | [ size || layout || style || paint ]',
@@ -2297,7 +2297,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   content: {
     syntax:
@@ -2311,7 +2311,7 @@ export default {
     appliesto: 'beforeAndAfterPseudos',
     computed: 'normalOnElementsForPseudosNoneAbsoluteURIStringOrAsSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'counter-increment': {
     syntax: '[ <custom-ident> <integer>? ]+ | none',
@@ -2324,7 +2324,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'counter-reset': {
     syntax: '[ <custom-ident> <integer>? ]+ | none',
@@ -2337,7 +2337,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   cursor: {
     syntax:
@@ -2351,7 +2351,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecifiedURLsAbsolute',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   direction: {
     syntax: 'ltr | rtl',
@@ -2364,7 +2364,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   display: {
     syntax:
@@ -2379,7 +2379,7 @@ export default {
     computed:
       'asSpecifiedExceptPositionedFloatingAndRootElementsKeywordMaybeDifferent',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'display-inside': {
     syntax: 'auto | block | table | flex | grid | ruby',
@@ -2392,7 +2392,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'display-list': {
     syntax: 'none | list-item',
@@ -2405,7 +2405,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'display-outside': {
     syntax:
@@ -2419,7 +2419,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'empty-cells': {
     syntax: 'show | hide',
@@ -2432,7 +2432,7 @@ export default {
     appliesto: 'tableCellElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   filter: {
     syntax: 'none | <filter-function-list>',
@@ -2445,7 +2445,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   flex: {
     syntax: "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
@@ -2458,7 +2458,7 @@ export default {
     appliesto: 'flexItemsAndInFlowPseudos',
     computed: ['flex-grow', 'flex-shrink', 'flex-basis'],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-basis': {
     syntax: "content | <'width'>",
@@ -2471,7 +2471,7 @@ export default {
     appliesto: 'flexItemsAndInFlowPseudos',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'lengthOrPercentageBeforeKeywordIfBothPresent',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-direction': {
     syntax: 'row | row-reverse | column | column-reverse',
@@ -2484,7 +2484,7 @@ export default {
     appliesto: 'flexContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-flow': {
     syntax: "<'flex-direction'> || <'flex-wrap'>",
@@ -2497,7 +2497,7 @@ export default {
     appliesto: 'flexContainers',
     computed: ['flex-direction', 'flex-wrap'],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-grow': {
     syntax: '<number>',
@@ -2510,7 +2510,7 @@ export default {
     appliesto: 'flexItemsAndInFlowPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-shrink': {
     syntax: '<number>',
@@ -2523,7 +2523,7 @@ export default {
     appliesto: 'flexItemsAndInFlowPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'flex-wrap': {
     syntax: 'nowrap | wrap | wrap-reverse',
@@ -2536,7 +2536,7 @@ export default {
     appliesto: 'flexContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   float: {
     syntax: 'left | right | none | inline-start | inline-end',
@@ -2549,7 +2549,7 @@ export default {
     appliesto: 'allElementsNoEffectIfDisplayNone',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   font: {
     syntax:
@@ -2563,7 +2563,7 @@ export default {
       'font-stretch',
       'font-size',
       'line-height',
-      'font-family'
+      'font-family',
     ],
     percentages: ['font-size', 'line-height'],
     groups: ['CSS Fonts'],
@@ -2574,7 +2574,7 @@ export default {
       'font-stretch',
       'font-size',
       'line-height',
-      'font-family'
+      'font-family',
     ],
     appliesto: 'allElements',
     computed: [
@@ -2584,11 +2584,11 @@ export default {
       'font-stretch',
       'font-size',
       'line-height',
-      'font-family'
+      'font-family',
     ],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-family': {
     syntax: '[ <family-name> | <generic-family> ]#',
@@ -2602,7 +2602,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-feature-settings': {
     syntax: 'normal | <feature-tag-value>#',
@@ -2616,7 +2616,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-kerning': {
     syntax: 'auto | normal | none',
@@ -2630,7 +2630,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-language-override': {
     syntax: 'normal | <string>',
@@ -2644,7 +2644,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variation-settings': {
     syntax: 'normal | [ <string> <number> ]#',
@@ -2658,7 +2658,7 @@ export default {
     computed: 'asSpecified',
     order: 'perGrammar',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'experimental'
+    status: 'experimental',
   },
   'font-size': {
     syntax: '<absolute-size> | <relative-size> | <length-percentage>',
@@ -2672,7 +2672,7 @@ export default {
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-size-adjust': {
     syntax: 'none | <number>',
@@ -2686,7 +2686,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-stretch': {
     syntax:
@@ -2701,7 +2701,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-style': {
     syntax: 'normal | italic | oblique',
@@ -2715,7 +2715,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-synthesis': {
     syntax: 'none | [ weight || style ]',
@@ -2729,7 +2729,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant': {
     syntax:
@@ -2744,7 +2744,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-alternates': {
     syntax:
@@ -2759,7 +2759,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-caps': {
     syntax:
@@ -2774,7 +2774,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-east-asian': {
     syntax:
@@ -2789,7 +2789,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-ligatures': {
     syntax:
@@ -2804,7 +2804,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-numeric': {
     syntax:
@@ -2819,7 +2819,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-variant-position': {
     syntax: 'normal | sub | super',
@@ -2833,7 +2833,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'font-weight': {
     syntax:
@@ -2848,7 +2848,7 @@ export default {
     computed: 'keywordOrNumericalValueBolderLighterTransformedToRealValue',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   grid: {
     syntax:
@@ -2860,7 +2860,7 @@ export default {
       'grid-template-rows',
       'grid-template-columns',
       'grid-auto-rows',
-      'grid-auto-columns'
+      'grid-auto-columns',
     ],
     groups: ['CSS Grid Layout'],
     initial: [
@@ -2871,7 +2871,7 @@ export default {
       'grid-auto-columns',
       'grid-auto-flow',
       'grid-column-gap',
-      'grid-row-gap'
+      'grid-row-gap',
     ],
     appliesto: 'gridContainers',
     computed: [
@@ -2882,10 +2882,10 @@ export default {
       'grid-auto-columns',
       'grid-auto-flow',
       'grid-column-gap',
-      'grid-row-gap'
+      'grid-row-gap',
     ],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-area': {
     syntax: '<grid-line> [ / <grid-line> ]{0,3}',
@@ -2898,17 +2898,17 @@ export default {
       'grid-row-start',
       'grid-column-start',
       'grid-row-end',
-      'grid-column-end'
+      'grid-column-end',
     ],
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: [
       'grid-row-start',
       'grid-column-start',
       'grid-row-end',
-      'grid-column-end'
+      'grid-column-end',
     ],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-auto-columns': {
     syntax: '<track-size>+',
@@ -2921,7 +2921,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-auto-flow': {
     syntax: '[ row | column ] || dense',
@@ -2934,7 +2934,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-auto-rows': {
     syntax: '<track-size>+',
@@ -2947,7 +2947,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-column': {
     syntax: '<grid-line> [ / <grid-line> ]?',
@@ -2960,7 +2960,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: ['grid-column-start', 'grid-column-end'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-column-end': {
     syntax: '<grid-line>',
@@ -2973,7 +2973,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-column-gap': {
     syntax: '<length-percentage>',
@@ -2986,7 +2986,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-column-start': {
     syntax: '<grid-line>',
@@ -2999,7 +2999,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-gap': {
     syntax: "<'grid-row-gap'> <'grid-column-gap'>?",
@@ -3012,7 +3012,7 @@ export default {
     appliesto: 'gridContainers',
     computed: ['grid-row-gap', 'grid-column-gap'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-row': {
     syntax: '<grid-line> [ / <grid-line> ]?',
@@ -3025,7 +3025,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: ['grid-row-start', 'grid-row-end'],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-row-end': {
     syntax: '<grid-line>',
@@ -3038,7 +3038,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-row-gap': {
     syntax: '<length-percentage>',
@@ -3051,7 +3051,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-row-start': {
     syntax: '<grid-line>',
@@ -3064,7 +3064,7 @@ export default {
     appliesto: 'gridItemsAndBoxesWithinGridContainer',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-template': {
     syntax:
@@ -3077,16 +3077,16 @@ export default {
     initial: [
       'grid-template-columns',
       'grid-template-rows',
-      'grid-template-areas'
+      'grid-template-areas',
     ],
     appliesto: 'gridContainers',
     computed: [
       'grid-template-columns',
       'grid-template-rows',
-      'grid-template-areas'
+      'grid-template-areas',
     ],
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-template-areas': {
     syntax: 'none | <string>+',
@@ -3099,7 +3099,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-template-columns': {
     syntax: 'none | <track-list> | <auto-track-list>',
@@ -3112,7 +3112,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'grid-template-rows': {
     syntax: 'none | <track-list> | <auto-track-list>',
@@ -3125,7 +3125,7 @@ export default {
     appliesto: 'gridContainers',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'hanging-punctuation': {
     syntax: 'none | [ first || [ force-end | allow-end ] || last ]',
@@ -3138,7 +3138,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   height: {
     syntax:
@@ -3153,7 +3153,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableColumns',
     computed: 'percentageAutoOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   hyphens: {
     syntax: 'none | manual | auto',
@@ -3166,7 +3166,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'image-orientation': {
     syntax: 'from-image | <angle> | [ <angle>? flip ]',
@@ -3179,7 +3179,7 @@ export default {
     appliesto: 'allElements',
     computed: 'angleRoundedToNextQuarter',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'image-rendering': {
     syntax: 'auto | crisp-edges | pixelated',
@@ -3192,7 +3192,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'image-resolution': {
     syntax: '[ from-image || <resolution> ] && snap?',
@@ -3205,7 +3205,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecifiedWithExceptionOfResolution',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'ime-mode': {
     syntax: 'auto | normal | active | inactive | disabled',
@@ -3218,7 +3218,7 @@ export default {
     appliesto: 'textFields',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'obsolete'
+    status: 'obsolete',
   },
   'initial-letter': {
     syntax: 'normal | [ <number> <integer>? ]',
@@ -3231,7 +3231,7 @@ export default {
     appliesto: 'firstLetterPseudoElementsAndInlineLevelFirstChildren',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'initial-letter-align': {
     syntax: '[ auto | alphabetic | hanging | ideographic ]',
@@ -3244,7 +3244,7 @@ export default {
     appliesto: 'firstLetterPseudoElementsAndInlineLevelFirstChildren',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'inline-size': {
     syntax: "<'width'>",
@@ -3257,7 +3257,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsWidthAndHeight',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   isolation: {
     syntax: 'auto | isolate',
@@ -3270,7 +3270,7 @@ export default {
     appliesto: 'allElementsSVGContainerGraphicsAndGraphicsReferencingElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'justify-content': {
     syntax:
@@ -3284,7 +3284,7 @@ export default {
     appliesto: 'flexContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   left: {
     syntax: '<length> | <percentage> | auto',
@@ -3297,7 +3297,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'letter-spacing': {
     syntax: 'normal | <length>',
@@ -3311,7 +3311,7 @@ export default {
     computed: 'optimumValueOfAbsoluteLengthOrNormal',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line'],
-    status: 'standard'
+    status: 'standard',
   },
   'line-break': {
     syntax: 'auto | loose | normal | strict',
@@ -3324,7 +3324,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'line-height': {
     syntax: 'normal | <number> | <length> | <percentage>',
@@ -3338,7 +3338,7 @@ export default {
     computed: 'absoluteLengthOrAsSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'line-height-step': {
     syntax: ' none | <length> ',
@@ -3351,7 +3351,7 @@ export default {
     appliesto: 'blockContainerElements',
     computed: 'absoluteLength0ForNone',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'list-style': {
     syntax:
@@ -3365,7 +3365,7 @@ export default {
     appliesto: 'listItems',
     computed: ['list-style-image', 'list-style-position', 'list-style-type'],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'list-style-image': {
     syntax: '<url> | none',
@@ -3378,7 +3378,7 @@ export default {
     appliesto: 'listItems',
     computed: 'noneOrImageWithAbsoluteURI',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'list-style-position': {
     syntax: 'inside | outside',
@@ -3391,7 +3391,7 @@ export default {
     appliesto: 'listItems',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'list-style-type': {
     syntax: '<counter-style> | <string> | none',
@@ -3404,7 +3404,7 @@ export default {
     appliesto: 'listItems',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   margin: {
     syntax: '[ <length> | <percentage> | auto ]{1,4}',
@@ -3418,7 +3418,7 @@ export default {
     computed: ['margin-bottom', 'margin-left', 'margin-right', 'margin-top'],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'margin-block-end': {
     syntax: "<'margin-left'>",
@@ -3431,7 +3431,7 @@ export default {
     appliesto: 'sameAsMargin',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'margin-block-start': {
     syntax: "<'margin-left'>",
@@ -3444,7 +3444,7 @@ export default {
     appliesto: 'sameAsMargin',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'margin-bottom': {
     syntax: '<length> | <percentage> | auto',
@@ -3458,7 +3458,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'margin-inline-end': {
     syntax: "<'margin-left'>",
@@ -3471,7 +3471,7 @@ export default {
     appliesto: 'sameAsMargin',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'margin-inline-start': {
     syntax: "<'margin-left'>",
@@ -3484,7 +3484,7 @@ export default {
     appliesto: 'sameAsMargin',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'margin-left': {
     syntax: '<length> | <percentage> | auto',
@@ -3498,7 +3498,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'margin-right': {
     syntax: '<length> | <percentage> | auto',
@@ -3512,7 +3512,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'margin-top': {
     syntax: '<length> | <percentage> | auto',
@@ -3526,7 +3526,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   mask: {
     syntax: '<mask-layer>#',
@@ -3540,7 +3540,7 @@ export default {
       'mask-clip',
       'mask-origin',
       'mask-size',
-      'mask-composite'
+      'mask-composite',
     ],
     percentages: ['mask-position'],
     groups: ['CSS Masking'],
@@ -3552,7 +3552,7 @@ export default {
       'mask-clip',
       'mask-origin',
       'mask-size',
-      'mask-composite'
+      'mask-composite',
     ],
     appliesto: 'allElementsSVGContainerElements',
     computed: [
@@ -3563,11 +3563,11 @@ export default {
       'mask-clip',
       'mask-origin',
       'mask-size',
-      'mask-composite'
+      'mask-composite',
     ],
     order: 'perGrammar',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   'mask-border': {
     syntax:
@@ -3580,7 +3580,7 @@ export default {
       'mask-border-repeat',
       'mask-border-slice',
       'mask-border-source',
-      'mask-border-width'
+      'mask-border-width',
     ],
     percentages: ['mask-border-slice', 'mask-border-width'],
     groups: ['CSS Masking'],
@@ -3590,7 +3590,7 @@ export default {
       'mask-border-repeat',
       'mask-border-slice',
       'mask-border-source',
-      'mask-border-width'
+      'mask-border-width',
     ],
     appliesto: 'allElementsSVGContainerElements',
     computed: [
@@ -3599,11 +3599,11 @@ export default {
       'mask-border-repeat',
       'mask-border-slice',
       'mask-border-source',
-      'mask-border-width'
+      'mask-border-width',
     ],
     order: 'perGrammar',
     stacking: true,
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-mode': {
     syntax: 'luminance | alpha',
@@ -3616,7 +3616,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-outset': {
     syntax: '[ <length> | <number> ]{1,4}',
@@ -3629,7 +3629,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-repeat': {
     syntax: '[ stretch | repeat | round | space ]{1,2}',
@@ -3642,7 +3642,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-slice': {
     syntax: '<number-percentage>{1,4} fill?',
@@ -3655,7 +3655,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-source': {
     syntax: 'none | <image>',
@@ -3668,7 +3668,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedURLsAbsolute',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-border-width': {
     syntax: '[ <length-percentage> | <number> | auto ]{1,4}',
@@ -3681,7 +3681,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'mask-clip': {
     syntax: '[ <geometry-box> | no-clip ]#',
@@ -3694,7 +3694,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-composite': {
     syntax: '<compositing-operator>#',
@@ -3707,7 +3707,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-image': {
     syntax: '<mask-reference>#',
@@ -3720,7 +3720,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedURLsAbsolute',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-mode': {
     syntax: '<masking-mode>#',
@@ -3733,7 +3733,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-origin': {
     syntax: '<geometry-box>#',
@@ -3746,7 +3746,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-position': {
     syntax: '<position>#',
@@ -3759,7 +3759,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'consistsOfTwoKeywordsForOriginAndOffsets',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-repeat': {
     syntax: '<repeat-style>#',
@@ -3772,7 +3772,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'consistsOfTwoDimensionKeywords',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-size': {
     syntax: '<bg-size>#',
@@ -3785,7 +3785,7 @@ export default {
     appliesto: 'allElementsSVGContainerElements',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'mask-type': {
     syntax: 'luminance | alpha',
@@ -3798,7 +3798,7 @@ export default {
     appliesto: 'maskElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   'max-block-size': {
     syntax: "<'max-width'>",
@@ -3811,7 +3811,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsMaxWidthAndMaxHeight',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'max-height': {
     syntax:
@@ -3825,7 +3825,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableColumns',
     computed: 'percentageAsSpecifiedAbsoluteLengthOrNone',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'max-inline-size': {
     syntax: "<'max-width'>",
@@ -3838,7 +3838,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsMaxWidthAndMaxHeight',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'max-width': {
     syntax:
@@ -3852,7 +3852,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableRows',
     computed: 'percentageAsSpecifiedAbsoluteLengthOrNone',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'min-block-size': {
     syntax: "<'min-width'>",
@@ -3865,7 +3865,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsMinWidthAndMinHeight',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'min-height': {
     syntax:
@@ -3879,7 +3879,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableColumns',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'min-inline-size': {
     syntax: "<'min-width'>",
@@ -3892,7 +3892,7 @@ export default {
     appliesto: 'sameAsWidthAndHeight',
     computed: 'sameAsMinWidthAndMinHeight',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'min-width': {
     syntax:
@@ -3906,7 +3906,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableRows',
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'mix-blend-mode': {
     syntax: '<blend-mode>',
@@ -3920,7 +3920,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   'object-fit': {
     syntax: 'fill | contain | cover | none | scale-down',
@@ -3933,7 +3933,7 @@ export default {
     appliesto: 'replacedElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'object-position': {
     syntax: '<position>',
@@ -3946,7 +3946,7 @@ export default {
     appliesto: 'replacedElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   offset: {
     syntax:
@@ -3958,7 +3958,7 @@ export default {
       'offset-path',
       'offset-distance',
       'offset-anchor',
-      'offset-rotate'
+      'offset-rotate',
     ],
     percentages: ['offset-position', 'offset-distance', 'offset-anchor'],
     groups: ['CSS Motion'],
@@ -3967,7 +3967,7 @@ export default {
       'offset-path',
       'offset-distance',
       'offset-anchor',
-      'offset-rotate'
+      'offset-rotate',
     ],
     appliesto: 'transformableElements',
     computed: [
@@ -3975,11 +3975,11 @@ export default {
       'offset-path',
       'offset-distance',
       'offset-anchor',
-      'offset-rotate'
+      'offset-rotate',
     ],
     order: 'perGrammar',
     stacking: true,
-    status: 'experimental'
+    status: 'experimental',
   },
   'offset-anchor': {
     syntax: 'auto | <position>',
@@ -3992,7 +3992,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'forLengthAbsoluteValueOtherwisePercentage',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'offset-block-end': {
     syntax: "<'left'>",
@@ -4005,7 +4005,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'sameAsBoxOffsets',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'offset-block-start': {
     syntax: "<'left'>",
@@ -4018,7 +4018,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'sameAsBoxOffsets',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'offset-inline-end': {
     syntax: "<'left'>",
@@ -4031,7 +4031,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'sameAsBoxOffsets',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'offset-inline-start': {
     syntax: "<'left'>",
@@ -4044,7 +4044,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'sameAsBoxOffsets',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'offset-distance': {
     syntax: '<length-percentage>',
@@ -4057,7 +4057,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'forLengthAbsoluteValueOtherwisePercentage',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'offset-path': {
     syntax:
@@ -4072,7 +4072,7 @@ export default {
     computed: 'asSpecified',
     order: 'perGrammar',
     stacking: true,
-    status: 'experimental'
+    status: 'experimental',
   },
   'offset-position': {
     syntax: 'auto | <position>',
@@ -4085,7 +4085,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'forLengthAbsoluteValueOtherwisePercentage',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   'offset-rotate': {
     syntax: '[ auto | reverse ] || <angle>',
@@ -4098,7 +4098,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'experimental'
+    status: 'experimental',
   },
   opacity: {
     syntax: '<number>',
@@ -4112,7 +4112,7 @@ export default {
     computed: 'specifiedValueClipped0To1',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   order: {
     syntax: '<integer>',
@@ -4125,7 +4125,7 @@ export default {
     appliesto: 'flexItemsAndAbsolutelyPositionedFlexContainerChildren',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   orphans: {
     syntax: '<integer>',
@@ -4138,7 +4138,7 @@ export default {
     appliesto: 'blockContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   outline: {
     syntax: "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
@@ -4151,7 +4151,7 @@ export default {
     appliesto: 'allElements',
     computed: ['outline-color', 'outline-width', 'outline-style'],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'outline-color': {
     syntax: '<color> | invert',
@@ -4164,7 +4164,7 @@ export default {
     appliesto: 'allElements',
     computed: 'invertForTranslucentColorRGBAOtherwiseRGB',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'outline-offset': {
     syntax: '<length>',
@@ -4177,7 +4177,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'outline-style': {
     syntax: 'auto | <br-style>',
@@ -4190,7 +4190,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'outline-width': {
     syntax: '<br-width>',
@@ -4203,7 +4203,7 @@ export default {
     appliesto: 'allElements',
     computed: 'absoluteLength0ForNone',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   overflow: {
     syntax: 'visible | hidden | scroll | auto',
@@ -4216,7 +4216,7 @@ export default {
     appliesto: 'nonReplacedBlockAndInlineBlockElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'overflow-clip-box': {
     syntax: 'padding-box | content-box',
@@ -4229,7 +4229,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'overflow-wrap': {
     syntax: 'normal | break-word',
@@ -4242,7 +4242,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'overflow-x': {
     syntax: 'visible | hidden | scroll | auto',
@@ -4255,7 +4255,7 @@ export default {
     appliesto: 'nonReplacedBlockAndInlineBlockElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'overflow-y': {
     syntax: 'visible | hidden | scroll | auto',
@@ -4268,7 +4268,7 @@ export default {
     appliesto: 'nonReplacedBlockAndInlineBlockElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   padding: {
     syntax: '[ <length> | <percentage> ]{1,4}',
@@ -4283,11 +4283,11 @@ export default {
       'padding-bottom',
       'padding-left',
       'padding-right',
-      'padding-top'
+      'padding-top',
     ],
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'padding-block-end': {
     syntax: "<'padding-left'>",
@@ -4300,7 +4300,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'padding-block-start': {
     syntax: "<'padding-left'>",
@@ -4313,7 +4313,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'padding-bottom': {
     syntax: '<length> | <percentage>',
@@ -4327,7 +4327,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'padding-inline-end': {
     syntax: "<'padding-left'>",
@@ -4340,7 +4340,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'padding-inline-start': {
     syntax: "<'padding-left'>",
@@ -4353,7 +4353,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'padding-left': {
     syntax: '<length> | <percentage>',
@@ -4367,7 +4367,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'padding-right': {
     syntax: '<length> | <percentage>',
@@ -4381,7 +4381,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'padding-top': {
     syntax: '<length> | <percentage>',
@@ -4395,7 +4395,7 @@ export default {
     computed: 'percentageAsSpecifiedOrAbsoluteLength',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter'],
-    status: 'standard'
+    status: 'standard',
   },
   'page-break-after': {
     syntax: 'auto | always | avoid | left | right',
@@ -4408,7 +4408,7 @@ export default {
     appliesto: 'blockElementsInNormalFlow',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'page-break-before': {
     syntax: 'auto | always | avoid | left | right',
@@ -4421,7 +4421,7 @@ export default {
     appliesto: 'blockElementsInNormalFlow',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'page-break-inside': {
     syntax: 'auto | avoid',
@@ -4434,7 +4434,7 @@ export default {
     appliesto: 'blockElementsInNormalFlow',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   perspective: {
     syntax: 'none | <length>',
@@ -4448,7 +4448,7 @@ export default {
     computed: 'absoluteLengthOrNone',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   'perspective-origin': {
     syntax: '<position>',
@@ -4461,7 +4461,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'forLengthAbsoluteValueOtherwisePercentage',
     order: 'oneOrTwoValuesLengthAbsoluteKeywordsPercentages',
-    status: 'standard'
+    status: 'standard',
   },
   'pointer-events': {
     syntax:
@@ -4475,7 +4475,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   position: {
     syntax: 'static | relative | absolute | sticky | fixed',
@@ -4489,7 +4489,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   quotes: {
     syntax: 'none | [ <string> <string> ]+',
@@ -4502,7 +4502,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   resize: {
     syntax: 'none | both | horizontal | vertical',
@@ -4515,7 +4515,7 @@ export default {
     appliesto: 'elementsWithOverflowNotVisibleAndReplacedElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   right: {
     syntax: '<length> | <percentage> | auto',
@@ -4528,7 +4528,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'ruby-align': {
     syntax: 'start | center | space-between | space-around',
@@ -4541,7 +4541,7 @@ export default {
     appliesto: 'rubyBasesAnnotationsBaseAnnotationContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'ruby-merge': {
     syntax: 'separate | collapse | auto',
@@ -4554,7 +4554,7 @@ export default {
     appliesto: 'rubyAnnotationsContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'ruby-position': {
     syntax: 'over | under | inter-character',
@@ -4567,7 +4567,7 @@ export default {
     appliesto: 'rubyAnnotationsContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'scroll-behavior': {
     syntax: 'auto | smooth',
@@ -4580,7 +4580,7 @@ export default {
     appliesto: 'scrollingBoxes',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'scroll-snap-coordinate': {
     syntax: 'none | <position>#',
@@ -4593,7 +4593,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'scroll-snap-destination': {
     syntax: '<position>',
@@ -4606,7 +4606,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'scroll-snap-points-x': {
     syntax: 'none | repeat( <length-percentage> )',
@@ -4619,7 +4619,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'obsolete'
+    status: 'obsolete',
   },
   'scroll-snap-points-y': {
     syntax: 'none | repeat( <length-percentage> )',
@@ -4632,7 +4632,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'obsolete'
+    status: 'obsolete',
   },
   'scroll-snap-type': {
     syntax: 'none | mandatory | proximity',
@@ -4645,7 +4645,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'scroll-snap-type-x': {
     syntax: 'none | mandatory | proximity',
@@ -4658,7 +4658,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'scroll-snap-type-y': {
     syntax: 'none | mandatory | proximity',
@@ -4671,7 +4671,7 @@ export default {
     appliesto: 'scrollContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'shape-image-threshold': {
     syntax: '<number>',
@@ -4684,7 +4684,7 @@ export default {
     appliesto: 'floats',
     computed: 'specifiedValueNumberClipped0To1',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'shape-margin': {
     syntax: '<length-percentage>',
@@ -4697,7 +4697,7 @@ export default {
     appliesto: 'floats',
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'shape-outside': {
     syntax: 'none | <shape-box> || <basic-shape> | <image>',
@@ -4710,7 +4710,7 @@ export default {
     appliesto: 'floats',
     computed: 'asDefinedForBasicShapeWithAbsoluteURIOtherwiseAsSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'tab-size': {
     syntax: '<integer> | <length>',
@@ -4723,7 +4723,7 @@ export default {
     appliesto: 'blockContainers',
     computed: 'specifiedIntegerOrAbsoluteLength',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'table-layout': {
     syntax: 'auto | fixed',
@@ -4736,7 +4736,7 @@ export default {
     appliesto: 'tableElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-align': {
     syntax: 'start | end | left | right | center | justify | match-parent',
@@ -4750,7 +4750,7 @@ export default {
     computed: 'asSpecifiedExceptMatchParent',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-align-last': {
     syntax: 'auto | start | end | left | right | center | justify',
@@ -4763,7 +4763,7 @@ export default {
     appliesto: 'blockContainers',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-combine-upright': {
     syntax: 'none | all | [ digits <integer>? ]',
@@ -4776,7 +4776,7 @@ export default {
     appliesto: 'nonReplacedInlineElements',
     computed: 'keywordPlusIntegerIfDigits',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-decoration': {
     syntax:
@@ -4786,24 +4786,24 @@ export default {
     animationType: [
       'text-decoration-color',
       'text-decoration-style',
-      'text-decoration-line'
+      'text-decoration-line',
     ],
     percentages: 'no',
     groups: ['CSS Text Decoration'],
     initial: [
       'text-decoration-color',
       'text-decoration-style',
-      'text-decoration-line'
+      'text-decoration-line',
     ],
     appliesto: 'allElements',
     computed: [
       'text-decoration-line',
       'text-decoration-style',
-      'text-decoration-color'
+      'text-decoration-color',
     ],
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-decoration-color': {
     syntax: '<color>',
@@ -4817,7 +4817,7 @@ export default {
     computed: 'computedColor',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-decoration-line': {
     syntax: 'none | [ underline || overline || line-through || blink ]',
@@ -4831,7 +4831,7 @@ export default {
     computed: 'asSpecified',
     order: 'orderOfAppearance',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-decoration-skip': {
     syntax: 'none | [ objects || spaces || ink || edges || box-decoration ]',
@@ -4844,7 +4844,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'experimental'
+    status: 'experimental',
   },
   'text-decoration-style': {
     syntax: 'solid | double | dotted | dashed | wavy',
@@ -4858,7 +4858,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-emphasis': {
     syntax: "<'text-emphasis-style'> || <'text-emphasis-color'>",
@@ -4871,7 +4871,7 @@ export default {
     appliesto: 'allElements',
     computed: ['text-emphasis-style', 'text-emphasis-color'],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'text-emphasis-color': {
     syntax: '<color>',
@@ -4884,7 +4884,7 @@ export default {
     appliesto: 'allElements',
     computed: 'computedColor',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-emphasis-position': {
     syntax: '[ over | under ] && [ right | left ]',
@@ -4897,7 +4897,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-emphasis-style': {
     syntax:
@@ -4911,7 +4911,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-indent': {
     syntax: '<length-percentage> && hanging? && each-line?',
@@ -4924,7 +4924,7 @@ export default {
     appliesto: 'blockContainers',
     computed: 'percentageOrAbsoluteLengthPlusKeywords',
     order: 'lengthOrPercentageBeforeKeywords',
-    status: 'standard'
+    status: 'standard',
   },
   'text-justify': {
     syntax: 'auto | inter-character | inter-word | none',
@@ -4937,7 +4937,7 @@ export default {
     appliesto: 'inlineLevelAndTableCellElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-orientation': {
     syntax: 'mixed | upright | sideways',
@@ -4950,7 +4950,7 @@ export default {
     appliesto: 'allElementsExceptTableRowGroupsRowsColumnGroupsAndColumns',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-overflow': {
     syntax: '[ clip | ellipsis | <string> ]{1,2}',
@@ -4964,7 +4964,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-rendering': {
     syntax: 'auto | optimizeSpeed | optimizeLegibility | geometricPrecision',
@@ -4977,7 +4977,7 @@ export default {
     appliesto: 'textElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'text-shadow': {
     syntax: 'none | <shadow-t>#',
@@ -4991,7 +4991,7 @@ export default {
     computed: 'colorPlusThreeAbsoluteLengths',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-size-adjust': {
     syntax: 'none | auto | <percentage>',
@@ -5004,7 +5004,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'experimental'
+    status: 'experimental',
   },
   'text-transform': {
     syntax: 'none | capitalize | uppercase | lowercase | full-width',
@@ -5018,7 +5018,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'text-underline-position': {
     syntax: 'auto | [ under || [ left | right ] ]',
@@ -5031,7 +5031,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   top: {
     syntax: '<length> | <percentage> | auto',
@@ -5044,7 +5044,7 @@ export default {
     appliesto: 'positionedElements',
     computed: 'lengthAbsolutePercentageAsSpecifiedOtherwiseAuto',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'touch-action': {
     syntax:
@@ -5059,7 +5059,7 @@ export default {
       'allElementsExceptNonReplacedInlineElementsTableRowsColumnsRowColumnGroups',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   transform: {
     syntax: 'none | <transform-list>',
@@ -5073,7 +5073,7 @@ export default {
     computed: 'asSpecifiedRelativeToAbsoluteLengths',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   'transform-box': {
     syntax: 'border-box | fill-box | view-box',
@@ -5086,7 +5086,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'transform-origin': {
     syntax:
@@ -5100,7 +5100,7 @@ export default {
     appliesto: 'transformableElements',
     computed: 'forLengthAbsoluteValueOtherwisePercentage',
     order: 'oneOrTwoValuesLengthAbsoluteKeywordsPercentages',
-    status: 'standard'
+    status: 'standard',
   },
   'transform-style': {
     syntax: 'flat | preserve-3d',
@@ -5114,7 +5114,7 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
+    status: 'standard',
   },
   transition: {
     syntax: '<single-transition>#',
@@ -5127,17 +5127,17 @@ export default {
       'transition-delay',
       'transition-duration',
       'transition-property',
-      'transition-timing-function'
+      'transition-timing-function',
     ],
     appliesto: 'allElementsAndPseudos',
     computed: [
       'transition-delay',
       'transition-duration',
       'transition-property',
-      'transition-timing-function'
+      'transition-timing-function',
     ],
     order: 'orderOfAppearance',
-    status: 'standard'
+    status: 'standard',
   },
   'transition-delay': {
     syntax: '<time>#',
@@ -5150,7 +5150,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'transition-duration': {
     syntax: '<time>#',
@@ -5163,7 +5163,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'transition-property': {
     syntax: 'none | <single-transition-property>#',
@@ -5176,7 +5176,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'transition-timing-function': {
     syntax: '<single-transition-timing-function>#',
@@ -5189,7 +5189,7 @@ export default {
     appliesto: 'allElementsAndPseudos',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'unicode-bidi': {
     syntax:
@@ -5203,7 +5203,7 @@ export default {
     appliesto: 'allElementsSomeValuesNoEffectOnNonInlineElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'user-select': {
     syntax: 'auto | text | none | contain | all',
@@ -5216,7 +5216,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'nonstandard'
+    status: 'nonstandard',
   },
   'vertical-align': {
     syntax:
@@ -5231,7 +5231,7 @@ export default {
     computed: 'absoluteLengthOrKeyword',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   visibility: {
     syntax: 'visible | hidden | collapse',
@@ -5244,7 +5244,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'white-space': {
     syntax: 'normal | pre | nowrap | pre-wrap | pre-line',
@@ -5257,7 +5257,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   widows: {
     syntax: '<integer>',
@@ -5270,7 +5270,7 @@ export default {
     appliesto: 'blockContainerElements',
     computed: 'asSpecified',
     order: 'perGrammar',
-    status: 'standard'
+    status: 'standard',
   },
   width: {
     syntax:
@@ -5284,7 +5284,7 @@ export default {
     appliesto: 'allElementsButNonReplacedAndTableRows',
     computed: 'percentageAutoOrAbsoluteLength',
     order: 'lengthOrPercentageBeforeKeywordIfBothPresent',
-    status: 'standard'
+    status: 'standard',
   },
   'will-change': {
     syntax: 'auto | <animateable-feature>#',
@@ -5297,7 +5297,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'word-break': {
     syntax: 'normal | break-all | keep-all',
@@ -5310,7 +5310,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'word-spacing': {
     syntax: 'normal | <length-percentage>',
@@ -5324,7 +5324,7 @@ export default {
     computed: 'optimumMinAndMaxValueOfAbsoluteLengthPercentageOrNormal',
     order: 'uniqueOrder',
     alsoAppliesTo: ['::first-letter', '::first-line', '::placeholder'],
-    status: 'standard'
+    status: 'standard',
   },
   'word-wrap': {
     syntax: 'normal | break-word',
@@ -5337,7 +5337,7 @@ export default {
     appliesto: 'allElements',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'writing-mode': {
     syntax:
@@ -5351,7 +5351,7 @@ export default {
     appliesto: 'allElementsExceptTableRowColumnGroupsTableRowsColumns',
     computed: 'asSpecified',
     order: 'uniqueOrder',
-    status: 'standard'
+    status: 'standard',
   },
   'z-index': {
     syntax: 'auto | <integer>',
@@ -5365,6 +5365,6 @@ export default {
     computed: 'asSpecified',
     order: 'uniqueOrder',
     stacking: true,
-    status: 'standard'
-  }
+    status: 'standard',
+  },
 }

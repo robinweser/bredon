@@ -5,6 +5,6 @@ type Paren = '(' | ')'
 export default function parenthesis(paren: Paren): SimpleNode {
   return {
     type: 'Parenthesis',
-    value: paren
+    value: paren,
   }
 }
